@@ -1,0 +1,24 @@
+﻿@using InsurgenceServerWebsite.Models
+@model UserModel
+@{
+	Layout = "/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Users";
+}
+<div style="padding-top:30px;">
+	<div>
+		@using (Html.BeginForm("FindUser", "Admin", FormMethod.Post))
+		{
+			<fieldset style="display:inline">
+				<div>
+					@Html.TextBoxFor(model => model.request, new { @class = "form_input_field" })
+				</div>
+			</fieldset>
+			<input type="submit" value="Search"  style="display:inline"/>
+		}
+
+	</div>
+	<br />
+	<div>
+		@Html.Partial("UserHelper", null)
+	</div>
+</div>
