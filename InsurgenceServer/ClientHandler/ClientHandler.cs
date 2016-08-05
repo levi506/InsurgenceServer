@@ -30,43 +30,50 @@ namespace InsurgenceServer
 
 		public static void ClientChecker()
 		{
-			while (Data.Running)
-			{
-				for (var i = 0; i < ActiveClients.Count; i++)
-				{
-					try
-					{
-						if (i >= ActiveClients.Count)
-							return;
-						var c = ActiveClients[i];
-						if (c == null)
-						{
-							c.Disconnect();
-							return;
-						}
-						if (c._client == null)
-						{
-							c.Disconnect();
-							return;
-						}
-						if (!c._client.Connected)
-						{
-							c.Disconnect();
-							return;
-						}
-						if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= 5)
-						{
-							c.Disconnect();
-							return;
-						}
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
-				}
-				Thread.Sleep(5000);
-			}
+            try
+            {
+                while (Data.Running)
+                {
+                    for (var i = 0; i < ActiveClients.Count; i++)
+                    {
+                        try
+                        {
+                            if (i >= ActiveClients.Count)
+                                return;
+                            var c = ActiveClients[i];
+                            if (c == null)
+                            {
+                                c.Disconnect();
+                                return;
+                            }
+                            if (c._client == null)
+                            {
+                                c.Disconnect();
+                                return;
+                            }
+                            if (!c._client.Connected)
+                            {
+                                c.Disconnect();
+                                return;
+                            }
+                            if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= 5)
+                            {
+                                c.Disconnect();
+                                return;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+                    }
+                    Thread.Sleep(5000);
+                }
+            }
+            catch
+            {
+                ClientChecker();
+            }
 		}
 	}
 }

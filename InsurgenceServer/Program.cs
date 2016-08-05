@@ -30,6 +30,7 @@ namespace InsurgenceServer
             ).Start();
 
             new MainConnector();
+            Console.ReadLine();
         }
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {

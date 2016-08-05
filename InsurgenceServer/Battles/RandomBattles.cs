@@ -69,44 +69,51 @@ namespace InsurgenceServer.Battles
         }
         public static void MatchRandoms()
         {
-            while (Data.Running)
+            try
             {
-                if (NoTierRandoms.Count >= 2)
+                while (Data.Running)
                 {
-                    MatchUsers(NoTierRandoms);
+                    if (NoTierRandoms.Count >= 2)
+                    {
+                        MatchUsers(NoTierRandoms);
+                    }
+                    else if (AGRandoms.Count >= 2)
+                    {
+                        MatchUsers(AGRandoms);
+                    }
+                    else if (UberRandoms.Count >= 2)
+                    {
+                        MatchUsers(UberRandoms);
+                    }
+                    else if (OURandoms.Count >= 2)
+                    {
+                        MatchUsers(OURandoms);
+                    }
+                    else if (BLRandoms.Count >= 2)
+                    {
+                        MatchUsers(BLRandoms);
+                    }
+                    else if (UURandoms.Count >= 2)
+                    {
+                        MatchUsers(UURandoms);
+                    }
+                    else if (RURandoms.Count >= 2)
+                    {
+                        MatchUsers(RURandoms);
+                    }
+                    else if (NURandoms.Count >= 2)
+                    {
+                        MatchUsers(NURandoms);
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(2000);
+                    }
                 }
-                else if (AGRandoms.Count >= 2)
-                {
-                    MatchUsers(AGRandoms);
-                }
-                else if (UberRandoms.Count >= 2)
-                {
-                    MatchUsers(UberRandoms);
-                }
-                else if (OURandoms.Count >= 2)
-                {
-                    MatchUsers(OURandoms);
-                }
-                else if (BLRandoms.Count >= 2)
-                {
-                    MatchUsers(BLRandoms);
-                }
-                else if (UURandoms.Count >= 2)
-                {
-                    MatchUsers(UURandoms);
-                }
-                else if (RURandoms.Count >= 2)
-                {
-                    MatchUsers(RURandoms);
-                }
-                else if (NURandoms.Count >= 2)
-                {
-                    MatchUsers(NURandoms);
-                }
-                else
-                {
-                    System.Threading.Thread.Sleep(2000);
-                }
+            }
+            catch
+            {
+                MatchRandoms();
             }
         }
         public static void MatchUsers(List<Client> l)
