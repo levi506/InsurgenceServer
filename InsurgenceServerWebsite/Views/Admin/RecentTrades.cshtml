@@ -12,6 +12,9 @@
 		@foreach (var trade in Model.Trades)
 		{
 			<tr>
+				<td>
+					@trade.Date
+				</td>
 				<th>
 					@Html.ActionLink(trade.User1, "Users", "Admin", new { id = trade.User1 }, null)
 				</th>

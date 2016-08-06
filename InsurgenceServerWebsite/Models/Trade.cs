@@ -7,6 +7,7 @@ namespace InsurgenceServerWebsite.Models
 {
     public class Trade
     {
+        public DateTime Date { get; set; }
         public string User1 { get; set; }
         public string User2 { get; set; }
         public Pokemon Pokemon1 { get; set; }

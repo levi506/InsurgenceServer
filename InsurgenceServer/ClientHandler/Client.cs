@@ -53,7 +53,8 @@ namespace InsurgenceServer
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+                Logger.ErrorLog.Log(e);
+                Console.WriteLine(e);
 			}
 		}
 		private string Message = "";
@@ -285,6 +286,7 @@ namespace InsurgenceServer
 				_client.Close();
 			}
 			catch (Exception e) {
+                Logger.ErrorLog.Log(e);
 				Debug.WriteLine(e);
 			}
 		}

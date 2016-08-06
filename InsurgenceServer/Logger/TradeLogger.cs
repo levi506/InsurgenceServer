@@ -18,7 +18,9 @@ namespace InsurgenceServer
 				{
 					ActualLog(user1, user2, pokemon1, pokemon2);
 				}
-				catch (Exception e) { Console.WriteLine(e); }
+				catch (Exception e) {
+                    Logger.ErrorLog.Log(e);
+                    Console.WriteLine(e); }
 			}).ConfigureAwait(false);
 			#pragma warning restore 4014
 		}

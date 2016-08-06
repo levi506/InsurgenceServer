@@ -265,6 +265,7 @@ namespace InsurgenceServerWebsite.DatabaseSpace
                 while (r.Read())
                 {
                     var t = new Trade();
+                    t.Date = (DateTime)r["time"];
                     t.User1 = (string)r["user1"];
                     t.User2 = (string)r["user2"];
                     t.Pokemon1 = JsonConvert.DeserializeObject<Pokemon>((string)r["pokemon1"]);

@@ -22,6 +22,11 @@ namespace InsurgenceServer
             Database.DBInit.Connect();
 
             new Thread(() =>
+               Logger.ErrorLog.Initialize()
+            ).Start();
+
+
+            new Thread(() =>
                 Battles.RandomBattles.MatchRandoms()
             ).Start();
 
@@ -34,6 +39,11 @@ namespace InsurgenceServer
         }
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
+            try
+            {
+                Logger.ErrorLog.Log((Exception)e.ExceptionObject);
+            }
+            catch { }
             Console.WriteLine(e.ExceptionObject.ToString());
             Console.WriteLine("Press Enter to continue");
             Console.ReadLine();

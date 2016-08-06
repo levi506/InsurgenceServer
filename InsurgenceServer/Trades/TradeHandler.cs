@@ -10,34 +10,43 @@ namespace InsurgenceServer
 
 		public static Trade BeginTrade(string username, Client client)
 		{
-			var u = username.ToLower();
-			if (!Database.DBUserChecks.UserExists(username))
-			{
-				client.SendMessage(string.Format("<TRA user={0} result=0>", username));
-				return null;
-			}
-			if (Database.DBUserChecks.UserBanned(username))
-			{
-				client.SendMessage(string.Format("<TRA user={0} result=1>", username));
-				return null;
-			}
-			var c = ClientHandler.GetClient(u);
-			if (c == null)
-			{
-				client.SendMessage(string.Format("<TRA user={0} result=2>", username));
-				return null;
-			}
-			if ((c.IP.ToString() == client.IP.ToString()) && !client.Admin)
-			{
-				client.SendMessage(string.Format("<GLOBAL message=You can not trade with the same IP>"));
-				client.SendMessage("<TRA dead>");
-				return null;
-			}
-			var t = GetTrade(u, client);
-			if (t == null)
-				return new Trade(client, u);
-			t.JoinTrade(client);
-			return t;
+            try
+            {
+                var u = username.ToLower();
+                if (!Database.DBUserChecks.UserExists(username))
+                {
+                    client.SendMessage(string.Format("<TRA user={0} result=0>", username));
+                    return null;
+                }
+                if (Database.DBUserChecks.UserBanned(username))
+                {
+                    client.SendMessage(string.Format("<TRA user={0} result=1>", username));
+                    return null;
+                }
+                var c = ClientHandler.GetClient(u);
+                if (c == null)
+                {
+                    client.SendMessage(string.Format("<TRA user={0} result=2>", username));
+                    return null;
+                }
+                if ((c.IP.ToString() == client.IP.ToString()) && !client.Admin)
+                {
+                    client.SendMessage(string.Format("<GLOBAL message=You can not trade with the same IP>"));
+                    client.SendMessage("<TRA dead>");
+                    return null;
+                }
+                var t = GetTrade(u, client);
+                if (t == null)
+                    return new Trade(client, u);
+                t.JoinTrade(client);
+                return t;
+            }
+            catch(Exception e)
+            {
+                Logger.ErrorLog.Log(e);
+                Console.WriteLine(e);
+                return null;
+            }
 		}
 		public static Trade GetTrade(string username, Client client)
 		{
@@ -53,42 +62,55 @@ namespace InsurgenceServer
 		}
 		public static void DeleteTrade(Trade trade)
 		{
-			ActiveTrades.Remove(trade);
-		}
+            try
+            {
+                ActiveTrades.Remove(trade);
+            }
+            catch { }
+        }
 
-		public static void TradeChecker()
-		{
-			while (Data.Running)
-			{
-				for (var i = 0; i < ActiveTrades.Count; i++)
-				{
-					if (i >= ActiveTrades.Count)
-						return;
-					var t = ActiveTrades[i];
-					var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
-					if (timeactive >= 1 && t.Activated)
-					{
-						t.Kill();
-						return;
-					}
-					if (timeactive >= 5)
-					{
-						t.Kill();
-						return;
-					}
-                    if (t.Client1 == null)
+        public static void TradeChecker()
+        {
+            try
+            {
+                while (Data.Running)
+                {
+                    for (var i = 0; i < ActiveTrades.Count; i++)
                     {
-                        t.Kill();
-                        return;
+                        if (i >= ActiveTrades.Count)
+                            return;
+                        var t = ActiveTrades[i];
+                        var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
+                        if (timeactive >= 1 && t.Activated)
+                        {
+                            t.Kill();
+                            return;
+                        }
+                        if (timeactive >= 5)
+                        {
+                            t.Kill();
+                            return;
+                        }
+                        if (t.Client1 == null)
+                        {
+                            t.Kill();
+                            return;
+                        }
+                        if (t.Client2 == null && t.Activated)
+                        {
+                            t.Kill();
+                            return;
+                        }
                     }
-                    if (t.Client2 == null && t.Activated)
-                    {
-                        t.Kill();
-                        return;
-                    }
-				}
-			}
-		}
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.ErrorLog.Log(e);
+                Console.WriteLine(e);
+                TradeChecker();
+            }
+        }
 	}
     public class TradeLog
     {

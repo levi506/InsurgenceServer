@@ -57,7 +57,8 @@ namespace InsurgenceServer
 				}
 				catch (Exception e)
 				{
-					o.Shiny = false;
+                    Logger.ErrorLog.Log(e);
+                    o.Shiny = false;
 					Console.WriteLine(e);
 				}
 			}

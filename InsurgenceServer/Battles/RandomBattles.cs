@@ -111,8 +111,9 @@ namespace InsurgenceServer.Battles
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Logger.ErrorLog.Log(e);
                 MatchRandoms();
             }
         }
