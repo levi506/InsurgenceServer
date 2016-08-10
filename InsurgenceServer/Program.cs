@@ -52,7 +52,7 @@ namespace InsurgenceServer
         static string LastError;
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
-            if (((Exception)e.ExceptionObject).StackTrace == LastError)
+            if (((Exception)e.ExceptionObject).StackTrace != LastError)
             {
                 LastError = ((Exception)e.ExceptionObject).StackTrace;
                 try
