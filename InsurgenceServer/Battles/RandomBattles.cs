@@ -11,21 +11,21 @@ namespace InsurgenceServer.Battles
 {
     public static class RandomBattles
     {
-        private static List<Client> NoTierRandoms = new List<Client>();
-        private static List<Client> AGRandoms = new List<Client>();
-        private static List<Client> UberRandoms = new List<Client>();
-        private static List<Client> OURandoms = new List<Client>();
-        private static List<Client> BLRandoms = new List<Client>();
-        private static List<Client> UURandoms = new List<Client>();
-        private static List<Client> RURandoms = new List<Client>();
-        private static List<Client> NURandoms = new List<Client>();
+        private static Dictionary<Client, DateTime> NoTierRandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> AGRandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> UberRandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> OURandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> BLRandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> UURandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> RURandoms = new Dictionary<Client, DateTime>();
+        private static Dictionary<Client, DateTime> NURandoms = new Dictionary<Client, DateTime>();
 
         public static void AddRandom(Client c, Tiers tier, Tiers maxTier)
         {
             if (tier == Tiers.notier)
             {
                 c.QueuedTier = Tiers.notier;
-                NoTierRandoms.Add(c);
+                NoTierRandoms.Add(c, DateTime.Now);
             }
             else if ((int)tier > (int)maxTier)
             {
@@ -34,38 +34,38 @@ namespace InsurgenceServer.Battles
             else
             {
                 if (tier == Tiers.AG)
-                    AGRandoms.Add(c);
+                    AGRandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.Uber)
-                    UberRandoms.Add(c);
+                    UberRandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.OU)
-                    OURandoms.Add(c);
+                    OURandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.BL)
-                    BLRandoms.Add(c);
+                    BLRandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.UU)
-                    UURandoms.Add(c);
+                    UURandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.RU)
-                    RURandoms.Add(c);
+                    RURandoms.Add(c, DateTime.Now);
                 else if (tier == Tiers.NU)
-                    NURandoms.Add(c);
+                    NURandoms.Add(c, DateTime.Now);
             }
         }
         public static void RemoveRandom(Client c)
         {
             var tier = c.QueuedTier;
             if (tier == Tiers.AG)
-                AGRandoms.RemoveAll(x => x == c);
+                AGRandoms.Remove(c);
             else if (tier == Tiers.Uber)
-                UberRandoms.RemoveAll(x => x == c);
+                UberRandoms.Remove(c);
             else if (tier == Tiers.OU)
-                OURandoms.RemoveAll(x => x == c);
+                OURandoms.Remove(c);
             else if (tier == Tiers.BL)
-                BLRandoms.RemoveAll(x => x == c);
+                BLRandoms.Remove(c);
             else if (tier == Tiers.UU)
-                UURandoms.RemoveAll(x => x == c);
+                UURandoms.Remove(c);
             else if (tier == Tiers.RU)
-                RURandoms.RemoveAll(x => x == c);
+                RURandoms.Remove(c);
             else if (tier == Tiers.NU)
-                NURandoms.RemoveAll(x => x == c);
+                NURandoms.Remove(c);
         }
         public static void MatchRandoms()
         {
@@ -117,11 +117,46 @@ namespace InsurgenceServer.Battles
                 MatchRandoms();
             }
         }
-        public static void MatchUsers(List<Client> l)
+        public static void CleanRandoms()
+        {
+            while (true)
+            {
+                foreach(var kp in AGRandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in UberRandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in OURandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in BLRandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in UURandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in RURandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                foreach (var kp in NURandoms)
+                {
+                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AGRandoms.Remove(kp.Key);
+                }
+                System.Threading.Thread.Sleep(5000);
+            }
+        }
+        public static void MatchUsers(Dictionary<Client,DateTime> l)
         {
             var r = new Random();
-            var u1 = l[r.Next(0, l.Count)];
-            var u2 = l[r.Next(0, l.Count)];
+            var u1 = l.Keys.ElementAt(r.Next(0, l.Count));
+            var u2 = l.Keys.ElementAt(r.Next(0, l.Count));
             if (u1 != u2 && u1.Username != u2.Username)
             {
                 u1.SendMessage(string.Format("<RANDBAT user={0}>", u2.Username));

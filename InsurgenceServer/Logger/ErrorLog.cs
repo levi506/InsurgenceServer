@@ -20,8 +20,15 @@ namespace InsurgenceServer.Logger
                 errorchannel = _client.GetChannel(DiscordAuth.ErrorChannel);
             });
         }
+        public static DateTime LastError;
         public static void Log(Exception e)
         {
+            if (LastError != null && (LastError - DateTime.UtcNow).TotalSeconds < 5)
+            {
+                LastError = DateTime.UtcNow;
+                return;
+            }
+            LastError = DateTime.UtcNow;
             if (errorchannel == null)
             {
                 try

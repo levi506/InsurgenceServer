@@ -56,25 +56,34 @@ namespace InsurgenceServer
 
         public static void BattleChecker()
         {
-            while (Data.Running)
+            try
             {
-                for (var i = 0; i < ActiveBattles.Count; i++)
+                while (Data.Running)
                 {
-                    if (i >= ActiveBattles.Count)
-                        return;
-                    var t = ActiveBattles[i];
-                    var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
-                    if (timeactive > 1 && t.Activated)
+                    for (var i = 0; i < ActiveBattles.Count; i++)
                     {
-                        t.Kill();
-                        return;
-                    }
-                    if (timeactive >= 5)
-                    {
-                        t.Kill();
-                        return;
+                        if (i >= ActiveBattles.Count)
+                            return;
+                        var t = ActiveBattles[i];
+                        var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
+                        if (timeactive > 1 && t.Activated)
+                        {
+                            t.Kill();
+                            return;
+                        }
+                        if (timeactive >= 5)
+                        {
+                            t.Kill();
+                            return;
+                        }
                     }
                 }
+            }
+            catch(Exception e)
+            {
+                Logger.ErrorLog.Log(e);
+                Console.WriteLine(e);
+                BattleChecker();
             }
         }
     }

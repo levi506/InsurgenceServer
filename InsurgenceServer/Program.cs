@@ -34,19 +34,37 @@ namespace InsurgenceServer
                 ClientHandler.ClientChecker()
             ).Start();
 
+            new Thread(() =>
+               TradeHandler.TradeChecker()
+           ).Start();
+
+            new Thread(() =>
+               BattleHandler.BattleChecker()
+           ).Start();
+
+            new Thread(() =>
+               Battles.RandomBattles.CleanRandoms()
+           ).Start();
+
             new MainConnector();
             Console.ReadLine();
         }
+        static string LastError;
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
-            try
+            if (((Exception)e.ExceptionObject).StackTrace == LastError)
             {
-                Logger.ErrorLog.Log((Exception)e.ExceptionObject);
+                LastError = ((Exception)e.ExceptionObject).StackTrace;
+                try
+                {
+                    Logger.ErrorLog.Log((Exception)e.ExceptionObject);
+                }
+                catch { }
+                Console.WriteLine(e.ExceptionObject.ToString());
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
             }
-            catch { }
-            Console.WriteLine(e.ExceptionObject.ToString());
-            Console.WriteLine("Press Enter to continue");
-            Console.ReadLine();
+            
             Environment.Exit(1);
         }
     }
