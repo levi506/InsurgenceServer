@@ -67,10 +67,12 @@ namespace InsurgenceServer
 			{
 				return;
 			}
+            /*
             if (Username != "")
                 Console.WriteLine(string.Format("{0} {1}", Username, Message));
             else
                 Console.WriteLine(string.Format("Not Logged In: {0}", Message));
+            */
 			LastActive = DateTime.UtcNow;
 			var command = new CommandHandler(Message);
 			Message = "";
@@ -149,6 +151,37 @@ namespace InsurgenceServer
                     return;
                 }
             }
+            if (command.Command == Commands.GTSCREATE)
+            {
+                GTS.GTSHandler.CreateGTS(this, command.data["offer"], command.data["request"], command.data["index"]);
+                return;
+            }
+            if (command.Command == Commands.GTSOFFER)
+            {
+                GTS.GTSHandler.OfferGTS(this, command.data["offer"], command.data["id"]);
+                return;
+            }
+            if (command.Command == Commands.GTSREQUEST)
+            {
+                GTS.GTSHandler.RequestGTS(this, command.data["index"]);
+                return;
+            }
+            if (command.Command == Commands.GTSCANCEL)
+            {
+                GTS.GTSHandler.CancelTrade(this, command.data["id"]);
+                return;
+            }
+            if (command.Command == Commands.GTSCOLLECT)
+            {
+                GTS.GTSHandler.CollectTrade(this, command.data["id"]);
+                return;
+            }
+            if (command.Command == Commands.GTSMINE)
+            {
+                GTS.GTSHandler.GetUserTrades(this);
+                return;
+            }
+
 		}
 		private void ConnectionRequest(string versionstr)
 		{
@@ -301,7 +334,7 @@ namespace InsurgenceServer
 				return;
 			var input = _input.Remove(0, 1);
 			input = input.Remove(input.Length - 1);
-			var arr = input.Split(' ');
+			var arr = input.Split('\t');
 			if (!Enum.TryParse<Commands>(arr[0], out Command))
 			{
 				Console.WriteLine("Unexpected Command: " + arr[0]);
@@ -319,13 +352,15 @@ namespace InsurgenceServer
 					if (j != 1)
 						arg += "=";
 				}
+                Console.WriteLine(carr[0]);
 				data.Add(carr[0], arg);
 			}
 		}
 	}
 	public enum Commands
 	{
-		Null = 0, CON, DSC, LOG, REG, TRA, VBASE, UBASE, BAT, RAND, RANBAT
+		Null = 0, CON, DSC, LOG, REG, TRA, VBASE, UBASE, BAT, RAND, RANBAT, GTSCREATE, GTSREQUEST, GTSOFFER,
+        GTSCANCEL, GTSCOLLECT, GTSMINE
 	}
 }
 

@@ -63,20 +63,21 @@ namespace InsurgenceServer
                     for (var i = 0; i < ActiveBattles.Count; i++)
                     {
                         if (i >= ActiveBattles.Count)
-                            return;
+                            continue;
                         var t = ActiveBattles[i];
                         var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
                         if (timeactive > 1 && t.Activated)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                         if (timeactive >= 5)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                     }
+                    System.Threading.Thread.Sleep(5000);
                 }
             }
             catch(Exception e)

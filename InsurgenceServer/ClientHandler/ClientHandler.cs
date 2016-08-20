@@ -39,33 +39,34 @@ namespace InsurgenceServer
                         try
                         {
                             if (i >= ActiveClients.Count)
-                                return;
+                                continue;
                             var c = ActiveClients[i];
                             if (c == null)
                             {
                                 c.Disconnect();
-                                return;
+                                continue;
                             }
                             if (c._client == null)
                             {
                                 c.Disconnect();
-                                return;
+                                continue;
                             }
                             if (!c._client.Connected)
                             {
                                 c.Disconnect();
-                                return;
+                                continue;
                             }
                             if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= 5)
                             {
                                 c.Disconnect();
-                                return;
+                                continue;
                             }
                         }
                         catch (Exception e)
                         {
                             Logger.ErrorLog.Log(e);
                             Console.WriteLine(e);
+                            ClientChecker();
                         }
                     }
                     Thread.Sleep(5000);

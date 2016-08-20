@@ -175,10 +175,12 @@ namespace InsurgenceServer.Battles
             var resourceName = "InsurgenceServer.Battles.Tiers.json";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
             {
-                string result = reader.ReadToEnd();
-                Tiers = JsonConvert.DeserializeObject<Tierlist>(result);
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                    Tiers = JsonConvert.DeserializeObject<Tierlist>(result);
+                }
             }
         }
         public static Tiers GetTier(string SpeciesList)

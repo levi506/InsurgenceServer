@@ -21,9 +21,10 @@ namespace InsurgenceServer.Logger
             });
         }
         public static DateTime LastError;
-        public static void Log(Exception e)
+        public static void Log(object e)
         {
-            if (LastError != null && (LastError - DateTime.UtcNow).TotalSeconds < 5)
+            /*
+            if (LastError != null && (LastError - DateTime.UtcNow).TotalSeconds > 5)
             {
                 LastError = DateTime.UtcNow;
                 return;
@@ -50,6 +51,7 @@ namespace InsurgenceServer.Logger
             {
                 Console.WriteLine(err);
             }
+            */
         }
     }
 }

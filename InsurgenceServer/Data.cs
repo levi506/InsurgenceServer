@@ -13,6 +13,8 @@ namespace InsurgenceServer
 		public const double ServerVersion = 2.0;
 		public const int MaximumConnections = 200;
 
+        public const int MaximumGTSTradesPerUser = 3;
+
 		public static bool AcceptingConnections = true;
 		public static bool Running = true;
 

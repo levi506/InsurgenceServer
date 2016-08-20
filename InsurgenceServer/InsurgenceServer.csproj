@@ -80,11 +80,17 @@
     <Compile Include="Battles\RandomBattles.cs" />
     <Compile Include="Database\DBAuthentication.cs" />
     <Compile Include="Database\DBFriendSafari.cs" />
+    <Compile Include="Database\DBGTS.cs" />
     <Compile Include="Database\DBInit.cs" />
     <Compile Include="Database\DBTradelog.cs" />
     <Compile Include="Database\DBUserChecks.cs" />
     <Compile Include="Database\DBUserManagement.cs" />
     <Compile Include="Database\OpenConnection.cs" />
+    <Compile Include="GrowthRates.cs" />
+    <Compile Include="GTS\GamePokemon.cs" />
+    <Compile Include="GTS\GTSCompare.cs" />
+    <Compile Include="GTS\GTSHandler.cs" />
+    <Compile Include="GTS\RequestData.cs" />
     <Compile Include="Logger\DiscordAuth.cs" />
     <Compile Include="Logger\ErrorLog.cs" />
     <Compile Include="Program.cs" />
@@ -102,6 +108,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <EmbeddedResource Include="Battles\Tiers.json" />
+    <None Include="DataFiles\growthrates.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

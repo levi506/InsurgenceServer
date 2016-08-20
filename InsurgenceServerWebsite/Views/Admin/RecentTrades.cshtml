@@ -22,6 +22,7 @@
 					<table style="width:100%;     height: 50px;">
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.Species)</td>
+                            <td>@trade.Pokemon1.ID</td>
 							@if (trade.Pokemon1.Shiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>
@@ -39,6 +40,7 @@
 					<table style="width:100%;     height: 50px;">
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.Species)</td>
+                            <td>@trade.Pokemon2.ID</td>
 							@if (trade.Pokemon2.Shiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>

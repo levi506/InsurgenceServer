@@ -35,9 +35,23 @@ namespace InsurgenceServerWebsite.DatabaseSpace
                         u.UserInfo.Banned = (bool)result["banned"];
                     else
                         u.UserInfo.Banned = false;
-                    u.FriendSafari = (string)result["base"];
+                    u.FriendSafariString = (string)result["base"];
                 }
                 result.Close();
+                u.FriendSafari = new FriendSafari(u.FriendSafariString);
+
+                string getLoginData = "SELECT lastlogin FROM user_data WHERE user_id = @param_val_1";
+                MySqlCommand glc = new MySqlCommand(getLoginData, conn.Connection);
+                glc.Parameters.AddWithValue("@param_val_1", u.UserInfo.User_Id);
+                var glcresult = glc.ExecuteReader();
+                while (glcresult.Read())
+                {
+                    if (glcresult["lastlogin"].GetType() != typeof(DBNull))
+                    {
+                        u.UserInfo.LastLoggedIn = (DateTime)glcresult["lastlogin"];
+                    }
+                }
+                glcresult.Close();
                 //Find IPs----------------------------------
                 string ipcommand = "SELECT ip, ipban FROM ips WHERE user_id = @param_val_1;";
                 MySqlCommand n = new MySqlCommand(ipcommand, conn.Connection);

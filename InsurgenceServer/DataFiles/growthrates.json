@@ -1,0 +1,3462 @@
+[
+  {
+    "id": 1,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 2,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 3,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 4,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 5,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 6,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 7,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 8,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 9,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 10,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 11,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 12,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 13,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 14,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 15,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 16,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 17,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 18,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 19,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 20,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 21,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 22,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 23,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 24,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 25,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 26,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 27,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 28,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 29,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 30,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 31,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 32,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 33,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 34,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 35,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 36,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 37,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 38,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 39,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 40,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 41,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 42,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 43,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 44,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 45,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 46,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 47,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 48,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 49,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 50,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 51,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 52,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 53,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 54,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 55,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 56,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 57,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 58,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 59,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 60,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 61,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 62,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 63,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 64,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 65,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 66,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 67,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 68,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 69,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 70,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 71,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 72,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 73,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 74,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 75,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 76,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 77,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 78,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 79,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 80,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 81,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 82,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 83,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 84,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 85,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 86,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 87,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 88,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 89,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 90,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 91,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 92,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 93,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 94,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 95,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 96,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 97,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 98,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 99,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 100,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 101,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 102,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 103,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 104,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 105,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 106,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 107,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 108,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 109,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 110,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 111,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 112,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 113,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 114,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 115,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 116,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 117,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 118,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 119,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 120,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 121,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 122,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 123,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 124,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 125,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 126,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 127,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 128,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 129,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 130,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 131,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 132,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 133,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 134,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 135,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 136,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 137,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 138,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 139,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 140,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 141,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 142,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 143,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 144,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 145,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 146,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 147,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 148,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 149,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 150,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 151,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 152,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 153,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 154,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 155,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 156,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 157,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 158,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 159,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 160,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 161,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 162,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 163,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 164,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 165,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 166,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 167,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 168,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 169,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 170,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 171,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 172,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 173,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 174,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 175,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 176,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 177,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 178,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 179,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 180,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 181,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 182,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 183,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 184,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 185,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 186,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 187,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 188,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 189,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 190,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 191,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 192,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 193,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 194,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 195,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 196,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 197,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 198,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 199,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 200,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 201,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 202,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 203,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 204,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 205,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 206,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 207,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 208,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 209,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 210,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 211,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 212,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 213,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 214,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 215,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 216,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 217,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 218,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 219,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 220,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 221,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 222,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 223,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 224,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 225,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 226,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 227,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 228,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 229,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 230,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 231,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 232,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 233,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 234,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 235,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 236,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 237,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 238,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 239,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 240,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 241,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 242,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 243,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 244,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 245,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 246,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 247,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 248,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 249,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 250,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 251,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 252,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 253,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 254,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 255,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 256,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 257,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 258,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 259,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 260,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 261,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 262,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 263,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 264,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 265,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 266,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 267,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 268,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 269,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 270,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 271,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 272,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 273,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 274,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 275,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 276,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 277,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 278,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 279,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 280,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 281,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 282,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 283,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 284,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 285,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 286,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 287,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 288,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 289,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 290,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 291,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 292,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 293,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 294,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 295,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 296,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 297,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 298,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 299,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 300,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 301,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 302,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 303,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 304,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 305,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 306,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 307,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 308,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 309,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 310,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 311,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 312,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 313,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 314,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 315,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 316,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 317,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 318,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 319,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 320,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 321,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 322,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 323,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 324,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 325,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 326,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 327,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 328,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 329,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 330,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 331,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 332,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 333,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 334,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 335,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 336,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 337,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 338,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 339,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 340,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 341,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 342,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 343,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 344,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 345,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 346,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 347,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 348,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 349,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 350,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 351,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 352,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 353,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 354,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 355,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 356,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 357,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 358,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 359,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 360,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 361,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 362,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 363,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 364,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 365,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 366,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 367,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 368,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 369,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 370,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 371,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 372,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 373,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 374,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 375,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 376,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 377,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 378,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 379,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 380,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 381,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 382,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 383,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 384,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 385,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 386,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 387,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 388,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 389,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 390,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 391,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 392,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 393,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 394,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 395,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 396,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 397,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 398,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 399,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 400,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 401,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 402,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 403,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 404,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 405,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 406,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 407,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 408,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 409,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 410,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 411,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 412,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 413,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 414,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 415,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 416,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 417,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 418,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 419,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 420,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 421,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 422,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 423,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 424,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 425,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 426,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 427,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 428,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 429,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 430,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 431,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 432,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 433,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 434,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 435,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 436,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 437,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 438,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 439,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 440,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 441,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 442,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 443,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 444,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 445,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 446,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 447,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 448,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 449,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 450,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 451,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 452,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 453,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 454,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 455,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 456,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 457,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 458,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 459,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 460,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 461,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 462,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 463,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 464,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 465,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 466,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 467,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 468,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 469,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 470,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 471,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 472,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 473,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 474,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 475,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 476,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 477,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 478,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 479,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 480,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 481,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 482,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 483,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 484,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 485,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 486,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 487,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 488,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 489,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 490,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 491,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 492,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 493,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 494,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 495,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 496,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 497,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 498,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 499,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 500,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 501,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 502,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 503,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 504,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 505,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 506,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 507,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 508,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 509,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 510,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 511,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 512,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 513,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 514,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 515,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 516,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 517,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 518,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 519,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 520,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 521,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 522,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 523,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 524,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 525,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 526,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 527,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 528,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 529,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 530,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 531,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 532,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 533,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 534,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 535,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 536,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 537,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 538,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 539,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 540,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 541,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 542,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 543,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 544,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 545,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 546,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 547,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 548,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 549,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 550,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 551,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 552,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 553,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 554,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 555,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 556,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 557,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 558,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 559,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 560,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 561,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 562,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 563,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 564,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 565,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 566,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 567,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 568,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 569,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 570,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 571,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 572,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 573,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 574,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 575,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 576,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 577,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 578,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 579,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 580,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 581,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 582,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 583,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 584,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 585,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 586,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 587,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 588,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 589,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 590,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 591,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 592,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 593,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 594,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 595,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 596,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 597,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 598,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 599,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 600,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 601,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 602,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 603,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 604,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 605,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 606,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 607,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 608,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 609,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 610,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 611,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 612,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 613,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 614,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 615,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 616,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 617,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 618,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 619,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 620,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 621,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 622,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 623,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 624,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 625,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 626,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 627,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 628,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 629,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 630,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 631,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 632,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 633,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 634,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 635,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 636,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 637,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 638,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 639,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 640,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 641,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 642,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 643,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 644,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 645,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 646,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 647,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 648,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 649,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 650,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 651,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 652,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 653,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 654,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 655,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 656,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 657,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 658,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 659,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 660,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 661,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 662,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 663,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 664,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 665,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 666,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 667,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 668,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 669,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 670,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 671,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 672,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 673,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 674,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 675,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 676,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 677,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 678,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 679,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 680,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 681,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 682,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 683,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 684,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 685,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 686,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 687,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 688,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 689,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 690,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 691,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 692,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 693,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 694,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 695,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 696,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 697,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 698,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 699,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 700,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 701,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 702,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 703,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 704,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 705,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 706,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 707,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 708,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 709,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 710,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 711,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 712,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 713,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 714,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 715,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 716,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 717,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 718,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 719,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 720,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 721,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 722,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 723,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 724,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 725,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 726,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 727,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 728,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 729,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 730,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 731,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 732,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 733,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 734,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 735,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 736,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 737,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 738,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 739,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 740,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 741,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 742,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 743,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 744,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 745,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 746,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 747,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 748,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 749,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 750,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 751,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 752,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 753,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 754,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 755,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 756,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 757,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 758,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 759,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 760,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 761,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 762,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 763,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 764,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 765,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 766,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 767,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 768,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 769,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 770,
+    "GrowthRate": "Fluctuating"
+  },
+  {
+    "id": 771,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 772,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 773,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 774,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 775,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 776,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 777,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 778,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 780,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 781,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 782,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 783,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 784,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 785,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 786,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 787,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 788,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 789,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 790,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 791,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 792,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 793,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 794,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 795,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 796,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 797,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 798,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 799,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 800,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 801,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 802,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 803,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 804,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 805,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 809,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 810,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 811,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 812,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 813,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 814,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 815,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 816,
+    "GrowthRate": "Erratic"
+  },
+  {
+    "id": 817,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 818,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 819,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 820,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 823,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 824,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 825,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 826,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 827,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 828,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 829,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 830,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 831,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 832,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 833,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 834,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 835,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 836,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 837,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 838,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 839,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 840,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 841,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 842,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 843,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 844,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 845,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 850,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 851,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 852,
+    "GrowthRate": "Fast"
+  },
+  {
+    "id": 853,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 854,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 855,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 856,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 857,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 858,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 859,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 860,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 861,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 862,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 863,
+    "GrowthRate": "Parabolic"
+  },
+  {
+    "id": 876,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 877,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 878,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 879,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 880,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 881,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 882,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 883,
+    "GrowthRate": "Slow"
+  },
+  {
+    "id": 884,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 885,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 886,
+    "GrowthRate": "Medium"
+  },
+  {
+    "id": 887,
+    "GrowthRate": "Medium"
+  }
+]

@@ -105,11 +105,17 @@ namespace InsurgenceServer.Database
 
                 if (ret == LoginResult.Unset)
                     ret = LoginResult.Okay;
-                conn.Close();
                 if (ret == LoginResult.Banned || ret == LoginResult.IPBanned)
                 {
                     Database.DBUserManagement.Ban(client.User_Id, ips);
                 }
+                string LoggedInRegisterCom = "UPDATE user_data SET lastlogin = @param_val_2 WHERE user_id = @param_val_1";
+                MySqlCommand logregcommand = new MySqlCommand(LoggedInRegisterCom, conn.Connection);
+                logregcommand.Parameters.AddWithValue("param_val_1", client.User_Id);
+                logregcommand.Parameters.AddWithValue("param_val_2", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+                logregcommand.ExecuteNonQuery();
+
+                conn.Close();
                 return ret;
             }
             else

@@ -20,6 +20,8 @@ namespace InsurgenceServer
             Battles.Matchmaking.SetupTiers();
             Console.WriteLine("Setting up database!");
             Database.DBInit.Connect();
+            Console.WriteLine("Reading datafiles!");
+            GrowthRates.Read();
 
             new Thread(() =>
                Logger.ErrorLog.Initialize()

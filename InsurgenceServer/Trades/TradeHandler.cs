@@ -29,7 +29,7 @@ namespace InsurgenceServer
                     client.SendMessage(string.Format("<TRA user={0} result=2>", username));
                     return null;
                 }
-                if ((c.IP.ToString() == client.IP.ToString()) && !client.Admin)
+                if ((c.IP.Equals(client.IP)) && !client.Admin)
                 {
                     client.SendMessage(string.Format("<GLOBAL message=You can not trade with the same IP>"));
                     client.SendMessage("<TRA dead>");
@@ -78,30 +78,31 @@ namespace InsurgenceServer
                     for (var i = 0; i < ActiveTrades.Count; i++)
                     {
                         if (i >= ActiveTrades.Count)
-                            return;
+                            continue;
                         var t = ActiveTrades[i];
                         var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
                         if (timeactive >= 1 && t.Activated)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                         if (timeactive >= 5)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                         if (t.Client1 == null)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                         if (t.Client2 == null && t.Activated)
                         {
                             t.Kill();
-                            return;
+                            continue;
                         }
                     }
+                    System.Threading.Thread.Sleep(5000);
                 }
             }
             catch (Exception e)
