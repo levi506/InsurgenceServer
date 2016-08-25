@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,19 +43,22 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "SELECT Offer, Request FROM GTS WHERE Accepted = 0 LIMIT @index, 5";
+                var com = "SELECT id, Offer, Request, Accepted FROM GTS WHERE Accepted = 0 LIMIT @index, 5";
                 var mcom = new MySqlCommand(com, conn.Connection);
                 mcom.Parameters.AddWithValue("@index", StartingIndex);
                 var r = mcom.ExecuteReader();
                 var ls = new List<GTS.RequestGTSHolder>();
                 while (r.Read())
                 {
+                    Console.WriteLine(r["id"].GetType());
                     var h = new GTS.RequestGTSHolder
                     {
-                        Offer = (string)r["Offer"],
-                        Request = (string)r["Request"],
+                        Index = (int)r["id"],
+                        Offer = JsonConvert.DeserializeObject<GTS.GamePokemon>((string)r["Offer"]),
+                        Request = JsonConvert.DeserializeObject<GTS.RequestData>((string)r["Request"]),
                         Accepted = (bool)r["Accepted"]
                     };
+                    Console.WriteLine("2");
                     ls.Add(h);
                 }
                 conn.Close();
@@ -76,8 +80,9 @@ namespace InsurgenceServer.Database
                 {
                     ret = new GTS.RequestGTSHolder
                     {
-                        Offer = (string)r["Offer"],
-                        Request = (string)r["Request"],
+                        Index = (int)r["id"],
+                        Offer = JsonConvert.DeserializeObject<GTS.GamePokemon>((string)r["Offer"]),
+                        Request = JsonConvert.DeserializeObject<GTS.RequestData>((string)r["Request"]),
                         Accepted = (bool)r["Accepted"]
                     };
                 }
@@ -132,8 +137,9 @@ namespace InsurgenceServer.Database
                 {
                     var req = new GTS.RequestGTSHolder
                     {
-                        Offer = (string)r["Offer"],
-                        Request = (string)r["Request"],
+                        Index = (int)r["id"],
+                        Offer = JsonConvert.DeserializeObject<GTS.GamePokemon>((string)r["Offer"]),
+                        Request = JsonConvert.DeserializeObject<GTS.RequestData>((string)r["Request"]),
                         Accepted = (bool)r["Accepted"]
                     };
                     ls.Add(req);
@@ -198,6 +204,27 @@ namespace InsurgenceServer.Database
                 return ret;
             }
             return null;
+        }
+        public static bool TradeIsAccepted(uint tradeid)
+        {
+            var conn = new OpenConnection();
+            if (conn.isConnected())
+            {
+                var s = "SELECT Accepted WHERE trade_id=@id";
+                var c = new MySqlCommand(s, conn.Connection);
+                c.Parameters.AddWithValue("@id", tradeid);
+                var r = c.ExecuteReader();
+                bool ret = false;
+                while (r.Read())
+                {
+                    var accepted = (bool)r["Accepted"];
+                    if (accepted)
+                        ret = true;
+                }
+                conn.Close();
+                return ret;
+            }
+            return false;
         }
     }
 }

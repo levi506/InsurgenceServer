@@ -43,13 +43,18 @@ namespace InsurgenceServer
 			{
 				while (Connected && (i = stream.Read(bytes, 0, bytes.Length)) != 0)
 				{
-					var data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-					DataHandler(data);
-				}
+                    try
+                    {
+                        var data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                        DataHandler(data);
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+                    }
+                }
 			}
 			catch (System.IO.IOException)
 			{
-
 			}
 			catch (Exception e)
 			{
@@ -67,12 +72,12 @@ namespace InsurgenceServer
 			{
 				return;
 			}
-            /*
+            
             if (Username != "")
                 Console.WriteLine(string.Format("{0} {1}", Username, Message));
             else
                 Console.WriteLine(string.Format("Not Logged In: {0}", Message));
-            */
+            
 			LastActive = DateTime.UtcNow;
 			var command = new CommandHandler(Message);
 			Message = "";

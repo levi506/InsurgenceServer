@@ -14,7 +14,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var banuser = "UPDATE users SET banned=1 WHERE user_id=@user";
+                var banuser = "UPDATE users SET banned=1 WHERE user_id = @user";
                 MySqlCommand m = new MySqlCommand(banuser, conn.Connection);
                 m.Parameters.AddWithValue("user", user_id);
                 m.ExecuteNonQuery();
