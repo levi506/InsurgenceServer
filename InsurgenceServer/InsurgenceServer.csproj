@@ -88,10 +88,6 @@
       <HintPath>..\packages\WebSocket4Net.0.14.1\lib\net45\WebSocket4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="zlib.net, Version=1.0.3.0, Culture=neutral, PublicKeyToken=47d7877cb3620160">
-      <HintPath>..\packages\zlib.net.1.0.4.0\lib\zlib.net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battles\Battle.cs" />
@@ -123,7 +119,7 @@
     <Compile Include="ClientHandler\ClientHandler.cs" />
     <Compile Include="Logger\TradeLogger.cs" />
     <Compile Include="Marshal.cs" />
-    <Compile Include="Utilities\Compress.cs" />
+    <Compile Include="Utilities\Encoding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

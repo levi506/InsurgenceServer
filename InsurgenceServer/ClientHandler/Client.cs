@@ -319,7 +319,8 @@ namespace InsurgenceServer
                     ActiveBattle.Kill();
                 if (QueuedTier != Tiers.Null)
                     RandomBattles.RemoveRandom(this);
-				SendMessage("<DSC>");
+                WonderTrade.WonderTradeHandler.DeleteFromClient(this);
+                SendMessage("<DSC>");
 				stream.Close();
 				_client.Close();
 			}
@@ -365,7 +366,7 @@ namespace InsurgenceServer
 	public enum Commands
 	{
 		Null = 0, CON, DSC, LOG, REG, TRA, VBASE, UBASE, BAT, RAND, RANBAT, GTSCREATE, GTSREQUEST, GTSOFFER,
-        GTSCANCEL, GTSCOLLECT, GTSMINE
+        GTSCANCEL, GTSCOLLECT, GTSMINE, WTCREATE, WTCANCEL 
 	}
 }
 
