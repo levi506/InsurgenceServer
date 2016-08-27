@@ -149,6 +149,17 @@ namespace InsurgenceServer.Database
                     return;
                 }
                 checkrese.Close();
+
+                var ipban = new MySqlCommand("SELECT COUNT(*) FROM ips WHERE ip = @ip AND ipban = 1", conn.Connection);
+                ipban.Parameters.AddWithValue("ip", client.IP.ToString());
+                var ipbancount = int.Parse(ipban.ExecuteScalar().ToString());
+                if (ipbancount > 0)
+                {
+                    client.SendMessage("<LOG result=3>");
+                    conn.Close();
+                    return;
+                }
+
                 var create = new MySqlCommand("INSERT INTO users (username, password, email, usergroup, base, sprite) " + 
                     "VALUES (@name, @pass, @email, @usergroup, @base, @sprite)", 
                     conn.Connection);

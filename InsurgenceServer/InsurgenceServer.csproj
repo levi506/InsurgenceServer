@@ -120,6 +120,8 @@
     <Compile Include="Logger\TradeLogger.cs" />
     <Compile Include="Marshal.cs" />
     <Compile Include="Utilities\Encoding.cs" />
+    <Compile Include="WonderTrade\WonderTradeHandler.cs" />
+    <Compile Include="WonderTrade\WonderTradeHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
