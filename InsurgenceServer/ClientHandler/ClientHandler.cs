@@ -66,7 +66,6 @@ namespace InsurgenceServer
                         {
                             Logger.ErrorLog.Log(e);
                             Console.WriteLine(e);
-                            ClientChecker();
                         }
                     }
                     Thread.Sleep(5000);

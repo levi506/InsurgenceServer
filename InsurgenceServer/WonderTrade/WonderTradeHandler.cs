@@ -15,7 +15,7 @@ namespace InsurgenceServer.WonderTrade
         {
             while (Data.Running)
             {
-                foreach (var trade in List)
+                foreach (var trade in List.ToList())
                 {
                     Console.WriteLine(trade.Pokemon.name);
                     try
@@ -26,12 +26,11 @@ namespace InsurgenceServer.WonderTrade
                             List.Remove(trade);
                             trade.Client.SendMessage("<WTRESULT result=1 user=nil pkmn=nil>");
                         }
-                        if (trade.Client != null || !trade.Client.Connected)
+                        if (trade.Client == null || !trade.Client.Connected)
                         {
                             //Delete from list
                             List.Remove(trade);
                         }
-
                     }
                     catch
                     {
