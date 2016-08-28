@@ -155,7 +155,7 @@ namespace InsurgenceServer.Database
                 var ipbancount = int.Parse(ipban.ExecuteScalar().ToString());
                 if (ipbancount > 0)
                 {
-                    client.SendMessage("<LOG result=3>");
+                    client.SendMessage("<LOG result=2>");
                     conn.Close();
                     return;
                 }

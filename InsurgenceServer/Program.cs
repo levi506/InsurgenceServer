@@ -48,6 +48,10 @@ namespace InsurgenceServer
                Battles.RandomBattles.CleanRandoms()
            ).Start();
 
+            new Thread(() =>
+               WonderTrade.WonderTradeHandler.Loop()
+           ).Start();
+
             new MainConnector();
             Console.ReadLine();
         }

@@ -93,6 +93,7 @@
     <Compile Include="Battles\Battle.cs" />
     <Compile Include="Battles\BattleHandler.cs" />
     <Compile Include="Battles\RandomBattles.cs" />
+    <Compile Include="ClientHandler\CommandHandler.cs" />
     <Compile Include="Database\DBAuthentication.cs" />
     <Compile Include="Database\DBFriendSafari.cs" />
     <Compile Include="Database\DBGTS.cs" />
@@ -129,6 +130,7 @@
     <None Include="DataFiles\growthrates.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="DataFiles\PokemonData.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

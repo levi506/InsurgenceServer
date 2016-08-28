@@ -16,7 +16,7 @@ namespace InsurgenceServer
         private double Version;
 
 		public bool Connected = true;
-		private bool _Loggedin;
+		internal bool _Loggedin;
         public bool LoggedIn;
 		public bool Admin = false;
 
@@ -28,7 +28,7 @@ namespace InsurgenceServer
 		public Trade ActiveTrade;
         public Battle ActiveBattle;
 
-        private Tiers TierSelected;
+        internal Tiers TierSelected;
         public Tiers QueuedTier;
 
 		public Client(TcpClient client)
@@ -81,114 +81,10 @@ namespace InsurgenceServer
 			LastActive = DateTime.UtcNow;
 			var command = new CommandHandler(Message);
 			Message = "";
-			if (command.Command == Commands.Null) return;
-			if (command.Command == Commands.DSC)
-			{
-				Disconnect();
-				return;
-			}
-			if (!_Loggedin)
-			{
-				if (command.Command == Commands.CON)
-					ConnectionRequest(command.data["version"]);
-				else if (command.Command == Commands.LOG)
-					Login(command.data["user"], command.data["pass"]);
-				else if (command.Command == Commands.REG)
-				{
-                    Register(command.data["user"], command.data["pass"], command.data["email"]);
-				}
-				return;
-			}
-			if (command.Command == Commands.TRA)
-			{
-				HandleTrade(command.data);
-				return;
-			}
-			if (command.Command == Commands.VBASE)
-			{
-				var b = Database.DBFriendSafari.GetBase(command.data["user"], this);
-				if (b == null) return;
-				SendMessage(string.Format("<VBASE user={0} result=2 base={1}>", command.data["user"], b));
-                return;
-			}
-			if (command.Command == Commands.UBASE)
-			{
-                Database.DBFriendSafari.UploadBase(this.User_Id, command.data["base"]);
-				SendMessage("<UBASE result=1>");
-                return;
-			}
-            if (command.Command == Commands.BAT)
-            {
-                HandleBattle(command.data);
-                return;
-            }
-            if (command.Command == Commands.RAND)
-            {
-                try
-                {
-                    TierSelected = Matchmaking.GetTier(command.data["species"]);
-                }
-                catch
-                {
-                    TierSelected = Tiers.AG;
-                }
-                this.SendMessage(string.Format("<RANTIER tier={0}>", Enum.GetName(typeof(Tiers), TierSelected)));
-                return;
-            }
-            if (command.Command == Commands.RANBAT)
-            {
-                if (command.data.ContainsKey("tier"))
-                {
-                    RandomBattles.AddRandom(this, (Tiers)Enum.Parse(typeof(Tiers), 
-                        command.data["tier"]), TierSelected);
-                    return;
-                }
-                else if (command.data.ContainsKey("cancel"))
-                {
-                    RandomBattles.RemoveRandom(this);
-                    return;
-                }
-                else if (command.data.ContainsKey("decline"))
-                {
-                    ClientHandler.GetClient(command.data["user"]).SendMessage(string.Format("<RANBAT declined user={0}>", this.Username));
-                    RandomBattles.RemoveRandom(this);
-                    TierSelected = Tiers.Null;
-                    return;
-                }
-            }
-            if (command.Command == Commands.GTSCREATE)
-            {
-                GTS.GTSHandler.CreateGTS(this, command.data["offer"], command.data["request"], command.data["index"]);
-                return;
-            }
-            if (command.Command == Commands.GTSOFFER)
-            {
-                GTS.GTSHandler.OfferGTS(this, command.data["offer"], command.data["id"]);
-                return;
-            }
-            if (command.Command == Commands.GTSREQUEST)
-            {
-                GTS.GTSHandler.RequestGTS(this, command.data["index"]);
-                return;
-            }
-            if (command.Command == Commands.GTSCANCEL)
-            {
-                GTS.GTSHandler.CancelTrade(this, command.data["id"]);
-                return;
-            }
-            if (command.Command == Commands.GTSCOLLECT)
-            {
-                GTS.GTSHandler.CollectTrade(this, command.data["id"]);
-                return;
-            }
-            if (command.Command == Commands.GTSMINE)
-            {
-                GTS.GTSHandler.GetUserTrades(this);
-                return;
-            }
 
-		}
-		private void ConnectionRequest(string versionstr)
+            ExecuteCommand.Execute(this, command);
+        }
+		internal void ConnectionRequest(string versionstr)
 		{
 			double version;
 			int result;
@@ -203,7 +99,7 @@ namespace InsurgenceServer
             this.Version = version;
 			SendMessage(string.Format("<CON result={0}>", result));
 		}
-		private void Login(string username, string password)
+		internal void Login(string username, string password)
 		{
 			var result = Database.DBAuthentication.Login(username, password, this);
 			//TODO: add ip bans etc here
@@ -222,11 +118,11 @@ namespace InsurgenceServer
             }
 			SendMessage(string.Format("<LOG result={0}>", (int)result));
 		}
-        private void Register(string username, string password, string email)
+        internal void Register(string username, string password, string email)
         {
             Database.DBAuthentication.Register(this, username, password, email);
         }
-		private void HandleTrade(Dictionary<string, string> args)
+        internal void HandleTrade(Dictionary<string, string> args)
 		{
 			if (args.ContainsKey("user"))
 			{
@@ -266,7 +162,7 @@ namespace InsurgenceServer
 			}
 		}
 
-        private void HandleBattle(Dictionary<string, string> args)
+        internal void HandleBattle(Dictionary<string, string> args)
         {
             if (args.ContainsKey("user"))
             {
