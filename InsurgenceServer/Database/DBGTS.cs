@@ -24,33 +24,45 @@ namespace InsurgenceServer.Database
             }
             return 0;
         }
-        public static void Add(uint userid, string offer, string request)
+        public static void Add(uint userid, string offer, string request, int Level)
         {
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "INSERT INTO GTS (user_id, Offer, Request) VALUES (@id, @offer, @request)";
+                var com = "INSERT INTO GTS (user_id, Offer, Request, OfferLevel) VALUES (@id, @offer, @request, @level)";
                 var mcom = new MySqlCommand(com, conn.Connection);
                 mcom.Parameters.AddWithValue("@id", userid);
                 mcom.Parameters.AddWithValue("@offer", offer);
                 mcom.Parameters.AddWithValue("@request", request);
+                mcom.Parameters.AddWithValue("@level", Level);
                 mcom.ExecuteNonQuery();
                 conn.Close();
             }
         }
-        public static List<GTS.RequestGTSHolder> GetTrades(uint StartingIndex)
+        public static List<GTS.RequestGTSHolder> GetTrades(uint StartingIndex, GTS.FilterHolder Filter)
         {
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "SELECT id, Offer, Request, Accepted FROM GTS WHERE Accepted = 0 LIMIT @index, 5";
+                var com = "SELECT id, Offer, Request, Accepted FROM GTS " +
+                    "WHERE (Accepted = 0 " +
+                    "AND OfferLevel >= @minLevel";
+                if (Filter.Species != 0)
+                {
+                    com += " AND (Offer->'$.species') = @species";
+                }
+                com += ") LIMIT @index, 5";
                 var mcom = new MySqlCommand(com, conn.Connection);
                 mcom.Parameters.AddWithValue("@index", StartingIndex);
+                mcom.Parameters.AddWithValue("@minLevel", Filter.MinLevel);
+                if (Filter.Species != 0)
+                {
+                    mcom.Parameters.AddWithValue("@species", Filter.Species);
+                }
                 var r = mcom.ExecuteReader();
                 var ls = new List<GTS.RequestGTSHolder>();
                 while (r.Read())
                 {
-                    Console.WriteLine(r["id"].GetType());
                     var h = new GTS.RequestGTSHolder
                     {
                         Index = (int)r["id"],
@@ -58,7 +70,6 @@ namespace InsurgenceServer.Database
                         Request = JsonConvert.DeserializeObject<GTS.RequestData>((string)r["Request"]),
                         Accepted = (bool)r["Accepted"]
                     };
-                    Console.WriteLine("2");
                     ls.Add(h);
                 }
                 conn.Close();

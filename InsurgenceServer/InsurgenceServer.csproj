@@ -103,6 +103,7 @@
     <Compile Include="Database\DBUserManagement.cs" />
     <Compile Include="Database\OpenConnection.cs" />
     <Compile Include="GrowthRates.cs" />
+    <Compile Include="GTS\FilterHolder.cs" />
     <Compile Include="GTS\GamePokemon.cs" />
     <Compile Include="GTS\GTSCompare.cs" />
     <Compile Include="GTS\GTSHandler.cs" />

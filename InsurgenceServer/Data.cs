@@ -8,9 +8,9 @@ namespace InsurgenceServer
 	public static class Data
 	{
 		public const string IP = "5.135.154.100";
-		public const int Port = 6420;
+		public const int Port = 6421;
 		public const string Databasename = "insurgence";
-		public const double ServerVersion = 2.0;
+		public const double ServerVersion = 3.0;
 		public const int MaximumConnections = 200;
 
         public const int MaximumGTSTradesPerUser = 3;

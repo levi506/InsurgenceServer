@@ -86,7 +86,7 @@ namespace InsurgenceServer
             }
             else if (command.Command == Commands.GTSREQUEST)
             {
-                GTS.GTSHandler.RequestGTS(client, command.data["index"]);
+                GTS.GTSHandler.RequestGTS(client, command.data["index"], command.data["filter"]);
             }
             else if (command.Command == Commands.GTSCANCEL)
             {

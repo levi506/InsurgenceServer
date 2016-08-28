@@ -27,13 +27,13 @@ namespace InsurgenceServer
 		private static void ActualLog(string user1, string user2, string pokemon1, string pokemon2)
 		{
 			CurrentLogging++;
-			byte[] data1 = Convert.FromBase64String(pokemon1);
-			byte[] data2 = Convert.FromBase64String(pokemon2);
-			var poke1 = Marshal.MarshalLoadPokemon(data1);
-			var poke2 = Marshal.MarshalLoadPokemon(data2);
-			var poke1json = JsonConvert.SerializeObject(poke1);
-			var poke2json = JsonConvert.SerializeObject(poke2);
-			Database.DBTradelog.LogTrade(user1, user2, poke1json, poke2json);
+			//byte[] data1 = Convert.FromBase64String(pokemon1);
+			//byte[] data2 = Convert.FromBase64String(pokemon2);
+            //var poke1 = Marshal.MarshalLoadPokemon(data1);
+            //var poke2 = Marshal.MarshalLoadPokemon(data2);
+            var poke1json = Utilities.Encoding.Base64Decode(pokemon1);
+            var poke2json = Utilities.Encoding.Base64Decode(pokemon2);
+            Database.DBTradelog.LogTrade(user1, user2, poke1json, poke2json);
 			CurrentLogging--;
 		}
 

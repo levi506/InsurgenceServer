@@ -26,10 +26,17 @@ namespace InsurgenceServer.GTS
             //Decode data
             var decodeOffer = Utilities.Encoding.Base64Decode(Offer);
             var decodeRequest = Utilities.Encoding.Base64Decode(Request);
+
+            //Turn data into objects
+            var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
+
+            //Get Pokemon Level
+            var level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
+
             //Input in database
             try
             {
-                Database.DBGTS.Add(c.User_Id, decodeOffer, decodeRequest);
+                Database.DBGTS.Add(c.User_Id, decodeOffer, decodeRequest, level);
                 c.SendMessage(string.Format("<GTSCREATE result=3 index={0}>", index));
             }
             catch (Exception e)
@@ -38,7 +45,7 @@ namespace InsurgenceServer.GTS
                 c.SendMessage(string.Format("<GTSCREATE result=2 index={0}>", index));
             }
         }
-        public static void RequestGTS(Client c, string lastIDstr)
+        public static void RequestGTS(Client c, string lastIDstr, string filterstring)
         {
             uint index;
             if (!uint.TryParse(lastIDstr, out index))
@@ -46,8 +53,10 @@ namespace InsurgenceServer.GTS
                 Console.WriteLine("NAN");
                 return;
             }
+            var Filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
+            Console.WriteLine(Filter.Species);
             //Request pokemon from the database, starting with pokemon last seen + 1. If lastID = -1, start from highest number
-            var ls = Database.DBGTS.GetTrades(index);
+            var ls = Database.DBGTS.GetTrades(index, Filter);
             var str = "";
             foreach(var o in ls)
             {
