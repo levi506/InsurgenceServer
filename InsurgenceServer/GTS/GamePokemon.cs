@@ -53,6 +53,7 @@ namespace InsurgenceServer.GTS
         public bool ballcapsule6 { get; set; }
         public string ot { get; set; }
         public int timeReceived { get; set; }
+        public bool ribbonsAllowed { get; set; }
     }
     public class GameMove
     {
