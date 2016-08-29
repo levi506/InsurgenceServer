@@ -51,7 +51,7 @@ namespace InsurgenceServer.Database
                 {
                     com += " AND (Offer->'$.species') = @species";
                 }
-                com += ") LIMIT @index, 5";
+                com += ") LIMIT @index, 4";
                 var mcom = new MySqlCommand(com, conn.Connection);
                 mcom.Parameters.AddWithValue("@index", StartingIndex);
                 mcom.Parameters.AddWithValue("@minLevel", Filter.MinLevel);
