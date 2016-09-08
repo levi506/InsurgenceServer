@@ -51,6 +51,14 @@ namespace InsurgenceServer.Database
                 {
                     com += " AND (Offer->'$.species') = @species";
                 }
+                if (Filter.Nature != 25)
+                {
+                    //com += " AND ()"
+                }
+                if (Filter.Gender != 0)
+                {
+                    //com += " AND (Offer->'$.')"
+                }
                 com += ") LIMIT @index, 4";
                 var mcom = new MySqlCommand(com, conn.Connection);
                 mcom.Parameters.AddWithValue("@index", StartingIndex);
