@@ -254,7 +254,6 @@ namespace InsurgenceServer
 					if (j != 1)
 						arg += "=";
 				}
-                Console.WriteLine(carr[0]);
 				data.Add(carr[0], arg);
 			}
 		}

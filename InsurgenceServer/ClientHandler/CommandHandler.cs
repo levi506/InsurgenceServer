@@ -39,6 +39,11 @@ namespace InsurgenceServer
             }
             else if (command.Command == Commands.UBASE)
             {
+                if (Utilities.FSChecker.IsValid(client, command.data["base"]))
+                {
+                    client.SendMessage("<UBASE result=2>");
+                    return;
+                }
                 Database.DBFriendSafari.UploadBase(client.User_Id, command.data["base"]);
                 client.SendMessage("<UBASE result=1>");
             }
