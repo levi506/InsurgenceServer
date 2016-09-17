@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -31,6 +32,7 @@ namespace InsurgenceServer
         internal Tiers TierSelected;
         public Tiers QueuedTier;
 
+        public string PendingFriend;
         public List<uint> Friends;
 
 		public Client(TcpClient client)
@@ -119,6 +121,19 @@ namespace InsurgenceServer
                 return;
             }
 			SendMessage(string.Format("<LOG result={0}>", (int)result));
+            this.Friends = Database.DBFriendHandler.GetFriends(this);
+
+            //We encode each name into base64 to prevent commas in names from breaking stuff
+            var compilefriends = string.Join(",", this.Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
+            var onlinestring = "";
+            foreach (var friend in this.Friends) {
+                //If friend client is not online, append 0, otherwise append 1
+                onlinestring += ((ClientHandler.GetClient(friend)) == null) ? "0" : "1";
+            }
+
+            this.SendMessage(string.Format("<FRIENDLIST friends={0} online={1}>", compilefriends, onlinestring));
+
+            System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, true));
 		}
         internal void Register(string username, string password, string email)
         {
@@ -203,11 +218,6 @@ namespace InsurgenceServer
             }
         }
 
-        public void AddFriend(string user)
-        {
-
-        }
-
 		public void SendMessage(string str)
 		{
 			if (!_client.Connected)
@@ -225,7 +235,8 @@ namespace InsurgenceServer
 		}
 		public void Disconnect()
 		{
-			Connected = false;
+            System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, false));
+            Connected = false;
 			try
 			{
                 ClientHandler.Remove(this);

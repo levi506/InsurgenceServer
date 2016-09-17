@@ -121,6 +121,22 @@ namespace InsurgenceServer
                 else
                     client.SendMessage(string.Format("<DIRGIFT result=1 gift={0}>", s));
             }
+            else if (command.Command == Commands.ADDFRIEND)
+            {
+                FriendHandler.AddFriend(client, command.data["user"]);
+            }
+            else if (command.Command == Commands.REMOVEFRIEND)
+            {
+                FriendHandler.RemoveFriend(client, command.data["user"]);
+            }
+            else if (command.Command == Commands.FRACCEPT)
+            {
+                FriendHandler.AcceptRequest(client, command.data["user"]);
+            }
+            else if (command.Command == Commands.FRDENY)
+            {
+                FriendHandler.DenyRequest(client, command.data["user"]);
+            }
         }
     }
     public enum Commands

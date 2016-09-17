@@ -19,6 +19,11 @@ namespace InsurgenceServer
             var c = ActiveClients.Where(x => x.User_Id == User_id);
             return c.FirstOrDefault();
         }
+        public static List<Client> GetClientList(List<uint> user_ids)
+        {
+            return ActiveClients.Where(x => user_ids.Contains(x.User_Id)).ToList();
+        }
+
         public static void Remove(Client client)
 		{
 			try

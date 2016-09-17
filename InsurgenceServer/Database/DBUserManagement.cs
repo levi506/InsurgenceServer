@@ -40,5 +40,24 @@ namespace InsurgenceServer.Database
                 conn.Close();
             }
         }
+        public static uint GetUserID(string username)
+        {
+            var conn = new OpenConnection();
+            if (conn.isConnected())
+            {
+                var banuser = "SELECT user_id FROM users WHERE username = @name";
+                MySqlCommand m = new MySqlCommand(banuser, conn.Connection);
+                m.Parameters.AddWithValue("name", username);
+                var result = m.ExecuteReader();
+                uint i = 0;
+                if (result.Read())
+                {
+                    i = uint.Parse(result["user_id"].ToString());
+                }
+                conn.Close();
+                return i;
+            }
+            return 0;
+        }
     }
 }
