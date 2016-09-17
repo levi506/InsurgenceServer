@@ -125,8 +125,10 @@ namespace InsurgenceServer
     }
     public enum Commands
     {
-        //General functionality
-        Null = 0, CON, DSC, LOG, REG,
+        //Default value
+        Null = 0,
+        //General user functionality
+        CON, DSC, LOG, REG,
         //Trading
         TRA,
         //Secret Base functions
@@ -140,6 +142,6 @@ namespace InsurgenceServer
         //Direct gift
         DIRGIFT,
         //Friend functions
-        ADDFRIEND, REMOVEFRIEND, FRACCEPT
+        ADDFRIEND, REMOVEFRIEND, FRACCEPT, FRDENY
     }
 }

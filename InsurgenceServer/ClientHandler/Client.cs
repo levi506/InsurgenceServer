@@ -278,10 +278,6 @@ namespace InsurgenceServer
 			}
 		}
 	}
-	public enum Commands
-	{
-		Null = 0, CON, DSC, LOG, REG, TRA, VBASE, UBASE, BAT, RAND, RANBAT, GTSCREATE, GTSREQUEST, GTSOFFER,
-        GTSCANCEL, GTSCOLLECT, GTSMINE, WTCREATE, WTCANCEL, DIRGIFT, ADDFRIEND, REMOVEFRIEND
-	}
+	
 }
 
