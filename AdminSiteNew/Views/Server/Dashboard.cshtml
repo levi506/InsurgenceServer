@@ -1,0 +1,33 @@
+﻿@using AdminSiteNew.Models
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Server Dashboard";
+}
+
+<link rel="stylesheet" href="/CSS/ServerDashBoard.css" />
+<div style="padding-top:30px;">
+    <table>
+        <tr>
+            <div id="UserCount" style="display:none"></div>
+
+            @Html.Partial("UserCount", null)
+        </tr>
+    </table>
+</div>
+<script>
+    function GetUsers() {
+        $.ajax({
+            url: ('@Url.Action("UserCount", "Server")'),
+            datatype: "html",
+            type: "POST",
+            success: function (data) {
+                $('#UserCount').html(data);
+            },
+        });
+    };
+    $(document).ready(function () { GetUsers(); });
+    window.setInterval(function () {
+        GetUsers()
+    }, 1000);
+</script>

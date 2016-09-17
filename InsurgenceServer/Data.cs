@@ -19,6 +19,7 @@ namespace InsurgenceServer
 		public static bool Running = true;
 
 		public static TcpListener Server;
+        public static TcpListener SiteServer;
 
         public static ObservableCollection<string> log = new ObservableCollection<string>();
 	}

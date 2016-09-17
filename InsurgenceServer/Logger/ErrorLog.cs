@@ -14,11 +14,13 @@ namespace InsurgenceServer.Logger
 
         public static void Initialize()
         {
+            /*
             _client = new DiscordClient();
             _client.ExecuteAndWait(async () => {
                 await _client.Connect(DiscordAuth.Secret);
                 errorchannel = _client.GetChannel(DiscordAuth.ErrorChannel);
             });
+            */
         }
         public static DateTime LastError;
         public static void Log(object e)

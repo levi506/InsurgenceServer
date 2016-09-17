@@ -34,11 +34,19 @@ namespace InsurgenceServerWebsite
                     {
                         authBuilder.RequireClaim("Access", "Allowed");
                     });
+                options.AddPolicy(
+                    "Deuk",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireClaim("Deuk", "Allowed");
+                    });
             });
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            InsurgenceServerAdmin.ServerInteraction.Handler.Start();
+
             loggerFactory.AddConsole(LogLevel.Warning);
 
             app.UseStaticFiles();
@@ -71,6 +79,10 @@ namespace InsurgenceServerWebsite
                         if (DatabaseSpace.Database.RegisterWebAdmin(x.Identity.GetUserId(), x.Identity.GetUserName()))
                         {
                             x.Identity.AddClaim(new Claim("Access", "Allowed"));
+                            if (x.Identity.GetUserId() == "117811387166947407528")
+                            {
+                                x.Identity.AddClaim(new Claim("Deuk", "Allowed"));
+                            }
                             return Task.FromResult(0);
                         }
                         else

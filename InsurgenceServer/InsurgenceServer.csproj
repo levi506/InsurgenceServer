@@ -94,10 +94,12 @@
     <Compile Include="Battles\BattleHandler.cs" />
     <Compile Include="Battles\RandomBattles.cs" />
     <Compile Include="ClientHandler\CommandHandler.cs" />
+    <Compile Include="ClientHandler\SiteCommunication.cs" />
     <Compile Include="Database\DBAuthentication.cs" />
     <Compile Include="Database\DBFriendSafari.cs" />
     <Compile Include="Database\DBGTS.cs" />
     <Compile Include="Database\DBInit.cs" />
+    <Compile Include="Database\DBMisc.cs" />
     <Compile Include="Database\DBTradelog.cs" />
     <Compile Include="Database\DBUserChecks.cs" />
     <Compile Include="Database\DBUserManagement.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Logger\TradeLogger.cs" />
     <Compile Include="Marshal.cs" />
     <Compile Include="Utilities\Encoding.cs" />
+    <Compile Include="Utilities\FSChecker.cs" />
     <Compile Include="WonderTrade\WonderTradeHandler.cs" />
     <Compile Include="WonderTrade\WonderTradeHolder.cs" />
   </ItemGroup>

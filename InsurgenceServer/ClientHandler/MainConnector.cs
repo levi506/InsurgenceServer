@@ -18,11 +18,22 @@ namespace InsurgenceServer
             }
             IPAddress ip = IPAddress.Parse(ipstr);
             Data.Server = new TcpListener(ip, Data.Port);
+            Data.SiteServer = new TcpListener(IPAddress.Parse("127.0.0.1"), 6419);
 			Data.Server.Start();
+            Data.SiteServer.Start();
 			Console.WriteLine(string.Format("Server Started on {0}:{1}", ip, Data.Port));
 
-			while (Data.Running)
-			{
+            new Thread(() =>
+                MainListener()
+            ).Start();
+            new Thread(() =>
+                CommunicationListener()
+            ).Start();
+        }
+        private void MainListener()
+        {
+            while (Data.Running)
+            {
                 try
                 {
                     TcpClient client = Data.Server.AcceptTcpClient();
@@ -30,14 +41,36 @@ namespace InsurgenceServer
                         new Client(client)
                     ).Start();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Logger.ErrorLog.Log(e);
                     Console.WriteLine(e);
                 }
 
             }
-		}
+        }
+        private void CommunicationListener()
+        {
+            while (Data.Running)
+            {
+                try
+                {
+                    TcpClient client = Data.SiteServer.AcceptTcpClient();
+                    if ((((IPEndPoint)client.Client.RemoteEndPoint).Address).ToString() != "127.0.0.1")
+                    {
+                        continue;
+                    }
+                    new Thread(() =>
+                            new SiteCommunication(client)
+                        ).Start();
+                }
+                catch (Exception e)
+                {
+                    Logger.ErrorLog.Log(e);
+                    Console.WriteLine(e);
+                }
+            }
+        }
 	}
 }
 

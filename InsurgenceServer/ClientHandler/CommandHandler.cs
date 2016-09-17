@@ -113,6 +113,33 @@ namespace InsurgenceServer
             {
                 WonderTrade.WonderTradeHandler.CancelTrade(client);
             }
+            else if (command.Command == Commands.DIRGIFT)
+            {
+                var s = Database.DBMisc.GetDirectGift(client);
+                if (s == null)
+                    client.SendMessage("<DIRGIFT result=0 gift=nil>");
+                else
+                    client.SendMessage(string.Format("<DIRGIFT result=1 gift={0}>", s));
+            }
         }
+    }
+    public enum Commands
+    {
+        //General functionality
+        Null = 0, CON, DSC, LOG, REG,
+        //Trading
+        TRA,
+        //Secret Base functions
+        VBASE, UBASE,
+        //Battle functions
+        BAT, RAND, RANBAT,
+        //GTS functions
+        GTSCREATE, GTSREQUEST, GTSOFFER, GTSCANCEL, GTSCOLLECT, GTSMINE,
+        //Wonder Trade functions
+        WTCREATE, WTCANCEL,
+        //Direct gift
+        DIRGIFT,
+        //Friend functions
+        ADDFRIEND, REMOVEFRIEND, FRACCEPT
     }
 }

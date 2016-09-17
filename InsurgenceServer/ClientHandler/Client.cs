@@ -31,6 +31,8 @@ namespace InsurgenceServer
         internal Tiers TierSelected;
         public Tiers QueuedTier;
 
+        public List<uint> Friends;
+
 		public Client(TcpClient client)
 		{
 			this._client = client;
@@ -188,6 +190,24 @@ namespace InsurgenceServer
             }
         }
 
+        public void Ping()
+        {
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes("<PNG>" + "\n");
+            try
+            {
+                stream.Write(msg, 0, msg.Length);
+                stream.Flush();
+            }
+            catch {
+                Disconnect();
+            }
+        }
+
+        public void AddFriend(string user)
+        {
+
+        }
+
 		public void SendMessage(string str)
 		{
 			if (!_client.Connected)
@@ -261,7 +281,7 @@ namespace InsurgenceServer
 	public enum Commands
 	{
 		Null = 0, CON, DSC, LOG, REG, TRA, VBASE, UBASE, BAT, RAND, RANBAT, GTSCREATE, GTSREQUEST, GTSOFFER,
-        GTSCANCEL, GTSCOLLECT, GTSMINE, WTCREATE, WTCANCEL 
+        GTSCANCEL, GTSCOLLECT, GTSMINE, WTCREATE, WTCANCEL, DIRGIFT, ADDFRIEND, REMOVEFRIEND
 	}
 }
 

@@ -41,6 +41,7 @@ namespace InsurgenceServer
                             if (i >= ActiveClients.Count)
                                 continue;
                             var c = ActiveClients[i];
+                            c.Ping();
                             if (c == null)
                             {
                                 c.Disconnect();
