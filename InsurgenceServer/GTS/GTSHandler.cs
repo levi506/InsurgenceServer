@@ -88,7 +88,7 @@ namespace InsurgenceServer.GTS
             var pkmn = JsonConvert.DeserializeObject<GamePokemon>(decoded);
             var request = poke.Request;
             //Compare pokemon offered with requests on pokemon with id offered.
-            bool correct = GtsCompare.ValidOffer(pkmn, request);
+            var correct = GtsCompare.ValidOffer(pkmn, request);
             //If doesn't match, send negative response
             if (correct == false)
             {
