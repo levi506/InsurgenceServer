@@ -1,16 +1,13 @@
-﻿using Discord;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace InsurgenceServer.Logger
 {
     public static class ErrorLog
     {
+        /*
         private static DiscordClient _client;
         private static Channel errorchannel;
+        */
 
         public static void Initialize()
         {

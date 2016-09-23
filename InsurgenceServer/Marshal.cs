@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace InsurgenceServer
@@ -29,17 +28,17 @@ namespace InsurgenceServer
 					if (d == null)
 						continue;
 					if (d.Datatype == DataTypes.Species)
-						o.Species = (short)d.data;
-					else if (d.Datatype == DataTypes.ID)
-						o.ID = (string)d.data;
-					else if (d.Datatype == DataTypes.TrainerID)
-						o.TrainerId = (string)d.data;
-					else if (d.Datatype == DataTypes.shiny)
-						o.Shiny = (bool)d.data;
-					else if (d.Datatype == DataTypes.item)
-						o.Item = (short)d.data;
-					else if (d.Datatype == DataTypes.name)
-						o.OT = (string)d.data;
+						o.Species = (short)d.Data;
+					else if (d.Datatype == DataTypes.Id)
+						o.Id = (string)d.Data;
+					else if (d.Datatype == DataTypes.TrainerId)
+						o.TrainerId = (string)d.Data;
+					else if (d.Datatype == DataTypes.Shiny)
+						o.Shiny = (bool)d.Data;
+					else if (d.Datatype == DataTypes.Item)
+						o.Item = (short)d.Data;
+					else if (d.Datatype == DataTypes.Name)
+						o.Ot = (string)d.Data;
 				}
 			}
 			//Check the second possible way a pokemon can be shiny
@@ -47,9 +46,9 @@ namespace InsurgenceServer
 			{
 				try
 				{
-					uint _trid = uint.Parse(o.TrainerId, System.Globalization.NumberStyles.HexNumber);
-					uint _id = uint.Parse(o.ID, System.Globalization.NumberStyles.HexNumber);
-					var numa = _id ^ _trid;
+					uint trid = uint.Parse(o.TrainerId, System.Globalization.NumberStyles.HexNumber);
+					uint id = uint.Parse(o.Id, System.Globalization.NumberStyles.HexNumber);
+					var numa = id ^ trid;
 					var numb = numa & 0xFFFF;
 					var numc = (numa >> 16) & 0xFFFF;
 					var numd = numb ^ numc;
@@ -67,12 +66,12 @@ namespace InsurgenceServer
 		}
 		private static DataHolder InterpretBytes(byte[] arr)
 		{
-			if (arr.Count() < 5) return null;
+			if (arr.Length < 5) return null;
 			var name = System.Text.Encoding.Default.GetString(arr);
 			if (name.Contains("@species"))
 			{
 				var l = arr.Length - 10;
-				var amount = (int)Math.Ceiling((float)l / 2f);
+				var amount = (int)Math.Ceiling(l / 2f);
 				var a = arr.Skip(arr.Length - l + (l - amount)).Take(amount).ToArray();
 				if (a.Length == 1)
 				{
@@ -83,33 +82,33 @@ namespace InsurgenceServer
 				var i = BitConverter.ToInt16(a, 0);
 				if (l - amount == 0)
 					i -= 5;
-				return new DataHolder { Datatype = DataTypes.Species, data = i };
+				return new DataHolder { Datatype = DataTypes.Species, Data = i };
 			}
 			if (name.Contains("@personalID"))
 			{
 				var a = arr.Skip(arr.Length - 4).Take(4).ToArray();
 				a = a.Reverse().ToArray();
 				var h = BitConverter.ToString(a).Replace("-", "");
-				return new DataHolder { Datatype = DataTypes.ID, data = h };
+				return new DataHolder { Datatype = DataTypes.Id, Data = h };
 			}
 			if (name.Contains("@trainerID"))
 			{
 				var a = arr.Skip(arr.Length - 4).Take(4).ToArray();
 				a = a.Reverse().ToArray();
 				var h = BitConverter.ToString(a).Replace("-", "");
-				return new DataHolder { Datatype = DataTypes.TrainerID, data = h };
+				return new DataHolder { Datatype = DataTypes.TrainerId, Data = h };
 			}
 			if (name.Contains("@shinyflag"))
 			{
 				if (arr.Last().ToString("X2") == "46")
-					return new DataHolder { Datatype = DataTypes.shiny, data = false };
+					return new DataHolder { Datatype = DataTypes.Shiny, Data = false };
 				else if (arr.Last().ToString("X2") == "54")
-					return new DataHolder { Datatype = DataTypes.shiny, data = true };
+					return new DataHolder { Datatype = DataTypes.Shiny, Data = true };
 			}
 			if (name.Contains("@item") && !name.Contains("@itemInitial") && !name.Contains("@itemRecycle"))
 			{
 				var l = arr.Length - 6;
-				var amount = (int)Math.Ceiling((float)l / 2f);
+				var amount = (int)Math.Ceiling(l / 2f);
 				var a = arr.Skip(arr.Length - l + (l - amount)).Take(amount).ToArray();
 				if (a.Length == 1)
 				{
@@ -122,33 +121,33 @@ namespace InsurgenceServer
 					return null;
 				if (l - amount == 0)
 					i -= 5;
-				return new DataHolder { Datatype = DataTypes.item, data = i };
+				return new DataHolder { Datatype = DataTypes.Item, Data = i };
 			}
 			if (name.Contains("@ot\""))
 			{
 				var n = name.Replace("@ot\"", "").Replace(" ","").Replace("\t","".Replace("\\b","").Replace("\b",""));
-				return new DataHolder { Datatype = DataTypes.name, data = n };
+				return new DataHolder { Datatype = DataTypes.Name, Data = n };
 			}
 			return null;
 		}
 		private class DataHolder
 		{
 			public DataTypes Datatype { get; set; }
-			public object data { get; set; }
+			public object Data { get; set; }
 		}
 		private enum DataTypes
 		{
-			Null = 0, Species, ID, TrainerID, shiny, item, name
+			Null = 0, Species, Id, TrainerId, Shiny, Item, Name
 		}
 	}
 	public class Pokemon
 	{
 		public short Species;
 		public string TrainerId;
-		public string ID;
+		public string Id;
 		public bool Shiny;
 		public short Item;
-		public string OT;
+		public string Ot;
 	}
 }
 

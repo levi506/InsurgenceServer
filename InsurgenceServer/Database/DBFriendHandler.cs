@@ -2,28 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
-    public static class DBFriendHandler
+    public static class DbFriendHandler
     {
         public static void UpdateFriends(Client client)
         {
-            UpdateFriends(client.User_Id, client.Friends);
+            UpdateFriends(client.UserId, client.Friends);
         }
-        public static void UpdateFriends(uint user_id, List<uint> friendlist)
+        public static void UpdateFriends(uint userId, List<uint> friendlist)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 var comm = "INSERT INTO friend_list (user_id,friends)" +
                     "VALUES(@uid, @friendlist)" +
                     "ON DUPLICATE KEY UPDATE" +
                     "friends = VALUES(friends)";
                 MySqlCommand m = new MySqlCommand(comm, conn.Connection);
-                m.Parameters.AddWithValue("@uid", user_id);
+                m.Parameters.AddWithValue("@uid", userId);
                 m.Parameters.AddWithValue("@friendlist", string.Join(",", friendlist.ToArray()));
                 m.ExecuteNonQuery();
                 conn.Close();
@@ -31,16 +29,16 @@ namespace InsurgenceServer.Database
         }
         public static List<uint> GetFriends(Client client)
         {
-            return GetFriends(client.User_Id);
+            return GetFriends(client.UserId);
         }
-        public static List<uint> GetFriends(uint user_id)
+        public static List<uint> GetFriends(uint userId)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 var comm = "SELECT friends FROM friend_list WHERE user_id = @id";
                 MySqlCommand m = new MySqlCommand(comm, conn.Connection);
-                m.Parameters.AddWithValue("@id", user_id);
+                m.Parameters.AddWithValue("@id", userId);
                 var l = new List<uint>();
                 var result = m.ExecuteReader();
                 if (!result.HasRows)

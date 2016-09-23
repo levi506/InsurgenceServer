@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.WonderTrade
 {
@@ -17,7 +15,7 @@ namespace InsurgenceServer.WonderTrade
             {
                 foreach (var trade in List.ToList())
                 {
-                    Console.WriteLine(trade.Pokemon.name);
+                    Console.WriteLine(trade.Pokemon.Name);
                     try
                     {
                         if ((DateTime.UtcNow - trade.Time).TotalSeconds >= 60)
@@ -34,7 +32,7 @@ namespace InsurgenceServer.WonderTrade
                     }
                     catch
                     {
-
+                        // ignored
                     }
                 }
                 try
@@ -59,7 +57,7 @@ namespace InsurgenceServer.WonderTrade
                         if (!trade1.Client.Connected || !trade2.Client.Connected)
                             continue;
                         //If two ips are the same and neither is an admin, try looping again
-                        if ((trade1.Client.IP == trade2.Client.IP) && (!trade1.Client.Admin || !trade2.Client.Admin))
+                        if ((Equals(trade1.Client.Ip, trade2.Client.Ip)) && (!trade1.Client.Admin || !trade2.Client.Admin))
                             continue;
 
                         //Execute trade, remove entries
@@ -70,7 +68,7 @@ namespace InsurgenceServer.WonderTrade
                 }
                 catch
                 {
-
+                    // ignored
                 }
                 System.Threading.Thread.Sleep(1000);
             }
@@ -78,11 +76,11 @@ namespace InsurgenceServer.WonderTrade
 
         public static void ExecuteTrade(Client client1, Client client2, GTS.GamePokemon pkmn1, GTS.GamePokemon pkmn2)
         {
-            var s1 = Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn1));
-            var s2 = Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn2));
+            Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn1));
+            Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn2));
 
-            client1.SendMessage(string.Format("<WTRESULT result=2 user={0} pkmn={1}>", client2.Username, pkmn2));
-            client2.SendMessage(string.Format("<WTRESULT result=2 user={0} pkmn={1}>", client1.Username, pkmn1));
+            client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={pkmn2}>");
+            client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={pkmn1}>");
         }
         
         public static void DeleteFromClient(Client c)
@@ -96,13 +94,16 @@ namespace InsurgenceServer.WonderTrade
                         List.Remove(trade);
                     }
                 }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
             }
         }
 
-        public static void AddTrade(Client client, string EncodedPkmns)
+        public static void AddTrade(Client client, string encodedPkmns)
         {
-            if (Database.DBUserChecks.UserBanned(client.Username))
+            if (Database.DbUserChecks.UserBanned(client.Username))
             {
                 client.SendMessage("<WTRESULT reult=0 user=nil pkmn=nil>");
                 return;
@@ -112,7 +113,7 @@ namespace InsurgenceServer.WonderTrade
                 return;
             }
 
-            var pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(Utilities.Encoding.Base64Decode(EncodedPkmns));
+            var pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(Utilities.Encoding.Base64Decode(encodedPkmns));
             List.Add(new WonderTradeHolder(client, pkmn));
         }
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace InsurgenceServer
@@ -9,7 +7,7 @@ namespace InsurgenceServer
 	{
 		public static void Main(string[] args)
 		{
-            System.AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
             MainClass c = new MainClass();
             c.Begin();
 		}
@@ -19,53 +17,49 @@ namespace InsurgenceServer
             Console.WriteLine("Setting up tiers");
             Battles.Matchmaking.SetupTiers();
             Console.WriteLine("Setting up database!");
-            Database.DBInit.Connect();
+            Database.DbInit.Connect();
             Console.WriteLine("Reading datafiles!");
             GrowthRates.Read();
 
-            new Thread(() =>
-               Logger.ErrorLog.Initialize()
+            new Thread(Logger.ErrorLog.Initialize
             ).Start();
 
 
-            new Thread(() =>
-                Battles.RandomBattles.MatchRandoms()
+            new Thread(Battles.RandomBattles.MatchRandoms
             ).Start();
 
-            new Thread(() =>
-                ClientHandler.ClientChecker()
+            new Thread(ClientHandler.ClientChecker
             ).Start();
 
-            new Thread(() =>
-               TradeHandler.TradeChecker()
+            new Thread(TradeHandler.TradeChecker
            ).Start();
 
-            new Thread(() =>
-               BattleHandler.BattleChecker()
+            new Thread(BattleHandler.BattleChecker
            ).Start();
 
-            new Thread(() =>
-               Battles.RandomBattles.CleanRandoms()
+            new Thread(Battles.RandomBattles.CleanRandoms
            ).Start();
 
-            new Thread(() =>
-               WonderTrade.WonderTradeHandler.Loop()
+            new Thread(WonderTrade.WonderTradeHandler.Loop
            ).Start();
 
             new MainConnector();
             Console.ReadLine();
         }
-        static string LastError;
+        static string _lastError;
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
-            if (((Exception)e.ExceptionObject).StackTrace != LastError)
+            if (((Exception)e.ExceptionObject).StackTrace != _lastError)
             {
-                LastError = ((Exception)e.ExceptionObject).StackTrace;
+                _lastError = ((Exception)e.ExceptionObject).StackTrace;
                 try
                 {
                     Logger.ErrorLog.Log((Exception)e.ExceptionObject);
                 }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
                 Console.WriteLine(e.ExceptionObject.ToString());
                 Console.WriteLine("Press Enter to continue");
                 Console.ReadLine();

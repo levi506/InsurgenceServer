@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Utilities
 {
-    public static class FSChecker
+    public static class FsChecker
     {
         public static bool IsValid(Client client, string Base)
         {
@@ -15,27 +12,27 @@ namespace InsurgenceServer.Utilities
             var basestring = Base.Split('g');
 
             var pkmn = basestring[2].Split('f');
-            var Type = (FriendSafariType)int.Parse(pkmn[0]);
+            var type = (FriendSafariType)int.Parse(pkmn[0]);
 
-            var Pokemon = new List<PokemonList>();
+            var pokemon = new List<PokemonList>();
             for (var i = 1; i < pkmn.Length; i++)
             {
                 var mon = pkmn[i];
                 if (mon == "") continue;
-                Pokemon.Add((PokemonList)Enum.Parse(typeof(PokemonList), mon));
+                pokemon.Add((PokemonList)Enum.Parse(typeof(PokemonList), mon));
             }
             for (var i = 0; i < 3; i++)
             {
-                if (!LegalArray(Type, i).Contains(Pokemon[i]))
+                if (!LegalArray(type, i).Contains(pokemon[i]))
                 {
                     return false;
                 }
             }
             return true;
         }
-        private static List<PokemonList> LegalArray(FriendSafariType Type, int index)
+        private static List<PokemonList> LegalArray(FriendSafariType type, int index)
         {
-            if (Type == FriendSafariType.Normal)
+            if (type == FriendSafariType.Normal)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Rattata, PokemonList.Meowth, PokemonList.Lickitung, PokemonList.Sentret, PokemonList.Dunsparce, PokemonList.Teddiursa,
@@ -48,7 +45,7 @@ namespace InsurgenceServer.Utilities
                     return new List<PokemonList> { PokemonList.Kangaskhan, PokemonList.Tauros, PokemonList.Ditto, PokemonList.Spinda, PokemonList.Zangoose, PokemonList.Castform };
                 }
             }
-            if (Type == FriendSafariType.Fire)
+            if (type == FriendSafariType.Fire)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Ponyta, PokemonList.Magmar, PokemonList.Slugma, PokemonList.Houndour, PokemonList.Numel, PokemonList.Torkoal,
@@ -58,7 +55,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Ninetales, PokemonList.Growlithe, PokemonList.Darumaka, PokemonList.Lampent, PokemonList.Larvesta, PokemonList.Fletchinder };
             }
-            if (Type == FriendSafariType.Fighting)
+            if (type == FriendSafariType.Fighting)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Mankey, PokemonList.Tyrogue, PokemonList.Throh, PokemonList.Sawk, PokemonList.Pancham };
@@ -68,7 +65,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Meditite, PokemonList.Riolu, PokemonList.Croagunk, PokemonList.Gurdurr, PokemonList.Hawlucha };
             }
-            if (Type == FriendSafariType.Flying)
+            if (type == FriendSafariType.Flying)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Pidgey, PokemonList.Spearow, PokemonList.Farfetchd, PokemonList.Ledyba, PokemonList.Hoppip, PokemonList.Taillow,
@@ -79,7 +76,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Charmeleon, PokemonList.Dragonair, PokemonList.Gligar, PokemonList.Sigilyph, PokemonList.Rufflet, PokemonList.Fletchinder };
             }
-            if (Type == FriendSafariType.Water)
+            if (type == FriendSafariType.Water)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Psyduck, PokemonList.Slowpoke, PokemonList.Seel, PokemonList.Krabby, PokemonList.Goldeen, PokemonList.Magikarp,
@@ -92,7 +89,7 @@ namespace InsurgenceServer.Utilities
                     return new List<PokemonList> { PokemonList.Poliwhirl, PokemonList.Tentacool, PokemonList.Seadra, PokemonList.Omanyte, PokemonList.Marill, PokemonList.Corphish,
                     PokemonList.Feebas, PokemonList.Shellos, PokemonList.Ducklett, PokemonList.Frillish, PokemonList.Binacle, PokemonList.Clauncher, PokemonList.Staryu, PokemonList.Carvanha};
             }
-            if (Type == FriendSafariType.Grass)
+            if (type == FriendSafariType.Grass)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Oddish, PokemonList.Paras, PokemonList.Exeggcute, PokemonList.Hoppip, PokemonList.Sunkern, PokemonList.Lotad, PokemonList.Nuzleaf,
@@ -103,7 +100,7 @@ namespace InsurgenceServer.Utilities
                     return new List<PokemonList> { PokemonList.Tangela, PokemonList.Shroomish, PokemonList.Roselia, PokemonList.Lileep, PokemonList.Leafeon, PokemonList.Cottonee, PokemonList.Deerling,
                     PokemonList.Ferroseed, PokemonList.Gogoat};
             }
-            if (Type == FriendSafariType.Poison)
+            if (type == FriendSafariType.Poison)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Weedle, PokemonList.Ekans, PokemonList.Gloom, PokemonList.Weepinbell, PokemonList.Spinarak, PokemonList.Qwilfish, PokemonList.Gulpin, PokemonList.Trubbish };
@@ -112,7 +109,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Ivysaur, PokemonList.Muk, PokemonList.Koffing, PokemonList.Skorupi, PokemonList.Croagunk, PokemonList.Skrelp };
             }
-            if (Type == FriendSafariType.Electric)
+            if (type == FriendSafariType.Electric)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Magnemite, PokemonList.Plusle, PokemonList.Minun, PokemonList.Pachirisu, PokemonList.Emolga, PokemonList.Stunfisk, PokemonList.Helioptile, PokemonList.Dedenne };
@@ -121,7 +118,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Electabuzz, PokemonList.Jolteon, PokemonList.Flaaffy, PokemonList.Blitzle, PokemonList.Eelektrik };
             }
-            if (Type == FriendSafariType.Ground)
+            if (type == FriendSafariType.Ground)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Sandshrew, PokemonList.Graveler, PokemonList.Numel, PokemonList.Baltoy, PokemonList.Palpitoad, PokemonList.Stunfisk, PokemonList.Bunnelby };
@@ -131,7 +128,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Nidoqueen, PokemonList.Nidoking, PokemonList.Gligar, PokemonList.Piloswine, PokemonList.Vibrava, PokemonList.Gabite, PokemonList.Drilbur };
             }
-            if (Type == FriendSafariType.Psychic)
+            if (type == FriendSafariType.Psychic)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Drowzee, PokemonList.Exeggcute, PokemonList.MrMime, PokemonList.Unown, PokemonList.Spoink, PokemonList.Lunatone, PokemonList.Solrock, PokemonList.Elgyem, PokemonList.Espurr };
@@ -140,7 +137,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Abra, PokemonList.Staryu, PokemonList.Natu, PokemonList.Meditite, PokemonList.Metang, PokemonList.Sigilyph, PokemonList.Duosion };
             }
-            if (Type == FriendSafariType.Rock)
+            if (type == FriendSafariType.Rock)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Graveler, PokemonList.Sudowoodo, PokemonList.Corsola, PokemonList.Nosepass, PokemonList.Lunatone, PokemonList.Solrock, PokemonList.Boldore };
@@ -150,7 +147,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Rhydon, PokemonList.Aerodactyl, PokemonList.Pupitar, PokemonList.Lairon, PokemonList.Archen };
             }
-            if (Type == FriendSafariType.Ice)
+            if (type == FriendSafariType.Ice)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Seel, PokemonList.Snover, PokemonList.Vanillish, PokemonList.Cubchoo, PokemonList.Amaura };
@@ -159,7 +156,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Shellder, PokemonList.Sneasel, PokemonList.Piloswine, PokemonList.Sealeo };
             }
-            if (Type == FriendSafariType.Bug)
+            if (type == FriendSafariType.Bug)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Caterpie, PokemonList.Weedle, PokemonList.Paras, PokemonList.Venonat, PokemonList.Ledyba, PokemonList.Spinarak, PokemonList.Wurmple, PokemonList.Surskit, PokemonList.Volbeat,
@@ -169,7 +166,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Scyther, PokemonList.Pinsir, PokemonList.Scizor, PokemonList.Heracross, PokemonList.Nincada, PokemonList.Whirlipede, PokemonList.Larvesta };
             }
-            if (Type == FriendSafariType.Dragon)
+            if (type == FriendSafariType.Dragon)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Seadra, PokemonList.Swablu, PokemonList.Skrelp, PokemonList.Tyrunt };
@@ -178,7 +175,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Dragonair, PokemonList.Shelgon, PokemonList.Gabite, PokemonList.Zweilous };
             }
-            if (Type == FriendSafariType.Ghost)
+            if (type == FriendSafariType.Ghost)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Misdreavus, PokemonList.Shedinja, PokemonList.Drifloon, PokemonList.Pumpkaboo  };
@@ -187,7 +184,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Haunter, PokemonList.Dusclops, PokemonList.Frillish, PokemonList.Lampent, PokemonList.Doublade };
             }
-            if (Type == FriendSafariType.Dark)
+            if (type == FriendSafariType.Dark)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Poochyena, PokemonList.Nuzleaf, PokemonList.Stunky, PokemonList.Purrloin, PokemonList.Pancham, PokemonList.Inkay };
@@ -197,7 +194,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Sneasel, PokemonList.Pupitar, PokemonList.Sableye, PokemonList.Skorupi, PokemonList.Pawniard, PokemonList.Vullaby };
             }
-            if (Type == FriendSafariType.Steel)
+            if (type == FriendSafariType.Steel)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Onix, PokemonList.Nosepass, PokemonList.Shieldon, PokemonList.Bronzor, PokemonList.Karrablast, PokemonList.Klang };
@@ -206,7 +203,7 @@ namespace InsurgenceServer.Utilities
                 if (index == 2)
                     return new List<PokemonList> { PokemonList.Scizor, PokemonList.Mawile, PokemonList.Lairon, PokemonList.Metang, PokemonList.Riolu, PokemonList.Drilbur };
             }
-            if (Type == FriendSafariType.Fairy)
+            if (type == FriendSafariType.Fairy)
             {
                 if (index == 0)
                     return new List<PokemonList> { PokemonList.Clefairy, PokemonList.Jigglypuff, PokemonList.Snubbull, PokemonList.Spritzee, PokemonList.Dedenne, PokemonList.Carbink };

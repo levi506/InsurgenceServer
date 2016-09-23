@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -13,20 +10,20 @@ namespace InsurgenceServer
         public static Battle BeginBattle(string username, Client client, string trainer)
         {
             var u = username.ToLower();
-            if (!Database.DBUserChecks.UserExists(username))
+            if (!Database.DbUserChecks.UserExists(username))
             {
-                client.SendMessage(string.Format("<BAT user={0} result=0 trainer=nil>", username));
+                client.SendMessage($"<BAT user={username} result=0 trainer=nil>");
                 return null;
             }
-            if (Database.DBUserChecks.UserBanned(username))
+            if (Database.DbUserChecks.UserBanned(username))
             {
-                client.SendMessage(string.Format("<BAT user={0} result=1 trainer=nil>", username));
+                client.SendMessage($"<BAT user={username} result=1 trainer=nil>");
                 return null;
             }
             var c = ClientHandler.GetClient(u);
             if (c == null)
             {
-                client.SendMessage(string.Format("<BAT user={0} result=2 trainer=nil>", username));
+                client.SendMessage($"<BAT user={username} result=2 trainer=nil>");
                 return null;
             }
             var b = GetBattle(u, client);
@@ -41,7 +38,7 @@ namespace InsurgenceServer
             var u = username.ToLower();
             foreach (var battle in ActiveBattles)
             {
-                if (battle.username1 == u && battle.username2 == client.Username)
+                if (battle.Username1 == u && battle.Username2 == client.Username)
                 {
                     return battle;
                 }
@@ -74,7 +71,6 @@ namespace InsurgenceServer
                         if (timeactive >= 5)
                         {
                             t.Kill();
-                            continue;
                         }
                     }
                     System.Threading.Thread.Sleep(5000);

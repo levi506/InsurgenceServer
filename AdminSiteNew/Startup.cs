@@ -112,7 +112,7 @@ namespace AdminSiteNew
                     },
                     OnCreatingTicket = x =>
                     {
-                        if (AdminSiteNew.DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name))
+                        if (DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name))
                         {
                             x.Identity.AddClaim(new Claim("Access", "Allowed"));
                             if ((string)x.User["id"] == "117811387166947407528")

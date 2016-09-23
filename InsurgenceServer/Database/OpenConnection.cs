@@ -1,22 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
     public class OpenConnection
     {
-        private string connstring = string.Format("Server=localhost; database={0}; UID={1}; password={2}", Data.Databasename, Auth.Username, Auth.Password);
+        private readonly string _connstring =
+            $"Server=localhost; database={Data.Databasename}; UID={Auth.Username}; password={Auth.Password}";
         public MySqlConnection Connection;
         public OpenConnection()
         {
-            Connection = new MySqlConnection(connstring);
+            Connection = new MySqlConnection(_connstring);
             Connection.Open();
         }
-        public bool isConnected()
+        public bool IsConnected()
         {
             if (Connection.State == System.Data.ConnectionState.Open)
             {
@@ -29,7 +25,7 @@ namespace InsurgenceServer.Database
         }
         public void Close()
         {
-            if (isConnected())
+            if (IsConnected())
             {
                 Connection.Close();
             }

@@ -1,18 +1,15 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
-    public static class DBAuthentication
+    public static class DbAuthentication
     {
         public static LoginResult Login(string username, string password, Client client)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 string logincommand = "SELECT user_id, usergroup, banned, password, admin FROM users WHERE username = @param_val_1;";
                 MySqlCommand m = new MySqlCommand(logincommand, conn.Connection);
@@ -24,7 +21,6 @@ namespace InsurgenceServer.Database
                     conn.Close();
                     return LoginResult.WrongUsername;
                 }
-                uint id;
                 while (result.Read())
                 {
                     if (result["password"].ToString() != password)
@@ -32,11 +28,11 @@ namespace InsurgenceServer.Database
                         conn.Close();
                         return LoginResult.WrongPassword;
                     }
-                    if (result["admin"].GetType() == typeof(DBNull))
+                    if (result["admin"] is DBNull)
                     {
                         client.Admin = false;
                     }
-                    else if (result["admin"].GetType() == typeof(byte))
+                    else if (result["admin"] is byte)
                     {
                         client.Admin = Convert.ToBoolean((byte)result["admin"]);
                     }
@@ -56,13 +52,13 @@ namespace InsurgenceServer.Database
                         conn.Close();
                         return LoginResult.Banned;
                     }
-                    id = (uint)result["user_id"];
-                    client.User_Id = id;
+                    var id = (uint)result["user_id"];
+                    client.UserId = id;
                 }
                 result.Close();
                 string ipCommand = "SELECT ip, ipban FROM ips WHERE user_id = @param_val_1";
                 MySqlCommand n = new MySqlCommand(ipCommand, conn.Connection);
-                n.Parameters.AddWithValue("@param_val_1", client.User_Id);
+                n.Parameters.AddWithValue("@param_val_1", client.UserId);
                 var ipresult = n.ExecuteReader();
                 List<string> ips = new List<string>();
                 if (ipresult.HasRows)
@@ -71,20 +67,20 @@ namespace InsurgenceServer.Database
                     {
                         if (ipresult["ipban"].GetType() != typeof(DBNull))
                         {
-                            if (ipresult["ipban"].GetType() == typeof(bool))
+                            if (ipresult["ipban"] is bool)
                             {
                                 var ipban = (bool)ipresult["ipban"];
                                 if (ipban && !client.Admin)
                                 {
-                                    ret = LoginResult.IPBanned;
+                                    ret = LoginResult.IpBanned;
                                 }
                             }
-                            if (ipresult["ipban"].GetType() == typeof(SByte))
+                            if (ipresult["ipban"] is sbyte)
                             {
                                 var ipban = Convert.ToBoolean((SByte)ipresult["ipban"]);
                                 if (ipban && !client.Admin)
                                 {
-                                    ret = LoginResult.IPBanned;
+                                    ret = LoginResult.IpBanned;
                                 }
                             }
                         }
@@ -92,12 +88,12 @@ namespace InsurgenceServer.Database
                     }
                 }
                 ipresult.Close();
-                if (!ips.Contains(client.IP.ToString()))
+                if (!ips.Contains(client.Ip.ToString()))
                 {
                     string ipsetcommand = "INSERT INTO ips VALUES (@param_val_1, @param_val_2, @param_val_3)";
                     MySqlCommand o = new MySqlCommand(ipsetcommand, conn.Connection);
-                    o.Parameters.AddWithValue("@param_val_1", client.User_Id);
-                    o.Parameters.AddWithValue("@param_val_2", client.IP);
+                    o.Parameters.AddWithValue("@param_val_1", client.UserId);
+                    o.Parameters.AddWithValue("@param_val_2", client.Ip);
                     o.Parameters.AddWithValue("@param_val_3", 0);
                     o.ExecuteNonQuery();
                 }
@@ -105,13 +101,13 @@ namespace InsurgenceServer.Database
 
                 if (ret == LoginResult.Unset)
                     ret = LoginResult.Okay;
-                if (ret == LoginResult.Banned || ret == LoginResult.IPBanned)
+                if (ret == LoginResult.Banned || ret == LoginResult.IpBanned)
                 {
-                    Database.DBUserManagement.Ban(client.User_Id, ips);
+                    DbUserManagement.Ban(client.UserId, ips);
                 }
-                string LoggedInRegisterCom = "UPDATE user_data SET lastlogin = @param_val_2 WHERE user_id = @param_val_1";
-                MySqlCommand logregcommand = new MySqlCommand(LoggedInRegisterCom, conn.Connection);
-                logregcommand.Parameters.AddWithValue("param_val_1", client.User_Id);
+                string loggedInRegisterCom = "UPDATE user_data SET lastlogin = @param_val_2 WHERE user_id = @param_val_1";
+                MySqlCommand logregcommand = new MySqlCommand(loggedInRegisterCom, conn.Connection);
+                logregcommand.Parameters.AddWithValue("param_val_1", client.UserId);
                 logregcommand.Parameters.AddWithValue("param_val_2", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
                 logregcommand.ExecuteNonQuery();
 
@@ -127,7 +123,7 @@ namespace InsurgenceServer.Database
         public static void Register(Client client, string username, string password, string email)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 var check = new MySqlCommand("SELECT username FROM users WHERE username = @val", conn.Connection);
                 check.Parameters.AddWithValue("val", username);
@@ -151,7 +147,7 @@ namespace InsurgenceServer.Database
                 checkrese.Close();
 
                 var ipban = new MySqlCommand("SELECT COUNT(*) FROM ips WHERE ip = @ip AND ipban = 1", conn.Connection);
-                ipban.Parameters.AddWithValue("ip", client.IP.ToString());
+                ipban.Parameters.AddWithValue("ip", client.Ip.ToString());
                 var ipbancount = int.Parse(ipban.ExecuteScalar().ToString());
                 if (ipbancount > 0)
                 {
@@ -176,19 +172,19 @@ namespace InsurgenceServer.Database
                 var idreader = getUserid.ExecuteReader();
                 while (idreader.Read())
                 {
-                    client.User_Id = (uint)idreader["user_id"];
+                    client.UserId = (uint)idreader["user_id"];
                 }
                 idreader.Close();
 
                 var logonline = new MySqlCommand("INSERT INTO user_data (user_id, lastlogin) VALUES (@uid, @time)", conn.Connection);
-                logonline.Parameters.AddWithValue("uid", client.User_Id);
+                logonline.Parameters.AddWithValue("uid", client.UserId);
                 logonline.Parameters.AddWithValue("time", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
                 logonline.ExecuteNonQuery();
 
                 string ipsetcommand = "INSERT INTO ips VALUES (@param_val_1, @param_val_2, @param_val_3)";
                 MySqlCommand o = new MySqlCommand(ipsetcommand, conn.Connection);
-                o.Parameters.AddWithValue("@param_val_1", client.User_Id);
-                o.Parameters.AddWithValue("@param_val_2", client.IP);
+                o.Parameters.AddWithValue("@param_val_1", client.UserId);
+                o.Parameters.AddWithValue("@param_val_2", client.Ip);
                 o.Parameters.AddWithValue("@param_val_3", 0);
                 o.ExecuteNonQuery();
 
@@ -199,6 +195,6 @@ namespace InsurgenceServer.Database
     }
     public enum LoginResult
     {
-        Unset = -1, WrongUsername = 0, WrongPassword, Banned, IPBanned, Okay
+        Unset = -1, WrongUsername = 0, WrongPassword, Banned, IpBanned, Okay
     }
 }

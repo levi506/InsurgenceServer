@@ -1,51 +1,47 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.GTS
 {
-    public static class GTSHandler
+    public static class GtsHandler
     {
-        public static void CreateGTS(Client c,string Offer, string Request, string index)
+        public static void CreateGts(Client c,string offer, string request, string index)
         {
             //If user is banned, return
-            if (Database.DBUserChecks.UserBanned(c.Username))
+            if (Database.DbUserChecks.UserBanned(c.Username))
             {
-                c.SendMessage(string.Format("<GTSCREATE result=0 index={0}>", index));
+                c.SendMessage($"<GTSCREATE result=0 index={index}>");
                 return;
             }
             //If user has more than max amount of allowed GTS trades, return
-            if (Database.DBGTS.GetNumberOfTrades(c.User_Id) >= Data.MaximumGTSTradesPerUser)
+            if (Database.Dbgts.GetNumberOfTrades(c.UserId) >= Data.MaximumGtsTradesPerUser)
             {
-                c.SendMessage(string.Format("<GTSCREATE result=1 index={0}>", index));
+                c.SendMessage($"<GTSCREATE result=1 index={index}>");
                 return;
             }
             //Decode data
-            var decodeOffer = Utilities.Encoding.Base64Decode(Offer);
-            var decodeRequest = Utilities.Encoding.Base64Decode(Request);
+            var decodeOffer = Utilities.Encoding.Base64Decode(offer);
+            var decodeRequest = Utilities.Encoding.Base64Decode(request);
 
             //Turn data into objects
             var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
 
             //Get Pokemon Level
-            var level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
+            var level = GrowthRates.CalculateLevel(pokemon.Species, pokemon.Exp);
 
             //Input in database
             try
             {
-                Database.DBGTS.Add(c.User_Id, decodeOffer, decodeRequest, level);
-                c.SendMessage(string.Format("<GTSCREATE result=3 index={0}>", index));
+                Database.Dbgts.Add(c.UserId, decodeOffer, decodeRequest, level);
+                c.SendMessage($"<GTSCREATE result=3 index={index}>");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                c.SendMessage(string.Format("<GTSCREATE result=2 index={0}>", index));
+                c.SendMessage($"<GTSCREATE result=2 index={index}>");
             }
         }
-        public static void RequestGTS(Client c, string lastIDstr, string filterstring)
+        public static void RequestGts(Client c, string lastIDstr, string filterstring)
         {
             uint index;
             if (!uint.TryParse(lastIDstr, out index))
@@ -53,10 +49,10 @@ namespace InsurgenceServer.GTS
                 Console.WriteLine("NAN");
                 return;
             }
-            var Filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
-            Console.WriteLine(Filter.Species);
+            var filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
+            Console.WriteLine(filter.Species);
             //Request pokemon from the database, starting with pokemon last seen + 1. If lastID = -1, start from highest number
-            var ls = Database.DBGTS.GetTrades(index, Filter);
+            var ls = Database.Dbgts.GetTrades(index, filter);
             var str = "";
             foreach(var o in ls)
             {
@@ -65,25 +61,25 @@ namespace InsurgenceServer.GTS
             }
             //We encode the string with base64 for neater transmitting and less chance of user inputs breaking things
             var compressed = Utilities.Encoding.Base64Encode(str);
-            c.SendMessage(string.Format("<GTSREQUEST trades={0}>", compressed));
+            c.SendMessage($"<GTSREQUEST trades={compressed}>");
         }
-        public static void OfferGTS(Client c,string pokemon, string idstr)
+        public static void OfferGts(Client c,string pokemon, string idstr)
         {
             uint id;
             if (!uint.TryParse(idstr, out id))
                 return;
             //If user is banned, return
-            if (Database.DBUserChecks.UserBanned(c.Username))
+            if (Database.DbUserChecks.UserBanned(c.Username))
             {
-                c.SendMessage(string.Format("<GTSOFFER result=0 pkmn=nil>"));
+                c.SendMessage("<GTSOFFER result=0 pkmn=nil>");
                 return;
             }
             //Get Pokemon data from Database
-            var poke = Database.DBGTS.GetSingleTrade(id);
+            var poke = Database.Dbgts.GetSingleTrade(id);
             //If already accepted send negative response
-            if (poke == null || poke.Accepted == true)
+            if (poke == null || poke.Accepted)
             {
-                c.SendMessage(string.Format("<GTSOFFER result=1 pkmn=nil>"));
+                c.SendMessage("<GTSOFFER result=1 pkmn=nil>");
                 return;
             }
             //decode string
@@ -92,29 +88,29 @@ namespace InsurgenceServer.GTS
             var pkmn = JsonConvert.DeserializeObject<GamePokemon>(decoded);
             var request = poke.Request;
             //Compare pokemon offered with requests on pokemon with id offered.
-            bool Correct = GTSCompare.ValidOffer(pkmn, request);
+            bool correct = GtsCompare.ValidOffer(pkmn, request);
             //If doesn't match, send negative response
-            if (Correct == false)
+            if (correct == false)
             {
-                c.SendMessage(string.Format("<GTSOFFER result=2 pkmn=nil>"));
+                c.SendMessage("<GTSOFFER result=2 pkmn=nil>");
                 return;
             }
             //If it has been accepted, return negative (we do this twice to make absolutely sure it hasn't been traded in between)
-            if (Database.DBGTS.GetAccepted(id))
+            if (Database.Dbgts.GetAccepted(id))
             {
-                c.SendMessage(string.Format("<GTSOFFER result=1 pkmn=nil>"));
+                c.SendMessage("<GTSOFFER result=1 pkmn=nil>");
                 return;
             }
             //Set accepted to true, Set pokemon offered as pokemon for collector to receive
-            Database.DBGTS.SetAccepted(id, pokemon);
+            Database.Dbgts.SetAccepted(id, pokemon);
             //Send positive response along with pokemon back to client.
             var encodedPokemon = Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(poke.Offer));
-            c.SendMessage(string.Format("<GTSOFFER result=3 pkmn={0}>", encodedPokemon));
+            c.SendMessage($"<GTSOFFER result=3 pkmn={encodedPokemon}>");
         }
         public static void GetUserTrades(Client c)
         {
             //Get a list of all the users trades
-            var ls = Database.DBGTS.GetUserTrades(c.User_Id);
+            var ls = Database.Dbgts.GetUserTrades(c.UserId);
 
             //List to string, then send
             var str = "";
@@ -124,7 +120,7 @@ namespace InsurgenceServer.GTS
                 str += "\r";
             }
             var encoded = Utilities.Encoding.Base64Encode(str);
-            c.SendMessage(string.Format("<GTSMINE trades={0}>", encoded));
+            c.SendMessage($"<GTSMINE trades={encoded}>");
         }
         public static void CancelTrade(Client c, string idstr)
         {
@@ -132,13 +128,13 @@ namespace InsurgenceServer.GTS
             if (!uint.TryParse(idstr, out id))
                 return;
             //make sure the user actually owns the trade
-            if (!Database.DBGTS.UserOwnsTrade(id, c.User_Id))
+            if (!Database.Dbgts.UserOwnsTrade(id, c.UserId))
             {
                 c.SendMessage("<GTSCANCEL result=0 pkmn=nil>");
                 return;
             }
             //Get actual trade
-            var trade = Database.DBGTS.GetSingleTrade(id);
+            var trade = Database.Dbgts.GetSingleTrade(id);
             //Return if trade is already accepted
             if (trade.Accepted)
             {
@@ -146,10 +142,10 @@ namespace InsurgenceServer.GTS
                 return;
             }
             //Removes trade
-            Database.DBGTS.CancelTrade(id);
+            Database.Dbgts.CancelTrade(id);
             //Return offered pokemon to the client
             var encodedPokemon = Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(trade.Offer));
-            c.SendMessage(string.Format("<GTSCANCEL result=2 pkmn={0}>", encodedPokemon));
+            c.SendMessage($"<GTSCANCEL result=2 pkmn={encodedPokemon}>");
         }
         public static void CollectTrade(Client c, string idstr)
         {
@@ -157,25 +153,25 @@ namespace InsurgenceServer.GTS
             if (!uint.TryParse(idstr, out id))
                 return;
             //make sure the user actually owns the trade
-            if (!Database.DBGTS.UserOwnsTrade(id, c.User_Id))
+            if (!Database.Dbgts.UserOwnsTrade(id, c.UserId))
             {
                 c.SendMessage("<GTSCOLLECT result=0 pkmn=nil>");
                 return;
             }
             //make sure the trade is actually accepted
-            if (!Database.DBGTS.TradeIsAccepted(id))
+            if (!Database.Dbgts.TradeIsAccepted(id))
             {
                 c.SendMessage("<GTSCOLLECT result=1 pkmn=nil>");
                 return;
             }
             //Collects the pokemon, and delete it from the database
-            var poke = Database.DBGTS.CollectTrade(id);
+            var poke = Database.Dbgts.CollectTrade(id);
             //Sends poke back to client
             var encodedPokemon = Utilities.Encoding.Base64Encode(poke);
-            c.SendMessage(string.Format("<GTSCOLLECT result=2 pkmn={0}>", encodedPokemon));
+            c.SendMessage($"<GTSCOLLECT result=2 pkmn={encodedPokemon}>");
         }
     }
-    public class RequestGTSHolder
+    public class RequestGtsHolder
     {
         public int Index { get; set; }
         public GamePokemon Offer { get; set; }

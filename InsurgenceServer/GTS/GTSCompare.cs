@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InsurgenceServer.GTS
+﻿namespace InsurgenceServer.GTS
 {
-    public static class GTSCompare
+    public static class GtsCompare
     {
-        public static bool ValidOffer(GamePokemon Pokemon, RequestData Request)
+        public static bool ValidOffer(GamePokemon pokemon, RequestData request)
         {
-            var pokelevel = GrowthRates.CalculateLevel(Pokemon.species ,Pokemon.exp);
-            if (pokelevel < Request.MinLevel)
+            var pokelevel = GrowthRates.CalculateLevel(pokemon.Species ,pokemon.Exp);
+            if (pokelevel < request.MinLevel)
                 return false;
             return true;
         }

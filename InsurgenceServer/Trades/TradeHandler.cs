@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace InsurgenceServer
 {
@@ -13,25 +12,25 @@ namespace InsurgenceServer
             try
             {
                 var u = username.ToLower();
-                if (!Database.DBUserChecks.UserExists(username))
+                if (!Database.DbUserChecks.UserExists(username))
                 {
-                    client.SendMessage(string.Format("<TRA user={0} result=0>", username));
+                    client.SendMessage($"<TRA user={username} result=0>");
                     return null;
                 }
-                if (Database.DBUserChecks.UserBanned(username))
+                if (Database.DbUserChecks.UserBanned(username))
                 {
-                    client.SendMessage(string.Format("<TRA user={0} result=1>", username));
+                    client.SendMessage($"<TRA user={username} result=1>");
                     return null;
                 }
                 var c = ClientHandler.GetClient(u);
                 if (c == null)
                 {
-                    client.SendMessage(string.Format("<TRA user={0} result=2>", username));
+                    client.SendMessage($"<TRA user={username} result=2>");
                     return null;
                 }
-                if ((c.IP.Equals(client.IP)) && !client.Admin)
+                if ((c.Ip.Equals(client.Ip)) && !client.Admin)
                 {
-                    client.SendMessage(string.Format("<GLOBAL message=You can not trade with the same IP>"));
+                    client.SendMessage("<GLOBAL message=You can not trade with the same IP>");
                     client.SendMessage("<TRA dead>");
                     return null;
                 }
@@ -53,7 +52,7 @@ namespace InsurgenceServer
 			var u = username.ToLower();
 			foreach (var trade in ActiveTrades)
 			{
-				if (trade.username1 == u && trade.username2 == client.Username)
+				if (trade.Username1 == u && trade.Username2 == client.Username)
 				{
 					return trade;
 				}
@@ -66,8 +65,11 @@ namespace InsurgenceServer
             {
                 ActiveTrades.Remove(trade);
             }
-            catch { }
-        }
+		    catch
+		    {
+		        // ignored
+		    }
+		}
 
         public static void TradeChecker()
         {
@@ -99,7 +101,6 @@ namespace InsurgenceServer
                         if (t.Client2 == null && t.Activated)
                         {
                             t.Kill();
-                            continue;
                         }
                     }
                     System.Threading.Thread.Sleep(5000);
@@ -115,8 +116,8 @@ namespace InsurgenceServer
 	}
     public class TradeLog
     {
-        public string user1 { get; set; }
-        public string user2 { get; set; }
+        public string User1 { get; set; }
+        public string User2 { get; set; }
         public Pokemon Pokemon1 { get; set; }
         public Pokemon Pokemon2 { get; set; }
     }

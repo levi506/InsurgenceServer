@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.WonderTrade
 {
@@ -12,11 +8,11 @@ namespace InsurgenceServer.WonderTrade
         public Client Client { get; private set; }
         public GTS.GamePokemon Pokemon { get; private set; }
 
-        public WonderTradeHolder(Client _client, GTS.GamePokemon _pokemon)
+        public WonderTradeHolder(Client client, GTS.GamePokemon pokemon)
         {
             Time = DateTime.UtcNow;
-            Client = _client;
-            Pokemon = _pokemon;
+            Client = client;
+            Pokemon = pokemon;
         }
     }
 }

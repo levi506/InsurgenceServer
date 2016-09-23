@@ -17,7 +17,7 @@ namespace AdminSiteNew.ServerInteraction
 
         private static TcpClient client;
         private static NetworkStream stream;
-        private static Byte[] bytes = new Byte[256];
+        private static readonly Byte[] bytes = new Byte[256];
 
         public static void Start()
         {
@@ -77,7 +77,7 @@ namespace AdminSiteNew.ServerInteraction
             byte[] bb = new byte[255];
 
             var i = stream.Read(bb, 0, bb.Length);
-            var data = System.Text.Encoding.ASCII.GetString(bb, 0, i);
+            var data = Encoding.ASCII.GetString(bb, 0, i);
             string s = "";
             bool collecting = true;
             while (collecting)
@@ -98,7 +98,7 @@ namespace AdminSiteNew.ServerInteraction
             {
                 try
                 {
-                    var data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                    var data = Encoding.ASCII.GetString(bytes, 0, i);
                     DataHandler(data);
                 }
                 catch (Exception e)

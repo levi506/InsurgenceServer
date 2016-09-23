@@ -38,7 +38,7 @@ namespace AdminSiteNew.Models
             var basestring = s.Split('g');
 
             var pkmn = basestring[2].Split('f');
-            this.Type = (FriendSafariType)int.Parse(pkmn[0]);
+            Type = (FriendSafariType)int.Parse(pkmn[0]);
 
             Pokemon = new List<PokemonHelper.PokemonList>();
             for (var i = 1; i < pkmn.Length;i++)

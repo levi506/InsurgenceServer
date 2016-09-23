@@ -1,22 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
-    public static class DBMisc
+    public static class DbMisc
     {
         public static string GetDirectGift(Client client)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 string command = "SELECT id, gift FROM direct_gift WHERE user_id = @id;";
                 MySqlCommand m = new MySqlCommand(command, conn.Connection);
-                m.Parameters.AddWithValue("@id", client.User_Id);
+                m.Parameters.AddWithValue("@id", client.UserId);
                 var result = m.ExecuteReader();
                 string s = null;
                 int id = -1;

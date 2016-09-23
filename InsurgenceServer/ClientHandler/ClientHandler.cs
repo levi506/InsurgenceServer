@@ -14,14 +14,14 @@ namespace InsurgenceServer
 			var c = ActiveClients.Where(x => x.Username == username.ToLower());
 			return c.FirstOrDefault();
 		}
-        public static Client GetClient(uint User_id)
+        public static Client GetClient(uint userId)
         {
-            var c = ActiveClients.Where(x => x.User_Id == User_id);
+            var c = ActiveClients.Where(x => x.UserId == userId);
             return c.FirstOrDefault();
         }
-        public static List<Client> GetClientList(List<uint> user_ids)
+        public static List<Client> GetClientList(List<uint> userIds)
         {
-            return ActiveClients.Where(x => user_ids.Contains(x.User_Id)).ToList();
+            return ActiveClients.Where(x => userIds.Contains(x.UserId)).ToList();
         }
 
         public static void Remove(Client client)
@@ -30,7 +30,10 @@ namespace InsurgenceServer
 			{
 				ActiveClients.Remove(client);
 			}
-			catch { }
+		    catch
+		    {
+		        // ignored
+		    }
 		}
 
 		public static void ClientChecker()
@@ -47,17 +50,12 @@ namespace InsurgenceServer
                                 continue;
                             var c = ActiveClients[i];
                             c.Ping();
-                            if (c == null)
+                            if (c.ActualCient == null)
                             {
                                 c.Disconnect();
                                 continue;
                             }
-                            if (c._client == null)
-                            {
-                                c.Disconnect();
-                                continue;
-                            }
-                            if (!c._client.Connected)
+                            if (!c.ActualCient.Connected)
                             {
                                 c.Disconnect();
                                 continue;
@@ -65,7 +63,6 @@ namespace InsurgenceServer
                             if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= 5)
                             {
                                 c.Disconnect();
-                                continue;
                             }
                         }
                         catch (Exception e)

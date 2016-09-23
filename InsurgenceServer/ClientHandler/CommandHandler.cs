@@ -1,9 +1,5 @@
 ﻿using InsurgenceServer.Battles;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -11,103 +7,103 @@ namespace InsurgenceServer
     {
         public static void Execute(Client client, CommandHandler command)
         {
-            if (command.Command == Commands.Null) return;
-            else if (command.Command == Commands.DSC)
+            if (command.Command == Commands.DSC)
             {
                 client.Disconnect();
             }
-            else if (!client._Loggedin)
+            else if (!client.Loggedin)
             {
-                if (command.Command == Commands.CON)
-                    client.ConnectionRequest(command.data["version"]);
+                if (command.Command == Commands.Con)
+                    client.ConnectionRequest(command.Data["version"]);
                 else if (command.Command == Commands.LOG)
-                    client.Login(command.data["user"], command.data["pass"]);
+                    client.Login(command.Data["user"], command.Data["pass"]);
                 else if (command.Command == Commands.REG)
                 {
-                    client.Register(command.data["user"], command.data["pass"], command.data["email"]);
+                    client.Register(command.Data["user"], command.Data["pass"], command.Data["email"]);
                 }
             }
             else if (command.Command == Commands.TRA)
             {
-                client.HandleTrade(command.data);
+                client.HandleTrade(command.Data);
             }
             else if (command.Command == Commands.VBASE)
             {
-                var b = Database.DBFriendSafari.GetBase(command.data["user"], client);
+                var b = Database.DbFriendSafari.GetBase(command.Data["user"], client);
                 if (b == null) return;
-                client.SendMessage(string.Format("<VBASE user={0} result=2 base={1}>", command.data["user"], b));
+                client.SendMessage($"<VBASE user={command.Data["user"]} result=2 base={b}>");
             }
             else if (command.Command == Commands.UBASE)
             {
-                if (Utilities.FSChecker.IsValid(client, command.data["base"]))
+                if (Utilities.FsChecker.IsValid(client, command.Data["base"]))
                 {
                     client.SendMessage("<UBASE result=2>");
                     return;
                 }
-                Database.DBFriendSafari.UploadBase(client.User_Id, command.data["base"]);
+                Database.DbFriendSafari.UploadBase(client.UserId, command.Data["base"]);
                 client.SendMessage("<UBASE result=1>");
             }
             else if (command.Command == Commands.BAT)
             {
-                client.HandleBattle(command.data);
+                client.HandleBattle(command.Data);
             }
             else if (command.Command == Commands.RAND)
             {
                 try
                 {
-                    client.TierSelected = Matchmaking.GetTier(command.data["species"]);
+                    client.TierSelected = Matchmaking.GetTier(command.Data["species"]);
                 }
                 catch
                 {
-                    client.TierSelected = Tiers.AG;
+                    client.TierSelected = Tiers.Ag;
                 }
-                client.SendMessage(string.Format("<RANTIER tier={0}>", Enum.GetName(typeof(Tiers), client.TierSelected)));
+                client.SendMessage($"<RANTIER tier={Enum.GetName(typeof(Tiers), client.TierSelected)}>");
             }
             else if (command.Command == Commands.RANBAT)
             {
-                if (command.data.ContainsKey("tier"))
+                if (command.Data.ContainsKey("tier"))
                 {
                     RandomBattles.AddRandom(client, (Tiers)Enum.Parse(typeof(Tiers),
-                        command.data["tier"]), client.TierSelected);
+                        command.Data["tier"]), client.TierSelected);
                 }
-                else if (command.data.ContainsKey("cancel"))
+                else if (command.Data.ContainsKey("cancel"))
                 {
                     RandomBattles.RemoveRandom(client);
                 }
-                else if (command.data.ContainsKey("decline"))
+                else if (command.Data.ContainsKey("decline"))
                 {
-                    ClientHandler.GetClient(command.data["user"]).SendMessage(string.Format("<RANBAT declined user={0}>", client.Username));
+                    ClientHandler.GetClient(command.Data["user"]).SendMessage(
+                        $"<RANBAT declined user={client.Username}>");
                     RandomBattles.RemoveRandom(client);
                     client.TierSelected = Tiers.Null;
                 }
             }
             else if (command.Command == Commands.GTSCREATE)
             {
-                GTS.GTSHandler.CreateGTS(client, command.data["offer"], command.data["request"], command.data["index"]);
+                GTS.GtsHandler.CreateGts(client, command.Data["offer"], command.Data["request"], command.Data["index"]);
             }
             else if (command.Command == Commands.GTSOFFER)
             {
-                GTS.GTSHandler.OfferGTS(client, command.data["offer"], command.data["id"]);
+                GTS.GtsHandler.OfferGts(client, command.Data["offer"], command.Data["id"]);
             }
             else if (command.Command == Commands.GTSREQUEST)
             {
-                GTS.GTSHandler.RequestGTS(client, command.data["index"], command.data["filter"]);
+                GTS.GtsHandler.RequestGts(client, command.Data["index"], command.Data["filter"]);
             }
             else if (command.Command == Commands.GTSCANCEL)
             {
-                GTS.GTSHandler.CancelTrade(client, command.data["id"]);
+                GTS.GtsHandler.CancelTrade(client, command.Data["id"]);
             }
             else if (command.Command == Commands.GTSCOLLECT)
             {
-                GTS.GTSHandler.CollectTrade(client, command.data["id"]);
+                GTS.GtsHandler.CollectTrade(client, command.Data["id"]);
             }
             else if (command.Command == Commands.GTSMINE)
             {
-                GTS.GTSHandler.GetUserTrades(client);
+                GTS.GtsHandler.GetUserTrades(client);
             }
             else if (command.Command == Commands.WTCREATE)
             {
-                WonderTrade.WonderTradeHandler.AddTrade(client, command.data["pkmn"]);
+                WonderTrade.WonderTradeHandler.AddTrade(client, command.Data["pkmn"]);
             }
             else if (command.Command == Commands.WTCANCEL)
             {
@@ -115,27 +111,24 @@ namespace InsurgenceServer
             }
             else if (command.Command == Commands.DIRGIFT)
             {
-                var s = Database.DBMisc.GetDirectGift(client);
-                if (s == null)
-                    client.SendMessage("<DIRGIFT result=0 gift=nil>");
-                else
-                    client.SendMessage(string.Format("<DIRGIFT result=1 gift={0}>", s));
+                var s = Database.DbMisc.GetDirectGift(client);
+                client.SendMessage(s == null ? "<DIRGIFT result=0 gift=nil>" : $"<DIRGIFT result=1 gift={s}>");
             }
             else if (command.Command == Commands.ADDFRIEND)
             {
-                FriendHandler.AddFriend(client, command.data["user"]);
+                FriendHandler.AddFriend(client, command.Data["user"]);
             }
             else if (command.Command == Commands.REMOVEFRIEND)
             {
-                FriendHandler.RemoveFriend(client, command.data["user"]);
+                FriendHandler.RemoveFriend(client, command.Data["user"]);
             }
             else if (command.Command == Commands.FRACCEPT)
             {
-                FriendHandler.AcceptRequest(client, command.data["user"]);
+                FriendHandler.AcceptRequest(client, command.Data["user"]);
             }
             else if (command.Command == Commands.FRDENY)
             {
-                FriendHandler.DenyRequest(client, command.data["user"]);
+                FriendHandler.DenyRequest(client, command.Data["user"]);
             }
         }
     }
@@ -144,7 +137,7 @@ namespace InsurgenceServer
         //Default value
         Null = 0,
         //General user functionality
-        CON, DSC, LOG, REG,
+        Con, DSC, LOG, REG,
         //Trading
         TRA,
         //Secret Base functions

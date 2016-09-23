@@ -10,7 +10,7 @@ namespace AdminSiteNew.DatabaseSpace
 {
     public static class Database
     {
-        public static Models.UserRequest GetUser(string username)
+        public static UserRequest GetUser(string username)
         {
             var conn = new OpenConnection();
             if (conn.isConnected())
@@ -295,7 +295,7 @@ namespace AdminSiteNew.DatabaseSpace
     }
     public class OpenConnection
     {
-        private string connstring = string.Format("Server=localhost; database={0}; UID={1}; password={2}", DBAuth.Database, DBAuth.Username , DBAuth.Password);
+        private readonly string connstring = string.Format("Server=localhost; database={0}; UID={1}; password={2}", DBAuth.Database, DBAuth.Username , DBAuth.Password);
         public MySqlConnection Connection;
         public OpenConnection()
         {

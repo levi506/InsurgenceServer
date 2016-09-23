@@ -2,9 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -23,9 +20,9 @@ namespace InsurgenceServer
                 Table.Add((int)j["id"], (GrowthRate)Enum.Parse(typeof(GrowthRate), (string)j["GrowthRate"]));
             }
         }
-        public static int CalculateLevel(int speciesID, int exp)
+        public static int CalculateLevel(int speciesId, int exp)
         {
-            if (Table[speciesID] == GrowthRate.Erratic)
+            if (Table[speciesId] == GrowthRate.Erratic)
             {
                 if (exp <= GrowthRatesLookup.Erratic[100])
                 {
@@ -35,13 +32,13 @@ namespace InsurgenceServer
                 {
                     for (var i = 101; i <= 120; i++)
                     {
-                        var expneeded = Math.Floor((Math.Pow(i, 3)) * ((i * 6 / 10) / (100 * 1.0)));
+                        var expneeded = Math.Floor((Math.Pow(i, 3)) * (i * 6f / 10f / (100d * 1.0)));
                         if (exp < expneeded)
                             return i - 1;
                     }
                 }
             }
-            else if (Table[speciesID] == GrowthRate.Fast)
+            else if (Table[speciesId] == GrowthRate.Fast)
             {
                 if (exp <= GrowthRatesLookup.Fast[100])
                 {
@@ -49,10 +46,10 @@ namespace InsurgenceServer
                 }
                 else
                 {
-                    return (int)Math.Floor(Math.Pow(((exp * 5) / 4), 1d / 3d));
+                    return (int)Math.Floor(Math.Pow(((exp * 5f) / 4f), 1d / 3d));
                 }
             }
-            else if (Table[speciesID] == GrowthRate.Medium)
+            else if (Table[speciesId] == GrowthRate.Medium)
             {
                 if (exp <= GrowthRatesLookup.Medium[100])
                 {
@@ -63,7 +60,7 @@ namespace InsurgenceServer
                     return (int)Math.Floor(Math.Pow(exp, 1d / 3d));
                 }
             }
-            else if (Table[speciesID] == GrowthRate.Parabolic)
+            else if (Table[speciesId] == GrowthRate.Parabolic)
             {
                 if (exp <= GrowthRatesLookup.Parabolic[100])
                 {
@@ -79,7 +76,7 @@ namespace InsurgenceServer
                     }
                 }
             }
-            else if (Table[speciesID] == GrowthRate.Slow)
+            else if (Table[speciesId] == GrowthRate.Slow)
             {
                 if (exp <= GrowthRatesLookup.Slow[100])
                 {
@@ -87,10 +84,10 @@ namespace InsurgenceServer
                 }
                 else
                 {
-                    return (int)Math.Floor(Math.Pow(((exp * 4) / 5), 1d / 3d));
+                    return (int)Math.Floor(Math.Pow((((float)exp * 4) / 5), 1d / 3d));
                 }
             }
-            else if (Table[speciesID] == GrowthRate.Fluctuating)
+            else if (Table[speciesId] == GrowthRate.Fluctuating)
             {
                 if (exp <= GrowthRatesLookup.Fluctuating[100])
                 {
@@ -103,7 +100,7 @@ namespace InsurgenceServer
                         var rate = (i - 100) / 2;
                         if (rate < 40) rate = 40;
 
-                        var expneeded = ((Math.Pow(i, 3)) * ((i * rate / 100) / 50.0));
+                        var expneeded = ((Math.Pow(i, 3)) * (((float)i * rate / 100) / 50.0));
                         if (exp < expneeded)
                             return i - 1;
                     }

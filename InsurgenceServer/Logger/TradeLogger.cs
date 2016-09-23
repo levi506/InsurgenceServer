@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace InsurgenceServer
 {
 	public static class TradeLogger
 	{
-		public static int CurrentLogging = 0;
+		public static int CurrentLogging;
 
 		public static void LogTrade(string user1, string user2, string pokemon1, string pokemon2)
 		{
@@ -31,9 +30,9 @@ namespace InsurgenceServer
 			//byte[] data2 = Convert.FromBase64String(pokemon2);
             //var poke1 = Marshal.MarshalLoadPokemon(data1);
             //var poke2 = Marshal.MarshalLoadPokemon(data2);
-            var poke1json = Utilities.Encoding.Base64Decode(pokemon1);
-            var poke2json = Utilities.Encoding.Base64Decode(pokemon2);
-            Database.DBTradelog.LogTrade(user1, user2, poke1json, poke2json);
+            var poke1Json = Utilities.Encoding.Base64Decode(pokemon1);
+            var poke2Json = Utilities.Encoding.Base64Decode(pokemon2);
+            Database.DbTradelog.LogTrade(user1, user2, poke1Json, poke2Json);
 			CurrentLogging--;
 		}
 

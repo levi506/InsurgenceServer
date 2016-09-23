@@ -44,8 +44,8 @@ namespace AdminSiteNew.Controllers
 
         public PartialViewResult GetUser(string username = "")
         {
-            Models.UserModel Model = new Models.UserModel();
-            Models.UserRequest req;
+            UserModel Model = new UserModel();
+            UserRequest req;
             if (username != "")
             {
                 req = Database.GetUser(username);

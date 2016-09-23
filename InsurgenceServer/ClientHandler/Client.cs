@@ -5,25 +5,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
 namespace InsurgenceServer
 {
 	public class Client
 	{
-		Byte[] bytes = new Byte[256];
-		public TcpClient _client;
-		private NetworkStream stream;
-        private double Version;
+	    readonly Byte[] _bytes = new Byte[256];
+	    public readonly TcpClient ActualCient;
+		private readonly NetworkStream _stream;
+        private double _version;
 
 		public bool Connected = true;
-		internal bool _Loggedin;
+		internal bool Loggedin;
         public bool LoggedIn;
 		public bool Admin = false;
 
-		public uint User_Id;
+		public uint UserId;
         public string Username { get; private set; } = "";
-		public IPAddress IP { get; private set; }
+		public IPAddress Ip { get; private set; }
 		public DateTime LastActive;
 
 		public Trade ActiveTrade;
@@ -35,21 +34,21 @@ namespace InsurgenceServer
         public string PendingFriend;
         public List<uint> Friends;
 
-		public Client(TcpClient client)
+		public Client(TcpClient actualCient)
 		{
-			this._client = client;
-			this.IP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
-			stream = _client.GetStream();
+			ActualCient = actualCient;
+			Ip = ((IPEndPoint)actualCient.Client.RemoteEndPoint).Address;
+			_stream = ActualCient.GetStream();
 			LastActive = DateTime.UtcNow;
 			ClientHandler.ActiveClients.Add(this);
-			int i;
-			try
+		    try
 			{
-				while (Connected && (i = stream.Read(bytes, 0, bytes.Length)) != 0)
+			    int i;
+			    while (Connected && (i = _stream.Read(_bytes, 0, _bytes.Length)) != 0)
 				{
                     try
                     {
-                        var data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                        var data = System.Text.Encoding.ASCII.GetString(_bytes, 0, i);
                         DataHandler(data);
                     }
                     catch (Exception e) {
@@ -66,25 +65,22 @@ namespace InsurgenceServer
                 Console.WriteLine(e);
 			}
 		}
-		private string Message = "";
+		private string _message = "";
 		public void DataHandler(string data)
 		{
 			if (data.EndsWith("\n"))
 				data = data.Remove(data.Length - 1);
-			Message += data;
+			_message += data;
 			if (!data.EndsWith(">"))
 			{
 				return;
 			}
-            
-            if (Username != "")
-                Console.WriteLine(string.Format("{0} {1}", Username, Message));
-            else
-                Console.WriteLine(string.Format("Not Logged In: {0}", Message));
-            
-			LastActive = DateTime.UtcNow;
-			var command = new CommandHandler(Message);
-			Message = "";
+
+		    Console.WriteLine(Username != "" ? $"{Username} {_message}" : $"Not Logged In: {_message}");
+
+		    LastActive = DateTime.UtcNow;
+			var command = new CommandHandler(_message);
+			_message = "";
 
             ExecuteCommand.Execute(this, command);
         }
@@ -100,44 +96,44 @@ namespace InsurgenceServer
 				result = 1;
 			else
 				result = 2;
-            this.Version = version;
-			SendMessage(string.Format("<CON result={0}>", result));
+            _version = version;
+			SendMessage($"<CON result={result}>");
 		}
 		internal void Login(string username, string password)
 		{
-			var result = Database.DBAuthentication.Login(username, password, this);
+			var result = Database.DbAuthentication.Login(username, password, this);
 			//TODO: add ip bans etc here
 			if (result == Database.LoginResult.Okay)
 			{
-				this.Username = username.ToLower();
-				this._Loggedin = true;
-                this.LoggedIn = true;
+				Username = username.ToLower();
+				Loggedin = true;
+                LoggedIn = true;
 			}
-            if (this.Version == 6.84 && this.Admin == false)
+            if (Math.Abs(_version - 6.84) < 0.01 && Admin == false)
             {
                 //Ban if user logged in with a debug client, while not being an Admin
-                Database.DBUserManagement.Ban(this.User_Id);
-                SendMessage(string.Format("<LOG result={0}>", (int)Database.LoginResult.Banned));
+                Database.DbUserManagement.Ban(UserId);
+                SendMessage($"<LOG result={(int) Database.LoginResult.Banned}>");
                 return;
             }
-			SendMessage(string.Format("<LOG result={0}>", (int)result));
-            this.Friends = Database.DBFriendHandler.GetFriends(this);
+			SendMessage($"<LOG result={(int) result}>");
+            Friends = Database.DbFriendHandler.GetFriends(this);
 
             //We encode each name into base64 to prevent commas in names from breaking stuff
-            var compilefriends = string.Join(",", this.Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
+            var compilefriends = string.Join(",", Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
             var onlinestring = "";
-            foreach (var friend in this.Friends) {
+            foreach (var friend in Friends) {
                 //If friend client is not online, append 0, otherwise append 1
                 onlinestring += ((ClientHandler.GetClient(friend)) == null) ? "0" : "1";
             }
 
-            this.SendMessage(string.Format("<FRIENDLIST friends={0} online={1}>", compilefriends, onlinestring));
+            SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
 
             System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, true));
 		}
         internal void Register(string username, string password, string email)
         {
-            Database.DBAuthentication.Register(this, username, password, email);
+            Database.DbAuthentication.Register(this, username, password, email);
         }
         internal void HandleTrade(Dictionary<string, string> args)
 		{
@@ -145,37 +141,31 @@ namespace InsurgenceServer
 			{
 				var t = TradeHandler.BeginTrade(args["user"], this);
 				if (t != null)
-					this.ActiveTrade = t;
+					ActiveTrade = t;
 			}
 			else if (args.ContainsKey("start"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.ConfirmStart(this.Username);
+			    ActiveTrade?.ConfirmStart(Username);
 			}
 			else if (args.ContainsKey("party"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.SendParties(this.Username, args["party"]);
+			    ActiveTrade?.SendParties(Username, args["party"]);
 			}
 			else if (args.ContainsKey("dead"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.Kill();
+			    ActiveTrade?.Kill();
 			}
 			else if (args.ContainsKey("offer"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.Offer(this.Username, args["offer"]);
+			    ActiveTrade?.Offer(Username, args["offer"]);
 			}
 			else if (args.ContainsKey("accepted"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.Accept(this.Username);
+			    ActiveTrade?.Accept(Username);
 			}
 			else if (args.ContainsKey("declined"))
 			{
-				if (this.ActiveTrade != null)
-					this.ActiveTrade.Decline(this.Username);
+			    ActiveTrade?.Decline(Username);
 			}
 		}
 
@@ -185,7 +175,7 @@ namespace InsurgenceServer
             {
                 var b = BattleHandler.BeginBattle(args["user"], this, args["trainer"]);
                 if (b != null)
-                    this.ActiveBattle = b;
+                    ActiveBattle = b;
             }
             else if (args.ContainsKey("seed"))
             {
@@ -193,15 +183,15 @@ namespace InsurgenceServer
             }
             else if (args.ContainsKey("choices"))
             {
-                ActiveBattle.SendChoice(this.Username, args["choices"], args["m"], args["rseed"]);
+                ActiveBattle.SendChoice(Username, args["choices"], args["m"], args["rseed"]);
             }
             else if (args.ContainsKey("new"))
             {
-                ActiveBattle.NewPokemon(this.Username, args["new"]);
+                ActiveBattle.NewPokemon(Username, args["new"]);
             }
             else if (args.ContainsKey("damage"))
             {
-                ActiveBattle.Damage(this.Username, args["damage"], args["state"]);
+                ActiveBattle.Damage(Username, args["damage"], args["state"]);
             }
         }
 
@@ -210,8 +200,8 @@ namespace InsurgenceServer
             byte[] msg = System.Text.Encoding.ASCII.GetBytes("<PNG>" + "\n");
             try
             {
-                stream.Write(msg, 0, msg.Length);
-                stream.Flush();
+                _stream.Write(msg, 0, msg.Length);
+                _stream.Flush();
             }
             catch {
                 Disconnect();
@@ -220,7 +210,7 @@ namespace InsurgenceServer
 
 		public void SendMessage(string str)
 		{
-			if (!_client.Connected)
+			if (!ActualCient.Connected)
 			{
 				Disconnect();
 				return;
@@ -228,10 +218,13 @@ namespace InsurgenceServer
 			byte[] msg = System.Text.Encoding.ASCII.GetBytes(str + "\n");
 			try
 			{
-				stream.Write(msg, 0, msg.Length);
-				stream.Flush();
+				_stream.Write(msg, 0, msg.Length);
+				_stream.Flush();
 			}
-			catch { }
+		    catch
+		    {
+		        // ignored
+		    }
 		}
 		public void Disconnect()
 		{
@@ -240,16 +233,14 @@ namespace InsurgenceServer
 			try
 			{
                 ClientHandler.Remove(this);
-                if (ActiveTrade != null)
-					ActiveTrade.Kill();
-                if (ActiveBattle != null)
-                    ActiveBattle.Kill();
-                if (QueuedTier != Tiers.Null)
+			    ActiveTrade?.Kill();
+			    ActiveBattle?.Kill();
+			    if (QueuedTier != Tiers.Null)
                     RandomBattles.RemoveRandom(this);
                 WonderTrade.WonderTradeHandler.DeleteFromClient(this);
                 SendMessage("<DSC>");
-				stream.Close();
-				_client.Close();
+				_stream.Close();
+				ActualCient.Close();
 			}
 			catch (Exception e) {
                 Logger.ErrorLog.Log(e);
@@ -260,15 +251,16 @@ namespace InsurgenceServer
 	public class CommandHandler
 	{
 		public Commands Command;
-		public Dictionary<string, string> data = new Dictionary<string, string>();
-		public CommandHandler(string _input)
+		public Dictionary<string, string> Data = new Dictionary<string, string>();
+		public CommandHandler(string input)
 		{
-			if (!(_input.StartsWith("<") && _input.EndsWith(">")))
+		    if (input == null) throw new ArgumentNullException(nameof(input));
+		    if (!(input.StartsWith("<") && input.EndsWith(">")))
 				return;
-			var input = _input.Remove(0, 1);
-			input = input.Remove(input.Length - 1);
-			var arr = input.Split('\t');
-			if (!Enum.TryParse<Commands>(arr[0], out Command))
+			var realInput = input.Remove(0, 1);
+			realInput = realInput.Remove(realInput.Length - 1);
+			var arr = realInput.Split('\t');
+			if (!Enum.TryParse(arr[0], out Command))
 			{
 				Console.WriteLine("Unexpected Command: " + arr[0]);
 				return;
@@ -285,7 +277,7 @@ namespace InsurgenceServer
 					if (j != 1)
 						arg += "=";
 				}
-				data.Add(carr[0], arg);
+				Data.Add(carr[0], arg);
 			}
 		}
 	}

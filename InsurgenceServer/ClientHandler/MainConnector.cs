@@ -9,7 +9,7 @@ namespace InsurgenceServer
 	{
 		public MainConnector()
 		{
-            var ipstr = Data.IP;
+            var ipstr = Data.Ip;
             int p = (int)Environment.OSVersion.Platform;
             //Set ip to 127.0.0.1 for Windows, for debugging purposes
             if (!((p == 4) || (p == 6) || (p == 128)))
@@ -21,13 +21,11 @@ namespace InsurgenceServer
             Data.SiteServer = new TcpListener(IPAddress.Parse("127.0.0.1"), 6419);
 			Data.Server.Start();
             Data.SiteServer.Start();
-			Console.WriteLine(string.Format("Server Started on {0}:{1}", ip, Data.Port));
+			Console.WriteLine($"Server Started on {ip}:{Data.Port}");
 
-            new Thread(() =>
-                MainListener()
+            new Thread(MainListener
             ).Start();
-            new Thread(() =>
-                CommunicationListener()
+            new Thread(CommunicationListener
             ).Start();
         }
         private void MainListener()

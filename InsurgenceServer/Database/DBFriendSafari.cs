@@ -1,18 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
-    public static class DBFriendSafari
+    public static class DbFriendSafari
     {
         public static string GetBase(string username, Client client)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 string command = "SELECT banned, base FROM users WHERE username = @param_val_1;";
                 MySqlCommand m = new MySqlCommand(command, conn.Connection);
@@ -29,13 +25,13 @@ namespace InsurgenceServer.Database
                 {
                     if ((bool)result["banned"])
                     {
-                        client.SendMessage(string.Format("<TRA user={0} result=1>", username));
+                        client.SendMessage($"<TRA user={username} result=1>");
                         conn.Close();
                         return null;
                     }
-                    if (result["base"].GetType() == typeof(DBNull))
+                    if (result["base"] is DBNull)
                     {
-                        client.SendMessage(string.Format("<VBASE user={0} result=1 base={1}>", username, ""));
+                        client.SendMessage($"<VBASE user={username} result=1 base=nil>");
                         conn.Close();
                         return null;
                     }
@@ -52,15 +48,15 @@ namespace InsurgenceServer.Database
                 return null;
             }
         }
-        public static void UploadBase(uint user_id, string Base)
+        public static void UploadBase(uint userId, string Base)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 string command = "UPDATE users SET base = @param_val_1 WHERE user_id = @param_val_2;";
                 MySqlCommand m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", Base);
-                m.Parameters.AddWithValue("@param_val_2", user_id);
+                m.Parameters.AddWithValue("@param_val_2", userId);
                 m.ExecuteNonQuery();
             }
             conn.Close();

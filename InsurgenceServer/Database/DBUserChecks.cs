@@ -1,18 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
-    public static class DBUserChecks
+    public static class DbUserChecks
     {
         public static bool UserExists(string username)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 string command = "SELECT user_id FROM users WHERE username = @param_val_1;";
                 MySqlCommand m = new MySqlCommand(command, conn.Connection);
@@ -38,7 +34,7 @@ namespace InsurgenceServer.Database
         public static bool UserBanned(string username)
         {
             var conn = new OpenConnection();
-            if (conn.isConnected())
+            if (conn.IsConnected())
             {
                 uint userid = 0;
                 string command = "SELECT user_id, banned FROM users WHERE username = @param_val_1;";
@@ -64,7 +60,7 @@ namespace InsurgenceServer.Database
                     var _ipban = ipresult["ipban"];
                     if (_ipban.GetType() != typeof(DBNull))
                     {
-                        if (_ipban.GetType() == typeof(sbyte))
+                        if (_ipban is sbyte)
                         {
                             var ipban = (sbyte)_ipban;
                             if (ipban != 0 && ipban != -1)
@@ -73,7 +69,7 @@ namespace InsurgenceServer.Database
                                 return true;
                             }
                         }
-                        else if (_ipban.GetType() == typeof(bool))
+                        else if (_ipban is bool)
                         {
                             if ((bool)_ipban)
                             {
