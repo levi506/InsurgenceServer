@@ -10,8 +10,8 @@ namespace InsurgenceServer
         public static Dictionary<int, GrowthRate> Table = new Dictionary<int, GrowthRate>();
         public static void Read()
         {
-            string location = typeof(Client).Assembly.Location;
-            string directory = System.IO.Path.GetDirectoryName(location);
+            var location = typeof(Client).Assembly.Location;
+            var directory = System.IO.Path.GetDirectoryName(location);
             var s = System.IO.File.ReadAllText(directory + "/DataFiles/growthrates.json");
             var ls = JsonConvert.DeserializeObject<List<object>>(s);
             foreach (var o in ls)
@@ -22,92 +22,86 @@ namespace InsurgenceServer
         }
         public static int CalculateLevel(int speciesId, int exp)
         {
-            if (Table[speciesId] == GrowthRate.Erratic)
+            switch (Table[speciesId])
             {
-                if (exp <= GrowthRatesLookup.Erratic[100])
-                {
-                    return GrowthRatesLookup.Erratic.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    for (var i = 101; i <= 120; i++)
+                case GrowthRate.Erratic:
+                    if (exp <= GrowthRatesLookup.Erratic[100])
                     {
-                        var expneeded = Math.Floor((Math.Pow(i, 3)) * (i * 6f / 10f / (100d * 1.0)));
-                        if (exp < expneeded)
-                            return i - 1;
+                        return GrowthRatesLookup.Erratic.FindIndex(x => x <= exp);
                     }
-                }
-            }
-            else if (Table[speciesId] == GrowthRate.Fast)
-            {
-                if (exp <= GrowthRatesLookup.Fast[100])
-                {
-                    return GrowthRatesLookup.Fast.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    return (int)Math.Floor(Math.Pow(((exp * 5f) / 4f), 1d / 3d));
-                }
-            }
-            else if (Table[speciesId] == GrowthRate.Medium)
-            {
-                if (exp <= GrowthRatesLookup.Medium[100])
-                {
-                    return GrowthRatesLookup.Medium.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    return (int)Math.Floor(Math.Pow(exp, 1d / 3d));
-                }
-            }
-            else if (Table[speciesId] == GrowthRate.Parabolic)
-            {
-                if (exp <= GrowthRatesLookup.Parabolic[100])
-                {
-                    return GrowthRatesLookup.Parabolic.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    for (var i = 101; i <= 120; i++)
+                    else
                     {
-                        var expneeded = Math.Floor(6 * (Math.Pow(i,3) / 5) - 15 * (Math.Pow(i,2)) + 100 * i - 140);
-                        if (exp < expneeded)
-                            return i - 1;
+                        for (var i = 101; i <= 120; i++)
+                        {
+                            var expneeded = Math.Floor((Math.Pow(i, 3)) * (i * 6f / 10f / (100d * 1.0)));
+                            if (exp < expneeded)
+                                return i - 1;
+                        }
                     }
-                }
-            }
-            else if (Table[speciesId] == GrowthRate.Slow)
-            {
-                if (exp <= GrowthRatesLookup.Slow[100])
-                {
-                    return GrowthRatesLookup.Slow.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    return (int)Math.Floor(Math.Pow((((float)exp * 4) / 5), 1d / 3d));
-                }
-            }
-            else if (Table[speciesId] == GrowthRate.Fluctuating)
-            {
-                if (exp <= GrowthRatesLookup.Fluctuating[100])
-                {
-                    return GrowthRatesLookup.Fluctuating.FindIndex(x => x <= exp);
-                }
-                else
-                {
-                    for (var i = 101; i <= 120; i++)
+                    break;
+                case GrowthRate.Fast:
+                    if (exp <= GrowthRatesLookup.Fast[100])
                     {
-                        var rate = (i - 100) / 2;
-                        if (rate < 40) rate = 40;
+                        return GrowthRatesLookup.Fast.FindIndex(x => x <= exp);
+                    }
+                    else
+                    {
+                        return (int)Math.Floor(Math.Pow(((exp * 5f) / 4f), 1d / 3d));
+                    }
+                case GrowthRate.Medium:
+                    if (exp <= GrowthRatesLookup.Medium[100])
+                    {
+                        return GrowthRatesLookup.Medium.FindIndex(x => x <= exp);
+                    }
+                    else
+                    {
+                        return (int)Math.Floor(Math.Pow(exp, 1d / 3d));
+                    }
+                case GrowthRate.Parabolic:
+                    if (exp <= GrowthRatesLookup.Parabolic[100])
+                    {
+                        return GrowthRatesLookup.Parabolic.FindIndex(x => x <= exp);
+                    }
+                    else
+                    {
+                        for (var i = 101; i <= 120; i++)
+                        {
+                            var expneeded = Math.Floor(6 * (Math.Pow(i,3) / 5) - 15 * (Math.Pow(i,2)) + 100 * i - 140);
+                            if (exp < expneeded)
+                                return i - 1;
+                        }
+                    }
+                    break;
+                case GrowthRate.Slow:
+                    if (exp <= GrowthRatesLookup.Slow[100])
+                    {
+                        return GrowthRatesLookup.Slow.FindIndex(x => x <= exp);
+                    }
+                    else
+                    {
+                        return (int)Math.Floor(Math.Pow((((float)exp * 4) / 5), 1d / 3d));
+                    }
+                case GrowthRate.Fluctuating:
+                    if (exp <= GrowthRatesLookup.Fluctuating[100])
+                    {
+                        return GrowthRatesLookup.Fluctuating.FindIndex(x => x <= exp);
+                    }
+                    else
+                    {
+                        for (var i = 101; i <= 120; i++)
+                        {
+                            var rate = (i - 100) / 2;
+                            if (rate < 40) rate = 40;
 
-                        var expneeded = ((Math.Pow(i, 3)) * (((float)i * rate / 100) / 50.0));
-                        if (exp < expneeded)
-                            return i - 1;
+                            var expneeded = ((Math.Pow(i, 3)) * (((float)i * rate / 100) / 50.0));
+                            if (exp < expneeded)
+                                return i - 1;
+                        }
                     }
-                }
+                    break;
             }
 
-                return 120;
+            return 120;
         }
         
     }

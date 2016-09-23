@@ -8,7 +8,7 @@ namespace InsurgenceServer
 		public static void Main(string[] args)
 		{
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
-            MainClass c = new MainClass();
+            var c = new MainClass();
             c.Begin();
 		}
         public void Begin()
@@ -47,8 +47,10 @@ namespace InsurgenceServer
             new MainConnector();
             Console.ReadLine();
         }
-        static string _lastError;
-        static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
+
+	    private static string _lastError;
+
+	    private static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
             if (((Exception)e.ExceptionObject).StackTrace != _lastError)
             {

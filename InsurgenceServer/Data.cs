@@ -12,6 +12,7 @@ namespace InsurgenceServer
 		public const int MaximumConnections = 200;
 
         public const int MaximumGtsTradesPerUser = 3;
+	    public const int MaximumFriends = 5;
 
 		public static bool AcceptingConnections = true;
 		public static bool Running = true;

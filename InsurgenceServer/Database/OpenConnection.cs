@@ -14,14 +14,7 @@ namespace InsurgenceServer.Database
         }
         public bool IsConnected()
         {
-            if (Connection.State == System.Data.ConnectionState.Open)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Connection.State == System.Data.ConnectionState.Open;
         }
         public void Close()
         {

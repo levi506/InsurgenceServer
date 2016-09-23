@@ -18,6 +18,9 @@ namespace InsurgenceServer.Battles
         private static readonly Dictionary<Client, DateTime> RuRandoms = new Dictionary<Client, DateTime>();
         private static readonly Dictionary<Client, DateTime> NuRandoms = new Dictionary<Client, DateTime>();
 
+        private const int QueueTimeout = 60;
+
+
         public static void AddRandom(Client c, Tiers tier, Tiers maxTier)
         {
             if (tier == Tiers.Notier)
@@ -121,31 +124,31 @@ namespace InsurgenceServer.Battles
             {
                 foreach(var kp in AgRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in UberRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in OuRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in BlRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in UuRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in RuRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 foreach (var kp in NuRandoms)
                 {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > 60) AgRandoms.Remove(kp.Key);
+                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
                 }
                 System.Threading.Thread.Sleep(5000);
             }

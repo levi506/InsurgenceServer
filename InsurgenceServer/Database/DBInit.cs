@@ -11,14 +11,14 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                string query = "SHOW TABLES;";
+                const string query = "SHOW TABLES;";
                 var cmd = new MySqlCommand(query, conn.Connection);
                 var reader = cmd.ExecuteReader();
                 var rows = new List<string>();
                 while (reader.Read())
                 {
-                    string row = "";
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    var row = "";
+                    for (var i = 0; i < reader.FieldCount; i++)
                         row += reader.GetValue(i).ToString();
                     rows.Add(row);
                 }

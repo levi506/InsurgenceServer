@@ -4,7 +4,7 @@
     {
         public static void AddFriend(Client client, string username)
         {
-            if (client.Friends.Count >= 5)
+            if (client.Friends.Count >= Data.MaximumFriends)
             {
                 //Already has 5 or more friends
                 client.SendMessage($"<ADDFRIEND user={username} result=0>");
@@ -52,7 +52,7 @@
                 //Someone is messing with code, return ungracefully
                 return;
             }
-            if (client.Friends.Count >= 5)
+            if (client.Friends.Count >= Data.MaximumFriends)
             {
                 //Can't accept if this client has more than 5 friends
                 c.SendMessage(($"<ADDFRIEND user={client.Username} result=5>"));

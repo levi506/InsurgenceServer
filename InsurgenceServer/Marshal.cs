@@ -42,27 +42,25 @@ namespace InsurgenceServer
 				}
 			}
 			//Check the second possible way a pokemon can be shiny
-			if (o.Shiny == false)
-			{
-				try
-				{
-					uint trid = uint.Parse(o.TrainerId, System.Globalization.NumberStyles.HexNumber);
-					uint id = uint.Parse(o.Id, System.Globalization.NumberStyles.HexNumber);
-					var numa = id ^ trid;
-					var numb = numa & 0xFFFF;
-					var numc = (numa >> 16) & 0xFFFF;
-					var numd = numb ^ numc;
-					o.Shiny = numd < 16;
-				}
-				catch (Exception e)
-				{
-                    Logger.ErrorLog.Log(e);
-                    o.Shiny = false;
-					Console.WriteLine(e);
-				}
-			}
+		    if (o.Shiny != false) return o;
+		    try
+		    {
+		        var trid = uint.Parse(o.TrainerId, System.Globalization.NumberStyles.HexNumber);
+		        var id = uint.Parse(o.Id, System.Globalization.NumberStyles.HexNumber);
+		        var numa = id ^ trid;
+		        var numb = numa & 0xFFFF;
+		        var numc = (numa >> 16) & 0xFFFF;
+		        var numd = numb ^ numc;
+		        o.Shiny = numd < 16;
+		    }
+		    catch (Exception e)
+		    {
+		        Logger.ErrorLog.Log(e);
+		        o.Shiny = false;
+		        Console.WriteLine(e);
+		    }
 
-			return o;
+		    return o;
 		}
 		private static DataHolder InterpretBytes(byte[] arr)
 		{
@@ -123,12 +121,9 @@ namespace InsurgenceServer
 					i -= 5;
 				return new DataHolder { Datatype = DataTypes.Item, Data = i };
 			}
-			if (name.Contains("@ot\""))
-			{
-				var n = name.Replace("@ot\"", "").Replace(" ","").Replace("\t","".Replace("\\b","").Replace("\b",""));
-				return new DataHolder { Datatype = DataTypes.Name, Data = n };
-			}
-			return null;
+		    if (!name.Contains("@ot\"")) return null;
+		    var n = name.Replace("@ot\"", "").Replace(" ","").Replace("\t","".Replace("\\b","").Replace("\b",""));
+		    return new DataHolder { Datatype = DataTypes.Name, Data = n };
 		}
 		private class DataHolder
 		{

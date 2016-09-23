@@ -51,11 +51,14 @@ namespace InsurgenceServer
 		}
 		public void Kill()
 		{
-			Client1.SendMessage("<TRA dead>");
-		    Client2?.SendMessage("<TRA dead>");
-		    Client1.ActiveTrade = null;
-			if (Client2 != null)
-				Client2.ActiveTrade = null;
+            if (Client1 != null && Client1.Connected)
+			    Client1.SendMessage("<TRA dead>");
+            if (Client2 != null && Client2.Connected)
+                Client2?.SendMessage("<TRA dead>");
+		    if (Client1 != null)
+                Client1.ActiveTrade = null;
+		    if (Client2 != null)
+                Client2.ActiveTrade = null;
 			TradeHandler.DeleteTrade(this);
 		}
 		private string _client1Pokemon;

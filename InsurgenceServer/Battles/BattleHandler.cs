@@ -6,6 +6,7 @@ namespace InsurgenceServer
 {
     public static class BattleHandler
     {
+        private const int BattleTimeout = 5;
         public static List<Battle> ActiveBattles = new List<Battle>();
 
         public static Battle BeginBattle(string username, Client client, string trainer)
@@ -62,7 +63,7 @@ namespace InsurgenceServer
                             t.Kill();
                             continue;
                         }
-                        if (timeactive >= 5)
+                        if (timeactive >= BattleTimeout)
                         {
                             t.Kill();
                         }

@@ -6,7 +6,8 @@ namespace InsurgenceServer
 {
 	public static class TradeHandler
 	{
-		public static List<Trade> ActiveTrades = new List<Trade>();
+        private const int TradeTimeout = 5;
+        public static List<Trade> ActiveTrades = new List<Trade>();
 
 		public static Trade BeginTrade(string username, Client client)
 		{
@@ -82,7 +83,7 @@ namespace InsurgenceServer
                             t.Kill();
                             continue;
                         }
-                        if (timeactive >= 5)
+                        if (timeactive >= TradeTimeout)
                         {
                             t.Kill();
                             continue;

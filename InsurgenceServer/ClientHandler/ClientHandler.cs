@@ -7,7 +7,8 @@ namespace InsurgenceServer
 {
 	public static class ClientHandler
 	{
-		public static List<Client> ActiveClients = new List<Client>();
+        private const int ClientTimeout = 5;
+        public static List<Client> ActiveClients = new List<Client>();
 
 		public static Client GetClient(string username)
 		{
@@ -60,7 +61,7 @@ namespace InsurgenceServer
                                 c.Disconnect();
                                 continue;
                             }
-                            if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= 5)
+                            if ((DateTime.UtcNow - c.LastActive).TotalMinutes >= ClientTimeout)
                             {
                                 c.Disconnect();
                             }
