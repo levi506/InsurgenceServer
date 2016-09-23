@@ -57,21 +57,21 @@ namespace InsurgenceServer.Database
                 var ipresult = n.ExecuteReader();
                 while (ipresult.Read())
                 {
-                    var _ipban = ipresult["ipban"];
-                    if (_ipban.GetType() != typeof(DBNull))
+                    var o = ipresult["ipban"];
+                    if (o.GetType() != typeof(DBNull))
                     {
-                        if (_ipban is sbyte)
+                        if (o is sbyte)
                         {
-                            var ipban = (sbyte)_ipban;
+                            var ipban = (sbyte)o;
                             if (ipban != 0 && ipban != -1)
                             {
                                 conn.Close();
                                 return true;
                             }
                         }
-                        else if (_ipban is bool)
+                        else if (o is bool)
                         {
-                            if ((bool)_ipban)
+                            if ((bool)o)
                             {
                                 conn.Close();
                                 return true;

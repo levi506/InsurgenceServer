@@ -137,7 +137,7 @@ namespace InsurgenceServer
 		}
 		private enum DataTypes
 		{
-			Null = 0, Species, Id, TrainerId, Shiny, Item, Name
+		    Species, Id, TrainerId, Shiny, Item, Name
 		}
 	}
 	public class Pokemon

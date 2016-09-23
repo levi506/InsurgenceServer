@@ -1,5 +1,6 @@
 ﻿using InsurgenceServer.Battles;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace InsurgenceServer
 {
@@ -13,7 +14,7 @@ namespace InsurgenceServer
             }
             else if (!client.Loggedin)
             {
-                if (command.Command == Commands.Con)
+                if (command.Command == Commands.CON)
                     client.ConnectionRequest(command.Data["version"]);
                 else if (command.Command == Commands.LOG)
                     client.Login(command.Data["user"], command.Data["pass"]);
@@ -132,12 +133,13 @@ namespace InsurgenceServer
             }
         }
     }
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public enum Commands
     {
         //Default value
         Null = 0,
         //General user functionality
-        Con, DSC, LOG, REG,
+        CON, DSC, LOG, REG,
         //Trading
         TRA,
         //Secret Base functions

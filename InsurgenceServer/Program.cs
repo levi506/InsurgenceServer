@@ -43,6 +43,7 @@ namespace InsurgenceServer
             new Thread(WonderTrade.WonderTradeHandler.Loop
            ).Start();
 
+            // ReSharper disable once ObjectCreationAsStatement
             new MainConnector();
             Console.ReadLine();
         }

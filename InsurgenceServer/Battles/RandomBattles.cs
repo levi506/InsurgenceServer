@@ -149,6 +149,7 @@ namespace InsurgenceServer.Battles
                 }
                 System.Threading.Thread.Sleep(5000);
             }
+            // ReSharper disable once FunctionNeverReturns
         }
         public static void MatchUsers(Dictionary<Client,DateTime> l)
         {

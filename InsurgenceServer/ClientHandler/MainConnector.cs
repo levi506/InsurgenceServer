@@ -36,8 +36,10 @@ namespace InsurgenceServer
                 {
                     TcpClient client = Data.Server.AcceptTcpClient();
                     new Thread(() =>
-                        new Client(client)
-                    ).Start();
+                    {
+                        // ReSharper disable once ObjectCreationAsStatement
+                        new Client(client);
+                    }).Start();
                 }
                 catch (Exception e)
                 {
@@ -59,8 +61,10 @@ namespace InsurgenceServer
                         continue;
                     }
                     new Thread(() =>
-                            new SiteCommunication(client)
-                        ).Start();
+                    {
+                        // ReSharper disable once ObjectCreationAsStatement
+                        new SiteCommunication(client);
+                    }).Start();
                 }
                 catch (Exception e)
                 {
