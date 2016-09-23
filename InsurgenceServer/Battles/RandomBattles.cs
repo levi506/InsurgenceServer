@@ -187,18 +187,8 @@ namespace InsurgenceServer.Battles
             var a = speciesList.Split('/');
             var speciestr = a[0];
             var itemstr = a[1];
-            List<List<int>> spefor = new List<List<int>>();
             var speciearr = speciestr.Split('^');
-            foreach (var s in speciearr)
-            {
-                var t = s.Split('_');
-                List<int> thing = new List<int>();
-                foreach (var bb in t)
-                {
-                    thing.Add(int.Parse(bb));
-                }
-                spefor.Add(thing);
-            }
+            List<List<int>> spefor = speciearr.Select(s => s.Split('_')).Select(t => t.Select(int.Parse).ToList()).ToList();
             var itemarr = itemstr.Split('^');
             //Check AG
             if (Tiers.Ag.Contains(spefor, itemarr))
@@ -246,12 +236,7 @@ namespace InsurgenceServer.Battles
                 if (Formes.Contains(s))
                     return true;
             }
-            foreach (var i in items)
-            {
-                if (Items.Contains(int.Parse(i)))
-                    return true;
-            }
-            return false;
+            return items.Any(i => Items.Contains(int.Parse(i)));
         }
     }
 }

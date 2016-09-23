@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InsurgenceServer
 {
@@ -50,14 +51,7 @@ namespace InsurgenceServer
 		public static Trade GetTrade(string username, Client client)
 		{
 			var u = username.ToLower();
-			foreach (var trade in ActiveTrades)
-			{
-				if (trade.Username1 == u && trade.Username2 == client.Username)
-				{
-					return trade;
-				}
-			}
-			return null;
+		    return ActiveTrades.FirstOrDefault(trade => trade.Username1 == u && trade.Username2 == client.Username);
 		}
 		public static void DeleteTrade(Trade trade)
 		{

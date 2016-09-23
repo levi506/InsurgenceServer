@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InsurgenceServer
 {
@@ -36,14 +37,7 @@ namespace InsurgenceServer
         public static Battle GetBattle(string username, Client client)
         {
             var u = username.ToLower();
-            foreach (var battle in ActiveBattles)
-            {
-                if (battle.Username1 == u && battle.Username2 == client.Username)
-                {
-                    return battle;
-                }
-            }
-            return null;
+            return ActiveBattles.FirstOrDefault(battle => battle.Username1 == u && battle.Username2 == client.Username);
         }
 
         public static void DeleteBattle(Battle b)

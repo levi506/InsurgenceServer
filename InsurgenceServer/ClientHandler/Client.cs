@@ -121,13 +121,9 @@ namespace InsurgenceServer
 
             //We encode each name into base64 to prevent commas in names from breaking stuff
             var compilefriends = string.Join(",", Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
-            var onlinestring = "";
-            foreach (var friend in Friends) {
-                //If friend client is not online, append 0, otherwise append 1
-                onlinestring += ((ClientHandler.GetClient(friend)) == null) ? "0" : "1";
-            }
+            var onlinestring = Friends.Aggregate("", (current, friend) => current + (((ClientHandler.GetClient(friend)) == null) ? "0" : "1"));
 
-            SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
+		    SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
 
             System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, true));
 		}
