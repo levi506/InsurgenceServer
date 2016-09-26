@@ -42,9 +42,9 @@ namespace InsurgenceServer
             }
         }
 
-
-
-        //Define requests that can be executed by any client here
+        ///////////////////////////////////////////////////////////
+        //Define requests that can be executed by any client here//
+        ///////////////////////////////////////////////////////////
         [ServerCommand("DSC", false)]
         public static void DisconnectRequest(Client client, CommandHandler command)
         {
@@ -66,7 +66,23 @@ namespace InsurgenceServer
             client.Register(command.Data["user"], command.Data["pass"], command.Data["email"]);
         }
 
-        //Define requests that require authentication before execution below here
+        [ServerCommand("METADD", false)]
+        public static void MetricCounterAdd(Client client, CommandHandler command)
+        {
+            Database.DbMetrics.MetricCountOne(int.Parse(command.Data["key"]));
+        }
+        [ServerCommand("METGET", false)]
+        public static void MetricCounterGet(Client client, CommandHandler command)
+        {
+            var value = Database.DbMetrics.GetMetricValue(int.Parse(command.Data["key"]));
+            Console.WriteLine(value);
+            client.SendMessage($"<METGET val={value}>");
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////
+        //Define requests that require authentication before execution below here//
+        ///////////////////////////////////////////////////////////////////////////
         [ServerCommand("TRA", true)]
         public static void TradeRequest(Client client, CommandHandler command)
         {
@@ -195,6 +211,11 @@ namespace InsurgenceServer
             FriendHandler.DenyRequest(client, command.Data["user"]);
         }
     }
+
+
+
+
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class ServerCommand : Attribute
     {

@@ -22,7 +22,7 @@ namespace InsurgenceServer
         }
         public static List<Client> GetClientList(List<uint> userIds)
         {
-            return ActiveClients.Where(x => userIds.Contains(x.UserId)).ToList();
+            return ActiveClients.ToList().Where(x => userIds != null && userIds.Contains(x.UserId)).ToList();
         }
 
         public static void Remove(Client client)
