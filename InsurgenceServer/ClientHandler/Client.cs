@@ -82,7 +82,7 @@ namespace InsurgenceServer
 			var command = new CommandHandler(_message);
 			_message = "";
 
-            ExecuteCommand.Execute(this, command);
+            NewCommandExecutor.ExecuteCommand(this, command);
         }
 		internal void ConnectionRequest(string versionstr)
 		{
@@ -246,7 +246,7 @@ namespace InsurgenceServer
 	}
 	public class CommandHandler
 	{
-		public Commands Command;
+		public string Command;
 		public Dictionary<string, string> Data = new Dictionary<string, string>();
 		public CommandHandler(string input)
 		{
@@ -256,11 +256,7 @@ namespace InsurgenceServer
 			var realInput = input.Remove(0, 1);
 			realInput = realInput.Remove(realInput.Length - 1);
 			var arr = realInput.Split('\t');
-			if (!Enum.TryParse(arr[0], out Command))
-			{
-				Console.WriteLine("Unexpected Command: " + arr[0]);
-				return;
-			}
+		    Command = arr[0];
 			for (var i = 1; i < arr.Length; i++)
 			{
 				if (arr[i] == "")

@@ -14,6 +14,8 @@ namespace InsurgenceServer
         public void Begin()
         {
             Console.WriteLine("Starting Server!");
+            Console.WriteLine("Creating Commands");
+            NewCommandExecutor.Initialize();
             Console.WriteLine("Setting up tiers");
             Battles.Matchmaking.SetupTiers();
             Console.WriteLine("Setting up database!");

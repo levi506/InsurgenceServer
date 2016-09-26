@@ -42,7 +42,7 @@ namespace InsurgenceServer
 				}
 			}
 			//Check the second possible way a pokemon can be shiny
-		    if (o.Shiny != false) return o;
+		    if (o.Shiny) return o;
 		    try
 		    {
 		        var trid = uint.Parse(o.TrainerId, System.Globalization.NumberStyles.HexNumber);
