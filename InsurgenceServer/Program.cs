@@ -19,6 +19,7 @@ namespace InsurgenceServer
             Console.WriteLine("Setting up tiers");
             Battles.Matchmaking.SetupTiers();
             Console.WriteLine("Setting up database!");
+            Database.DBCreator.CreateTables();
             Database.DbInit.Connect();
             Console.WriteLine("Reading datafiles!");
             GrowthRates.Read();
