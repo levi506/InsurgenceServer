@@ -8,7 +8,10 @@ namespace InsurgenceServer.Database
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
+            {
+                conn.Close();
                 return null;
+            }
             const string command = "SELECT id, gift FROM direct_gift WHERE user_id = @id;";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@id", client.UserId);

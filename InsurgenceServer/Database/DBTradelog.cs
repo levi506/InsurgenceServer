@@ -24,5 +24,22 @@ namespace InsurgenceServer.Database
             m.ExecuteNonQuery();
             conn.Close();
         }
+        public static void LogWonderTrade(string username, string pokemon)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected())
+            {
+                conn.Close();
+                return;
+            }
+            const string command = "INSERT INTO wondertradelog (username, pokemon, time) VALUES (@username, @pokemon, @time)";
+            var m = new MySqlCommand(command, conn.Connection);
+            m.Parameters.AddWithValue("@username", username);
+            m.Parameters.AddWithValue("@pokemon", pokemon);
+            m.Parameters.AddWithValue("@time", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            m.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

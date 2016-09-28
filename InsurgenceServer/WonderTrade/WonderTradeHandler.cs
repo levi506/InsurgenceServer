@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using InsurgenceServer.Database;
 
 namespace InsurgenceServer.WonderTrade
 {
@@ -76,8 +77,16 @@ namespace InsurgenceServer.WonderTrade
 
         public static void ExecuteTrade(Client client1, Client client2, GTS.GamePokemon pkmn1, GTS.GamePokemon pkmn2)
         {
-            Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn1));
-            Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(pkmn2));
+            var jsonstring1 = JsonConvert.SerializeObject(pkmn1);
+            var jsonstring2 = JsonConvert.SerializeObject(pkmn2);
+
+            try { DbTradelog.LogWonderTrade(client1.Username, jsonstring1); }
+            catch (Exception e) { Console.WriteLine("Error when logging WT: " + e); }
+            try { DbTradelog.LogWonderTrade(client2.Username, jsonstring2); }
+            catch (Exception e) { Console.WriteLine("Error when logging WT: " + e); }
+
+            Utilities.Encoding.Base64Encode(jsonstring1);
+            Utilities.Encoding.Base64Encode(jsonstring2);
 
             client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={pkmn2}>");
             client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={pkmn1}>");
