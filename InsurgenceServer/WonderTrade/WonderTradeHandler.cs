@@ -16,7 +16,6 @@ namespace InsurgenceServer.WonderTrade
             {
                 foreach (var trade in List.ToList())
                 {
-                    Console.WriteLine(trade.Pokemon.Name);
                     try
                     {
                         if ((DateTime.UtcNow - trade.Time).TotalSeconds >= 60)

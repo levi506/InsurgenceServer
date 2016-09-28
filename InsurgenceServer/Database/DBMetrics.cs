@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,31 @@ namespace InsurgenceServer.Database
                 return 0;
             }
             return (int) val;
+        }
+
+        public static void MetricCountMultiple(List<int> ls)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected())
+            {
+                conn.Close();
+                return;
+            }
+            var dic = new Dictionary<int, int>();
+            foreach (var i in ls)
+            {
+                if (dic.ContainsKey(i))
+                    dic[i]++;
+                else
+                    dic.Add(i, 1);
+            }
+            var sCommand = new StringBuilder("INSERT INTO CounterMetrics (id, value) VALUES ");
+
+            var rows = dic.Select(kp => $"('{kp.Key}','{kp.Value}')").ToList();
+            sCommand.Append(string.Join(",", rows));
+            sCommand.Append(";");
+            var m = new MySqlCommand(sCommand.ToString(), conn.Connection) {CommandType = CommandType.Text};
+            m.ExecuteNonQuery();
         }
     }
 }

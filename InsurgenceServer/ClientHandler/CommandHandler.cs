@@ -75,10 +75,15 @@ namespace InsurgenceServer
         public static void MetricCounterGet(Client client, CommandHandler command)
         {
             var value = Database.DbMetrics.GetMetricValue(int.Parse(command.Data["key"]));
-            Console.WriteLine(value);
             client.SendMessage($"<METGET val={value}>");
         }
 
+        [ServerCommand("MULTMETADD", false)]
+        public static void MetricCounterAddMultiple(Client client, CommandHandler command)
+        {
+            var ls = command.Data["values"].Split(',').ToList().Select(int.Parse).ToList();
+            Database.DbMetrics.MetricCountMultiple(ls);
+        }
 
         ///////////////////////////////////////////////////////////////////////////
         //Define requests that require authentication before execution below here//

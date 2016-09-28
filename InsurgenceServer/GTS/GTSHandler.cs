@@ -27,7 +27,7 @@ namespace InsurgenceServer.GTS
             var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
 
             //Get Pokemon Level
-            var level = GrowthRates.CalculateLevel(pokemon.Species, pokemon.Exp);
+            var level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
 
             //Input in database
             try

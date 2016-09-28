@@ -4,7 +4,7 @@
     {
         public static bool ValidOffer(GamePokemon pokemon, RequestData request)
         {
-            var pokelevel = GrowthRates.CalculateLevel(pokemon.Species ,pokemon.Exp);
+            var pokelevel = GrowthRates.CalculateLevel(pokemon.species ,pokemon.exp);
             return pokelevel >= request.MinLevel;
         }
     }
