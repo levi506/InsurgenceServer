@@ -21,8 +21,9 @@
 				<td>
 					<table style="width:100%;     height: 50px;">
 						<tr>
-							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.Species)</td>
-                            <td>@trade.Pokemon1.ID</td>
+							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.species)</td>
+						    <td>@trade.Pokemon1.personalID</td>
+						    @*
 							@if (trade.Pokemon1.Shiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>
@@ -31,16 +32,18 @@
 							{
 								<td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
 							}
-							<td style="width:20%; max-width:20%">OT: @trade.Pokemon1.OT</td>
-							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName(@trade.Pokemon1.Item)</td>
+                            *@
+							<td style="width:20%; max-width:20%">OT: @trade.Pokemon1.ot</td>
+							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName(trade.Pokemon1.item)</td>
 						</tr>
 					</table>
 				</td>
 				<td>
 					<table style="width:100%;     height: 50px;">
 						<tr>
-							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.Species)</td>
-                            <td>@trade.Pokemon2.ID</td>
+							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.species)</td>
+						    <td>@trade.Pokemon2.personalID</td>
+						    @*
 							@if (trade.Pokemon2.Shiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>
@@ -49,8 +52,9 @@
 							{
 								<td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
 							}
-							<td style="width:20%; max-width:20%">OT: @trade.Pokemon2.OT</td>
-							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName(@trade.Pokemon2.Item)</td>
+                            *@
+							<td style="width:20%; max-width:20%">OT: @trade.Pokemon2.ot</td>
+							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName(trade.Pokemon2.item)</td>
 						</tr>
 					</table>
 				</td>

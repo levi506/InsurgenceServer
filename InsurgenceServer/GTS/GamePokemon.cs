@@ -14,9 +14,9 @@ namespace InsurgenceServer.GTS
         public string name { get; set; }
         public string fused { get; set; }
         public int[] ev { get; set; }
-        public int personalID { get; set; }
+        public uint personalID { get; set; }
         public bool ballcapsule5 { get; set; }
-        public int species { get; set; }
+        public short species { get; set; }
         public int happiness { get; set; }
         public string mail { get; set; }
         public bool ballcapsule1 { get; set; }
@@ -41,7 +41,7 @@ namespace InsurgenceServer.GTS
         public int status { get; set; }
         public int spatk { get; set; }
         public int totalhp { get; set; }
-        public int trainerID { get; set; }
+        public uint trainerID { get; set; }
         public int otgender { get; set; }
         public bool ballcapsule3 { get; set; }
         public int obtainMode { get; set; }

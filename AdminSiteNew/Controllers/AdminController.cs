@@ -36,6 +36,17 @@ namespace AdminSiteNew.Controllers
             return View(Model);
         }
 
+        public ActionResult RecentWonderTrades(string id)
+        {
+            uint i;
+            if (!uint.TryParse(id, out i))
+                i = 0;
+            RecentWonderTradesModel Model = new RecentWonderTradesModel();
+            Model.StartIndex = i;
+            Model.Trades = Database.GetWonderTradeLog(i);
+            return View(Model);
+        }
+
         [HttpPost]
         public ActionResult FindUser(string request)
         {

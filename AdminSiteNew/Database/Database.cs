@@ -262,14 +262,14 @@ namespace AdminSiteNew.DatabaseSpace
             conn.Close();
             return new List<Trade>();
         }
-        public static List<Trade> GetTradeLog(uint StartIndex)
+        public static List<Trade> GetTradeLog(uint startIndex)
         {
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
                 var c = "SELECT * FROM tradelog ORDER BY i DESC LIMIT @val, 100";
                 var m = new MySqlCommand(c, conn.Connection);
-                m.Parameters.AddWithValue("val", StartIndex);
+                m.Parameters.AddWithValue("val", startIndex);
                 var l = new List<Trade>();
                 var r = m.ExecuteReader();
                 while (r.Read())
@@ -287,6 +287,31 @@ namespace AdminSiteNew.DatabaseSpace
             }
             conn.Close();
             return new List<Trade>();
+        }
+
+        public static List<WonderTrade> GetWonderTradeLog(uint startIndex)
+        {
+            var conn = new OpenConnection();
+            if (!conn.isConnected())
+            {
+                conn.Close();
+                return new List<WonderTrade>();
+            }
+            const string command = "SELECT * FROM wondertradelog ORDER BY id DESC LIMIT @val, 100";
+            var m = new MySqlCommand(command, conn.Connection);
+            m.Parameters.AddWithValue("val", startIndex);
+            var l = new List<WonderTrade>();
+            var r = m.ExecuteReader();
+            while (r.Read())
+            {
+                var t = new WonderTrade();
+                t.Date = (DateTime) r["time"];
+                t.User = (string) r["username"];
+                t.Pokemon = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon"]);
+                l.Add(t);
+            }
+            conn.Close();
+            return l;
         }
     }
     public class OpenConnection
