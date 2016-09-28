@@ -124,7 +124,7 @@ namespace AdminSiteNew.DatabaseSpace
             conn.Close();
             return null;
         }
-        public static bool RegisterWebAdmin(string id, string name)
+        public static int RegisterWebAdmin(string id, string name)
         {
             var conn = new OpenConnection();
             if (conn.isConnected())
@@ -142,19 +142,15 @@ namespace AdminSiteNew.DatabaseSpace
                     AddCom.Parameters.AddWithValue("param_val_2", name);
                     AddCom.ExecuteNonQuery();
                     conn.Close();
-                    return false;
+                    return 0;
                 }
                 while (res.Read())
                 {
-                    if ((bool)res["access"])
-                    {
-                        conn.Close();
-                        return true;
-                    }
+                    return (int) res["access"];
                 }
             }
             conn.Close();
-            return false;
+            return 0;
         }
         public static string GetUsernameFromID(uint id)
         {

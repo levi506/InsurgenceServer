@@ -4,7 +4,7 @@ using MvcSample.Web.Models;
 
 namespace MvcSample.Web
 {
-    [Authorize(Policy = "Access")]
+    [Authorize(Policy = "Moderator")]
     public class HomeController : Controller
     {
         public IActionResult Index()

@@ -8,7 +8,7 @@ using AdminSiteNew.DatabaseSpace;
 
 namespace AdminSiteNew.Controllers
 {
-    [Authorize(Policy = "Deuk")]
+    [Authorize(Policy = "Developer")]
     public class ServerController : Controller
     {
         public ActionResult Dashboard()

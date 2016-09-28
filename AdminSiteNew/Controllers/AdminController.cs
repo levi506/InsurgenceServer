@@ -8,7 +8,7 @@ using AdminSiteNew.DatabaseSpace;
 
 namespace AdminSiteNew.Controllers
 {
-    [Authorize(Policy = "Access")]
+    [Authorize(Policy = "Moderator")]
     public class AdminController : Controller
     {
         public ActionResult Users(string id)

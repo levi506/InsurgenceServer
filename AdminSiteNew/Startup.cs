@@ -54,16 +54,16 @@ namespace AdminSiteNew
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(
-                    "Access",
+                    "Moderator",
                     authBuilder =>
                     {
-                        authBuilder.RequireClaim("Access", "Allowed");
+                        authBuilder.RequireClaim("Moderator", "Allowed");
                     });
                 options.AddPolicy(
-                    "Deuk",
+                    "Developer",
                     authBuilder =>
                     {
-                        authBuilder.RequireClaim("Deuk", "Allowed");
+                        authBuilder.RequireClaim("Developer", "Allowed");
                     });
             });
         }
@@ -112,19 +112,16 @@ namespace AdminSiteNew
                     },
                     OnCreatingTicket = x =>
                     {
-                        if (DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name))
+                        var permissionLevel = DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name);
+                        if (permissionLevel >= 1)
                         {
-                            x.Identity.AddClaim(new Claim("Access", "Allowed"));
-                            if ((string)x.User["id"] == "117811387166947407528")
-                            {
-                                x.Identity.AddClaim(new Claim("Deuk", "Allowed"));
-                            }
-                            return Task.FromResult(0);
+                            x.Identity.AddClaim(new Claim("Moderator", "Allowed"));
                         }
-                        else
+                        if (permissionLevel >= 2)
                         {
-                            return Task.FromResult(0);
+                            x.Identity.AddClaim(new Claim("Developer", "Allowed"));
                         }
+                        return Task.FromResult(0);
                     }
                 },
             };
