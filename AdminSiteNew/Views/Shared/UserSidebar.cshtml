@@ -1,0 +1,68 @@
+﻿<script>
+    function initialize() {
+        window.userinfotable = document.getElementById("UserTradeLog");
+        window.usertradelog = document.getElementById("UserInfoTable");
+        window.userips = document.getElementById("UserIPs");
+        window.useralts = document.getElementById("UserAlts");
+
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initialize();
+    }, false);
+
+    function DisplayTradelog() {
+        window.userinfotable.style.display = "table";
+        window.usertradelog.style.display = "none";
+        window.userips.style.display = "none";
+        window.useralts.style.display = "none";
+    }
+    function DisplayInfo() {
+        window.usertradelog.style.display = "table";
+        window.userinfotable.style.display = "none";
+        window.userips.style.display = "none";
+        window.useralts.style.display = "none";
+    }
+    function DisplayIPs()
+    {
+        window.userips.style.display = "table";
+        window.usertradelog.style.display = "none";
+        window.userinfotable.style.display = "none";
+        window.useralts.style.display = "none";
+    }
+    function DisplayAlts() {
+        window.useralts.style.display = "table";
+        window.usertradelog.style.display = "none";
+        window.userinfotable.style.display = "none";
+        window.userips.style.display = "none";
+    }
+</script>
+
+<div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+    <ul class="sidebar">
+        <li>
+            <a onclick="DisplayInfo()">
+                <span class="mif-user icon"></span>
+                <span class="title">Info</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayTradelog()">
+                <span class="mif-loop2 icon"></span>
+                <span class="title">Tradelog</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayIPs()">
+                <span class="mif-vpn-publ icon"></span>
+                <span class="title">IPs</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayAlts()">
+                <span class="mif-users icon"></span>
+                <span class="title">Alts</span>
+            </a>
+        </li>
+    </ul>
+</div>

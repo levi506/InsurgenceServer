@@ -1,0 +1,25 @@
+﻿<div class="app-bar fixed-top" data-role="appbar">
+    <a class="app-bar-element branding" href="/">Insurgence Admin</a>
+    <span class="app-bar-divider"></span>
+    <ul class="app-bar-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Admin/Users">Users</a></li>
+        <li>
+            <a href="" class="dropdown-toggle">Logs</a>
+            <ul class="d-menu" data-role="dropdown">
+                <li><a href="/Admin/RecentTrades">Trades</a></li>
+                <li class="divider"></li>
+                <li><a href="/Admin/RecentWonderTrades">Wonder Trades</a></li>
+            </ul>
+        </li>
+
+    </ul>
+    <div class="app-bar-element place-right">
+        <span class="dropdown-toggle"><span class="mif-cog"></span> @User.Identity.Name</span>
+        <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
+            <ul class="unstyled-list fg-dark">
+                <li><a href="/logout" class="fg-white3 fg-hover-yellow">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

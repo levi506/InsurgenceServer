@@ -1,9 +1,10 @@
 ﻿@using AdminSiteNew.Models
 @model UserModel
 @{
-	Layout = "/Views/Shared/_Layout.cshtml";
+	Layout = "/Views/Shared/_UserLayout.cshtml";
 	ViewBag.Title = "Users";
 }
+
 <div style="padding-top:30px;">
 	<div>
 		@using (Html.BeginForm("FindUser", "Admin", FormMethod.Post))
@@ -13,7 +14,7 @@
 					@Html.TextBoxFor(model => model.request, new { @class = "form_input_field" })
 				</div>
 			</fieldset>
-			<input type="submit" value="Search"  style="display:inline"/>
+		    <input type="submit" class="button primary" value="Search"  style="display:inline"/>
 		}
 
 	</div>
