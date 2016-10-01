@@ -1,11 +1,4 @@
-﻿th, td {
-  border: solid 1px black;
-}
-th {
-	text-align: center;
-}
-
-.Banned {
+﻿.Banned {
 	background-color: red;
 	color: white;
 }

@@ -8,7 +8,7 @@
 }
 <link rel="stylesheet" href="/CSS/Tradelog.css" />
 <div style="padding-top:30px;">
-	<table>
+	<table class="dataTable border bordered table-striped">
 		@foreach (var trade in Model.Trades)
 		{
 			<tr>
@@ -19,7 +19,7 @@
 					@Html.ActionLink(trade.User1, "Users", "Admin", new { id = trade.User1 }, null)
 				</th>
 				<td>
-					<table style="width:100%;     height: 50px;">
+					<table style="width:100%; margin: 0px 0px" class="table">
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.species)</td>
 						    <td>@trade.Pokemon1.personalID</td>
@@ -37,7 +37,7 @@
 					</table>
 				</td>
 				<td>
-					<table style="width:100%;     height: 50px;">
+					<table class="table" style="width: 100%; margin: 0px 0px;">
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.species)</td>
 						    <td>@trade.Pokemon2.personalID</td>
