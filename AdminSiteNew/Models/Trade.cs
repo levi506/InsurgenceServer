@@ -54,7 +54,7 @@ namespace AdminSiteNew.Models
         public int hatchedMap { get; set; }
         public int eggsteps { get; set; }
         public bool ballcapsule7 { get; set; }
-        public short item { get; set; }
+        public int item { get; set; }
         public int status { get; set; }
         public int spatk { get; set; }
         public int totalhp { get; set; }
@@ -68,6 +68,12 @@ namespace AdminSiteNew.Models
         public bool ballcapsule6 { get; set; }
         public string ot { get; set; }
         public int timeReceived { get; set; }
+
+
+        public byte level { get; set; }
+        public byte nature { get; set; }
+        public bool isShiny { get; set; }
+        public byte gender { get; set; }
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class GameMove
