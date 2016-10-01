@@ -101,6 +101,7 @@ namespace AdminSiteNew
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
+                ExpireTimeSpan = TimeSpan.FromHours(6),
                 LoginPath = new PathString("/login")
             });
 
