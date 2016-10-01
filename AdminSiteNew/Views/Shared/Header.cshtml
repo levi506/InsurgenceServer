@@ -23,7 +23,14 @@
         </li>
         @if (User.HasClaim("Developer", "Allowed"))
         {
-            <li><a href="/Admin/RecentWonderTrades">Developer</a></li>
+            <li>
+                <a href="" class="dropdown-toggle">Developer</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Server/Dashboard">Dashboard</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/GTS/Index">Metrics</a></li>
+                </ul>
+            </li>
         }
         @if (User.HasClaim("Administrator", "Allowed"))
         {
