@@ -9,14 +9,7 @@ namespace AdminSiteNew.PokemonHelper
     {
         public static string GetPokemonName(short ID)
         {
-            if (Enum.IsDefined(typeof(PokemonList), ID))
-            {
-                return Enum.GetName(typeof(PokemonList), ID);
-            }
-            else
-            {
-                return string.Format("Species: {0}", ID);
-            }
+            return Enum.IsDefined(typeof(PokemonList), ID) ? Enum.GetName(typeof(PokemonList), ID) : string.Format("Species: {0}", ID);
         }
     }
     public enum PokemonList : short
