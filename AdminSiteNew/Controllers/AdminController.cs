@@ -30,10 +30,12 @@ namespace AdminSiteNew.Controllers
             uint i;
             if (!uint.TryParse(id, out i))
                 i = 0;
-            RecentTradesModel Model = new RecentTradesModel();
-            Model.StartIndex = i;
-            Model.Trades = Database.GetTradeLog(i);
-            return View(Model);
+            var model = new RecentTradesModel
+            {
+                StartIndex = i,
+                Trades = Database.GetTradeLog(i)
+            };
+            return View(model);
         }
 
         public ActionResult RecentWonderTrades(string id)
@@ -41,10 +43,12 @@ namespace AdminSiteNew.Controllers
             uint i;
             if (!uint.TryParse(id, out i))
                 i = 0;
-            RecentWonderTradesModel Model = new RecentWonderTradesModel();
-            Model.StartIndex = i;
-            Model.Trades = Database.GetWonderTradeLog(i);
-            return View(Model);
+            var model = new RecentWonderTradesModel
+            {
+                StartIndex = i,
+                Trades = Database.GetWonderTradeLog(i)
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -55,33 +59,23 @@ namespace AdminSiteNew.Controllers
 
         public PartialViewResult GetUser(string username = "")
         {
-            UserModel Model = new UserModel();
-            UserRequest req;
-            if (username != "")
+            var req = username != "" ? Database.GetUser(username) : null;
+            var model = new UserModel
             {
-                req = Database.GetUser(username);
-            }
-            else
-            {
-                req = null;
-            }
-            Model.request = username;
-            Model.UserRequest = req;
-            return PartialView("UserHelper", Model);
+                request = username,
+                UserRequest = req
+            };
+            return PartialView("UserHelper", model);
         }
         public ActionResult BanAccount(string id, string redir = "")
         {
             Database.BanAccount(id, true);
-            if (redir != "")
-                return Redirect("/Admin/Users/" + redir);
-            return Redirect("/Admin/Users/" + id);
+            return redir != "" ? Redirect("/Admin/Users/" + redir) : Redirect("/Admin/Users/" + id);
         }
         public ActionResult UnbanAccount(string id, string redir = "")
         {
             Database.BanAccount(id, false);
-            if (redir != "")
-                return Redirect("/Admin/Users/" + redir);
-            return Redirect("/Admin/Users/" + id);
+            return redir != "" ? Redirect("/Admin/Users/" + redir) : Redirect("/Admin/Users/" + id);
         }
         public ActionResult BanIPs(string id)
         {

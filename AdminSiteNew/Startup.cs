@@ -65,6 +65,12 @@ namespace AdminSiteNew
                     {
                         authBuilder.RequireClaim("Developer", "Allowed");
                     });
+                options.AddPolicy(
+                    "Administrator",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireClaim("Administrator", "Allowed");
+                    });
             });
         }
 
@@ -120,6 +126,10 @@ namespace AdminSiteNew
                         if (permissionLevel >= 2)
                         {
                             x.Identity.AddClaim(new Claim("Developer", "Allowed"));
+                        }
+                        if (permissionLevel >= 3)
+                        {
+                            x.Identity.AddClaim(new Claim("Administrator", "Allowed"));
                         }
                         return Task.FromResult(0);
                     }
