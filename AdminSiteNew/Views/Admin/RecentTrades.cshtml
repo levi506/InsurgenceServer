@@ -23,8 +23,7 @@
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.species)</td>
 						    <td>@trade.Pokemon1.personalID</td>
-						    @*
-							@if (trade.Pokemon1.Shiny)
+							@if (trade.Pokemon1.isShiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>
 							}
@@ -32,7 +31,6 @@
 							{
 								<td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
 							}
-                            *@
 							<td style="width:20%; max-width:20%">OT: @trade.Pokemon1.ot</td>
 							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName((short)trade.Pokemon1.item)</td>
 						</tr>
@@ -43,8 +41,7 @@
 						<tr>
 							<td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.species)</td>
 						    <td>@trade.Pokemon2.personalID</td>
-						    @*
-							@if (trade.Pokemon2.Shiny)
+							@if (trade.Pokemon2.isShiny)
 							{
 								<td class="shiny" style="max-width:10%; width:10%">Shiny</td>
 							}
@@ -52,7 +49,6 @@
 							{
 								<td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
 							}
-                            *@
 							<td style="width:20%; max-width:20%">OT: @trade.Pokemon2.ot</td>
 							<td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName((short)trade.Pokemon2.item)</td>
 						</tr>

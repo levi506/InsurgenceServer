@@ -2,12 +2,20 @@
 @using AdminSiteNew.PokemonHelper
 @model AdminSiteNew.Models.GTSObject
 
-<table style="border: 1px solid grey; border-radius: 10px;">
+<table class="table border" style="max-width: 200px; display: inline-table;     margin: 10px 10px;">
     <tr>
-        <td colspan="2">
+        <td colspan="4">
             <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny) 
                  title=@Utilities.GetPokemonImageTitle((int)Model.Offer.species, Model.Offer.isShiny) />
         </td>
+    </tr>
+    <tr>
+        <th colspan="2">
+            Offer
+        </th>
+        <th colspan="2">
+            Request
+        </th>
     </tr>
     <tr>
         <th>
@@ -16,19 +24,6 @@
         <td>
             @Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)
         </td>
-    </tr>
-    <tr>
-        <th>
-            Level
-        </th>
-        <td>
-            @Model.Offer.level
-        </td>
-    </tr>
-    <tr>
-        <th colspan="2">Request</th>
-    </tr>
-    <tr>
         <th>
             Species
         </th>
@@ -38,6 +33,12 @@
     </tr>
     <tr>
         <th>
+            Level
+        </th>
+        <td>
+            @Model.Offer.level
+        </td>
+        <th>
             Gender
         </th>
         <td>
@@ -45,6 +46,12 @@
         </td>
     </tr>
     <tr>
+        <th>
+            Pkmn Id
+        </th>
+        <td>
+            @Model.Offer.personalID
+        </td>
         <th>
             MinLevel
         </th>
@@ -54,10 +61,24 @@
     </tr>
     <tr>
         <th>
+            OT
+        </th>
+        <td>
+            @Model.Offer.ot
+        </td>
+        <th>
             Nature
         </th>
         <td>
             @Model.Request.Nature
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="button warning">Remove</button>
+        </td>
+        <td colspan="2">
+            <button class="button success">Details</button>
         </td>
     </tr>
 </table>
