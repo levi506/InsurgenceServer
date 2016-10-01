@@ -51,6 +51,12 @@ namespace InsurgenceServer.GTS
         public bool ballcapsule6 { get; set; }
         public string ot { get; set; }
         public int timeReceived { get; set; }
+
+
+        public byte level { get; set; }
+        public byte nature { get; set; }
+        public bool isShiny { get; set; }
+        public byte gender { get; set; }
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class GameMove

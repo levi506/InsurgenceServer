@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,12 @@ namespace AdminSiteNew.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new GTSListModel
+            {
+                GTS = DatabaseSpace.DbGTS.GetOpenGTSTrades(),
+                StartIndex = 0
+            };
+            return View(model);
         }
     }
 }

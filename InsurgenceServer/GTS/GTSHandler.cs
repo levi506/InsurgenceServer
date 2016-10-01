@@ -32,7 +32,7 @@ namespace InsurgenceServer.GTS
             //Input in database
             try
             {
-                Database.Dbgts.Add(c.UserId, decodeOffer, decodeRequest, level);
+                Database.Dbgts.Add(c.UserId, decodeOffer, decodeRequest, level, c.Username);
                 c.SendMessage($"<GTSCREATE result=3 index={index}>");
             }
             catch (Exception e)

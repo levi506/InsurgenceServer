@@ -1,0 +1,63 @@
+﻿@using AdminSiteNew.DatabaseSpace
+@using AdminSiteNew.PokemonHelper
+@model AdminSiteNew.Models.GTSObject
+
+<table style="border: 1px solid grey; border-radius: 10px;">
+    <tr>
+        <td colspan="2">
+            <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny) 
+                 title=@Utilities.GetPokemonImageTitle((int)Model.Offer.species, Model.Offer.isShiny) />
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Owner
+        </th>
+        <td>
+            @Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Level
+        </th>
+        <td>
+            @Model.Offer.level
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2">Request</th>
+    </tr>
+    <tr>
+        <th>
+            Species
+        </th>
+        <td>
+            @Model.Request.Species
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Gender
+        </th>
+        <td>
+            @Model.Request.Gender
+        </td>
+    </tr>
+    <tr>
+        <th>
+            MinLevel
+        </th>
+        <td>
+            @Model.Request.MinLevel
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nature
+        </th>
+        <td>
+            @Model.Request.Nature
+        </td>
+    </tr>
+</table>

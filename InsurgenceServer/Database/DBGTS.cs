@@ -18,17 +18,18 @@ namespace InsurgenceServer.Database
             conn.Close();
             return i;
         }
-        public static void Add(uint userid, string offer, string request, int level)
+        public static void Add(uint userid, string offer, string request, int level, string ownername)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return;
-            const string com = "INSERT INTO GTS (user_id, Offer, Request, OfferLevel) VALUES (@id, @offer, @request, @level)";
+            const string com = "INSERT INTO GTS (user_id, Offer, Request, OfferLevel, ownername) VALUES (@id, @offer, @request, @level, @ownername)";
             var mcom = new MySqlCommand(com, conn.Connection);
             mcom.Parameters.AddWithValue("@id", userid);
             mcom.Parameters.AddWithValue("@offer", offer);
             mcom.Parameters.AddWithValue("@request", request);
             mcom.Parameters.AddWithValue("@level", level);
+            mcom.Parameters.AddWithValue("@ownername", ownername);
             mcom.ExecuteNonQuery();
             conn.Close();
         }
@@ -83,7 +84,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return null;
-            const string s = "SELECT Offer, Request FROM GTS WHERE id = @id";
+            const string s = "SELECT id, Offer, Request, Accepted FROM GTS WHERE id = @id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", index);
             var r = c.ExecuteReader();
@@ -135,7 +136,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return null;
-            const string s = "SELECT Offer, Request, Accepted FROM GTS WHERE user_id = @id";
+            const string s = "SELECT id, Offer, Request, Accepted FROM GTS WHERE user_id = @id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", userId);
             var ls = new List<GTS.RequestGtsHolder>();
@@ -159,14 +160,14 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return false;
-            const string s = "SELECT user_id WHERE trade_id=@id";
+            const string s = "SELECT user_id FROM gts WHERE id=@id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeId);
             var r = c.ExecuteReader();
             var ret = false;
             while (r.Read())
             {
-                var user = (uint)r["user_id"];
+                var user = (int)r["user_id"];
                 if (user == userId)
                     ret = true;
             }

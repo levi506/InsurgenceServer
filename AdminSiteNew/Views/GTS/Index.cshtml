@@ -1,4 +1,10 @@
-﻿@{
+﻿@using AdminSiteNew.Models
+@model GTSListModel 
+@{
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "GTS";
+}
+@foreach (var thing in Model.GTS)
+{
+    @await Html.PartialAsync("PartialGts", thing);
 }
