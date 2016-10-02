@@ -96,13 +96,13 @@ namespace AdminSiteNew
 
             app.UseStaticFiles();
 
-
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                ExpireTimeSpan = TimeSpan.FromHours(6),
-                LoginPath = new PathString("/login")
+                AutomaticChallenge = true,                
+                ExpireTimeSpan = TimeSpan.FromHours(9),
+                LoginPath = new PathString("/login"),
+                SlidingExpiration = true
             });
 
             var options = new GoogleOptions
@@ -119,6 +119,7 @@ namespace AdminSiteNew
                     },
                     OnCreatingTicket = x =>
                     {
+                        Console.WriteLine(x.ExpiresIn);
                         var permissionLevel = DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name);
                         if (permissionLevel >= 1)
                         {
