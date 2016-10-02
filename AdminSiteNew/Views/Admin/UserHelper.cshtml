@@ -185,7 +185,8 @@
         </table>
         @if (Model.UserRequest.UserInfo.Banned)
         {
-            <button title="BanAccount" class="button success" onclick="location.href = '@Url.Action("UnbanAccount", "Admin", new {id = Model.UserRequest.UserInfo.Username})'">Unban Account</button>
+            <button title="BanAccount" class="button success" style="width: 232px;"
+                     onclick="location.href = '@Url.Action("UnbanAccount", "Admin", new {id = Model.UserRequest.UserInfo.Username})'">Unban Account</button>
 
         }
 
