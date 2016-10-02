@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcSample.Web.Models;
 using AdminSiteNew.DatabaseSpace;
+using NuGet.Protocol.Core.v3;
 
 namespace AdminSiteNew.Controllers
 {
@@ -10,7 +11,7 @@ namespace AdminSiteNew.Controllers
     {
         public ActionResult AccessDenied()
         {
-            return Redirect("/login");
+            return View();
         }
     }
 }

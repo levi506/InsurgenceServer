@@ -1,26 +1,26 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcSample.Web.Models;
 
 namespace MvcSample.Web
 {
-    [Authorize(Policy = "Moderator")]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
+            Console.WriteLine(User.Claims.Count(x => x.Type == "Moderator"));
             return View(CreateUser());
         }
 
         public User CreateUser()
         {
-            User user = new User()
+            return new User()
             {
                 Name = User.Identity.Name,
-                Address = "My address"
             };
-
-            return user;
         }
     }
 }

@@ -5,5 +5,12 @@
 }
 
 <div class="row">
-    <h3 title="@Model.Name" class="@helloClass">Hello @Model.Name!</h3>
+    @if (@Model.Name != null)
+    {
+        <h3 title="@Model.Name" class="@helloClass">Hello @Model.Name!</h3>
+    }
+    else
+    {
+        <h3><a href="/login">Please log in</a></h3>
+    }
 </div>
