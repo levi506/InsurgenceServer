@@ -164,16 +164,7 @@ namespace AdminSiteNew
                         await context.Authentication.ChallengeAsync(authType, new AuthenticationProperties() { RedirectUri = "/" });
                         return;
                     }
-
-                    context.Response.ContentType = "text/html";
-                    await context.Response.WriteAsync("<html><body>");
-                    await context.Response.WriteAsync("Choose an authentication scheme: <br>");
-                    foreach (var type in context.Authentication.GetAuthenticationSchemes())
-                    {
-                        if (type.DisplayName != null)
-                            await context.Response.WriteAsync("<a href=\"?authscheme=" + type.AuthenticationScheme + "\">" + (type.DisplayName ?? "(suppressed)") + "</a><br>");
-                    }
-                    await context.Response.WriteAsync("</body></html>");
+                    context.Response.Redirect("/login?authscheme=Google"); 
                 });
             });
             app.Map("/logout", signoutApp =>
