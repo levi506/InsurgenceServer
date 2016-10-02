@@ -22,5 +22,14 @@ namespace AdminSiteNew.Controllers
             };
             return View(model);
         }
+
+        public ActionResult Detail(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                i = 0;
+            var model = DatabaseSpace.DbGTS.GetSingleGTSTrade(i);
+            return View(model);
+        }
     }
 }

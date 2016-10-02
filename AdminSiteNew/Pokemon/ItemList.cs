@@ -11,14 +11,7 @@ namespace AdminSiteNew.PokemonHelper
         {
             if (id == 0)
                 return "No Item";
-            if (Enum.IsDefined(typeof(ItemList), id))
-            {
-                return Enum.GetName(typeof(ItemList), id);
-            }
-            else
-            {
-                return string.Format("Item: {0}", id);
-            }
+            return Enum.IsDefined(typeof(ItemList), id) ? Enum.GetName(typeof(ItemList), id) : string.Format("Item: {0}", id);
         }
     }
     public enum ItemList : short

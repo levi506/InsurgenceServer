@@ -18,6 +18,9 @@ namespace AdminSiteNew.Models
         public GTSFilter Request { get; set; }
         public int UserId { get; set; }
         public string OwnerName { get; set; }
+        public string TraderName { get; set; }
+        public bool Accepted { get; set; }
+        public Pokemon Result { get; set; }
     }
     public class GTSFilter
     {

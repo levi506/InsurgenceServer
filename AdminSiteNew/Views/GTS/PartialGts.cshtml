@@ -2,6 +2,12 @@
 @using AdminSiteNew.PokemonHelper
 @model AdminSiteNew.Models.GTSObject
 
+<style>
+    th, td {
+        padding: 3px!important;
+    }
+</style>
+
 <table class="table border" style="max-width: 200px; display: inline-table;     margin: 10px 10px;">
     <tr>
         <td colspan="4">
@@ -78,7 +84,7 @@
             <button class="button warning">Remove</button>
         </td>
         <td colspan="2">
-            <button class="button success">Details</button>
+            <button class="button success" onclick="location.href='@Url.Action("Detail", "GTS", new { id = Model.Id })'">Details</button>
         </td>
     </tr>
 </table>

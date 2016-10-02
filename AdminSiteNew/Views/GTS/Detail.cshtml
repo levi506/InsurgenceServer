@@ -1,0 +1,341 @@
+﻿@using System.Threading.Tasks
+@using AdminSiteNew.Models
+@using AdminSiteNew.PokemonHelper
+@model GTSObject
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "GTS Details";
+}
+
+@if (Model.Accepted)
+{
+    <button class="button success" style="width: 100%">Accepted</button>
+}
+else
+{
+    <button class="button warning" style="width: 100%">Open</button>
+}
+<br/>
+<table class="table border" style="display: inline-table;">
+    <thead>
+        <tr>
+            <th colspan="4">
+                Offer
+            </th>
+        </tr>
+    </thead>
+    <tr>
+        <th>Owner Name</th>
+        <td>@Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)</td>
+        <th>ID</th>
+        <td>@Model.Offer.personalID</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4">
+            <img src=@Utilities.GetPokemonImageName((int) Model.Offer.species, Model.Offer.isShiny)
+                 title=@Utilities.GetPokemonImageTitle((int) Model.Offer.species, Model.Offer.isShiny)/>
+        </td>
+        <td rowspan="4">
+            Moves
+        </td>
+        <td>
+            @Model.Offer.moves[0].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Offer.moves[1].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Offer.moves[2].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Offer.moves[3].id
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Species
+        </th>
+        <td>
+            @PokemonHelper.GetPokemonName(Model.Offer.species)
+        </td>
+        <th colspan="2">
+            IV/EV
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Shiny
+        </th>
+        <td>
+            @Model.Offer.isShiny
+        </td>
+        <th>
+            HP
+        </th>
+        <td>
+            @Model.Offer.iv[0] / @Model.Offer.ev[0]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Item
+        </th>
+        <td>
+            @ItemHelper.GetItemName((short) Model.Offer.item)
+        </td>
+        <th>
+            Attack
+        </th>
+        <td>
+            @Model.Offer.iv[1] / @Model.Offer.ev[1]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            OT
+        </th>
+        <td>
+            @Model.Offer.ot
+        </td>
+        <th>
+            Defense
+        </th>
+        <td>
+            @Model.Offer.iv[2] / @Model.Offer.ev[2]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Level
+        </th>
+        <td>
+            @Model.Offer.level
+        </td>
+        <th>
+            Sp. Attack
+        </th>
+        <td>
+            @Model.Offer.iv[4] / @Model.Offer.ev[4]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nature
+        </th>
+        <td>
+            @Model.Offer.nature
+        </td>
+        <th>
+            Sp. Defense
+        </th>
+        <td>
+            @Model.Offer.iv[5] / @Model.Offer.ev[5]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Language
+        </th>
+        <td>
+            @Model.Offer.language
+        </td>
+        <th>
+            Speed
+        </th>
+        <td>
+            @Model.Offer.iv[3] / @Model.Offer.ev[3]
+        </td>
+    </tr>
+</table>
+
+@if (Model.Accepted)
+{
+    <table class="table border" style="display: inline-table;">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    Offer
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <th>Owner Name</th>
+            <td>@Html.ActionLink(Model.TraderName, "Users", "Admin", new { id = Model.OwnerName }, null)</td>
+            <th>ID</th>
+            <td>@Model.Result.personalID</td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="4">
+                <img src=@Utilities.GetPokemonImageName((int) Model.Result.species, Model.Result.isShiny)
+                     title=@Utilities.GetPokemonImageTitle((int) Model.Result.species, Model.Result.isShiny) />
+            </td>
+            <td rowspan="4">
+                Moves
+            </td>
+            <td>
+                @Model.Result.moves[0].id
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Model.Result.moves[1].id
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Model.Result.moves[2].id
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Model.Result.moves[3].id
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Species
+            </th>
+            <td>
+                @PokemonHelper.GetPokemonName(Model.Result.species)
+            </td>
+            <th colspan="2">
+                IV/EV
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Shiny
+            </th>
+            <td>
+                @Model.Result.isShiny
+            </td>
+            <th>
+                HP
+            </th>
+            <td>
+                @Model.Result.iv[0] / @Model.Result.ev[0]
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Item
+            </th>
+            <td>
+                @ItemHelper.GetItemName((short)Model.Result.item)
+            </td>
+            <th>
+                Attack
+            </th>
+            <td>
+                @Model.Result.iv[1] / @Model.Result.ev[1]
+            </td>
+        </tr>
+        <tr>
+            <th>
+                OT
+            </th>
+            <td>
+                @Model.Result.ot
+            </td>
+            <th>
+                Defense
+            </th>
+            <td>
+                @Model.Result.iv[2] / @Model.Result.ev[2]
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Level
+            </th>
+            <td>
+                @Model.Result.level
+            </td>
+            <th>
+                Sp. Attack
+            </th>
+            <td>
+                @Model.Result.iv[4] / @Model.Result.ev[4]
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Nature
+            </th>
+            <td>
+                @Model.Result.nature
+            </td>
+            <th>
+                Sp. Defense
+            </th>
+            <td>
+                @Model.Result.iv[5] / @Model.Result.ev[5]
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Language
+            </th>
+            <td>
+                @Model.Result.language
+            </td>
+            <th>
+                Speed
+            </th>
+            <td>
+                @Model.Result.iv[3] / @Model.Result.ev[3]
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <table class="table border" style="display: inline-table">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    Request
+                </th>
+            </tr>       
+        </thead>
+        <tr>
+            <th>
+                MinLevel
+            </th>
+            <td>
+                @Model.Request.MinLevel
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Gender
+            </th>
+            <td>
+                @Model.Request.Gender
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Nature
+            </th>
+            <td>
+                @Model.Request.Nature
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Species
+            </th>
+            <td>
+                @Model.Request.Species
+            </td>
+        </tr>
+    </table>
+}
