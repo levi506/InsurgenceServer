@@ -109,6 +109,7 @@ namespace AdminSiteNew
             {
                 ClientId = "978297029125-doscbkcd7p9o7lqa4f9cro5nb2fetfth.apps.googleusercontent.com",
                 ClientSecret = "XKJMty6DaT0z7b7kBxlLyrn_",
+                AccessType = "offline",
                 Events = new OAuthEvents()
                 {
                     OnRemoteFailure = ctx =>
