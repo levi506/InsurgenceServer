@@ -45,7 +45,7 @@ namespace AdminSiteNew.DatabaseSpace
                 conn.Close();
                 return null;
             }
-            const string command = "SELECT id, Offer, Request, user_id, Accepted, ownername, username Result FROM GTS WHERE id = @id";
+            const string command = "SELECT id, Offer, Request, user_id, Accepted, ownername, username, Result FROM GTS WHERE id = @id";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", i);
             var r = mcom.ExecuteReader();
