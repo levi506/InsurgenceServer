@@ -18,7 +18,7 @@ namespace InsurgenceServer.Database
                 return;
             }
             new MySqlCommand(
-                "CREATE TABLE IF NOT EXISTS `countermetrics` (`id` int(11) NOT NULL,`name` varchar(255) DEFAULT NULL,`value` int(11) DEFAULT NULL, PRIMARY KEY(`id`))",
+                "CREATE TABLE IF NOT EXISTS `CounterMetrics` (`id` int(11) NOT NULL,`name` varchar(255) DEFAULT NULL,`value` int(11) DEFAULT NULL, PRIMARY KEY(`id`))",
                 conn.Connection).ExecuteNonQuery();
             new MySqlCommand(
                 "CREATE TABLE IF NOT EXISTS `friend_list` ( `user_id` int(11) NOT NULL, `friends` varchar(255) DEFAULT NULL, PRIMARY KEY (`user_id`))",

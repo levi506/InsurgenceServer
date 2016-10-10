@@ -36,10 +36,11 @@ namespace InsurgenceServer.Database
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@key", key);
             var val = mcom.ExecuteScalar();
-            if (val is DBNull)
+            conn.Close();
+            if (val == null || val is DBNull)
             {
                 return 0;
-            }
+            }           
             return (int) val;
         }
 

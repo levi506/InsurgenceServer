@@ -84,11 +84,11 @@ namespace InsurgenceServer.WonderTrade
             try { DbTradelog.LogWonderTrade(client2.Username, jsonstring2); }
             catch (Exception e) { Console.WriteLine("Error when logging WT: " + e); }
 
-            Utilities.Encoding.Base64Encode(jsonstring1);
-            Utilities.Encoding.Base64Encode(jsonstring2);
+            var encoded1 = Utilities.Encoding.Base64Encode(jsonstring1);
+            var encoded2 = Utilities.Encoding.Base64Encode(jsonstring2);
 
-            client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={pkmn2}>");
-            client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={pkmn1}>");
+            client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={encoded2}>");
+            client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={encoded1}>");
         }
         
         public static void DeleteFromClient(Client c)
