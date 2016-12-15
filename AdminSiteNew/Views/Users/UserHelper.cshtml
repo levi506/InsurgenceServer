@@ -71,24 +71,25 @@
             @foreach (var trade in Model.UserRequest.Trades)
             {
                 <tr>
+                    <th>
+                        @Html.ActionLink(trade.Id.ToString(), "Tradelog", "Trades", new { id = trade.Id }, null)
+                    </th>
                     <th>@trade.User1</th>
                     <td>
                         <table style="width: 100%; height: 50px;">
                             <tr>
                                 <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.species)</td>
                                 <td>@trade.Pokemon1.personalID</td>
-                                @*
-                                    @if (trade.Pokemon1.Shiny)
-                                    {
-                                        <td class="shiny" style="max-width:10%; width:10%">Shiny</td>
-                                    }
-                                    else
-                                    {
-                                        <td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
-                                    }
-                                *@
+                                @if (trade.Pokemon1.isShiny)
+                                {
+                                    <td class="shiny" style="max-width: 10%; width: 10%">Shiny</td>
+                                }
+                                else
+                                {
+                                    <td class="nonshiny" style="max-width: 10%; width: 10%">Bland</td>
+                                }
                                 <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon1.ot</td>
-                                <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short)@trade.Pokemon1.item)</td>
+                                <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) @trade.Pokemon1.item)</td>
                             </tr>
                         </table>
                     </td>
@@ -97,23 +98,21 @@
                             <tr>
                                 <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.species)</td>
                                 <td>@trade.Pokemon2.personalID</td>
-                                @*
-                                    @if (trade.Pokemon2.Shiny)
-                                    {
-                                        <td class="shiny" style="max-width:10%; width:10%">Shiny</td>
-                                    }
-                                    else
-                                    {
-                                        <td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
-                                    }
-                                *@
+                                @if (trade.Pokemon2.isShiny)
+                                {
+                                    <td class="shiny" style="max-width: 10%; width: 10%">Shiny</td>
+                                }
+                                else
+                                {
+                                    <td class="nonshiny" style="max-width: 10%; width: 10%">Bland</td>
+                                }
                                 <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon2.ot</td>
-                                <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short)@trade.Pokemon2.item)</td>
+                                <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) @trade.Pokemon2.item)</td>
                             </tr>
                         </table>
                     </td>
                     <th>
-                        @Html.ActionLink(trade.User2, "Users", "Admin", new { id = trade.User2 }, null)
+                        @Html.ActionLink(trade.User2, "Users", "Users", new {id = trade.User2}, null)
                     </th>
                 </tr>
             }
@@ -139,14 +138,14 @@
                     {
                         <td class="Banned">true</td>
                         <td>
-                            <input type="button" title="BanAccount" value="Unban" onclick="location.href = '@Url.Action("UnbanSingleIp", "Admin", new {id = @ip.IP, name = Model.UserRequest.UserInfo.Username})'" />
+                            <input type="button" title="BanAccount" value="Unban" onclick="location.href = '@Url.Action("UnbanSingleIp", "Users", new {id = @ip.IP, name = Model.UserRequest.UserInfo.Username})'" />
                         </td>
                     }
                     else
                     {
                         <td class="Free">false</td>
                         <td>
-                            <input type="button" title="BanAccount" value="Ban" onclick="location.href = '@Url.Action("BanSingleIp", "Admin", new {id = @ip.IP, name = Model.UserRequest.UserInfo.Username})'" />
+                            <input type="button" title="BanAccount" value="Ban" onclick="location.href = '@Url.Action("BanSingleIp", "Users", new {id = @ip.IP, name = Model.UserRequest.UserInfo.Username})'" />
                         </td>
                     }
                 </tr>
@@ -163,20 +162,20 @@
                         @alt.User_Id
                     </td>
                     <td>
-                        @Html.ActionLink(alt.Username, "Users", "Admin", new { id = alt.Username }, null)
+                        @Html.ActionLink(alt.Username, "Users", "Users", new { id = alt.Username }, null)
                     </td>
                     @if (alt.Banned)
                     {
                         <td class="Banned">true</td>
                         <td>
-                            <input type="button" title="BanAccount" value="Unban" onclick="location.href = '@Url.Action("UnbanAccount", "Admin", new {id = alt.Username, redir = Model.UserRequest.UserInfo.Username})'" />
+                            <input type="button" title="BanAccount" value="Unban" onclick="location.href = '@Url.Action("UnbanAccount", "Users", new {id = alt.Username, redir = Model.UserRequest.UserInfo.Username})'" />
                         </td>
                     }
                     else
                     {
                         <td class="Free">false</td>
                         <td>
-                            <input type="button" title="BanAccount" value="Ban" onclick="location.href = '@Url.Action("BanAccount", "Admin", new {id = alt.Username, redir = Model.UserRequest.UserInfo.Username})'" />
+                            <input type="button" title="BanAccount" value="Ban" onclick="location.href = '@Url.Action("BanAccount", "Users", new {id = alt.Username, redir = Model.UserRequest.UserInfo.Username})'" />
                         </td>
 
                     }
@@ -186,23 +185,23 @@
         @if (Model.UserRequest.UserInfo.Banned)
         {
             <button title="BanAccount" class="button success" style="width: 232px;"
-                     onclick="location.href = '@Url.Action("UnbanAccount", "Admin", new {id = Model.UserRequest.UserInfo.Username})'">Unban Account</button>
+                     onclick="location.href = '@Url.Action("UnbanAccount", "Users", new {id = Model.UserRequest.UserInfo.Username})'">Unban Account</button>
 
         }
 
         else
         {
             <button title="BanAccount" class="button warning" style="width: 232px;"
-                    onclick="location.href = '@Url.Action("BanAccount", "Admin", new {id = Model.UserRequest.UserInfo.Username})'"><span class="mif-hammer icon"></span>   Ban Account</button>
+                    onclick="location.href = '@Url.Action("BanAccount", "Users", new {id = Model.UserRequest.UserInfo.Username})'"><span class="mif-hammer icon"></span>   Ban Account</button>
         }
         <br/>
         <button class="button danger" title="BanAccount" style="width: 103px;"
-                onclick="location.href = '@Url.Action("BanIPs", "Admin", new { id = Model.UserRequest.UserInfo.User_Id })'">Ban IPs</button>
+                onclick="location.href = '@Url.Action("BanIPs", "Users", new { id = Model.UserRequest.UserInfo.User_Id })'">Ban IPs</button>
         <input type="button" class="button success" title="BanAccount" value="Unban IPs " style="width: 123px;"
-               onclick="location.href = '@Url.Action("UnbanIPs", "Admin", new {id = Model.UserRequest.UserInfo.User_Id})'" />
+               onclick="location.href = '@Url.Action("UnbanIPs", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
         <br />
-        <input type="button" class="button danger" title="BanAccount" value="Ban Alts" onclick="location.href = '@Url.Action("BanAlts", "Admin", new {id = Model.UserRequest.UserInfo.User_Id})'" />
-        <input type="button" class="button success" title="BanAccount" value="Unban Alts" onclick="location.href = '@Url.Action("UnbanAlts", "Admin", new {id = Model.UserRequest.UserInfo.User_Id})'" />
+        <input type="button" class="button danger" title="BanAccount" value="Ban Alts" onclick="location.href = '@Url.Action("BanAlts", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
+        <input type="button" class="button success" title="BanAccount" value="Unban Alts" onclick="location.href = '@Url.Action("UnbanAlts", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
 
     </div>
 }

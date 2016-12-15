@@ -1,0 +1,334 @@
+﻿@using System.Threading.Tasks
+@using AdminSiteNew.Models
+@using AdminSiteNew.PokemonHelper
+@model Trade
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Tradelog";
+}
+
+<link rel="stylesheet" href="/CSS/Tradelog.css" />
+<table class="dataTable border bordered table-striped">
+    <tr>
+        <th>
+            ID
+        </th>
+        <td>
+            @Model.Id
+        </td>
+    </tr>
+    <tr>
+        <th>
+            User 1
+        </th>
+        <td>
+            @Model.User1
+        </td>
+    </tr>
+    <tr>
+        <th>
+            User 2
+        </th>
+        <td>
+            @Model.User2
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Date/Time
+        </th>
+        <td>
+            @Model.Date
+        </td>
+    </tr>
+</table>
+<table class="table border" style="display: inline-table;">
+    <tr>
+        <th>Owner Name</th>
+        <td>@Html.ActionLink(Model.User1, "Users", "Users", new { id = Model.User1 }, null)</td>
+        <th>ID</th>
+        <td>@Model.Pokemon1.personalID</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4">
+            <img src=@Utilities.GetPokemonImageName((int) Model.Pokemon1.species, Model.Pokemon1.isShiny)
+                 title=@Utilities.GetPokemonImageTitle((int) Model.Pokemon1.species, Model.Pokemon1.isShiny) />
+        </td>
+        <td rowspan="4">
+            Moves
+        </td>
+        <td>
+            @Model.Pokemon1.moves[0].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon1.moves[1].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon1.moves[2].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon1.moves[3].id
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Species
+        </th>
+        <td>
+            @PokemonHelper.GetPokemonName(Model.Pokemon1.species)
+        </td>
+        <th colspan="2">
+            IV/EV
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Shiny
+        </th>
+        <td>
+            @Model.Pokemon1.isShiny
+        </td>
+        <th>
+            HP
+        </th>
+        <td>
+            @Model.Pokemon1.iv[0] / @Model.Pokemon1.ev[0]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Item
+        </th>
+        <td>
+            @ItemHelper.GetItemName((short)Model.Pokemon1.item)
+        </td>
+        <th>
+            Attack
+        </th>
+        <td>
+            @Model.Pokemon1.iv[1] / @Model.Pokemon1.ev[1]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            OT
+        </th>
+        <td>
+            @Model.Pokemon1.ot
+        </td>
+        <th>
+            Defense
+        </th>
+        <td>
+            @Model.Pokemon1.iv[2] / @Model.Pokemon1.ev[2]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Level
+        </th>
+        <td>
+            @Model.Pokemon1.level
+        </td>
+        <th>
+            Sp. Attack
+        </th>
+        <td>
+            @Model.Pokemon1.iv[4] / @Model.Pokemon1.ev[4]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nature
+        </th>
+        <td>
+            @Model.Pokemon1.nature
+        </td>
+        <th>
+            Sp. Defense
+        </th>
+        <td>
+            @Model.Pokemon1.iv[5] / @Model.Pokemon1.ev[5]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Language
+        </th>
+        <td>
+            @Model.Pokemon1.language
+        </td>
+        <th>
+            Speed
+        </th>
+        <td>
+            @Model.Pokemon1.iv[3] / @Model.Pokemon1.ev[3]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Map Obtained
+        </th>
+        <td>
+            @Model.Pokemon1.obtainMap
+        </td>
+        <th>
+            Map Hatched
+        </th>
+        <td>
+            @Model.Pokemon1.hatchedMap
+        </td>
+    </tr>
+</table>
+
+<table class="table border" style="display: inline-table;">
+    <tr>
+        <th>Owner Name</th>
+        <td>@Html.ActionLink(Model.User2, "Users", "Users", new { id = Model.User2 }, null)</td>
+        <th>ID</th>
+        <td>@Model.Pokemon2.personalID</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4">
+            <img src=@Utilities.GetPokemonImageName((int) Model.Pokemon2.species, Model.Pokemon2.isShiny)
+                 title=@Utilities.GetPokemonImageTitle((int) Model.Pokemon2.species, Model.Pokemon2.isShiny) />
+        </td>
+        <td rowspan="4">
+            Moves
+        </td>
+        <td>
+            @Model.Pokemon2.moves[0].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon2.moves[1].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon2.moves[2].id
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.Pokemon2.moves[3].id
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Species
+        </th>
+        <td>
+            @PokemonHelper.GetPokemonName(Model.Pokemon2.species)
+        </td>
+        <th colspan="2">
+            IV/EV
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Shiny
+        </th>
+        <td>
+            @Model.Pokemon2.isShiny
+        </td>
+        <th>
+            HP
+        </th>
+        <td>
+            @Model.Pokemon2.iv[0] / @Model.Pokemon2.ev[0]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Item
+        </th>
+        <td>
+            @ItemHelper.GetItemName((short)Model.Pokemon2.item)
+        </td>
+        <th>
+            Attack
+        </th>
+        <td>
+            @Model.Pokemon2.iv[1] / @Model.Pokemon2.ev[1]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            OT
+        </th>
+        <td>
+            @Model.Pokemon2.ot
+        </td>
+        <th>
+            Defense
+        </th>
+        <td>
+            @Model.Pokemon2.iv[2] / @Model.Pokemon2.ev[2]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Level
+        </th>
+        <td>
+            @Model.Pokemon2.level
+        </td>
+        <th>
+            Sp. Attack
+        </th>
+        <td>
+            @Model.Pokemon2.iv[4] / @Model.Pokemon2.ev[4]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nature
+        </th>
+        <td>
+            @Model.Pokemon2.nature
+        </td>
+        <th>
+            Sp. Defense
+        </th>
+        <td>
+            @Model.Pokemon2.iv[5] / @Model.Pokemon2.ev[5]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Language
+        </th>
+        <td>
+            @Model.Pokemon2.language
+        </td>
+        <th>
+            Speed
+        </th>
+        <td>
+            @Model.Pokemon2.iv[3] / @Model.Pokemon2.ev[3]
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Map Obtained
+        </th>
+        <td>
+            @Model.Pokemon2.obtainMap
+        </td>
+        <th>
+            Map Hatched
+        </th>
+        <td>
+            @Model.Pokemon2.hatchedMap
+        </td>
+    </tr>
+</table>

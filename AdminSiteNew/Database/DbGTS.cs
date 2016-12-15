@@ -6,10 +6,37 @@ using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
-namespace AdminSiteNew.DatabaseSpace
+namespace AdminSiteNew.Database
 {
-    public static class DbGTS
+    internal static class DbGTS
     {
+        public static List<GTSObject> GetClosedGTSTrades()
+        {
+            var conn = new OpenConnection();
+            if (!conn.isConnected())
+            {
+                conn.Close();
+                return new List<GTSObject>();
+            }
+            var l = new List<GTSObject>();
+            const string command = "SELECT id, Offer, Result, user_id, ownername, username FROM GTS WHERE Accepted=1";
+            var mcom = new MySqlCommand(command, conn.Connection);
+            var r = mcom.ExecuteReader();
+            while (r.Read())
+            {
+                l.Add(new GTSObject()
+                {
+                    Id = (int)r["id"],
+                    Offer = JsonConvert.DeserializeObject<Pokemon>(r["Offer"].ToString()),
+                    Result = JsonConvert.DeserializeObject<Pokemon>(r["Result"].ToString()),
+                    UserId = (int)r["user_id"],
+                    Accepted = true,
+                    OwnerName = r["ownername"].ToString(),
+                    TraderName = r["username"].ToString()
+                });
+            }
+            return l;
+        }
         public static List<GTSObject> GetOpenGTSTrades()
         {
             var conn = new OpenConnection();

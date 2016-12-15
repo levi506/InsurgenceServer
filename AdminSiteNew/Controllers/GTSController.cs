@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminSiteNew.Database;
 using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,17 @@ namespace AdminSiteNew.Controllers
         {
             var model = new GTSListModel
             {
-                GTS = DatabaseSpace.DbGTS.GetOpenGTSTrades(),
+                GTS = DbGTS.GetOpenGTSTrades(),
+                StartIndex = 0
+            };
+            return View(model);
+        }
+
+        public ActionResult Closed()
+        {
+            var model = new GTSListModel()
+            {
+                GTS = DbGTS.GetClosedGTSTrades(),
                 StartIndex = 0
             };
             return View(model);
@@ -28,7 +39,7 @@ namespace AdminSiteNew.Controllers
             int i;
             if (!int.TryParse(id, out i))
                 i = 0;
-            var model = DatabaseSpace.DbGTS.GetSingleGTSTrade(i);
+            var model = DbGTS.GetSingleGTSTrade(i);
             return View(model);
         }
     }

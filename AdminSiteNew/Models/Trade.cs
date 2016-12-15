@@ -13,6 +13,7 @@ namespace AdminSiteNew.Models
         public string User2 { get; set; }
         public Pokemon Pokemon1 { get; set; }
         public Pokemon Pokemon2 { get; set; }
+        public int Id { get; set; }
     }
     public class WonderTrade
     {

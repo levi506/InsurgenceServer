@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -56,8 +57,11 @@ namespace InsurgenceServer
                 try
                 {
                     var client = Data.SiteServer.AcceptTcpClient();
+                    Console.WriteLine("Attempted connection admin site");
                     if ((((IPEndPoint)client.Client.RemoteEndPoint).Address).ToString() != "127.0.0.1")
                     {
+                        Console.WriteLine("Not local");
+                        client.Close();
                         continue;
                     }
                     new Thread(() =>

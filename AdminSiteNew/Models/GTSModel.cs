@@ -22,6 +22,8 @@ namespace AdminSiteNew.Models
         public bool Accepted { get; set; }
         public Pokemon Result { get; set; }
     }
+
+
     public class GTSFilter
     {
         public int MinLevel { get; set; } = 0;

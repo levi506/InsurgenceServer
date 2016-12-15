@@ -27,7 +27,7 @@ else
     </thead>
     <tr>
         <th>Owner Name</th>
-        <td>@Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)</td>
+        <td>@Html.ActionLink(Model.OwnerName, "Users", "Users", new {id = Model.OwnerName}, null)</td>
         <th>ID</th>
         <td>@Model.Offer.personalID</td>
     </tr>
@@ -181,7 +181,7 @@ else
         </thead>
         <tr>
             <th>Owner Name</th>
-            <td>@Html.ActionLink(Model.TraderName, "Users", "Admin", new { id = Model.OwnerName }, null)</td>
+            <td>@Html.ActionLink(Model.TraderName, "Users", "Users", new { id = Model.OwnerName }, null)</td>
             <th>ID</th>
             <td>@Model.Result.personalID</td>
         </tr>

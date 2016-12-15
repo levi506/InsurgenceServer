@@ -15,9 +15,16 @@ namespace AdminSiteNew.ServerInteraction
         public static int BattleCount;
         public static int WTCount;
 
+        public static bool Crashed = false;
+
         private static TcpClient client;
         private static NetworkStream stream;
         private static readonly Byte[] bytes = new Byte[256];
+
+        public static bool IsConnected()
+        {
+            return client.Connected;
+        }
 
         public static void Start()
         {
@@ -27,7 +34,12 @@ namespace AdminSiteNew.ServerInteraction
                 var T = client.ConnectAsync("127.0.0.1", 6419);
                 T.Wait();
             }
-            catch { return; }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Crashed = true;
+                return;
+            }
             Console.WriteLine("Connected to local server");
             stream = client.GetStream();
             new System.Threading.Thread(() =>
@@ -36,7 +48,7 @@ namespace AdminSiteNew.ServerInteraction
         }
         private static void RealStart()
         {
-            while (true)
+            while (client.Connected)
             {
                 try
                 {

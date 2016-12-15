@@ -4,14 +4,14 @@
 
 <style>
     th, td {
-        padding: 3px!important;
+        padding: 3px !important;
     }
 </style>
 
 <table class="table border" style="max-width: 200px; display: inline-table;     margin: 10px 10px;">
     <tr>
         <td colspan="4">
-            <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny) 
+            <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny)
                  title=@Utilities.GetPokemonImageTitle((int)Model.Offer.species, Model.Offer.isShiny) />
         </td>
     </tr>
@@ -20,7 +20,7 @@
             Offer
         </th>
         <th colspan="2">
-            Request
+            Result
         </th>
     </tr>
     <tr>
@@ -28,13 +28,13 @@
             Owner
         </th>
         <td>
-            @Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)
+            @Html.ActionLink(Model.OwnerName, "Users", "Admin", new { id = Model.OwnerName }, null)
         </td>
         <th>
-            Species
+            Owner
         </th>
         <td>
-            @Model.Request.Species
+            @Model.TraderName
         </td>
     </tr>
     <tr>
@@ -45,10 +45,10 @@
             @Model.Offer.level
         </td>
         <th>
-            Gender
+            Species
         </th>
         <td>
-            @Model.Request.Gender
+            @Model.Result.species
         </td>
     </tr>
     <tr>
@@ -59,10 +59,10 @@
             @Model.Offer.personalID
         </td>
         <th>
-            MinLevel
+            Pkmn Id
         </th>
         <td>
-            @Model.Request.MinLevel
+            @Model.Result.personalID
         </td>
     </tr>
     <tr>
@@ -73,10 +73,10 @@
             @Model.Offer.ot
         </td>
         <th>
-            Nature
+            Shiny
         </th>
         <td>
-            @Model.Request.Nature
+            @Model.Result.isShiny
         </td>
     </tr>
     <tr>

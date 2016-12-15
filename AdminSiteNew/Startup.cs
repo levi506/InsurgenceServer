@@ -15,6 +15,7 @@ using System.Text.Encodings.Web;
 using Microsoft.Extensions.WebEncoders;
 using Microsoft.AspNetCore.Http.Authentication;
 using System.Security.Claims;
+using AdminSiteNew.Database;
 
 namespace AdminSiteNew
 {
@@ -77,9 +78,8 @@ namespace AdminSiteNew
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
+            loggerFactory.AddConsole(LogLevel.Warning);
+            //loggerFactory.AddDebug();
 
             //app.UseApplicationInsightsRequestTelemetry();
 
@@ -121,7 +121,7 @@ namespace AdminSiteNew
                     OnCreatingTicket = x =>
                     {
                         Console.WriteLine(x.ExpiresIn);
-                        var permissionLevel = DatabaseSpace.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name);
+                        var permissionLevel = Database.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name);
                         if (permissionLevel >= 1)
                         {
                             x.Identity.AddClaim(new Claim("Moderator", "Allowed"));

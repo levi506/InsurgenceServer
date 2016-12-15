@@ -1,0 +1,35 @@
+﻿@using AdminSiteNew.Models
+
+@model MetricsHolder
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Metrics";
+}
+<table class="dataTable border bordered table-striped">
+    <thead>
+        <th>
+            Key
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Value
+        </th>
+    </thead>
+    @foreach (var metric in Model.List)
+    {
+        <tr>
+            <td>
+                @metric.Key
+            </td>
+            <td>
+                @metric.Name
+            </td>
+            <td>
+                @metric.Value
+            </td>
+        </tr>
+    }
+</table>
