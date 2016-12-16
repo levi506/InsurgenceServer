@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InsurgenceServer.Database
 {
@@ -14,9 +15,16 @@ namespace InsurgenceServer.Database
                 conn.Close();
                 return LoginResult.WrongUsername;
             }
-            const string logincommand = "SELECT user_id, usergroup, banned, password, admin FROM users WHERE username = @param_val_1;";
+            const string logincommand = "SELECT users.user_id, usergroup, banned, password, admin, " +
+                                        "GROUP_CONCAT(ip separator ',') as 'IPs', " +
+                                        "(SELECT COUNT(*) FROM ips WHERE ip=@param_val_2 AND ipban=1) ipbans " +
+                                        "FROM users " +
+                                        "INNER JOIN ips " +
+                                        "ON users.user_id=ips.user_id " +
+                                        "WHERE username = @param_val_1 ";
             var m = new MySqlCommand(logincommand, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
+            m.Parameters.AddWithValue("@param_val_2", client.Ip.ToString());
             var result = m.ExecuteReader();
             var ret = LoginResult.Unset;
             if (!result.HasRows)
@@ -24,6 +32,8 @@ namespace InsurgenceServer.Database
                 conn.Close();
                 return LoginResult.WrongUsername;
             }
+            var ips = new List<string>();
+
             while (result.Read())
             {
                 if (result["password"].ToString() != password)
@@ -35,17 +45,11 @@ namespace InsurgenceServer.Database
                 {
                     client.Admin = false;
                 }
-                else if (result["admin"] is byte)
+                else if ((bool)result["admin"])
                 {
-                    client.Admin = Convert.ToBoolean((byte)result["admin"]);
+                    client.Admin = true;
                 }
-                else
-                {
-                    if ((bool)result["admin"])
-                    {
-                        client.Admin = true;
-                    }
-                }
+
                 if (client.Admin)
                 {
                     Console.WriteLine("Admin logged in, username: " + username);
@@ -55,42 +59,17 @@ namespace InsurgenceServer.Database
                     conn.Close();
                     return LoginResult.Banned;
                 }
+                if (((long)result["ipbans"] > 0))
+                {
+                    ret = LoginResult.IpBanned;
+                }
+                ips = result["IPs"].ToString().Split(',').ToList();
+
                 var id = (uint)result["user_id"];
                 client.UserId = id;
             }
             result.Close();
-            const string ipCommand = "SELECT ip, ipban FROM ips WHERE user_id = @param_val_1";
-            var n = new MySqlCommand(ipCommand, conn.Connection);
-            n.Parameters.AddWithValue("@param_val_1", client.UserId);
-            var ipresult = n.ExecuteReader();
-            var ips = new List<string>();
-            if (ipresult.HasRows)
-            {
-                while (ipresult.Read())
-                {
-                    if (ipresult["ipban"].GetType() != typeof(DBNull))
-                    {
-                        if (ipresult["ipban"] is bool)
-                        {
-                            var ipban = (bool)ipresult["ipban"];
-                            if (ipban && !client.Admin)
-                            {
-                                ret = LoginResult.IpBanned;
-                            }
-                        }
-                        if (ipresult["ipban"] is sbyte)
-                        {
-                            var ipban = Convert.ToBoolean((SByte)ipresult["ipban"]);
-                            if (ipban && !client.Admin)
-                            {
-                                ret = LoginResult.IpBanned;
-                            }
-                        }
-                    }
-                    ips.Add((string)ipresult["ip"]);
-                }
-            }
-            ipresult.Close();
+
             if (!ips.Contains(client.Ip.ToString()))
             {
                 const string ipsetcommand = "INSERT INTO ips VALUES (@param_val_1, @param_val_2, @param_val_3)";
@@ -100,7 +79,6 @@ namespace InsurgenceServer.Database
                 o.Parameters.AddWithValue("@param_val_3", 0);
                 o.ExecuteNonQuery();
             }
-
 
             if (ret == LoginResult.Unset)
                 ret = LoginResult.Okay;
@@ -122,36 +100,34 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                var check = new MySqlCommand("SELECT username FROM users WHERE username = @val", conn.Connection);
+                var check = new MySqlCommand("SELECT " +
+                                             "(SELECT COUNT(*) username FROM users WHERE username = @val) usernames, " +
+                                             "(SELECT COUNT(*) FROM ips WHERE ip = @ip AND ipban = 1) ipbans", conn.Connection);
                 check.Parameters.AddWithValue("val", username);
+                check.Parameters.AddWithValue("ip", client.Ip.ToString());
                 var checkres = check.ExecuteReader();
-                if (checkres.HasRows)
+
+                var canContinue = true;
+                while (checkres.Read())
                 {
-                    client.SendMessage("<REG result=0>");
+                    if ((long) checkres["usernames"] > 0)
+                    {
+                        client.SendMessage("<REG result=0>");
+                        canContinue = false;
+                    }
+                    else if ((long) checkres["ipbans"] > 0)
+                    {
+                        client.SendMessage("<LOG result=2>");
+                        canContinue = false;
+                    }
+                }
+
+                if (!canContinue)
+                {                  
                     conn.Close();
                     return;
                 }
                 checkres.Close();
-                var checke = new MySqlCommand("SELECT username FROM users WHERE email = @val", conn.Connection);
-                checke.Parameters.AddWithValue("val", email);
-                var checkrese = checke.ExecuteReader();
-                if (checkrese.HasRows)
-                {
-                    client.SendMessage("<REG result=1>");
-                    conn.Close();
-                    return;
-                }
-                checkrese.Close();
-
-                var ipban = new MySqlCommand("SELECT COUNT(*) FROM ips WHERE ip = @ip AND ipban = 1", conn.Connection);
-                ipban.Parameters.AddWithValue("ip", client.Ip.ToString());
-                var ipbancount = int.Parse(ipban.ExecuteScalar().ToString());
-                if (ipbancount > 0)
-                {
-                    client.SendMessage("<LOG result=2>");
-                    conn.Close();
-                    return;
-                }
 
                 var create = new MySqlCommand("INSERT INTO users (username, password, email, usergroup, base, sprite) " + 
                     "VALUES (@name, @pass, @email, @usergroup, @base, @sprite)", 
