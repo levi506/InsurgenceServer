@@ -101,9 +101,9 @@ namespace InsurgenceServer
         [ServerCommand("UBASE", true)]
         public static void UploadBaseRequest(Client client, CommandHandler command)
         {
-            if (Utilities.FsChecker.IsValid(client, command.Data["base"]))
+            if (!Utilities.FsChecker.IsValid(client, command.Data["base"]))
             {
-                client.SendMessage("<UBASE result=2>");
+                client.SendMessage("<UBASE result=0>");
                 return;
             }
             Database.DbFriendSafari.UploadBase(client.UserId, command.Data["base"]);

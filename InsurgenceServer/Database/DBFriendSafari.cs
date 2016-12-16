@@ -45,10 +45,10 @@ namespace InsurgenceServer.Database
                     conn.Close();
                     return;
                 }
-                var Base = result["friendsafari.base"];
+                var Base = result["base"];
                 
-                var messageDb = result["friendsafari.message"];
-                var message = String.Empty;
+                var messageDb = result["message"];
+                string message;
                 if (messageDb is DBNull)
                 {
                     message = "nil";
@@ -72,7 +72,7 @@ namespace InsurgenceServer.Database
                                        "VALUES (@param_val_2, @param_val_1) " +
                                        "ON DUPLICATE KEY " +
                                        "UPDATE " +
-                                       "base = VALUES(@param_val_1)";
+                                       "base = @param_val_1";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", Base);
                 m.Parameters.AddWithValue("@param_val_2", userId);
