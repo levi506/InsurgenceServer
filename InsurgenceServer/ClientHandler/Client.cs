@@ -102,7 +102,6 @@ namespace InsurgenceServer
 		internal void Login(string username, string password)
 		{
 			var result = Database.DbAuthentication.Login(username, password, this);
-			//TODO: add ip bans etc here
 			if (result == Database.LoginResult.Okay)
 			{
 				Username = username.ToLower();

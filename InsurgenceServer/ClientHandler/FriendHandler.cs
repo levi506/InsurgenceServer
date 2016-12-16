@@ -96,7 +96,6 @@
                 Database.DbFriendHandler.UpdateFriends(client);
                 Database.DbFriendHandler.UpdateFriends(c);
 
-                //TODO: Send messages to both clients about removed friends
                 client.SendMessage($"FRIENDREMOVE user={username} result=2");
                 c.SendMessage($"FRIENDREMOVE user={client.Username} result=2");
 

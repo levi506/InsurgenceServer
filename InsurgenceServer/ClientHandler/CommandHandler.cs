@@ -96,9 +96,7 @@ namespace InsurgenceServer
         [ServerCommand("VBASE", true)]
         public static void VisitBaseRequest(Client client, CommandHandler command)
         {
-            var b = Database.DbFriendSafari.GetBase(command.Data["user"], client);
-            if (b == null) return;
-            client.SendMessage($"<VBASE user={command.Data["user"]} result=2 base={b}>");
+            Database.DbFriendSafari.GetBase(command.Data["user"], client);
         }
         [ServerCommand("UBASE", true)]
         public static void UploadBaseRequest(Client client, CommandHandler command)
@@ -111,6 +109,34 @@ namespace InsurgenceServer
             Database.DbFriendSafari.UploadBase(client.UserId, command.Data["base"]);
             client.SendMessage("<UBASE result=1>");
         }
+
+        [ServerCommand("BASEMSG", true)]
+        public static void ChangeBaseMessageRequest(Client client, CommandHandler command)
+        {
+            if (string.IsNullOrWhiteSpace(command.Data["message"]))
+            {
+                Database.DbFriendSafari.RemoveMessage(client.UserId);
+            }
+            else
+            {
+                Database.DbFriendSafari.SetMessage(client.UserId, command.Data["message"]);
+            }
+        }
+
+        [ServerCommand("BASEGIFT", true)]
+        public static void AddGiftRequest(Client client, CommandHandler command)
+        {
+            var i = Database.DbFriendSafari.AddGift(client, uint.Parse(command.Data["gift"]), command.Data["username"]);
+            client.SendMessage($"<BASEGIFT result={i}>");
+        }
+
+        [ServerCommand("GETGIFTS", true)]
+        public static void GetGiftsRequest(Client client, CommandHandler command)
+        {
+            Database.DbFriendSafari.GetGifts(client);
+        }
+
+
         [ServerCommand("BAT", true)]
         public static void BattleRequest(Client client, CommandHandler command)
         {
