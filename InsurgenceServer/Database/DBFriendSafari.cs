@@ -58,7 +58,7 @@ namespace InsurgenceServer.Database
                     message = messageDb.ToString();
                 }
                 conn.Close();
-                client.SendMessage($"<VBASE user={username} result=2 base={Base} message={message}>");
+                client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
                 return;
             }
             conn.Close();
@@ -83,6 +83,8 @@ namespace InsurgenceServer.Database
 
         public static void SetMessage(uint userId, string message)
         {
+            message = Utilities.Encoding.RemoveSpecialCharacters(message);
+
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {

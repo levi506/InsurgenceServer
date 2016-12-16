@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace InsurgenceServer.Utilities
 {
@@ -13,6 +14,11 @@ namespace InsurgenceServer.Utilities
         {
             var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public static string RemoveSpecialCharacters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9_. ']+", "", RegexOptions.Compiled);
         }
     }
 }
