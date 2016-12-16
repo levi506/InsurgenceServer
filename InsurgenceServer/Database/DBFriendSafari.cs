@@ -54,7 +54,11 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                const string command = "UPDATE friendsafari SET base = @param_val_1 WHERE user_id = @param_val_2;";
+                const string command = "INSERT INTO friendsafari (user_id, base) " +
+                                       "VALUES (@param_val_2, @param_val_1) " +
+                                       "ON DUPLICATE KEY " +
+                                       "UPDATE " +
+                                       "base = VALUES(@param_val_1)";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", Base);
                 m.Parameters.AddWithValue("@param_val_2", userId);
