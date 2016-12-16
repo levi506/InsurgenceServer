@@ -13,7 +13,11 @@ namespace InsurgenceServer.Database
                 conn.Close();
                 return null;
             }
-            const string command = "SELECT banned, base FROM users WHERE username = @param_val_1;";
+            const string command = "SELECT friendsafari.base, users.banned, base " +
+                                   "FROM users " +
+                                   "INNER JOIN friendsafari " +
+                                   "ON friendsafari.user_id = users.user_id " +
+                                   "WHERE username = @param_val_1;";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
             var result = m.ExecuteReader();
@@ -50,7 +54,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                const string command = "UPDATE users SET base = @param_val_1 WHERE user_id = @param_val_2;";
+                const string command = "UPDATE friendsafari SET base = @param_val_1 WHERE user_id = @param_val_2;";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", Base);
                 m.Parameters.AddWithValue("@param_val_2", userId);
