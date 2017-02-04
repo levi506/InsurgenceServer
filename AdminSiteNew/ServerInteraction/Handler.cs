@@ -34,6 +34,14 @@ namespace AdminSiteNew.ServerInteraction
                 var T = client.ConnectAsync("127.0.0.1", 6419);
                 T.Wait();
             }
+            catch (AggregateException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Server is not online");
+                Console.ResetColor();
+                Crashed = true;
+                return;
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
