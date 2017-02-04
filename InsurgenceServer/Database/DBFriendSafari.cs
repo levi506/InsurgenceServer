@@ -57,12 +57,52 @@ namespace InsurgenceServer.Database
                 {
                     message = messageDb.ToString();
                 }
-                conn.Close();
                 client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
-                return;
+                break;
             }
             conn.Close();
         }
+
+        public static void GetRandomBase(Client client)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected())
+            {
+                conn.Close();
+                return;
+            }
+            const string command = "SELECT friendsafari.base, friendsafari.message, users.username, users.banned" +
+                                   "FROM friendsafari " +
+                                   "INNER JOIN users " +
+                                   "ON friendsafari.user_id = users.user_id " +
+                                   "WHERE base IS NOT NULL " +
+                                   "AND users.banned IS NOT 1" +
+                                   "ORDER BY RAND() " +
+                                   "LIMIT 1";
+            var m = new MySqlCommand(command, conn.Connection);
+            var result = m.ExecuteReader();
+            while (result.Read())
+            {
+                var Base = result["base"];
+
+                var messageDb = result["message"];
+                var username = result["username"];
+                string message;
+                if (messageDb is DBNull)
+                {
+                    message = "nil";
+                }
+                else
+                {
+                    message = messageDb.ToString();
+                }
+                client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
+                break;
+            }
+            conn.Close();
+        }
+
+
         public static void UploadBase(uint userId, string Base)
         {
             var conn = new OpenConnection();
@@ -155,7 +195,8 @@ namespace InsurgenceServer.Database
             //Turn the string we got from the database into a List of unsigned integers
             var giftsList = oldGifts.Split(',').Select(x => new GiftHolder(x)).ToList();
 
-            if (giftsList.Count >= Data.MaximumGifts)
+            var currentGiftAmount = giftsList.Sum(x => x.Amount);
+            if (currentGiftAmount >= Data.MaximumGifts)
             {
                 return 2;
             }
@@ -193,10 +234,20 @@ namespace InsurgenceServer.Database
             const string command = "SELECT giftbox FROM friendsafari WHERE user_id = @param_val_1";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", client.UserId);
-            var gifts = m.ExecuteScalar().ToString();
+            var gifts = m.ExecuteScalar();
+
+            string giftString;
+            if (gifts is DBNull)
+            {
+                giftString = "nil";
+            }
+            else
+            {
+                giftString = gifts.ToString();
+            }
 
             //Send the gifts
-            client.SendMessage($"<FSGIFTS gifts={gifts}>");
+            client.SendMessage($"<FSGIFTS gifts={giftString}>");
 
             //Remove the gifts from the database
             const string removeCommand = "UPDATE friendsafari SET giftbox = NULL WHERE user_id = @param_val_1";
@@ -204,6 +255,49 @@ namespace InsurgenceServer.Database
             rm.Parameters.AddWithValue("@param_val_1", client.UserId);
             rm.ExecuteNonQuery();
         }
+
+        public static void SetTrainer(Client client, string trainer)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected())
+                return;
+
+            const string command = "UPDATE friendsafari SET trainer = @param_val_1 WHERE user_id = param_val_2";
+            var m = new MySqlCommand(command, conn.Connection);
+            m.Parameters.AddWithValue("@param_val_1", trainer);
+            m.Parameters.AddWithValue("@param_val_2", client.UserId);
+            m.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
+        public static void GetTrainer(Client client, string username)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected())
+                return;
+
+            const string command = "SELECT trainer " +
+                                   "FROM friendsafari " +
+                                   "INNER JOIN users " +
+                                   "ON users.user_id = friendsafari.user_id " +
+                                   "WHERE users.username = @param_val_1";
+            var m = new MySqlCommand(command, conn.Connection);
+            m.Parameters.AddWithValue("@param_val_1", username);
+
+            var trainerObj = m.ExecuteScalar();
+            if (trainerObj is DBNull)
+            {
+                client.SendMessage($"<BASETRA result=0 trainer=nil>");
+            }
+            else
+            {
+                client.SendMessage($"<BASETRA result=1 trainer={Utilities.Encoding.Base64Encode(trainerObj.ToString())}>");
+            }
+        }
+
+
+
 
         public static bool VerifyGift(uint gift)
         {

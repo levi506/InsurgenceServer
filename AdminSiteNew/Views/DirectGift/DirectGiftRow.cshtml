@@ -1,0 +1,53 @@
+﻿@using AdminSiteNew.Models
+@using AdminSiteNew.PokemonHelper
+@model AdminSiteNew.Models.DirectGiftBase
+
+<tr>
+    <th>
+        @Model.Index
+    </th>
+    <th>
+        @Model.Type
+    </th>
+    @if (Model.Type == DirectGiftType.Pokemon)
+    {
+        var pokemon = (Model as PokemonDirectGift).Pokemon;
+        <td>
+            @PokemonHelper.GetPokemonName(pokemon.species)
+        </td>
+        <td>
+            @pokemon.name
+        </td>
+        <td>
+            @pokemon.level
+        </td>
+        <td>
+            @if (pokemon.isShiny)
+            {
+                @:Shiny
+            }
+            else
+            {
+                @:Bland
+            }
+        </td>
+    }
+    else if (Model.Type == DirectGiftType.Item)
+    {
+        var item = (Model as ItemDirectGift);
+        <td colspan="2">
+            @item.Item
+        </td>
+        <td colspan="2">
+            @item.Amount
+        </td>
+    }
+    <td>
+        <input type="button" class="button warning" title="AddGift" value="Modify Gift"
+               onclick="location.href = '@Url.Action("Details", "DirectGift", new {id = Model.Username +"?" + @Model.Index + "?false"})'" />
+    </td>
+    <td>
+        <input type="button" class="button danger" title="AddGift" value="Delete Gift"
+               onclick="location.href = '@Url.Action("DeleteGift", "DirectGift", new {username = Model.Username, index = Model.Index})'" />
+    </td>
+</tr>

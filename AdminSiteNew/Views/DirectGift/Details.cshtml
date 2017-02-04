@@ -1,0 +1,144 @@
+﻿@using System.Runtime.InteropServices.ComTypes
+@using AdminSiteNew.Models
+@using AdminSiteNew.PokemonHelper
+@model AdminSiteNew.Models.DirectGiftDetailModel
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Direct Gift";
+}
+@{
+    PokemonDirectGift pokemonModel = Model.gift as PokemonDirectGift;
+    ItemDirectGift itemModel = Model.gift as ItemDirectGift;
+}
+
+<table class="table border" style="display: inline-table;">
+    <tr>
+        <th>
+            Gift Type
+        </th>
+        <td>
+            @Html.DropDownList("Type", new SelectList(Enum.GetNames(typeof(DirectGiftType))),  new
+            {
+                id="TypeID"
+            })
+        </td>
+    </tr>
+    
+    
+</table>
+
+<form asp-controller="DirectGift" asp-action="AddPokemonGift" method="post" id="pokemonForm" >
+    <table class="table border" id="pokemonTable">
+        <tr>
+            <th colspan="4">Pokemon</th>
+        </tr>
+        <tr>
+            <th>ID </th>
+            <td><input type="number" readonly="readonly" asp-for="@Model.giftIndex" name="giftIndex"></input></td>
+            <th>User </th>
+            <td><input type="text" readonly="readonly" asp-for="@Model.username" name="username"></input></td>
+        </tr>
+        <tr>
+            <th>Species</th>
+            <td><select readonly asp-for="@pokemonModel.Pokemon.species" asp-items="@Html.GetEnumSelectList(typeof(PokemonList))"></select></td>
+            <th>Name</th>
+            <td><textarea asp-for="@pokemonModel.Pokemon.name"></textarea></td>
+        </tr>
+        <tr>
+            <th>OT</th>
+            <td><textarea asp-for="@pokemonModel.Pokemon.ot"></textarea></td>
+            <th>Shiny</th>
+            <td><input type="checkbox" asp-for="@pokemonModel.Pokemon.isShiny"/></td>
+        </tr>
+        <tr>
+            <th>Level</th>
+            <td><input type="number" asp-for="@pokemonModel.Pokemon.level" min="1" max="120"/></td>
+        </tr>
+        <tr>
+            <th colspan="4">
+                <input type="submit" value="Save" />
+            </th>
+        </tr>
+    </table>
+</form>
+
+<form asp-controller="DirectGift" asp-action="AddItemGift" method="post" id="itemForm">
+    <table class="table border" id="itemTable">
+        <tr>
+            <th colspan="4">Item</th>
+        </tr>
+        <tr>
+            <th>ID </th>
+            <td><input type="number" readonly="readonly" asp-for="@Model.giftIndex" name="giftIndex"></input></td>
+            <th>User </th>
+            <td><input type="text" readonly="readonly" asp-for="@Model.username" name="username"></input></td>
+        </tr>
+        <tr>
+            <th>Item</th>
+            <td>
+                <select readonly asp-for="@itemModel.Item" asp-items="@Html.GetEnumSelectList(typeof(ItemList))"></select>
+            </td>
+            <th>Amount</th>
+            <td>
+                <input type="number" asp-for="@itemModel.Amount" min="1" max="99" required="true" value="1"/>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="4">
+                <input type="submit" value="Save"/>
+            </th>
+        </tr>
+    </table>
+
+</form>
+
+
+<script>
+    var currentType;
+    function ShowRelevant() {
+        if (currentType == null) {
+            currentType = "@Html.Raw(Model.gift.Type)";
+            $('#TypeID').value = currentType;
+        }
+        var type = currentType;
+
+        if (type == "Item") {
+            ShowItem();
+            HidePokemon();
+        }
+        else if (type == "Pokemon") {
+            HideItem();
+            ShowPokemon();
+        } else {
+            HideItem();
+            HidePokemon();
+        }
+    }
+
+    function ShowItem() {
+        $('#itemForm').css("display", "flex");
+    }
+
+    function HideItem() {
+        $('#itemForm').css("display", "none");
+    }
+
+    function ShowPokemon() {
+        $('#pokemonForm').css("display", "flex");
+    }
+
+    function HidePokemon() {
+        $('#pokemonForm').css("display", "none");
+    }
+
+    ShowRelevant();
+    $(function() {
+
+        $("#TypeID").change(function() {
+            var selected = $(this).val().toString();
+            currentType = selected;
+            ShowRelevant();
+        });
+    });
+</script>

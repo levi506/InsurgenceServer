@@ -98,6 +98,12 @@ namespace InsurgenceServer
         {
             Database.DbFriendSafari.GetBase(command.Data["user"], client);
         }
+
+        [ServerCommand("VRAND", true)]
+        public static void VisitRandomBase(Client client, CommandHandler command)
+        {
+            Database.DbFriendSafari.GetRandomBase(client);
+        }
         [ServerCommand("UBASE", true)]
         public static void UploadBaseRequest(Client client, CommandHandler command)
         {
@@ -113,13 +119,13 @@ namespace InsurgenceServer
         [ServerCommand("BASEMSG", true)]
         public static void ChangeBaseMessageRequest(Client client, CommandHandler command)
         {
-            if (string.IsNullOrWhiteSpace(command.Data["message"]))
+            if (string.IsNullOrWhiteSpace(command.Data["message"]) || command.Data["message"] == "nil")
             {
                 Database.DbFriendSafari.RemoveMessage(client.UserId);
             }
             else
             {
-                Database.DbFriendSafari.SetMessage(client.UserId, command.Data["message"]);
+                Database.DbFriendSafari.SetMessage(client.UserId, Utilities.Encoding.Base64Decode(command.Data["message"]));
             }
         }
 
@@ -136,6 +142,17 @@ namespace InsurgenceServer
             Database.DbFriendSafari.GetGifts(client);
         }
 
+        [ServerCommand("BASEBAT", true)]
+        public static void SetBaseTrainerRequest(Client client, CommandHandler command)
+        {
+            Database.DbFriendSafari.SetTrainer(client, Utilities.Encoding.Base64Decode(command.Data["trainer"]));
+        }
+
+        [ServerCommand("GETBAT", false)]
+        public static void GetBaseTrainerRequest(Client client, CommandHandler command)
+        {
+            Database.DbFriendSafari.GetTrainer(client, command.Data["username"]);
+        }
 
         [ServerCommand("BAT", true)]
         public static void BattleRequest(Client client, CommandHandler command)
