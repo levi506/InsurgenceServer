@@ -192,7 +192,7 @@ namespace AdminSiteNew.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "UPDATE ips SET ipban= @value WHERE user_id = @parameter";
+                var com = "UPDATE ips SET ipban= @value WHERE ip IN (SELECT ip FROM ips WHERE user_id = @parameter)";
                 MySqlCommand m = new MySqlCommand(com, conn.Connection);
                 m.Parameters.AddWithValue("parameter", id);
                 m.Parameters.AddWithValue("value", value);
