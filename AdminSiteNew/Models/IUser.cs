@@ -53,6 +53,10 @@ namespace AdminSiteNew.Models
         {
             get
             {
+                if (Pokemon == null)
+                {
+                    return "None";
+                }
                 return string.Join(", ", Pokemon.ToArray());
             }
             
