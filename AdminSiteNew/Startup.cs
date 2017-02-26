@@ -16,6 +16,7 @@ using Microsoft.Extensions.WebEncoders;
 using Microsoft.AspNetCore.Http.Authentication;
 using System.Security.Claims;
 using AdminSiteNew.Database;
+using AdminSiteNew.Models;
 
 namespace AdminSiteNew
 {
@@ -47,7 +48,10 @@ namespace AdminSiteNew
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            services.AddMvc(x =>
+            {
+               
+            });
 
             services.AddIdentity<User, Role>();
             services.AddAuthentication(o =>
@@ -80,6 +84,7 @@ namespace AdminSiteNew
         {
             loggerFactory.AddConsole(LogLevel.Warning);
             //loggerFactory.AddDebug();
+            PokemonDatabase.LoadDatabase();
 
             //app.UseApplicationInsightsRequestTelemetry();
 

@@ -16,6 +16,7 @@ namespace AdminSiteNew.PokemonHelper
     }
     public enum ItemList : short
     {
+        None = 0,
         Repel = 1,
         SuperRepel,
         MaxRepel,

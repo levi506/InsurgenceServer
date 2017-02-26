@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcSample.Web.Models;
-using NuGet.Protocol.Core.v3;
 
 namespace AdminSiteNew.Controllers
 {

@@ -72,14 +72,86 @@ namespace AdminSiteNew.Controllers
         [HttpPost]
         public ActionResult AddPokemonGift()
         {
+            var otgender = int.Parse(Request.Form["pokemonModel.Pokemon.otgender"]);
+            if (otgender == 2) otgender = 0;
             var pkmn = new Pokemon
             {
                 species = short.Parse(Request.Form["pokemonModel.Pokemon.species"]),
                 name = Request.Form["pokemonModel.Pokemon.name"].ToString(),
                 ot = Request.Form["pokemonModel.Pokemon.ot"].ToString(),
                 isShiny = bool.Parse(Request.Form["pokemonModel.Pokemon.isShiny"][0]),
-                level = byte.Parse(Request.Form["pokemonModel.Pokemon.level"])
+                level = byte.Parse(Request.Form["pokemonModel.Pokemon.level"]),
+                gender = byte.Parse(Request.Form["pokemonModel.Pokemon.gender"]),
+                nature = byte.Parse(Request.Form["pokemonModel.Pokemon.nature"]),
+                happiness = int.Parse(Request.Form["pokemonModel.Pokemon.happiness"]),
+                item = int.Parse(Request.Form["pokemonModel.Pokemon.item"]),
+                iv = new[]
+                {
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[0]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[1]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[2]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[3]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[4]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.iv[5]"])
+                },
+                ev = new[]
+                {
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[0]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[1]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[2]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[3]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[4]"]),
+                    int.Parse(Request.Form["pokemonModel.Pokemon.ev[5]"])
+                },
+                moves = new List<GameMove>
+                {
+                    new GameMove
+                    {
+                        id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[0].id"]),
+                        pp = int.Parse(Request.Form["pokemonModel.Pokemon.moves[0].pp"]),
+                        ppup = int.Parse(Request.Form["pokemonModel.Pokemon.moves[0].ppup"]),
+                    },
+                    new GameMove
+                    {
+                        id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[1].id"]),
+                        pp = int.Parse(Request.Form["pokemonModel.Pokemon.moves[1].pp"]),
+                        ppup = int.Parse(Request.Form["pokemonModel.Pokemon.moves[1].ppup"]),
+                    },
+                    new GameMove
+                    {
+                        id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[2].id"]),
+                        pp = int.Parse(Request.Form["pokemonModel.Pokemon.moves[2].pp"]),
+                        ppup = int.Parse(Request.Form["pokemonModel.Pokemon.moves[2].ppup"]),
+                    },
+                    new GameMove
+                    {
+                        id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].id"]),
+                        pp = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].pp"]),
+                        ppup = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].ppup"]),
+                    },
+                },
+                otgender = otgender,
+                obtainMode = 4
             };
+            pkmn.exp = GrowthRates.CalculateExp(pkmn.species, pkmn.level);
+
+            var rand = new Random();
+            var id = (byte)rand.Next(256);
+            id |= (byte)(((byte) rand.Next(256)) << 8);
+            id |= (byte)(((byte)rand.Next(256)) << 16);
+            id |= (byte)(((byte)rand.Next(256)) << 24);
+            pkmn.personalID = id;
+            var data = PokemonDatabase.GetData(pkmn.species);
+            var abil = byte.Parse(Request.Form["pokemonModel.Pokemon.ability"]);
+            if (data.Abilities.Count < 2 && abil == 1)
+            {
+                abil = 0;
+            }
+            if (data.HiddenAbility.Count < 1 && abil == 2)
+            {
+                abil = 0;
+            }
+            pkmn.ability = abil;
 
             var username = Request.Form["username"].ToString();
             var ls = DBDirectGifts.GetGifts(username);

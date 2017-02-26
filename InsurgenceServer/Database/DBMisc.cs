@@ -12,22 +12,21 @@ namespace InsurgenceServer.Database
                 conn.Close();
                 return null;
             }
-            const string command = "SELECT id, gift FROM direct_gift WHERE user_id = @id;";
+            const string command = "SELECT gifts FROM directgift WHERE user_id = @id;";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@id", client.UserId);
             var result = m.ExecuteReader();
             string s = null;
-            var id = -1;
             while (result.Read())
             {
-                s = (string)result["gift"];
-                id = (int)result["id"];
+                s = (string)result["gifts"];
             }
-            if (id != -1)
+            result.Close();
+            if (s != null)
             {
-                const string delcomm = "DELETE FROM direct_gift WHERE id = @id";
+                const string delcomm = "DELETE FROM directgift WHERE user_id = @id";
                 var n = new MySqlCommand(delcomm, conn.Connection);
-                n.Parameters.AddWithValue("@id", id);
+                n.Parameters.AddWithValue("@id", client.UserId);
                 n.ExecuteNonQuery();
             }
 

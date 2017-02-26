@@ -4,23 +4,26 @@
     <span class="app-bar-divider"></span>
     <ul class="app-bar-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/Users/Users">Users</a></li>
-        <li>
-            <a href="" class="dropdown-toggle">Tradelogs</a>
-            <ul class="d-menu" data-role="dropdown">
-                <li><a href="/Trades/RecentTrades">Trades</a></li>
-                <li class="divider"></li>
-                <li><a href="/Trades/RecentWonderTrades">Wonder Trades</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="" class="dropdown-toggle">GTS</a>
-            <ul class="d-menu" data-role="dropdown">
-                <li><a href="/GTS/Index">Open Trades</a></li>
-                <li class="divider"></li>
-                <li><a href="/GTS/Closed">Accepted Trades</a></li>
-            </ul>
-        </li>
+        @if (User.HasClaim("Moderator", "Allowed"))
+        {
+            <li><a href="/Users/Users">Users</a></li>
+            <li>
+                <a href="" class="dropdown-toggle">Tradelogs</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Trades/RecentTrades">Trades</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Trades/RecentWonderTrades">Wonder Trades</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="" class="dropdown-toggle">GTS</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/GTS/Index">Open Trades</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/GTS/Closed">Accepted Trades</a></li>
+                </ul>
+            </li>
+        }
         @if (User.HasClaim("Developer", "Allowed"))
         {
             <li>

@@ -61,14 +61,12 @@ namespace AdminSiteNew.ServerInteraction
                 try
                 {
                     string s = SendMessage("<INFO>");
-                    Console.WriteLine(s);
                     var command = new CommandHandler(s);
                     UserCount = int.Parse(command.data["users"]);
                     TradeCount = int.Parse(command.data["trades"]);
                     BattleCount = int.Parse(command.data["battles"]);
                     WTCount = int.Parse(command.data["WT"]);
 
-                    Console.WriteLine(TradeCount);
                     System.Threading.Thread.Sleep(1000);
                 }
                 catch

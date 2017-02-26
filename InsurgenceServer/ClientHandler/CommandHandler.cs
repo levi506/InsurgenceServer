@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using InsurgenceServer.Database;
 
 namespace InsurgenceServer
 {
@@ -236,7 +237,15 @@ namespace InsurgenceServer
         public static void DirectGiftRequest(Client client, CommandHandler command)
         {
             var s = Database.DbMisc.GetDirectGift(client);
-            client.SendMessage(s == null ? "<DIRGIFT result=0 gift=nil>" : $"<DIRGIFT result=1 gift={s}>");
+            if (s != null)
+            {
+                var encode = Utilities.Encoding.Base64Encode(s);
+                client.SendMessage($"<DIRGIFT result=1 gift={encode}>");
+            }
+            else
+            {
+                client.SendMessage($"<DIRGIFT result=0 gift=nil>");
+            }
         }
         [ServerCommand("ADDFRIEND", true)]
         public static void AddFriendRequest(Client client, CommandHandler command)
@@ -258,6 +267,7 @@ namespace InsurgenceServer
         {
             FriendHandler.DenyRequest(client, command.Data["user"]);
         }
+
     }
 
 

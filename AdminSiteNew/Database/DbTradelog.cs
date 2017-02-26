@@ -15,7 +15,7 @@ namespace AdminSiteNew.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "SELECT * FROM tradelog WHERE @parameter IN (user1, user2) ORDER BY i DESC LIMIT 0, 100";
+                var com = "SELECT * FROM newtradelog WHERE @parameter IN (user1, user2) ORDER BY i DESC LIMIT 0, 100";
                 MySqlCommand m = new MySqlCommand(com, conn.Connection);
                 m.Parameters.AddWithValue("parameter", username);
                 var l = new List<Trade>();
@@ -53,7 +53,7 @@ namespace AdminSiteNew.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var c = "SELECT * FROM tradelog ORDER BY i DESC LIMIT @val, 100";
+                var c = "SELECT * FROM newtradelog ORDER BY i DESC LIMIT @val, 100";
                 var m = new MySqlCommand(c, conn.Connection);
                 m.Parameters.AddWithValue("val", startIndex);
                 var l = new List<Trade>();
@@ -109,7 +109,7 @@ namespace AdminSiteNew.Database
                 conn.Close();
                 return new Trade();
             }
-            var c = "SELECT * FROM tradelog WHERE i = @index";
+            var c = "SELECT * FROM newtradelog WHERE i = @index";
             var m = new MySqlCommand(c, conn.Connection);
             m.Parameters.AddWithValue("index", i);
             var t = new Trade();

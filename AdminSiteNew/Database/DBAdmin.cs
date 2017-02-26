@@ -13,12 +13,12 @@ namespace AdminSiteNew.Database
         {
             var conn = new OpenConnection();
             if (!conn.isConnected())
-            {
+            { 
                 conn.Close();
                 return new List<AdminModels.UserPermissions>();
             }
             var l = new List<AdminModels.UserPermissions>();
-            const string command = "SELECT id, access, name FROM webadmin";
+            const string command = "SELECT id, access, name FROM newwebadmin";
             var mcom = new MySqlCommand(command, conn.Connection);
             var r = mcom.ExecuteReader();
             while (r.Read())
@@ -41,7 +41,7 @@ namespace AdminSiteNew.Database
                 conn.Close();
                 return;
             }
-            const string command = "UPDATE webadmin SET access= @access WHERE id= @id";
+            const string command = "UPDATE newwebadmin SET access= @access WHERE id= @id";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", userid);
             mcom.Parameters.AddWithValue("@access", permission);

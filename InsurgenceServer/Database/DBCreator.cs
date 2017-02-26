@@ -46,8 +46,15 @@ namespace InsurgenceServer.Database
                 "  `time` datetime DEFAULT NULL,  `i` smallint(10) NOT NULL AUTO_INCREMENT,  PRIMARY KEY (`i`))",
                 conn.Connection).ExecuteNonQuery();
             new MySqlCommand(
+                "CREATE TABLE IF NOT EXISTS `newtradelog` (  `user1` char(255) DEFAULT NULL,  `user2` char(255) DEFAULT NULL,  `pokemon1` json DEFAULT NULL,  `pokemon2` json DEFAULT NULL," +
+                "  `time` datetime DEFAULT NULL,  `i` smallint(10) NOT NULL AUTO_INCREMENT,  PRIMARY KEY (`i`))",
+                conn.Connection).ExecuteNonQuery();
+            new MySqlCommand(
                 "CREATE TABLE IF NOT EXISTS `wondertradelog`( `id` int(10) unsigned NOT NULL AUTO_INCREMENT,`username` varchar(255) DEFAULT NULL, `pokemon` varchar(255) DEFAULT NULL," + 
                 " `time` datetime DEFAULT NULL, PRIMARY KEY (`id`))", 
+                conn.Connection).ExecuteNonQuery();
+            new MySqlCommand(
+                "CREATE TABLE IF NOT EXISTS `directgift` (`gifts` json DEFAULT NULL,`user_id` int(11) NOT NULL, PRIMARY KEY (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8",
                 conn.Connection).ExecuteNonQuery();
         }
     }

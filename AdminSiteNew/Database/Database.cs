@@ -130,14 +130,14 @@ namespace AdminSiteNew.Database
             var conn = new OpenConnection();
             if (conn.isConnected())
             {
-                var com = "SELECT * FROM webadmin WHERE id = @param_val_1";
+                var com = "SELECT * FROM newwebadmin WHERE id = @param_val_1";
                 MySqlCommand MCom = new MySqlCommand(com, conn.Connection);
                 MCom.Parameters.AddWithValue("param_val_1", id);
                 var res = MCom.ExecuteReader();
                 if (!res.HasRows)
                 {
                     res.Close();
-                    var addcom = "INSERT INTO webadmin (id, name, access) VALUES (@param_val_1, @param_val_2, false)";
+                    var addcom = "INSERT INTO newwebadmin (id, name, access) VALUES (@param_val_1, @param_val_2, false)";
                     MySqlCommand AddCom = new MySqlCommand(addcom, conn.Connection);
                     AddCom.Parameters.AddWithValue("param_val_1", id);
                     AddCom.Parameters.AddWithValue("param_val_2", name);

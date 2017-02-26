@@ -75,6 +75,8 @@ namespace AdminSiteNew.Models
         public byte nature { get; set; }
         public bool isShiny { get; set; }
         public byte gender { get; set; }
+
+        public byte ability { get; set; }
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class GameMove
@@ -84,5 +86,39 @@ namespace AdminSiteNew.Models
         public int pp { get; set; }
     }
 
+    public enum PokemonGender
+    {
+        Male,
+        Female,
+        Genderless
+    }
 
+    public enum Nature
+    {
+        Hardy,
+        Lonely,
+        Brave,
+        Adamant,
+        Naughty,
+        Bold,
+        Docile,
+        Relaxed,
+        Impish,
+        Lax,
+        Timid,
+        Hasty,
+        Serious,
+        Jolly,
+        Naive,
+        Modest,
+        Mild,
+        Quiet,
+        Bashful,
+        Rash,
+        Calm,
+        Gentle,
+        Sassy,
+        Careful,
+        Quirky
+    }
 }

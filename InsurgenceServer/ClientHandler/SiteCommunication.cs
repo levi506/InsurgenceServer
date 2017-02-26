@@ -17,7 +17,6 @@ namespace InsurgenceServer
             {
 
                 var data = Encoding.ASCII.GetString(_bytes, 0, i);
-                Console.WriteLine(data);
                 if (data.EndsWith("&"))
                     data = data.Remove(data.Length - 1);
                 if (data.Contains("<INFO>"))
