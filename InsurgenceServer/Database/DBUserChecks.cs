@@ -31,7 +31,7 @@ namespace InsurgenceServer.Database
                 return false;
             }
             uint userid = 0;
-            const string command = "SELECT users.user_id, banned FROM users INNER JOIN  WHERE username = @param_val_1;";
+            const string command = "SELECT users.user_id, banned FROM users WHERE username = @param_val_1;";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
             var result = m.ExecuteReader();

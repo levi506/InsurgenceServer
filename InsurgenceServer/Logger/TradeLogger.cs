@@ -19,7 +19,7 @@ namespace InsurgenceServer
 				}
 				catch (Exception e) {
                     Logger.ErrorLog.Log(e);
-                    Console.WriteLine(e); }
+				}
 			}).ConfigureAwait(false);
 			#pragma warning restore 4014
 		}
