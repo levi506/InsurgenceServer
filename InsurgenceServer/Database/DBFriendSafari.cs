@@ -128,7 +128,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                const string command = "UPDATE friendsafari SET message = @param_val_1 WHERE user_id = param_val_2";
+                const string command = "UPDATE friendsafari SET message = @param_val_1 WHERE user_id = @param_val_2";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", message);
                 m.Parameters.AddWithValue("@param_val_2", userId);
@@ -142,7 +142,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (conn.IsConnected())
             {
-                const string command = "UPDATE friendsafari SET message = NULL WHERE user_id = param_val_2";
+                const string command = "UPDATE friendsafari SET message = NULL WHERE user_id = @param_val_2";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_2", userId);
                 m.ExecuteNonQuery();
@@ -262,7 +262,7 @@ namespace InsurgenceServer.Database
             if (!conn.IsConnected())
                 return;
 
-            const string command = "UPDATE friendsafari SET trainer = @param_val_1 WHERE user_id = param_val_2";
+            const string command = "UPDATE friendsafari SET trainer = @param_val_1 WHERE user_id = @param_val_2";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", trainer);
             m.Parameters.AddWithValue("@param_val_2", client.UserId);
