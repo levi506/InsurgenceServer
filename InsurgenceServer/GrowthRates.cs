@@ -27,7 +27,7 @@ namespace InsurgenceServer
                 case GrowthRate.Erratic:
                     if (exp <= GrowthRatesLookup.Erratic[100])
                     {
-                        return GrowthRatesLookup.Erratic.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Erratic.FindIndex(x => x >= exp);
                     }
                     else
                     {
@@ -42,7 +42,7 @@ namespace InsurgenceServer
                 case GrowthRate.Fast:
                     if (exp <= GrowthRatesLookup.Fast[100])
                     {
-                        return GrowthRatesLookup.Fast.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Fast.FindIndex(x => x >= exp);
                     }
                     else
                     {
@@ -51,7 +51,7 @@ namespace InsurgenceServer
                 case GrowthRate.Medium:
                     if (exp <= GrowthRatesLookup.Medium[100])
                     {
-                        return GrowthRatesLookup.Medium.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Medium.FindIndex(x => x >= exp);
                     }
                     else
                     {
@@ -60,7 +60,7 @@ namespace InsurgenceServer
                 case GrowthRate.Parabolic:
                     if (exp <= GrowthRatesLookup.Parabolic[100])
                     {
-                        return GrowthRatesLookup.Parabolic.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Parabolic.FindIndex(x => x >= exp);
                     }
                     else
                     {
@@ -75,7 +75,7 @@ namespace InsurgenceServer
                 case GrowthRate.Slow:
                     if (exp <= GrowthRatesLookup.Slow[100])
                     {
-                        return GrowthRatesLookup.Slow.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Slow.FindIndex(x => x >= exp);
                     }
                     else
                     {
@@ -84,7 +84,7 @@ namespace InsurgenceServer
                 case GrowthRate.Fluctuating:
                     if (exp <= GrowthRatesLookup.Fluctuating[100])
                     {
-                        return GrowthRatesLookup.Fluctuating.FindIndex(x => x <= exp);
+                        return GrowthRatesLookup.Fluctuating.FindIndex(x => x >= exp);
                     }
                     else
                     {
