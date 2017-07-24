@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InsurgenceServer.Database;
+using InsurgenceServer.Logger;
 
 namespace InsurgenceServer.WonderTrade
 {
     public static class WonderTradeHandler
     {
-        public static List<WonderTradeHolder> List = new List<WonderTradeHolder>();
+        public static SynchronizedCollection<WonderTradeHolder> List = new SynchronizedCollection<WonderTradeHolder>();
 
         public static void Loop()
         {
@@ -93,18 +94,15 @@ namespace InsurgenceServer.WonderTrade
         
         public static void DeleteFromClient(Client c)
         {
-            foreach (var trade in List)
+            foreach (var item in List.ToArray())
             {
                 try
                 {
-                    if (trade.Client == c)
-                    {
-                        List.Remove(trade);
-                    }
+                    if (item.Client == c) List.Remove(item);
                 }
-                catch
+                catch (Exception e)
                 {
-                    // ignored
+                    ErrorLog.Log(e);
                 }
             }
         }
@@ -116,7 +114,7 @@ namespace InsurgenceServer.WonderTrade
                 client.SendMessage("<WTRESULT reult=0 user=nil pkmn=nil>");
                 return;
             }
-            if (List.FindAll(x => x.Client == client).Count > 0)
+            if (List.Count(x => x.Client == client) > 0)
             {
                 return;
             }
