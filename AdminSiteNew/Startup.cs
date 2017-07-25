@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -88,16 +89,8 @@ namespace AdminSiteNew
 
             //app.UseApplicationInsightsRequestTelemetry();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
+            app.UseDeveloperExceptionPage();
+            app.UseBrowserLink();
 
             app.UseStaticFiles();
 
@@ -119,7 +112,10 @@ namespace AdminSiteNew
                 {
                     OnRemoteFailure = ctx =>
                     {
-                        ctx.Response.Redirect("/error?ErrorMessage=" + Microsoft.Extensions.WebEncoders.UrlEncoder.Default.UrlEncode(ctx.Failure.Message));
+                        throw ctx.Failure;
+                        ctx.Response.Redirect("/error?ErrorMessage=" +
+                                              Microsoft.Extensions.WebEncoders.UrlEncoder.Default.UrlEncode(ctx.Failure
+                                                  .Message));
                         ctx.HandleResponse();
                         return Task.FromResult(0);
                     },

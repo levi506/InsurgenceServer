@@ -28,7 +28,7 @@
             Owner
         </th>
         <td>
-            @Html.ActionLink(Model.OwnerName, "Users", "Admin", new {id = Model.OwnerName}, null)
+            @Html.ActionLink(Model.OwnerName, "Users", "Users", new {id = Model.OwnerName}, null)
         </td>
         <th>
             Species
@@ -81,7 +81,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <button class="button warning">Remove</button>
+            <button class="button warning" onclick="location.href='@Url.Action("Remove", "GTS", new { id = Model.Id })'">Remove</button>
         </td>
         <td colspan="2">
             <button class="button success" onclick="location.href='@Url.Action("Detail", "GTS", new { id = Model.Id })'">Details</button>

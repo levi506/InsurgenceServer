@@ -12,32 +12,18 @@ namespace AdminSiteNew
     {
         public static void Main(string[] args)
         {
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                var host = new WebHostBuilder()
-                    .UseUrls("http://5.135.154.100:5003", "http://localhost:5003")
-                    .UseKestrel()
-                    .UseContentRoot(Directory.GetCurrentDirectory())
-                    .UseIISIntegration()
-                    .UseStartup<Startup>()
-                    .Build();
-
-                host.Run();
-            }
-            else
-            {
-                var host = new WebHostBuilder()
-                .UseUrls("http://localhost:5004")
+            var host = new WebHostBuilder()
+#if DEBUG
+                .UseUrls("http://localhost:5003")
+#else
+                .UseUrls("http://5.135.154.100:5003", "http://localhost:5003")
+#endif
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
-
-                host.Run();
-            }
-                
-
+            host.Run();
         }
     }
 }

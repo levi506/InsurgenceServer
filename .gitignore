@@ -258,3 +258,5 @@ paket-files/
 *.sln.iml
 
 InsurgenceServer/Logger/DiscordAuth.cs
+
+AdminSiteNew/Database/Auth\.cs

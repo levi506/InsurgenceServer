@@ -10,7 +10,7 @@ namespace AdminSiteNew.Database
 {
     internal static class DbGTS
     {
-        public static List<GTSObject> GetClosedGTSTrades()
+        public static async Task<List<GTSObject>> GetClosedGTSTrades()
         {
             var conn = new OpenConnection();
             if (!conn.isConnected())
@@ -21,7 +21,7 @@ namespace AdminSiteNew.Database
             var l = new List<GTSObject>();
             const string command = "SELECT id, Offer, Result, user_id, ownername, username FROM GTS WHERE Accepted=1";
             var mcom = new MySqlCommand(command, conn.Connection);
-            var r = mcom.ExecuteReader();
+            var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {
                 l.Add(new GTSObject()
@@ -37,7 +37,7 @@ namespace AdminSiteNew.Database
             }
             return l;
         }
-        public static List<GTSObject> GetOpenGTSTrades()
+        public static async Task<List<GTSObject>> GetOpenGTSTrades()
         {
             var conn = new OpenConnection();
             if (!conn.isConnected())
@@ -48,7 +48,7 @@ namespace AdminSiteNew.Database
             var l = new List<GTSObject>();
             const string command = "SELECT id, Offer, Request, user_id, ownername FROM GTS WHERE Accepted=0";
             var mcom = new MySqlCommand(command, conn.Connection);
-            var r = mcom.ExecuteReader();
+            var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {
                 l.Add(new GTSObject
@@ -64,7 +64,7 @@ namespace AdminSiteNew.Database
             return l;
         }
 
-        public static GTSObject GetSingleGTSTrade(int i)
+        public static async Task<GTSObject> GetSingleGTSTrade(int i)
         {
             var conn = new OpenConnection();
             if (!conn.isConnected())
@@ -75,7 +75,7 @@ namespace AdminSiteNew.Database
             const string command = "SELECT id, Offer, Request, user_id, Accepted, ownername, username, Result FROM GTS WHERE id = @id";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", i);
-            var r = mcom.ExecuteReader();
+            var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {
                 Pokemon result = null;
@@ -94,6 +94,20 @@ namespace AdminSiteNew.Database
                 };
             }
             return null;
+        }
+
+        public static async Task DeleteGTS(int id)
+        {
+            var conn = new OpenConnection();
+            if (!conn.isConnected())
+            {
+                conn.Close();
+                return;
+            }
+            const string command = "DELETE FROM GTS WHERE id = @id";
+            var mcom = new MySqlCommand(command, conn.Connection);
+            mcom.Parameters.AddWithValue("@id", id);
+            await mcom.ExecuteNonQueryAsync();
         }
 
     }

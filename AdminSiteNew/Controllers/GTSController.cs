@@ -14,33 +14,42 @@ namespace AdminSiteNew.Controllers
     [Authorize(Policy = "Moderator")]
     public class GTSController : Controller
     {
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = new GTSListModel
             {
-                GTS = DbGTS.GetOpenGTSTrades(),
+                GTS = await DbGTS.GetOpenGTSTrades(),
                 StartIndex = 0
             };
             return View(model);
         }
 
-        public ActionResult Closed()
+        public async Task<IActionResult> Closed()
         {
             var model = new GTSListModel()
             {
-                GTS = DbGTS.GetClosedGTSTrades(),
+                GTS =  await DbGTS.GetClosedGTSTrades(),
                 StartIndex = 0
             };
             return View(model);
         }
 
-        public ActionResult Detail(string id)
+        public  async Task<IActionResult> Detail(string id)
         {
             int i;
             if (!int.TryParse(id, out i))
                 i = 0;
-            var model = DbGTS.GetSingleGTSTrade(i);
+            var model = await DbGTS.GetSingleGTSTrade(i);
             return View(model);
+        }
+
+        public async Task<IActionResult> Remove(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                return BadRequest();
+            await DbGTS.DeleteGTS(i);
+            return RedirectToAction("Index");
         }
     }
 }
