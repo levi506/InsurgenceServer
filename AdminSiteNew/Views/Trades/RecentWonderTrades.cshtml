@@ -7,9 +7,9 @@
     ViewBag.Title = "WTLog";
 }
 
-<link rel="stylesheet" href="/CSS/Tradelog.css" />
+<link rel="stylesheet" href="/css/Tradelog.css" />
 <div style="padding-top:30px;">
-    <table>
+    <table class="dataTable border bordered table-striped">
         @foreach (var trade in Model.Trades)
         {
             <tr>
@@ -17,21 +17,13 @@
                     @trade.Date
                 </td>
                 <th>
-                    @Html.ActionLink(trade.User, "Users", "Admin", new { id = trade.User }, null)
+                    @Html.ActionLink(trade.User, "Users", "Users", new { id = trade.User }, null)
                 </th>
                 <td>
-                    <table style="width:100%;     height: 50px;">
+                    <table style="width:100%;     height: 50px;" class="table">
                         <tr>
                             <td style="width:32%; max-width:32%;">@PokemonHelper.GetPokemonName(trade.Pokemon.species)</td>
                             <td>@trade.Pokemon.personalID</td>  
-                            @*@if (trade.Pokemon.Shiny)
-                            {
-                                <td class="shiny" style="max-width:10%; width:10%">Shiny</td>
-                            }
-                            else
-                            {
-                                <td class="nonshiny" style="max-width:10%; width:10%">Bland</td>
-                            }*@
                             <td style="width:20%; max-width:20%">OT: @trade.Pokemon.ot</td>
                             <td style="width:38%; max-width:38%">Item: @ItemHelper.GetItemName((short)@trade.Pokemon.item)</td>
                         </tr>
@@ -41,7 +33,7 @@
     </table>
     @if (Model.StartIndex >= 100)
     {
-        <input type="button" title="BanAccount" value="Previous" onclick="location.href='@Url.Action("RecentTrades", "Admin", new { id = Model.StartIndex - 100 })'" />
+        <input type="button" title="BanAccount" value="Previous" onclick="location.href='@Url.Action("RecentWonderTrades", "Trades", new { id = Model.StartIndex - 100 })'" />
     }
-    <input type="button" title="BanAccount" value="Next" onclick="location.href='@Url.Action("RecentTrades", "Admin", new { id = Model.StartIndex + 100 })'" />
+    <input type="button" title="BanAccount" value="Next" onclick="location.href='@Url.Action("RecentWonderTrades", "Trades", new { id = Model.StartIndex + 100 })'" />
 </div>

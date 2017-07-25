@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AdminSiteNew.Database;
 using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcSample.Web.Models;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AdminSiteNew.Controllers
 {
@@ -27,9 +26,9 @@ namespace AdminSiteNew.Controllers
             return PartialView("UserCount", Model);
         }
 
-        public ActionResult Metrics()
+        public async Task<IActionResult> Metrics()
         {
-            var model = DbMetrics.GetMetrics();
+            var model = await DbMetrics.GetMetrics();
             return View(new MetricsHolder {List = model});
         }
     }

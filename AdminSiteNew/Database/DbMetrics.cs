@@ -9,7 +9,7 @@ namespace AdminSiteNew.Database
 {
     public static class DbMetrics
     {
-        public static List<Metrics> GetMetrics()
+        public static async Task<List<Metrics>> GetMetrics()
         {
             var l = new List<Metrics>();
             var conn = new OpenConnection();
@@ -19,9 +19,9 @@ namespace AdminSiteNew.Database
                 return l;
             }
 
-            const string command = "SELECT * FROM countermetrics";
+            const string command = "SELECT * FROM CounterMetrics";
             var mcom = new MySqlCommand(command, conn.Connection);
-            var r = mcom.ExecuteReader();
+            var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {
                 var m = new Metrics
