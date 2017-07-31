@@ -99,6 +99,8 @@ namespace InsurgenceServer
                         }
                     }
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return 120;

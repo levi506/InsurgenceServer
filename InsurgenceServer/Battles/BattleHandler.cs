@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -9,29 +10,29 @@ namespace InsurgenceServer
         private const int BattleTimeout = 5;
         public static List<Battle> ActiveBattles = new List<Battle>();
 
-        public static Battle BeginBattle(string username, Client client, string trainer)
+        public static async Task<Battle> BeginBattle(string username, Client client, string trainer)
         {
             var u = username.ToLower();
-            if (!Database.DbUserChecks.UserExists(username))
+            if (!await Database.DbUserChecks.UserExists(username))
             {
-                client.SendMessage($"<BAT user={username} result=0 trainer=nil>");
+                await client.SendMessage($"<BAT user={username} result=0 trainer=nil>");
                 return null;
             }
-            if (Database.DbUserChecks.UserBanned(username))
+            if (await Database.DbUserChecks.UserBanned(username))
             {
-                client.SendMessage($"<BAT user={username} result=1 trainer=nil>");
+                await client.SendMessage($"<BAT user={username} result=1 trainer=nil>");
                 return null;
             }
             var c = ClientHandler.GetClient(u);
             if (c == null)
             {
-                client.SendMessage($"<BAT user={username} result=2 trainer=nil>");
+                await client.SendMessage($"<BAT user={username} result=2 trainer=nil>");
                 return null;
             }
             var b = GetBattle(u, client);
             if (b == null)
                 return new Battle(client, u, trainer);
-            b.JoinBattle(client, trainer);
+            await b.JoinBattle(client, trainer);
             return b;
         }
 
@@ -46,36 +47,23 @@ namespace InsurgenceServer
             ActiveBattles.Remove(b);
         }
 
-        public static void BattleChecker()
+        public static async Task BattleChecker()
         {
-            try
+            for (var i = 0; i < ActiveBattles.Count; i++)
             {
-                while (Data.Running)
+                if (i >= ActiveBattles.Count)
+                    continue;
+                var t = ActiveBattles[i];
+                var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
+                if (timeactive > 1 && t.Activated)
                 {
-                    for (var i = 0; i < ActiveBattles.Count; i++)
-                    {
-                        if (i >= ActiveBattles.Count)
-                            continue;
-                        var t = ActiveBattles[i];
-                        var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
-                        if (timeactive > 1 && t.Activated)
-                        {
-                            t.Kill();
-                            continue;
-                        }
-                        if (timeactive >= BattleTimeout)
-                        {
-                            t.Kill();
-                        }
-                    }
-                    System.Threading.Thread.Sleep(5000);
+                    await t.Kill();
+                    continue;
                 }
-            }
-            catch(Exception e)
-            {
-                Logger.ErrorLog.Log(e);
-                Console.WriteLine(e);
-                BattleChecker();
+                if (timeactive >= BattleTimeout)
+                {
+                    await t.Kill();
+                }
             }
         }
     }

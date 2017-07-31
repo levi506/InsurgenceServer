@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace InsurgenceServer.Database
 {
@@ -10,17 +11,19 @@ namespace InsurgenceServer.Database
         public OpenConnection()
         {
             Connection = new MySqlConnection(_connstring);
-            Connection.Open();
+            Initialization = Connection.OpenAsync();
         }
         public bool IsConnected()
         {
             return Connection.State == System.Data.ConnectionState.Open;
         }
-        public void Close()
+        public Task Initialization { get; private set; }
+
+        public async Task Close()
         {
             if (IsConnected())
             {
-                Connection.Close();
+                await Connection.CloseAsync();
             }
         }
     }

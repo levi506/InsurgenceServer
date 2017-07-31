@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer.Battles
 {
@@ -21,7 +22,7 @@ namespace InsurgenceServer.Battles
         private const int QueueTimeout = 60;
 
 
-        public static void AddRandom(Client c, Tiers tier, Tiers maxTier)
+        public static async Task AddRandom(Client c, Tiers tier, Tiers maxTier)
         {
             if (tier == Tiers.Notier)
             {
@@ -30,45 +31,65 @@ namespace InsurgenceServer.Battles
             }
             else if ((int)tier > (int)maxTier)
             {
-                c.SendMessage("<RAND INC>");
+                await c.SendMessage("<RAND INC>");
             }
             else
             {
-                if (tier == Tiers.Ag)
-                    AgRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Uber)
-                    UberRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Ou)
-                    OuRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Bl)
-                    BlRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Uu)
-                    UuRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Ru)
-                    RuRandoms.Add(c, DateTime.Now);
-                else if (tier == Tiers.Nu)
-                    NuRandoms.Add(c, DateTime.Now);
+                switch (tier)
+                {
+                    case Tiers.Ag:
+                        AgRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Uber:
+                        UberRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Ou:
+                        OuRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Bl:
+                        BlRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Uu:
+                        UuRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Ru:
+                        RuRandoms.Add(c, DateTime.Now);
+                        break;
+                    case Tiers.Nu:
+                        NuRandoms.Add(c, DateTime.Now);
+                        break;
+                }
             }
         }
-        public static void RemoveRandom(Client c)
+        public static async Task RemoveRandom(Client c)
         {
             var tier = c.QueuedTier;
-            if (tier == Tiers.Ag)
-                AgRandoms.Remove(c);
-            else if (tier == Tiers.Uber)
-                UberRandoms.Remove(c);
-            else if (tier == Tiers.Ou)
-                OuRandoms.Remove(c);
-            else if (tier == Tiers.Bl)
-                BlRandoms.Remove(c);
-            else if (tier == Tiers.Uu)
-                UuRandoms.Remove(c);
-            else if (tier == Tiers.Ru)
-                RuRandoms.Remove(c);
-            else if (tier == Tiers.Nu)
-                NuRandoms.Remove(c);
+            switch (tier)
+            {
+                case Tiers.Ag:
+                    AgRandoms.Remove(c);
+                    break;
+                case Tiers.Uber:
+                    UberRandoms.Remove(c);
+                    break;
+                case Tiers.Ou:
+                    OuRandoms.Remove(c);
+                    break;
+                case Tiers.Bl:
+                    BlRandoms.Remove(c);
+                    break;
+                case Tiers.Uu:
+                    UuRandoms.Remove(c);
+                    break;
+                case Tiers.Ru:
+                    RuRandoms.Remove(c);
+                    break;
+                case Tiers.Nu:
+                    NuRandoms.Remove(c);
+                    break;
+            }
         }
-        public static void MatchRandoms()
+        public static async Task MatchRandoms()
         {
             try
             {
@@ -76,93 +97,89 @@ namespace InsurgenceServer.Battles
                 {
                     if (NoTierRandoms.Count >= 2)
                     {
-                        MatchUsers(NoTierRandoms);
+                        await MatchUsers(NoTierRandoms);
                     }
                     else if (AgRandoms.Count >= 2)
                     {
-                        MatchUsers(AgRandoms);
+                        await MatchUsers(AgRandoms);
                     }
                     else if (UberRandoms.Count >= 2)
                     {
-                        MatchUsers(UberRandoms);
+                        await MatchUsers(UberRandoms);
                     }
                     else if (OuRandoms.Count >= 2)
                     {
-                        MatchUsers(OuRandoms);
+                        await MatchUsers(OuRandoms);
                     }
                     else if (BlRandoms.Count >= 2)
                     {
-                        MatchUsers(BlRandoms);
+                        await MatchUsers(BlRandoms);
                     }
                     else if (UuRandoms.Count >= 2)
                     {
-                        MatchUsers(UuRandoms);
+                        await MatchUsers(UuRandoms);
                     }
                     else if (RuRandoms.Count >= 2)
                     {
-                        MatchUsers(RuRandoms);
+                        await MatchUsers(RuRandoms);
                     }
                     else if (NuRandoms.Count >= 2)
                     {
-                        MatchUsers(NuRandoms);
+                        await MatchUsers(NuRandoms);
                     }
                     else
                     {
-                        System.Threading.Thread.Sleep(2000);
+                        await Task.Delay(5000);
                     }
                 }
             }
             catch (Exception e)
             {
                 Logger.ErrorLog.Log(e);
-                MatchRandoms();
+                await MatchRandoms();
             }
         }
-        public static void CleanRandoms()
+        public static async Task CleanRandoms()
         {
-            while (true)
+            foreach(var kp in AgRandoms)
             {
-                foreach(var kp in AgRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in UberRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in OuRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in BlRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in UuRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in RuRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                foreach (var kp in NuRandoms)
-                {
-                    if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
-                }
-                System.Threading.Thread.Sleep(5000);
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
             }
-            // ReSharper disable once FunctionNeverReturns
+            foreach (var kp in UberRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+            foreach (var kp in OuRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+            foreach (var kp in BlRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+            foreach (var kp in UuRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+            foreach (var kp in RuRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+            foreach (var kp in NuRandoms)
+            {
+                if ((kp.Value - DateTime.Now).TotalSeconds > QueueTimeout) AgRandoms.Remove(kp.Key);
+            }
+
         }
-        public static void MatchUsers(Dictionary<Client,DateTime> l)
+        public static async Task MatchUsers(Dictionary<Client,DateTime> l)
         {
             var r = new Random();
             var u1 = l.Keys.ElementAt(r.Next(0, l.Count));
             var u2 = l.Keys.ElementAt(r.Next(0, l.Count));
             if (u1 != u2 && u1.Username != u2.Username)
             {
-                u1.SendMessage($"<RANDBAT user={u2.Username}>");
-                u2.SendMessage($"<RANDBAT user={u1.Username}>");
+                await u1.SendMessage($"<RANDBAT user={u2.Username}>");
+                await u2.SendMessage($"<RANDBAT user={u1.Username}>");
                 l.Remove(u1);
                 l.Remove(u2);
             }
@@ -171,16 +188,17 @@ namespace InsurgenceServer.Battles
     public static class Matchmaking
     {
         public static Tierlist Tiers;
-        public static void SetupTiers()
+        public static async Task SetupTiers()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "InsurgenceServer.Battles.Tiers.json";
+            const string resourceName = "InsurgenceServer.Battles.Tiers.json";
 
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
             {
-                using (StreamReader reader = new StreamReader(stream))
+                if (stream == null) throw new NullReferenceException("Null tier file");
+                using (var reader = new StreamReader(stream))
                 {
-                    string result = reader.ReadToEnd();
+                    var result = await reader.ReadToEndAsync();
                     Tiers = JsonConvert.DeserializeObject<Tierlist>(result);
                 }
             }
@@ -191,7 +209,7 @@ namespace InsurgenceServer.Battles
             var speciestr = a[0];
             var itemstr = a[1];
             var speciearr = speciestr.Split('^');
-            List<List<int>> spefor = speciearr.Select(s => s.Split('_')).Select(t => t.Select(int.Parse).ToList()).ToList();
+            var spefor = speciearr.Select(s => s.Split('_')).Select(t => t.Select(int.Parse).ToList()).ToList();
             var itemarr = itemstr.Split('^');
             //Check AG
             if (Tiers.Ag.Contains(spefor, itemarr))

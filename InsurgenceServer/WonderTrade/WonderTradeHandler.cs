@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using InsurgenceServer.Database;
 using InsurgenceServer.Logger;
 
@@ -11,7 +12,7 @@ namespace InsurgenceServer.WonderTrade
     {
         public static SynchronizedCollection<WonderTradeHolder> List = new SynchronizedCollection<WonderTradeHolder>();
 
-        public static void Loop()
+        public static async Task Loop()
         {
             while (Data.Running)
             {
@@ -23,7 +24,7 @@ namespace InsurgenceServer.WonderTrade
                         {
                             //Delete from list, send timeout message back to client
                             List.Remove(trade);
-                            trade.Client.SendMessage("<WTRESULT result=1 user=nil pkmn=nil>");
+                            await trade.Client.SendMessage("<WTRESULT result=1 user=nil pkmn=nil>");
                         }
                         if (trade.Client == null || !trade.Client.Connected)
                         {
@@ -43,7 +44,7 @@ namespace InsurgenceServer.WonderTrade
                         //Get 2 random entries
                         var r = new Random();
                         var i1 = r.Next(0, List.Count);
-                        int i2 = r.Next(0, List.Count);
+                        var i2 = r.Next(0, List.Count);
                         //We don't want two the same entries
                         while(i1 == i2)
                         {
@@ -62,7 +63,7 @@ namespace InsurgenceServer.WonderTrade
                             continue;
 
                         //Execute trade, remove entries
-                        ExecuteTrade(trade1.Client, trade2.Client, trade1.Pokemon, trade2.Pokemon);
+                        await ExecuteTrade(trade1.Client, trade2.Client, trade1.Pokemon, trade2.Pokemon);
                         List.Remove(trade1);
                         List.Remove(trade2);
                     }
@@ -71,28 +72,28 @@ namespace InsurgenceServer.WonderTrade
                 {
                     // ignored
                 }
-                System.Threading.Thread.Sleep(1000);
+                await Task.Delay(2000);
             }
         }
 
-        public static void ExecuteTrade(Client client1, Client client2, GTS.GamePokemon pkmn1, GTS.GamePokemon pkmn2)
+        public static async Task ExecuteTrade(Client client1, Client client2, GTS.GamePokemon pkmn1, GTS.GamePokemon pkmn2)
         {
             var jsonstring1 = JsonConvert.SerializeObject(pkmn1);
             var jsonstring2 = JsonConvert.SerializeObject(pkmn2);
 
-            try { DbTradelog.LogWonderTrade(client1.Username, jsonstring1); }
+            try { await DbTradelog.LogWonderTrade(client1.Username, jsonstring1); }
             catch (Exception e) { Console.WriteLine("Error when logging WT: " + e); }
-            try { DbTradelog.LogWonderTrade(client2.Username, jsonstring2); }
+            try { await DbTradelog.LogWonderTrade(client2.Username, jsonstring2); }
             catch (Exception e) { Console.WriteLine("Error when logging WT: " + e); }
 
             var encoded1 = Utilities.Encoding.Base64Encode(jsonstring1);
             var encoded2 = Utilities.Encoding.Base64Encode(jsonstring2);
 
-            client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={encoded2}>");
-            client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={encoded1}>");
+            await client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={encoded2}>");
+            await client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={encoded1}>");
         }
         
-        public static void DeleteFromClient(Client c)
+        public static async Task DeleteFromClient(Client c)
         {
             foreach (var item in List.ToArray())
             {
@@ -107,11 +108,11 @@ namespace InsurgenceServer.WonderTrade
             }
         }
 
-        public static void AddTrade(Client client, string encodedPkmns)
+        public static async Task AddTrade(Client client, string encodedPkmns)
         {
-            if (Database.DbUserChecks.UserBanned(client.Username))
+            if (await DbUserChecks.UserBanned(client.Username))
             {
-                client.SendMessage("<WTRESULT reult=0 user=nil pkmn=nil>");
+                await client.SendMessage("<WTRESULT reult=0 user=nil pkmn=nil>");
                 return;
             }
             if (List.Count(x => x.Client == client) > 0)
@@ -123,9 +124,9 @@ namespace InsurgenceServer.WonderTrade
             List.Add(new WonderTradeHolder(client, pkmn));
         }
 
-        public static void CancelTrade(Client client)
+        public static async Task CancelTrade(Client client)
         {
-            DeleteFromClient(client);
+            await DeleteFromClient(client);
         }
     }
 }

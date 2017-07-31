@@ -70,6 +70,7 @@
     <Compile Include="Battles\Battle.cs" />
     <Compile Include="Battles\BattleHandler.cs" />
     <Compile Include="Battles\RandomBattles.cs" />
+    <Compile Include="Checker.cs" />
     <Compile Include="ClientHandler\CommandHandler.cs" />
     <Compile Include="ClientHandler\FriendHandler.cs" />
     <Compile Include="ClientHandler\SiteCommunication.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="GTS\GTSHandler.cs" />
     <Compile Include="GTS\RequestData.cs" />
     <Compile Include="Logger\ErrorLog.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data.cs" />
@@ -102,7 +104,6 @@
     <Compile Include="Trades\Trade.cs" />
     <Compile Include="ClientHandler\ClientHandler.cs" />
     <Compile Include="Logger\TradeLogger.cs" />
-    <Compile Include="Marshal.cs" />
     <Compile Include="Utilities\Encoding.cs" />
     <Compile Include="Utilities\FSChecker.cs" />
     <Compile Include="WonderTrade\WonderTradeHandler.cs" />

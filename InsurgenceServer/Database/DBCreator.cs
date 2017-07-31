@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace InsurgenceServer.Database
 {
@@ -56,6 +51,7 @@ namespace InsurgenceServer.Database
             new MySqlCommand(
                 "CREATE TABLE IF NOT EXISTS `directgift` (`gifts` json DEFAULT NULL,`user_id` int(11) NOT NULL, PRIMARY KEY (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8",
                 conn.Connection).ExecuteNonQuery();
+            conn.Close();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -41,6 +42,14 @@ namespace InsurgenceServer
             _stream = ActualCient.GetStream();
             LastActive = DateTime.UtcNow;
             ClientHandler.ActiveClients.Add(this);
+#pragma warning disable 4014
+            StartListening();
+#pragma warning restore 4014
+        }
+        private string _message = "";
+
+        public async Task StartListening()
+        {
             try
             {
                 int i;
@@ -49,7 +58,7 @@ namespace InsurgenceServer
                     try
                     {
                         var data = System.Text.Encoding.ASCII.GetString(_bytes, 0, i);
-                        DataHandler(data);
+                        await DataHandler(data);
                     }
                     catch (Exception e) {
                         Console.WriteLine(e);
@@ -65,26 +74,32 @@ namespace InsurgenceServer
                 Console.WriteLine(e);
             }
         }
-        private string _message = "";
-        public void DataHandler(string data)
+        
+        public async Task DataHandler(string data)
         {
-            if (data.EndsWith("\n"))
-                data = data.Remove(data.Length - 1);
-            _message += data;
-            if (!data.EndsWith(">"))
+            try
             {
-                return;
+                if (data.EndsWith("\n"))
+                    data = data.Remove(data.Length - 1);
+                _message += data;
+                if (!data.EndsWith(">"))
+                {
+                    return;
+                }
+
+                Logger.Logger.Log(Username != "" ? $"{Username} {_message}" : $"Not Logged In: {_message}");
+
+                LastActive = DateTime.UtcNow;
+                var command = new CommandHandler(_message);
+                _message = "";
+
+                await NewCommandExecutor.ExecuteCommand(this, command);
             }
-
-            Console.WriteLine(Username != "" ? $"{Username} {_message}" : $"Not Logged In: {_message}");
-
-            LastActive = DateTime.UtcNow;
-            var command = new CommandHandler(_message);
-            _message = "";
-
-            NewCommandExecutor.ExecuteCommand(this, command);
+            catch (Exception e) {
+                Console.WriteLine(e);
+            }
         }
-        internal void ConnectionRequest(string versionstr)
+        internal async Task ConnectionRequest(string versionstr)
         {
             double version;
             int result;
@@ -97,11 +112,11 @@ namespace InsurgenceServer
             else
                 result = 2;
             _version = version;
-            SendMessage($"<CON result={result}>");
+            await SendMessage($"<CON result={result}>");
         }
-        internal void Login(string username, string password)
+        internal async Task Login(string username, string password)
         {
-            var result = Database.DbAuthentication.Login(username, password, this);
+            var result = await Database.DbAuthentication.Login(username, password, this);
             if (result == Database.LoginResult.Okay)
             {
                 Username = username.ToLower();
@@ -111,30 +126,33 @@ namespace InsurgenceServer
             if (Math.Abs(_version - 6.84) < 0.01 && Admin == false)
             {
                 //Ban if user logged in with a debug client, while not being an Admin
-                Database.DbUserManagement.Ban(UserId);
-                SendMessage($"<LOG result={(int) Database.LoginResult.Banned}>");
+                await Database.DbUserManagement.Ban(UserId);
+                await SendMessage($"<LOG result={(int) Database.LoginResult.Banned}>");
                 return;
             }
-            SendMessage($"<LOG result={(int) result}>");
-            Friends = Database.DbFriendHandler.GetFriends(this);
+            await SendMessage($"<LOG result={(int) result}>");
+            Friends = await Database.DbFriendHandler.GetFriends(this);
 
             //We encode each name into base64 to prevent commas in names from breaking stuff
             var compilefriends = string.Join(",", Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
             var onlinestring = Friends.Aggregate("", (current, friend) => current + (((ClientHandler.GetClient(friend)) == null) ? "0" : "1"));
 
-            SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
+            await SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
 
-            System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, true));
+#pragma warning disable 4014
+            FriendHandler.NotifyFriends(this, true);
+#pragma warning restore 4014
         }
-        internal void Register(string username, string password, string email)
+        
+        internal async Task Register(string username, string password, string email)
         {
-            Database.DbAuthentication.Register(this, username, password, email);
+            await Database.DbAuthentication.Register(this, username, password, email);
         }
-        internal void HandleTrade(Dictionary<string, string> args)
+        internal async Task HandleTrade(Dictionary<string, string> args)
         {
             if (args.ContainsKey("user"))
             {
-                var t = TradeHandler.BeginTrade(args["user"], this);
+                var t = await TradeHandler.BeginTrade(args["user"], this);
                 if (t != null)
                     ActiveTrade = t;
             }
@@ -164,76 +182,78 @@ namespace InsurgenceServer
             }
         }
 
-        internal void HandleBattle(Dictionary<string, string> args)
+        internal async Task HandleBattle(Dictionary<string, string> args)
         {
             if (args.ContainsKey("user"))
             {
-                var b = BattleHandler.BeginBattle(args["user"], this, args["trainer"]);
+                var b = await BattleHandler.BeginBattle(args["user"], this, args["trainer"]);
                 if (b != null)
                     ActiveBattle = b;
             }
             else if (args.ContainsKey("seed"))
             {
-                ActiveBattle.GetRandomSeed(this, args["turn"]);
+                await ActiveBattle.GetRandomSeed(this, args["turn"]);
             }
             else if (args.ContainsKey("choices"))
             {
-                ActiveBattle.SendChoice(Username, args["choices"], args["m"], args["rseed"]);
+                await ActiveBattle.SendChoice(Username, args["choices"], args["m"], args["rseed"]);
             }
             else if (args.ContainsKey("new"))
             {
-                ActiveBattle.NewPokemon(Username, args["new"]);
+                await ActiveBattle.NewPokemon(Username, args["new"]);
             }
             else if (args.ContainsKey("damage"))
             {
-                ActiveBattle.Damage(Username, args["damage"], args["state"]);
+                await ActiveBattle.Damage(Username, args["damage"], args["state"]);
             }
         }
 
-        public void Ping()
+        public async Task Ping()
         {
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes("<PNG>" + "\n");
+            var msg = System.Text.Encoding.ASCII.GetBytes("<PNG>" + "\n");
             try
             {
-                _stream.Write(msg, 0, msg.Length);
-                _stream.Flush();
+                await _stream.WriteAsync(msg, 0, msg.Length);
+                await _stream.FlushAsync();
             }
             catch {
-                Disconnect();
+                await Disconnect();
             }
         }
 
-        public void SendMessage(string str)
+        public async Task SendMessage(string str)
         {
             if (!ActualCient.Connected)
             {
-                Disconnect();
+                await Disconnect();
                 return;
             }
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(str + "\n");
+            var msg = System.Text.Encoding.ASCII.GetBytes(str + "\n");
             try
             {
-                _stream.Write(msg, 0, msg.Length);
-                _stream.Flush();
+                await _stream.WriteAsync(msg, 0, msg.Length);
+                await _stream.FlushAsync();
             }
             catch
             {
                 // ignored
             }
         }
-        public void Disconnect()
+        public async Task Disconnect()
         {
-            System.Threading.Tasks.Task.Run(() => FriendHandler.NotifyFriends(this, false));
+#pragma warning disable 4014
+            FriendHandler.NotifyFriends(this, false);
+#pragma warning restore 4014
             Connected = false;
             try
             {
-                ClientHandler.Remove(this);
+                await ClientHandler.Remove(this);
                 ActiveTrade?.Kill();
                 ActiveBattle?.Kill();
                 if (QueuedTier != Tiers.Null)
-                    RandomBattles.RemoveRandom(this);
+                    await RandomBattles.RemoveRandom(this);
                 WonderTrade.WonderTradeHandler.DeleteFromClient(this);
-                SendMessage("<DSC>");
+                await SendMessage("<DSC>");
                 _stream.Close();
                 ActualCient.Close();
             }

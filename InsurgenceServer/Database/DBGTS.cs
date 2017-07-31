@@ -1,12 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
     public static class Dbgts
     {
-        public static int GetNumberOfTrades(uint userid)
+        public static async Task<int> GetNumberOfTrades(uint userid)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -14,11 +15,11 @@ namespace InsurgenceServer.Database
             const string com = "SELECT COUNT(*) FROM GTS WHERE user_id=@id";
             var mcom = new MySqlCommand(com, conn.Connection);
             mcom.Parameters.AddWithValue("@id", userid);
-            var i = int.Parse(mcom.ExecuteScalar().ToString());
-            conn.Close();
+            var i = int.Parse((await mcom.ExecuteScalarAsync()).ToString());
+            await conn.Close();
             return i;
         }
-        public static void Add(uint userid, string offer, string request, int level, string ownername)
+        public static async Task Add(uint userid, string offer, string request, int level, string ownername)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -30,10 +31,10 @@ namespace InsurgenceServer.Database
             mcom.Parameters.AddWithValue("@request", request);
             mcom.Parameters.AddWithValue("@level", level);
             mcom.Parameters.AddWithValue("@ownername", ownername);
-            mcom.ExecuteNonQuery();
-            conn.Close();
+            await mcom.ExecuteNonQueryAsync();
+            await conn.Close();
         }
-        public static List<GTS.RequestGtsHolder> GetTrades(uint startingIndex, GTS.FilterHolder filter)
+        public static async Task<List<GTS.RequestGtsHolder>> GetTrades(uint startingIndex, GTS.FilterHolder filter)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -48,24 +49,29 @@ namespace InsurgenceServer.Database
             const int ignoreNature = 25;
             if (filter.Nature != ignoreNature)
             {
-                //com += " AND ()"
+                com += " AND (Offer ->'$.nature') = @nature";
             }
             const int ignoreGender = 0;
             if (filter.Gender != ignoreGender)
             {
-                //com += " AND (Offer->'$.')"
+                com += " AND (Offer->'$.gender') = @gender";
             }
             com += ") LIMIT @index, 4";
             var mcom = new MySqlCommand(com, conn.Connection);
             mcom.Parameters.AddWithValue("@index", startingIndex);
             mcom.Parameters.AddWithValue("@minLevel", filter.MinLevel);
+            if (filter.Nature != ignoreNature)
+                mcom.Parameters.AddWithValue("@nature", filter.Nature);
+            if (filter.Gender != ignoreGender)
+                mcom.Parameters.AddWithValue("@gender", filter.Gender);
+
             if (filter.Species != 0)
             {
                 mcom.Parameters.AddWithValue("@species", filter.Species);
             }
-            var r = mcom.ExecuteReader();
+            var r = await mcom.ExecuteReaderAsync();
             var ls = new List<GTS.RequestGtsHolder>();
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 var h = new GTS.RequestGtsHolder
                 {
@@ -76,10 +82,10 @@ namespace InsurgenceServer.Database
                 };
                 ls.Add(h);
             }
-            conn.Close();
+            await conn.Close();
             return ls;
         }
-        public static GTS.RequestGtsHolder GetSingleTrade(uint index)
+        public static async Task<GTS.RequestGtsHolder> GetSingleTrade(uint index)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -87,9 +93,9 @@ namespace InsurgenceServer.Database
             const string s = "SELECT id, Offer, Request, Accepted FROM GTS WHERE id = @id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", index);
-            var r = c.ExecuteReader();
+            var r = await c.ExecuteReaderAsync();
             GTS.RequestGtsHolder ret = null;
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 ret = new GTS.RequestGtsHolder
                 {
@@ -99,10 +105,10 @@ namespace InsurgenceServer.Database
                     Accepted = (bool)r["Accepted"]
                 };
             }
-            conn.Close();
+            await conn.Close();
             return ret;
         }
-        public static bool GetAccepted(uint index)
+        public static async Task<bool> GetAccepted(uint index)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -110,17 +116,17 @@ namespace InsurgenceServer.Database
             const string s = "SELECT Accepted FROM GTS WHERE id=@index";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", index);
-            var r = c.ExecuteReader();
+            var r = await c.ExecuteReaderAsync();
             var ret = false;
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 if ((bool)r["Accepted"])
                     ret = true;
             }
-            conn.Close();
+            await conn.Close();
             return ret;
         }
-        public static void SetAccepted(uint index, string pokemon)
+        public static async Task SetAccepted(uint index, string pokemon)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -128,10 +134,10 @@ namespace InsurgenceServer.Database
             const string s = "UPDATE GTS SET Accepted=1, Result=@poke";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@poke", pokemon);
-            c.ExecuteNonQuery();
-            conn.Close();
+            await c.ExecuteNonQueryAsync();
+            await conn.Close();
         }
-        public static List<GTS.RequestGtsHolder> GetUserTrades(uint userId)
+        public static async Task<List<GTS.RequestGtsHolder>> GetUserTrades(uint userId)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -140,8 +146,8 @@ namespace InsurgenceServer.Database
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", userId);
             var ls = new List<GTS.RequestGtsHolder>();
-            var r = c.ExecuteReader();
-            while (r.Read())
+            var r = await c.ExecuteReaderAsync();
+            while (await r.ReadAsync())
             {
                 var req = new GTS.RequestGtsHolder
                 {
@@ -152,10 +158,10 @@ namespace InsurgenceServer.Database
                 };
                 ls.Add(req);
             }
-            conn.Close();
+            await conn.Close();
             return ls;
         }
-        public static bool UserOwnsTrade(uint tradeId, uint userId)
+        public static async Task<bool> UserOwnsTrade(uint tradeId, uint userId)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -163,18 +169,18 @@ namespace InsurgenceServer.Database
             const string s = "SELECT user_id FROM gts WHERE id=@id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeId);
-            var r = c.ExecuteReader();
+            var r = await c.ExecuteReaderAsync();
             var ret = false;
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 var user = (int)r["user_id"];
                 if (user == userId)
                     ret = true;
             }
-            conn.Close();
+            await conn.Close();
             return ret;
         }
-        public static void CancelTrade(uint tradeid)
+        public static async Task CancelTrade(uint tradeid)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -182,10 +188,10 @@ namespace InsurgenceServer.Database
             const string s = "DELETE FROM GTS WHERE id = @id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeid);
-            c.ExecuteNonQuery();
-            conn.Close();
+            await c.ExecuteNonQueryAsync();
+            await conn.Close();
         }
-        public static string CollectTrade(uint tradeid)
+        public static async Task<string> CollectTrade(uint tradeid)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -194,19 +200,19 @@ namespace InsurgenceServer.Database
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeid);
             var ret = "";
-            var r = c.ExecuteReader();
-            while (r.Read())
+            var r = await c.ExecuteReaderAsync();
+            while (await r.ReadAsync())
             {
                 ret = (string)r["Result"];
             }
             const string delete = "DELETE FROM GTS WHERE id = @id";
             var deletecom = new MySqlCommand(delete, conn.Connection);
             deletecom.Parameters.AddWithValue("@id", tradeid);
-            deletecom.ExecuteNonQuery();
-            conn.Close();
+            await deletecom.ExecuteNonQueryAsync();
+            await conn.Close();
             return ret;
         }
-        public static bool TradeIsAccepted(uint tradeid)
+        public static async Task<bool> TradeIsAccepted(uint tradeid)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -214,15 +220,15 @@ namespace InsurgenceServer.Database
             const string s = "SELECT Accepted WHERE trade_id=@id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeid);
-            var r = c.ExecuteReader();
+            var r = await c.ExecuteReaderAsync();
             var ret = false;
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 var accepted = (bool)r["Accepted"];
                 if (accepted)
                     ret = true;
             }
-            conn.Close();
+            await conn.Close();
             return ret;
         }
     }

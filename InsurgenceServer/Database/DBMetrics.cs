@@ -10,33 +10,33 @@ namespace InsurgenceServer.Database
 {
     public static class DbMetrics
     {
-        public static void MetricCountOne(int key)
+        public static async Task MetricCountOne(int key)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
             const string command = "INSERT INTO CounterMetrics (id, value) VALUES (@keyname, 1) ON DUPLICATE KEY UPDATE value = value + 1";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@keyname", key);
-            mcom.ExecuteScalar();
+            await mcom.ExecuteScalarAsync();
         }
 
-        public static int GetMetricValue(int key)
+        public static async Task<int> GetMetricValue(int key)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return 0;
             }
             const string command = "SELECT value FROM CounterMetrics WHERE id=@key LIMIT 1";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@key", key);
-            var val = mcom.ExecuteScalar();
-            conn.Close();
+            var val = await mcom.ExecuteScalarAsync();
+            await conn.Close();
             if (val == null || val is DBNull)
             {
                 return 0;
@@ -44,12 +44,12 @@ namespace InsurgenceServer.Database
             return (int) val;
         }
 
-        public static void MetricCountMultiple(List<int> ls)
+        public static async Task MetricCountMultiple(List<int> ls)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
             var dic = new Dictionary<int, int>();
@@ -66,7 +66,7 @@ namespace InsurgenceServer.Database
             sCommand.Append(string.Join(",", rows));
             sCommand.Append(";");
             var m = new MySqlCommand(sCommand.ToString(), conn.Connection) {CommandType = CommandType.Text};
-            m.ExecuteNonQuery();
+            await m.ExecuteNonQueryAsync();
         }
     }
 }

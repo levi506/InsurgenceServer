@@ -1,19 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
     public static class DbFriendSafari
     {
-        public static void GetBase(string username, Client client)
+        public static async Task GetBase(string username, Client client)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
             const string command = "SELECT friendsafari.base, friendsafari.message, users.banned " +
@@ -23,26 +22,26 @@ namespace InsurgenceServer.Database
                                    "WHERE users.username = @param_val_1;";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
-            var result = m.ExecuteReader();
+            var result = await m.ExecuteReaderAsync();
             if (!result.HasRows)
             {
                 //We just send the login message so we don't need a special client handler just for this. User doesn't notice anyway
-                client.SendMessage("<LOG result=0>");
-                conn.Close();
+                await client.SendMessage("<LOG result=0>");
+                await conn.Close();
                 return;
             }
-            while (result.Read())
+            while (await result.ReadAsync())
             {
                 if ((bool)result["banned"])
                 {
-                    client.SendMessage($"<TRA user={username} result=1>");
-                    conn.Close();
+                    await client.SendMessage($"<TRA user={username} result=1>");
+                    await conn.Close();
                     return;
                 }
                 if (result["base"] is DBNull)
                 {
-                    client.SendMessage($"<VBASE user={username} result=1 base=nil>");
-                    conn.Close();
+                    await client.SendMessage($"<VBASE user={username} result=1 base=nil>");
+                    await conn.Close();
                     return;
                 }
                 var Base = result["base"];
@@ -57,18 +56,18 @@ namespace InsurgenceServer.Database
                 {
                     message = messageDb.ToString();
                 }
-                client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
+                await client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
                 break;
             }
-            conn.Close();
+            await conn.Close();
         }
 
-        public static void GetRandomBase(Client client)
+        public static async Task GetRandomBase(Client client)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
             const string command = "SELECT friendsafari.base, friendsafari.message, users.username, users.banned" +
@@ -80,8 +79,8 @@ namespace InsurgenceServer.Database
                                    "ORDER BY RAND() " +
                                    "LIMIT 1";
             var m = new MySqlCommand(command, conn.Connection);
-            var result = m.ExecuteReader();
-            while (result.Read())
+            var result = await m.ExecuteReaderAsync();
+            while (await result.ReadAsync())
             {
                 var Base = result["base"];
 
@@ -96,14 +95,14 @@ namespace InsurgenceServer.Database
                 {
                     message = messageDb.ToString();
                 }
-                client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
+                await client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
                 break;
             }
-            conn.Close();
+            await conn.Close();
         }
 
 
-        public static void UploadBase(uint userId, string Base)
+        public static async Task UploadBase(uint userId, string Base)
         {
             var conn = new OpenConnection();
             if (conn.IsConnected())
@@ -116,12 +115,12 @@ namespace InsurgenceServer.Database
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", Base);
                 m.Parameters.AddWithValue("@param_val_2", userId);
-                m.ExecuteNonQuery();
+                await m.ExecuteNonQueryAsync();
             }
-            conn.Close();
+            await conn.Close();
         }
 
-        public static void SetMessage(uint userId, string message)
+        public static async Task SetMessage(uint userId, string message)
         {
             message = Utilities.Encoding.RemoveSpecialCharacters(message);
 
@@ -132,12 +131,12 @@ namespace InsurgenceServer.Database
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_1", message);
                 m.Parameters.AddWithValue("@param_val_2", userId);
-                m.ExecuteNonQuery();
+                await m.ExecuteNonQueryAsync();
             }
-            conn.Close();
+            await conn.Close();
         }
 
-        public static void RemoveMessage(uint userId)
+        public static async Task RemoveMessage(uint userId)
         {
             var conn = new OpenConnection();
             if (conn.IsConnected())
@@ -145,15 +144,15 @@ namespace InsurgenceServer.Database
                 const string command = "UPDATE friendsafari SET message = NULL WHERE user_id = @param_val_2";
                 var m = new MySqlCommand(command, conn.Connection);
                 m.Parameters.AddWithValue("@param_val_2", userId);
-                m.ExecuteNonQuery();
+                await m.ExecuteNonQueryAsync();
             }
-            conn.Close();
+            await conn.Close();
         }
         /// <summary>
         /// Add a gift to a giftbox
         /// </summary>
         /// <returns>0 if something went wrong, 1 if gift can't be given, 2 if giftbox is full, 3 if success</returns>
-        public static int AddGift(Client client, uint gift, string username)
+        public static async Task<int> AddGift(Client client, uint gift, string username)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -172,12 +171,12 @@ namespace InsurgenceServer.Database
                                    "WHERE users.username = @param_val_1";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
-            var r = m.ExecuteReader();
+            var r = await m.ExecuteReaderAsync();
 
             uint userId = 0;
             var oldGifts = string.Empty;
 
-            while (r.Read())
+            while (await r.ReadAsync())
             {
                 userId = (uint)r["user_id"];
                 var tempGifts = r["giftbox"];
@@ -219,12 +218,12 @@ namespace InsurgenceServer.Database
             im.Parameters.AddWithValue("@param_val_1", newGifts);
             im.Parameters.AddWithValue("@param_val_2", userId);
 
-            im.ExecuteNonQuery();
+            await im.ExecuteNonQueryAsync();
 
             return 3;
         }
 
-        public static void GetGifts(Client client)
+        public static async Task GetGifts(Client client)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -234,7 +233,7 @@ namespace InsurgenceServer.Database
             const string command = "SELECT giftbox FROM friendsafari WHERE user_id = @param_val_1";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", client.UserId);
-            var gifts = m.ExecuteScalar();
+            var gifts = await m.ExecuteScalarAsync();
 
             string giftString;
             if (gifts is DBNull)
@@ -247,16 +246,16 @@ namespace InsurgenceServer.Database
             }
 
             //Send the gifts
-            client.SendMessage($"<FSGIFTS gifts={giftString}>");
+            await client.SendMessage($"<FSGIFTS gifts={giftString}>");
 
             //Remove the gifts from the database
             const string removeCommand = "UPDATE friendsafari SET giftbox = NULL WHERE user_id = @param_val_1";
             var rm = new MySqlCommand(removeCommand, conn.Connection);
             rm.Parameters.AddWithValue("@param_val_1", client.UserId);
-            rm.ExecuteNonQuery();
+            await rm.ExecuteNonQueryAsync();
         }
 
-        public static void SetTrainer(Client client, string trainer)
+        public static async Task SetTrainer(Client client, string trainer)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -266,12 +265,12 @@ namespace InsurgenceServer.Database
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", trainer);
             m.Parameters.AddWithValue("@param_val_2", client.UserId);
-            m.ExecuteNonQuery();
+            await m.ExecuteNonQueryAsync();
 
-            conn.Close();
+            await conn.Close();
         }
 
-        public static void GetTrainer(Client client, string username)
+        public static async Task GetTrainer(Client client, string username)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -285,14 +284,14 @@ namespace InsurgenceServer.Database
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
 
-            var trainerObj = m.ExecuteScalar();
+            var trainerObj = await m.ExecuteScalarAsync();
             if (trainerObj is DBNull)
             {
-                client.SendMessage($"<BASETRA result=0 trainer=nil>");
+                await client.SendMessage($"<BASETRA result=0 trainer=nil>");
             }
             else
             {
-                client.SendMessage($"<BASETRA result=1 trainer={Utilities.Encoding.Base64Encode(trainerObj.ToString())}>");
+                await client.SendMessage($"<BASETRA result=1 trainer={Utilities.Encoding.Base64Encode(trainerObj.ToString())}>");
             }
         }
 

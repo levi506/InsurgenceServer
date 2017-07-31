@@ -1,11 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
     public static class DbUserManagement
     {
-        public static void Ban(uint userId, List<string> ips)
+        public static async Task Ban(uint userId, List<string> ips)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -13,16 +14,16 @@ namespace InsurgenceServer.Database
             const string banuser = "UPDATE users SET banned=1 WHERE user_id = @user";
             var m = new MySqlCommand(banuser, conn.Connection);
             m.Parameters.AddWithValue("user", userId);
-            m.ExecuteNonQuery();
+            await m.ExecuteNonQueryAsync();
 
             const string banips = "UPDATE ips SET ipban=1 WHERE user_id = @user";
             var n = new MySqlCommand(banips, conn.Connection);
             n.Parameters.AddWithValue("user", userId);
-            n.ExecuteNonQuery();
+            await n.ExecuteNonQueryAsync();
 
-            conn.Close();
+            await conn.Close();
         }
-        public static void Ban(uint userId)
+        public static async Task Ban(uint userId)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -30,11 +31,11 @@ namespace InsurgenceServer.Database
             const string banuser = "UPDATE users SET banned=1 WHERE user_id=@user";
             var m = new MySqlCommand(banuser, conn.Connection);
             m.Parameters.AddWithValue("user", userId);
-            m.ExecuteNonQuery();
+            await m.ExecuteNonQueryAsync();
 
-            conn.Close();
+            await conn.Close();
         }
-        public static uint GetUserId(string username)
+        public static async Task<uint> GetUserId(string username)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -42,13 +43,13 @@ namespace InsurgenceServer.Database
             const string banuser = "SELECT user_id FROM users WHERE username = @name";
             var m = new MySqlCommand(banuser, conn.Connection);
             m.Parameters.AddWithValue("name", username);
-            var result = m.ExecuteReader();
+            var result = await m.ExecuteReaderAsync();
             uint i = 0;
             if (result.Read())
             {
                 i = uint.Parse(result["user_id"].ToString());
             }
-            conn.Close();
+            await conn.Close();
             return i;
         }
     }

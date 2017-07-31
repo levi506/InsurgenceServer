@@ -1,16 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer.Database
 {
     public static class DbTradelog
     {
-        public static void LogTrade(string u1, string u2, string p1, string p2)
+        public static async Task LogTrade(string u1, string u2, string p1, string p2)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
 
@@ -21,15 +22,15 @@ namespace InsurgenceServer.Database
             m.Parameters.AddWithValue("@param_val_3", p1);
             m.Parameters.AddWithValue("@param_val_4", p2);
             m.Parameters.AddWithValue("@param_val_5", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
-            m.ExecuteNonQuery();
-            conn.Close();
+            await m.ExecuteNonQueryAsync();
+            await conn.Close();
         }
-        public static void LogWonderTrade(string username, string pokemon)
+        public static async Task LogWonderTrade(string username, string pokemon)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
             {
-                conn.Close();
+                await conn.Close();
                 return;
             }
             const string command = "INSERT INTO wondertradelog (username, pokemon, time) VALUES (@username, @pokemon, @time)";
@@ -38,8 +39,8 @@ namespace InsurgenceServer.Database
             m.Parameters.AddWithValue("@pokemon", pokemon);
             m.Parameters.AddWithValue("@time", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
 
-            m.ExecuteNonQuery();
-            conn.Close();
+            await m.ExecuteNonQueryAsync();
+            await conn.Close();
         }
     }
 }

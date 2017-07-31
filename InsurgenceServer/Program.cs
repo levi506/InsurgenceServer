@@ -28,23 +28,13 @@ namespace InsurgenceServer
             ).Start();
 
 
-            new Thread(Battles.RandomBattles.MatchRandoms
-            ).Start();
+            Battles.RandomBattles.MatchRandoms();
 
-            new Thread(ClientHandler.ClientChecker
-            ).Start();
+#pragma warning disable 4014
+            Checker.BeginChecking();
+            WonderTrade.WonderTradeHandler.Loop();
+#pragma warning restore 4014
 
-            new Thread(TradeHandler.TradeChecker
-           ).Start();
-
-            new Thread(BattleHandler.BattleChecker
-           ).Start();
-
-            new Thread(Battles.RandomBattles.CleanRandoms
-           ).Start();
-
-            new Thread(WonderTrade.WonderTradeHandler.Loop
-           ).Start();
 
             // ReSharper disable once ObjectCreationAsStatement
             new MainConnector();

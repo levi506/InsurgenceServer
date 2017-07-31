@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace InsurgenceServer
 {
@@ -16,8 +17,7 @@ namespace InsurgenceServer
         public bool Activated { get; private set; }
         public DateTime StartTime;
 
-        public int TurnGenerated = -1;
-        public int RandSeed;
+        public int Seed;
 
         public Battle(Client client, string username, string trainer)
         {
@@ -27,72 +27,69 @@ namespace InsurgenceServer
             Trainer1 = trainer;
             StartTime = DateTime.UtcNow;
             BattleHandler.ActiveBattles.Add(this);
+            Seed = new Random().Next(int.MinValue, int.MaxValue);
         }
 
-        public void JoinBattle(Client client, string trainer)
+        public async Task JoinBattle(Client client, string trainer)
         {
             Activated = true;
             Client2 = client;
             Trainer2 = trainer;
-            Client1.SendMessage($"<BAT user={Username2} result=4 trainer={Trainer2}>");
-            Client2.SendMessage($"<BAT user={Username1} result=4 trainer={Trainer1}>");
+            await Client1.SendMessage($"<BAT user={Username2} result=4 trainer={Trainer2}>");
+            await Client2.SendMessage($"<BAT user={Username1} result=4 trainer={Trainer1}>");
         }
 
-        public void GetRandomSeed(Client client, string turn)
+        public async Task GetRandomSeed(Client client, string turnString)
         {
-            int i;
-            if (!int.TryParse(turn, out i))
+            int turn;
+            if (!int.TryParse(turnString, out turn))
                 return;
-            if (i > TurnGenerated)
-            {
-                TurnGenerated = i;
-                RandSeed = (DateTime.UtcNow.Millisecond * DateTime.UtcNow.Second);
-            }
-            client.SendMessage($"<BAT seed={RandSeed}>");
+            var s =  (Seed << turn | Seed >> 31);
+            await client.SendMessage($"<BAT seed={s}>");
         }
 
-        public void SendChoice(string username, string choice, string m, string rseed)
+        public async Task SendChoice(string username, string choice, string m, string rseed)
         {
             if (username == Username1)
             {
-                Client2.SendMessage($"<BAT choices={choice} m={m} rseed={rseed}>");
+                await Client2.SendMessage($"<BAT choices={choice} m={m} rseed={rseed}>");
             }
             else
             {
-                Client1.SendMessage($"<BAT choices={choice} m={m} rseed={rseed}>");
+                await Client1.SendMessage($"<BAT choices={choice} m={m} rseed={rseed}>");
             }
         }
 
-        public void NewPokemon(string username, string New)
+        public async Task NewPokemon(string username, string New)
         {
             if (username == Username1)
             {
-                Client2.SendMessage($"<BAT new={New}>");
+                await Client2.SendMessage($"<BAT new={New}>");
             }
             else
             {
-                Client1.SendMessage($"<BAT new={New}>");
+                await Client1.SendMessage($"<BAT new={New}>");
             }
         }
 
-        public void Damage(string username, string damage, string state)
+        public async Task Damage(string username, string damage, string state)
         {
             if (username == Username1)
             {
-                Client2.SendMessage($"<BAT damage={damage} state={state}>");
+                await Client2.SendMessage($"<BAT damage={damage} state={state}>");
             }
             else
             {
-                Client1.SendMessage($"<BAT damage={damage} state={state}>");
+                await Client1.SendMessage($"<BAT damage={damage} state={state}>");
             }
         }
 
-        public void Kill()
+        public async Task Kill()
         {
             if (Client1 != null && Client1.Connected)
-                Client1?.SendMessage("<TRA dead>");
+                await Client1.SendMessage("<TRA dead>");
             if (Client2 != null && Client2.Connected)
-                Client2?.SendMessage("<TRA dead>");
+                await Client2.SendMessage("<TRA dead>");
             if (Client1 != null) Client1.ActiveBattle = null;
             if (Client2 != null) Client2.ActiveBattle = null;
             BattleHandler.DeleteBattle(this);
