@@ -24,11 +24,21 @@ namespace InsurgenceServer.GTS
             var decodeOffer = Utilities.Encoding.Base64Decode(offer);
             var decodeRequest = Utilities.Encoding.Base64Decode(request);
 
-            //Turn data into objects
-            var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
+            int level;
+            try
+            {
+                //Turn data into objects
+                var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
+                var requestObject = JsonConvert.DeserializeObject<FilterHolder>(decodeRequest);
 
-            //Get Pokemon Level
-            var level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
+                //Get Pokemon Level
+                level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
+            }
+            catch (InvalidCastException e)
+            {
+                await c.SendMessage($"<GTSCREATE result=2 index={index}>");
+                return;
+            }
 
             //Input in database
             try
