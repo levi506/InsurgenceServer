@@ -258,8 +258,7 @@ namespace InsurgenceServer
                 ActualCient.Close();
             }
             catch (Exception e) {
-                Logger.ErrorLog.Log(e);
-                Debug.WriteLine(e);
+                Logger.Logger.Log(e.ToString());
             }
         }
     }

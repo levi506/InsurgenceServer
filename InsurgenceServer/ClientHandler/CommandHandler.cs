@@ -141,7 +141,15 @@ namespace InsurgenceServer
         [ServerCommand("GETGIFTS", true)]
         public static async Task GetGiftsRequest(Client client, CommandHandler command)
         {
-            await DbFriendSafari.GetGifts(client);
+            try
+            {
+                await DbFriendSafari.GetGifts(client);
+            }
+            catch
+            {
+                await client.SendMessage("<FSGIFTS gifts=nil>");
+                throw;
+            }
         }
 
         [ServerCommand("BASEBAT", true)]
