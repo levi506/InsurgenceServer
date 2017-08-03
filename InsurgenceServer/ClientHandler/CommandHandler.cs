@@ -180,7 +180,7 @@ namespace InsurgenceServer
             if (command.Data.ContainsKey("tier"))
             {
                 await RandomBattles.AddRandom(client, (Tiers)Enum.Parse(typeof(Tiers),
-                    command.Data["tier"]), client.TierSelected);
+                    command.Data["tier"], true), client.TierSelected);
             }
             else if (command.Data.ContainsKey("cancel"))
             {
