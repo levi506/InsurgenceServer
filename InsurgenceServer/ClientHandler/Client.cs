@@ -221,9 +221,9 @@ namespace InsurgenceServer
             }
         }
 
-        public async Task SendMessage(string str)
+        public async Task SendMessage(string str, bool ignoreDisconnecting = false)
         {
-            if (!ActualCient.Connected)
+            if (!ActualCient.Connected && !ignoreDisconnecting)
             {
                 await Disconnect();
                 return;
@@ -252,8 +252,8 @@ namespace InsurgenceServer
                 ActiveBattle?.Kill();
                 if (QueuedTier != Tiers.Null)
                     await RandomBattles.RemoveRandom(this);
-                WonderTrade.WonderTradeHandler.DeleteFromClient(this);
-                await SendMessage("<DSC>");
+                await WonderTrade.WonderTradeHandler.DeleteFromClient(this);
+                await SendMessage("<DSC>", true);
                 _stream.Close();
                 ActualCient.Close();
             }
