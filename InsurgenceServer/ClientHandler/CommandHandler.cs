@@ -161,7 +161,15 @@ namespace InsurgenceServer
         [ServerCommand("GETBAT", false)]
         public static async Task GetBaseTrainerRequest(Client client, CommandHandler command)
         {
-            await DbFriendSafari.GetTrainer(client, command.Data["username"]);
+            try
+            {
+                await DbFriendSafari.GetTrainer(client, command.Data["username"]);
+            }
+            catch
+            {
+                await client.SendMessage($"<BASETRA result=0 trainer=nil>");
+                throw;
+            }
         }
 
         [ServerCommand("BAT", true)]
@@ -205,17 +213,40 @@ namespace InsurgenceServer
         [ServerCommand("GTSCREATE", true)]
         public static async Task GTSCreateRequest(Client client, CommandHandler command)
         {
-            await GTS.GtsHandler.CreateGts(client, command.Data["offer"], command.Data["request"], command.Data["index"]);
+            try
+            {
+                await GTS.GtsHandler.CreateGts(client, command.Data["offer"], command.Data["request"], command.Data["index"]);
+            }
+            catch
+            {
+                await client.SendMessage($"<GTSCREATE result=2 index={command.Data["index"]}>");
+                throw;
+            }
         }
         [ServerCommand("GTSREQUEST", true)]
         public static async Task GTSListRequest(Client client, CommandHandler command)
         {
-            await GTS.GtsHandler.RequestGts(client, command.Data["index"], command.Data["filter"]);
+            try
+            {
+                await GTS.GtsHandler.RequestGts(client, command.Data["index"], command.Data["filter"]);
+            }
+            catch
+            {
+                await client.SendMessage("<GTSREQUEST trades=nil>");
+                throw;
+            }
         }
         [ServerCommand("GTSOFFER", true)]
         public static async Task GTSOfferRequest(Client client, CommandHandler command)
         {
-            await GTS.GtsHandler.OfferGts(client, command.Data["offer"], command.Data["id"]);
+            try
+            {
+                await GTS.GtsHandler.OfferGts(client, command.Data["offer"], command.Data["id"]);
+            }
+            catch
+            {
+                await client.SendMessage("<GTSOFFER result=2 pkmn=nil>");
+            }
         }
         [ServerCommand("GTSCANCEL", true)]
         public static async Task GTSCancelRequest(Client client, CommandHandler command)

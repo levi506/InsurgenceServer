@@ -57,7 +57,6 @@ namespace InsurgenceServer.GTS
             uint index;
             if (!uint.TryParse(lastIDstr, out index))
             {
-                Console.WriteLine("NAN");
                 return;
             }
             var filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
