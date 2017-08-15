@@ -21,10 +21,7 @@ namespace InsurgenceServer.Database
 
         public async Task Close()
         {
-            if (IsConnected())
-            {
-                await Connection.CloseAsync();
-            }
+            await Connection.CloseAsync();
         }
     }
 }

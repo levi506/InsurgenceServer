@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using System;
+using System.Collections.Concurrent;
+using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,28 +11,27 @@ namespace InsurgenceServer
     public static class ClientHandler
     {
         private const int ClientTimeout = 5;
-        public static List<Client> ActiveClients = new List<Client>();
+        public static ConcurrentDictionary<Guid, Client> ActiveClients = new ConcurrentDictionary<Guid, Client>();
 
         public static Client GetClient(string username)
         {
-            var c = ActiveClients.Where(x => x.Username == username.ToLower());
-            return c.FirstOrDefault();
+            var c = ActiveClients.FirstOrDefault(x => x.Value.Username == username.ToLower());
+            return c.Equals(default(KeyValuePair<Guid, Client>)) ? null : c.Value;
         }
         public static Client GetClient(uint userId)
         {
-            var c = ActiveClients.Where(x => x.UserId == userId);
-            return c.FirstOrDefault();
+            return ActiveClients.FirstOrDefault(x => x.Value.UserId == userId).Value;
         }
         public static List<Client> GetClientList(List<uint> userIds)
         {
-            return ActiveClients.Where(x => userIds != null && userIds.Contains(x.UserId)).ToList();
+            return userIds.Select(GetClient).ToList();
         }
 
         public static async Task Remove(Client client)
         {
             try
             {
-                ActiveClients.Remove(client);
+                ActiveClients.TryRemove(client.Identifier, out _);
             }
             catch
             {
@@ -40,13 +41,13 @@ namespace InsurgenceServer
 
         public static async Task ClientChecker()
         {
-            for (var i = 0; i < ActiveClients.Count; i++)
+            foreach (var keyValuePair in ActiveClients.ToList())
             {
                 try
                 {
-                    if (i >= ActiveClients.Count)
+                    var c = keyValuePair.Value;
+                    if (c == null)
                         continue;
-                    var c = ActiveClients[i];
                     await c.Ping();
                     if (c.ActualCient == null)
                     {
@@ -69,7 +70,6 @@ namespace InsurgenceServer
                     Console.WriteLine(e);
                 }
             }
-
         }
     }
 }

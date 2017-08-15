@@ -10,7 +10,7 @@ namespace InsurgenceServer
 	{
 		public MainConnector()
 		{
-            var ipstr = Data.Ip;
+            const string ipstr = Data.Ip;
 #if DEBUG                
     ipstr = "127.0.0.1";
 #endif            

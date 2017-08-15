@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -7,12 +8,12 @@ using Newtonsoft.Json.Linq;
 
 namespace AdminSiteNew.Database
 {
-    public static class DBDirectGifts
+    public static class DbDirectGifts
     {
-        public static List<DirectGiftBase> GetGifts(string username)
+        public static async Task<List<DirectGiftBase>> GetGifts(string username)
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return new List<DirectGiftBase>();
@@ -29,13 +30,14 @@ namespace AdminSiteNew.Database
                                    "AND users.username = @username";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@username", username);
-            var r = mcom.ExecuteReader();
             object o = null;
-            while (r.Read())
+            using (var r = await mcom.ExecuteReaderAsync())
             {
-                o = r["gifts"];
+                while (r.Read())
+                {
+                    o = r["gifts"];
+                }
             }
-
             if (o == null)
             {
                 conn.Close();
@@ -59,10 +61,10 @@ namespace AdminSiteNew.Database
             return l;
         }
 
-        public static void SetDirectGifts(string username, List<DirectGiftBase> gifts)
+        public static async Task SetDirectGifts(string username, List<DirectGiftBase> gifts)
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return;
@@ -76,7 +78,7 @@ namespace AdminSiteNew.Database
             mcom.Parameters.AddWithValue("@username", username);
             mcom.Parameters.AddWithValue("@gifts", json);
 
-            mcom.ExecuteNonQuery();
+            await mcom.ExecuteNonQueryAsync();
             conn.Close();
         }
     }

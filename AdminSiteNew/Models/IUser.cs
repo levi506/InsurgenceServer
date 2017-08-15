@@ -33,7 +33,7 @@ namespace AdminSiteNew.Models
 
         public FriendSafari(string s)
         {
-            if (s == "" || s == null) return;
+            if (string.IsNullOrEmpty(s)) return;
 
             var basestring = s.Split('g');
 
@@ -49,18 +49,7 @@ namespace AdminSiteNew.Models
             }
         }
 
-        public string GetCleanPokemon
-        {
-            get
-            {
-                if (Pokemon == null)
-                {
-                    return "None";
-                }
-                return string.Join(", ", Pokemon.ToArray());
-            }
-            
-        }
+        public string GetCleanPokemon => Pokemon == null ? "None" : string.Join(", ", Pokemon.ToArray());
     }
     public enum FriendSafariType
     {

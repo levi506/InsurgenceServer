@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.Battles
 {
     public static class BattleHandler
     {
-        private const int BattleTimeout = 5;
-        public static List<Battle> ActiveBattles = new List<Battle>();
+        private const int BattleTimeout = 15;
+        public static ConcurrentDictionary<Guid, Battle> ActiveBattles = new ConcurrentDictionary<Guid, Battle>();
 
         public static async Task<Battle> BeginBattle(string username, Client client, string trainer)
         {
@@ -36,33 +36,43 @@ namespace InsurgenceServer
             return b;
         }
 
+        public static Battle GetBattle(Client client)
+        {
+            return ActiveBattles.ContainsKey(client.ActiveBattleId) ? ActiveBattles[client.ActiveBattleId] : null;
+        }
+        
         public static Battle GetBattle(string username, Client client)
         {
             var u = username.ToLower();
-            return ActiveBattles.FirstOrDefault(battle => battle.Username1 == u && battle.Username2 == client.Username);
+            var b = ActiveBattles.FirstOrDefault(battle =>
+                battle.Value.Username1 == u && battle.Value.Username2 == client.Username).Value;
+            if (b == null)
+            {
+                b = ActiveBattles.FirstOrDefault(battle =>
+                    battle.Value.Username2 == u && battle.Value.Username1 == client.Username).Value;
+            }
+            return b;
         }
 
         public static void DeleteBattle(Battle b)
         {
-            ActiveBattles.Remove(b);
+            ActiveBattles.TryRemove(b.Id, out b);
         }
 
         public static async Task BattleChecker()
         {
-            for (var i = 0; i < ActiveBattles.Count; i++)
+            foreach (var activeBattle in ActiveBattles.ToArray())
             {
-                if (i >= ActiveBattles.Count)
-                    continue;
-                var t = ActiveBattles[i];
-                var timeactive = (DateTime.UtcNow - t.StartTime).TotalMinutes;
-                if (timeactive > 1 && t.Activated)
+                var timeactive = (DateTime.UtcNow - activeBattle.Value.StartTime).TotalMinutes;
+                if (timeactive > 1 && !activeBattle.Value.Activated)
                 {
-                    await t.Kill();
+                    await activeBattle.Value.Kill("Took too long to respond");
                     continue;
                 }
-                if (timeactive >= BattleTimeout)
+                var lastMessageMinutes = (DateTime.UtcNow - activeBattle.Value.LastMessageTime).TotalMinutes;
+                if (lastMessageMinutes > 2)
                 {
-                    await t.Kill();
+                    await activeBattle.Value.Kill("Battle timed out due to now messages");
                 }
             }
         }

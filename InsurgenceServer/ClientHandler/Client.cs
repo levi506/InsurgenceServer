@@ -21,11 +21,13 @@ namespace InsurgenceServer
         public bool LoggedIn;
         public bool Admin = false;
 
+        public Guid Identifier;
         public uint UserId;
         public string Username { get; private set; } = "";
         public IPAddress Ip { get; private set; }
         public DateTime LastActive;
 
+        public Guid ActiveBattleId;
         public Trade ActiveTrade;
         public Battle ActiveBattle;
 
@@ -35,13 +37,16 @@ namespace InsurgenceServer
         public string PendingFriend;
         public List<uint> Friends;
 
+        public bool IsConnected => ActualCient.Connected;
+
         public Client(TcpClient actualCient)
         {
+            Identifier = Guid.NewGuid();
             ActualCient = actualCient;
             Ip = ((IPEndPoint)actualCient.Client.RemoteEndPoint).Address;
             _stream = ActualCient.GetStream();
             LastActive = DateTime.UtcNow;
-            ClientHandler.ActiveClients.Add(this);
+            ClientHandler.ActiveClients.TryAdd(Identifier, this);
 #pragma warning disable 4014
             StartListening();
 #pragma warning restore 4014
@@ -87,13 +92,32 @@ namespace InsurgenceServer
                     return;
                 }
 
-                Logger.Logger.Log(Username != "" ? $"{Username} {_message}" : $"Not Logged In: {_message}");
+                Logger.Logger.Log(Username != "" ? $"{Username} {_message}" : $"Not Logged In ({Ip}): {_message}");
+                if (_message.EndsWith("<DSC>") && _message.Length > 5)
+                {
+                    LastActive = DateTime.UtcNow;
+                    var msg = _message.Replace("<DSC>", "");
+                    var command = new CommandHandler(msg);
+#pragma warning disable 4014
+                    NewCommandExecutor.ExecuteCommand(this, command);
+#pragma warning restore 4014
+                    
+                    var disconnectCommand = new CommandHandler("<DSC>");
+#pragma warning disable 4014
+                    NewCommandExecutor.ExecuteCommand(this, disconnectCommand);
+#pragma warning restore 4014
+                }
+                else
+                {
+                    LastActive = DateTime.UtcNow;
+                    var command = new CommandHandler(_message);
+                    _message = "";
 
-                LastActive = DateTime.UtcNow;
-                var command = new CommandHandler(_message);
-                _message = "";
+#pragma warning disable 4014
+                    NewCommandExecutor.ExecuteCommand(this, command);
+#pragma warning restore 4014
+                }
 
-                await NewCommandExecutor.ExecuteCommand(this, command);
             }
             catch (Exception e) {
                 Console.WriteLine(e);
@@ -135,7 +159,8 @@ namespace InsurgenceServer
 
             //We encode each name into base64 to prevent commas in names from breaking stuff
             var compilefriends = string.Join(",", Friends.Select(x => Utilities.Encoding.Base64Encode(x.ToString())));
-            var onlinestring = Friends.Aggregate("", (current, friend) => current + (((ClientHandler.GetClient(friend)) == null) ? "0" : "1"));
+            var onlinestring = Friends.Aggregate("",
+                (current, friend) => current + (((ClientHandler.GetClient(friend)) == null) ? "0" : "1"));
 
             await SendMessage($"<FRIENDLIST friends={compilefriends} online={onlinestring}>");
 
@@ -150,6 +175,11 @@ namespace InsurgenceServer
         }
         internal async Task HandleTrade(Dictionary<string, string> args)
         {
+            if (Data.TradeDisabled)
+            {
+                await SendMessage("<TRA user=nil result=3>");
+                return;
+            }
             if (args.ContainsKey("user"))
             {
                 var t = await TradeHandler.BeginTrade(args["user"], this);
@@ -187,10 +217,23 @@ namespace InsurgenceServer
             if (args.ContainsKey("user"))
             {
                 var b = await BattleHandler.BeginBattle(args["user"], this, args["trainer"]);
-                if (b != null)
-                    ActiveBattle = b;
+                if (b == null) 
+                    return;
+                ActiveBattle = b;
+                ActiveBattleId = b.Id;
+                return;
             }
-            else if (args.ContainsKey("seed"))
+            if (ActiveBattle == null)
+            {
+                ActiveBattle = BattleHandler.GetBattle(this);
+            }
+            if (ActiveBattle == null)
+            {
+                Logger.Logger.Log($"Can't find battle for user: {Username}");
+                await SendMessage("<TRA dead>");
+                return;
+            }
+            if (args.ContainsKey("seed"))
             {
                 await ActiveBattle.GetRandomSeed(this, args["turn"]);
             }
@@ -249,7 +292,7 @@ namespace InsurgenceServer
             {
                 await ClientHandler.Remove(this);
                 ActiveTrade?.Kill();
-                ActiveBattle?.Kill();
+                ActiveBattle?.Kill($"{Username} disconnected");
                 if (QueuedTier != Tiers.Null)
                     await RandomBattles.RemoveRandom(this);
                 await WonderTrade.WonderTradeHandler.DeleteFromClient(this);

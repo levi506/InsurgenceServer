@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using AdminSiteNew.Auth;
+using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MvcSample.Web.Models;
 
 namespace MvcSample.Web
 {
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             Console.WriteLine(User.Claims.Count(x => x.Type == "Moderator"));
             return View(CreateUser());

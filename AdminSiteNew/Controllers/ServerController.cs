@@ -4,14 +4,13 @@ using AdminSiteNew.Database;
 using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MvcSample.Web.Models;
 
 namespace AdminSiteNew.Controllers
 {
     [Authorize(Policy = "Developer")]
     public class ServerController : Controller
     {
-        public ActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
             if (ServerInteraction.Handler.Crashed)
             {
@@ -20,10 +19,10 @@ namespace AdminSiteNew.Controllers
             DashboardModel Model = new DashboardModel();
             return View(Model);
         }
-        public PartialViewResult UserCount()
+        public async Task<PartialViewResult> UserCount()
         {
-            var Model = new DashboardModel();
-            return PartialView("UserCount", Model);
+            var model = new DashboardModel();
+            return PartialView("UserCount", model);
         }
 
         public async Task<IActionResult> Metrics()

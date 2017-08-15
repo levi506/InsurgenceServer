@@ -60,7 +60,6 @@ namespace InsurgenceServer.GTS
                 return;
             }
             var filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
-            Console.WriteLine(filter.Species);
             //Request pokemon from the database, starting with pokemon last seen + 1. If lastID = -1, start from highest number
             var ls = await Database.Dbgts.GetTrades(index, filter);
             var str = "";
@@ -112,7 +111,7 @@ namespace InsurgenceServer.GTS
                 return;
             }
             //Set accepted to true, Set pokemon offered as pokemon for collector to receive
-            await Database.Dbgts.SetAccepted(id, pokemon);
+            await Database.Dbgts.SetAccepted(id, decoded);
             //Send positive response along with pokemon back to client.
             var encodedPokemon = Utilities.Encoding.Base64Encode(JsonConvert.SerializeObject(poke.Offer));
             await c.SendMessage($"<GTSOFFER result=3 pkmn={encodedPokemon}>");

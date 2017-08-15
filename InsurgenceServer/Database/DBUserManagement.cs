@@ -39,7 +39,10 @@ namespace InsurgenceServer.Database
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
+            {
+                await conn.Close();
                 return 0;
+            }
             const string banuser = "SELECT user_id FROM users WHERE username = @name";
             var m = new MySqlCommand(banuser, conn.Connection);
             m.Parameters.AddWithValue("name", username);

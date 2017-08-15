@@ -155,7 +155,9 @@ namespace InsurgenceServer
         [ServerCommand("BASEBAT", true)]
         public static async Task SetBaseTrainerRequest(Client client, CommandHandler command)
         {
-            await DbFriendSafari.SetTrainer(client, Utilities.Encoding.Base64Decode(command.Data["trainer"]));
+            var trainerString = Utilities.Encoding.Base64Decode(command.Data["trainer"]);
+            trainerString = trainerString.Replace("\t", "");
+            await DbFriendSafari.SetTrainer(client, trainerString);
         }
 
         [ServerCommand("GETBAT", false)]
@@ -245,7 +247,8 @@ namespace InsurgenceServer
             }
             catch
             {
-                await client.SendMessage("<GTSOFFER result=2 pkmn=nil>");
+                await client.SendMessage("<GTSOFFER result=1 pkmn=nil>");
+                throw;
             }
         }
         [ServerCommand("GTSCANCEL", true)]

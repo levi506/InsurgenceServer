@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
@@ -13,7 +12,7 @@ namespace AdminSiteNew.Database
         {
             var l = new List<Metrics>();
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return l;
@@ -35,7 +34,7 @@ namespace AdminSiteNew.Database
                 }
                 l.Add(m);
             }
-
+            conn.Close();
             return l;
         }
     }

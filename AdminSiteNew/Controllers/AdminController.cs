@@ -16,18 +16,18 @@ namespace AdminSiteNew.Controllers
     public class AdminController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = new AdminModels.AdminModel()
             {
-                 Users = Database.DbAdmin.GetPermissions()
+                 Users = await Database.DbAdmin.GetPermissions()
             };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePermission ()
+        public async Task<IActionResult> ChangePermission ()
         {
             var newPermission = (AdminModels.PermissionsEnum)Enum.Parse(typeof(AdminModels.PermissionsEnum), Request.Form["user.Permission"]);
             if (newPermission == AdminModels.PermissionsEnum.Administrator)
@@ -38,7 +38,7 @@ namespace AdminSiteNew.Controllers
             {
                 return Redirect("/Admin/Index/");
             }
-            Database.DbAdmin.UpdatePermissions(Request.Form["user.ID"], (int)newPermission);
+            await Database.DbAdmin.UpdatePermissions(Request.Form["user.ID"], (int)newPermission);
             return Redirect("/Admin/Index/");
         }
     }

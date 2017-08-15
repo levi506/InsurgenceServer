@@ -9,5 +9,6 @@ namespace AdminSiteNew.Auth
     {
         public bool AccessChecked;
         public bool Access;
+        public string Name { get; set; }
     }
 }

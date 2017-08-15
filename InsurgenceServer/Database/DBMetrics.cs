@@ -18,10 +18,12 @@ namespace InsurgenceServer.Database
                 await conn.Close();
                 return;
             }
-            const string command = "INSERT INTO CounterMetrics (id, value) VALUES (@keyname, 1) ON DUPLICATE KEY UPDATE value = value + 1";
+            const string command =
+                "INSERT INTO CounterMetrics (id, value) VALUES (@keyname, 1) ON DUPLICATE KEY UPDATE value = value + 1";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@keyname", key);
             await mcom.ExecuteScalarAsync();
+            await conn.Close();
         }
 
         public static async Task<int> GetMetricValue(int key)
@@ -67,6 +69,7 @@ namespace InsurgenceServer.Database
             sCommand.Append(";");
             var m = new MySqlCommand(sCommand.ToString(), conn.Connection) {CommandType = CommandType.Text};
             await m.ExecuteNonQueryAsync();
+            await conn.Close();
         }
     }
 }

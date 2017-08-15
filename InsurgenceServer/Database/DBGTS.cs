@@ -51,7 +51,7 @@ namespace InsurgenceServer.Database
             {
                 com += " AND (Offer ->'$.nature') = @nature";
             }
-            const int ignoreGender = 0;
+            const int ignoreGender = 2;
             if (filter.Gender != ignoreGender)
             {
                 com += " AND (Offer->'$.gender') = @gender";
@@ -115,7 +115,7 @@ namespace InsurgenceServer.Database
                 return false;
             const string s = "SELECT Accepted FROM GTS WHERE id=@index";
             var c = new MySqlCommand(s, conn.Connection);
-            c.Parameters.AddWithValue("@id", index);
+            c.Parameters.AddWithValue("@index", index);
             var r = await c.ExecuteReaderAsync();
             var ret = false;
             while (await r.ReadAsync())
@@ -131,9 +131,10 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return;
-            const string s = "UPDATE GTS SET Accepted=1, Result=@poke";
+            const string s = "UPDATE GTS SET Accepted=1, Result=@poke WHERE id = @index";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@poke", pokemon);
+            c.Parameters.AddWithValue("@index", index);
             await c.ExecuteNonQueryAsync();
             await conn.Close();
         }
@@ -166,7 +167,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return false;
-            const string s = "SELECT user_id FROM gts WHERE id=@id";
+            const string s = "SELECT user_id FROM GTS WHERE id=@id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeId);
             var r = await c.ExecuteReaderAsync();
@@ -205,6 +206,7 @@ namespace InsurgenceServer.Database
             {
                 ret = (string)r["Result"];
             }
+            r.Close();
             const string delete = "DELETE FROM GTS WHERE id = @id";
             var deletecom = new MySqlCommand(delete, conn.Connection);
             deletecom.Parameters.AddWithValue("@id", tradeid);
@@ -217,7 +219,7 @@ namespace InsurgenceServer.Database
             var conn = new OpenConnection();
             if (!conn.IsConnected())
                 return false;
-            const string s = "SELECT Accepted WHERE trade_id=@id";
+            const string s = "SELECT Accepted FROM GTS WHERE id=@id";
             var c = new MySqlCommand(s, conn.Connection);
             c.Parameters.AddWithValue("@id", tradeid);
             var r = await c.ExecuteReaderAsync();

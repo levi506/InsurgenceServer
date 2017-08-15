@@ -14,17 +14,17 @@ namespace AdminSiteNew.Controllers
     [Authorize(Policy = "Developer")]
     public class DirectGiftController : Controller
     {
-        public ActionResult Index(string id)
+        public async Task<IActionResult> Index(string id)
         {
             Console.WriteLine("username: " + id);
             if (id != "")
-                GetGifts(id);
+                await GetGifts(id);
             return View();
         }
 
-        public PartialViewResult GetGifts(string username = "")
+        public async Task<PartialViewResult> GetGifts(string username = "")
         {
-            var ls = DBDirectGifts.GetGifts(username);
+            var ls =  await DbDirectGifts.GetGifts(username);
             var model = new DirectGiftModel
             {
                 request = username,
@@ -40,13 +40,13 @@ namespace AdminSiteNew.Controllers
             return Redirect("/DirectGift/Index/" + request);
         }
 
-        public ActionResult Details(string id)
+        public async Task<IActionResult> Details(string id)
         {
             var data = id.Split('?');
             var username = data[0];
             var giftIndex = int.Parse(data[1]);
             var newgift = bool.Parse(data[2]);
-            var ls = DBDirectGifts.GetGifts(username);
+            var ls = await DbDirectGifts.GetGifts(username);
             if (newgift)
             {
                 var model = new DirectGiftDetailModel
@@ -70,7 +70,7 @@ namespace AdminSiteNew.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPokemonGift()
+        public async Task<IActionResult> AddPokemonGift()
         {
             var otgender = int.Parse(Request.Form["pokemonModel.Pokemon.otgender"]);
             if (otgender == 2) otgender = 0;
@@ -154,7 +154,7 @@ namespace AdminSiteNew.Controllers
             pkmn.ability = abil;
 
             var username = Request.Form["username"].ToString();
-            var ls = DBDirectGifts.GetGifts(username);
+            var ls = await DbDirectGifts.GetGifts(username);
             var index = int.Parse(Request.Form["giftIndex"]);
             var gift = new PokemonDirectGift
             {
@@ -172,27 +172,27 @@ namespace AdminSiteNew.Controllers
                 ls[index] = gift;
             }
 
-            DBDirectGifts.SetDirectGifts(username, ls);
+            await DbDirectGifts.SetDirectGifts(username, ls);
 
 
             return Redirect("/DirectGift/Index/" + username);
         }
 
-        public ActionResult DeleteGift(string username, string index)
+        public async Task<IActionResult> DeleteGift(string username, string index)
         {
-            var Index = int.Parse(index);
-            var ls = DBDirectGifts.GetGifts(username);
-            ls.RemoveAt(Index);
-            DBDirectGifts.SetDirectGifts(username, ls);
+            var i = int.Parse(index);
+            var ls = await DbDirectGifts.GetGifts(username);
+            ls.RemoveAt(i);
+            await DbDirectGifts.SetDirectGifts(username, ls);
             return Redirect("/DirectGift/Index/" + username);
         }
 
         [HttpPost]
-        public ActionResult AddItemGift()
+        public async Task<IActionResult> AddItemGift()
         {
 
             var username = Request.Form["username"].ToString();
-            var ls = DBDirectGifts.GetGifts(username);
+            var ls = await DbDirectGifts.GetGifts(username);
             var index = int.Parse(Request.Form["giftIndex"]);
             var gift = new ItemDirectGift
             {
@@ -211,7 +211,7 @@ namespace AdminSiteNew.Controllers
             {
                 ls[index] = gift;
             }
-            DBDirectGifts.SetDirectGifts(username, ls);
+            await DbDirectGifts.SetDirectGifts(username, ls);
 
             return Redirect("/DirectGift/Index/" + username);
         }

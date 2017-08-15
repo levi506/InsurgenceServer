@@ -14,7 +14,7 @@ namespace AdminSiteNew.Controllers
     [Authorize(Policy = "Moderator")]
     public class TradesController : Controller
     {
-        public ActionResult RecentTrades(string id)
+        public async Task<IActionResult> RecentTrades(string id)
         {
             uint i;
             if (!uint.TryParse(id, out i))
@@ -22,12 +22,12 @@ namespace AdminSiteNew.Controllers
             var model = new RecentTradesModel
             {
                 StartIndex = i,
-                Trades = DbTradelog.GetTradeLog(i)
+                Trades = await DbTradelog.GetTradeLog(i)
             };
             return View(model);
         }
 
-        public ActionResult RecentWonderTrades(string id)
+        public async Task<IActionResult> RecentWonderTrades(string id)
         {
             uint i;
             if (!uint.TryParse(id, out i))
@@ -35,17 +35,17 @@ namespace AdminSiteNew.Controllers
             var model = new RecentWonderTradesModel
             {
                 StartIndex = i,
-                Trades = DbTradelog.GetWonderTradeLog(i)
+                Trades = await DbTradelog.GetWonderTradeLog(i)
             };
             return View(model);
         }
 
-        public ActionResult Tradelog(string id)
+        public async Task<IActionResult> Tradelog(string id)
         {
             uint i;
             if (!uint.TryParse(id, out i))
                 i = 0;
-            return View(DbTradelog.GetTrade(i));
+            return View(await DbTradelog.GetTrade(i));
         }
     }
 }

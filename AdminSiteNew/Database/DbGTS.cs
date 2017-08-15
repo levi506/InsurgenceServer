@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
@@ -13,7 +12,7 @@ namespace AdminSiteNew.Database
         public static async Task<List<GTSObject>> GetClosedGTSTrades()
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return new List<GTSObject>();
@@ -40,7 +39,7 @@ namespace AdminSiteNew.Database
         public static async Task<List<GTSObject>> GetOpenGTSTrades()
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return new List<GTSObject>();
@@ -67,7 +66,7 @@ namespace AdminSiteNew.Database
         public static async Task<GTSObject> GetSingleGTSTrade(int i)
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return null;
@@ -99,7 +98,7 @@ namespace AdminSiteNew.Database
         public static async Task DeleteGTS(int id)
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return;

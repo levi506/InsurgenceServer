@@ -11,18 +11,21 @@
     </th>
     @if (Model.Type == DirectGiftType.Pokemon)
     {
-        var pokemon = (Model as PokemonDirectGift).Pokemon;
-        <td>
-            @PokemonHelper.GetPokemonName(pokemon.species)
-        </td>
-        <td>
-            @pokemon.name
-        </td>
-        <td>
-            @pokemon.level
-        </td>
-        <td>
-            @if (pokemon.isShiny)
+        var pokemonDirectGift = Model as PokemonDirectGift;
+        if (pokemonDirectGift != null)
+        {
+            var pokemon = pokemonDirectGift.Pokemon;
+            <td>
+                @PokemonHelper.GetPokemonName(pokemon.species)
+            </td>
+            <td>
+                @pokemon.name
+            </td>
+            <td>
+                @pokemon.level
+            </td>
+            @:<td>
+            if (pokemon.isShiny)
             {
                 @:Shiny
             }
@@ -30,16 +33,21 @@
             {
                 @:Bland
             }
-        </td>
+        }
+        @:</td>
     }
     else if (Model.Type == DirectGiftType.Item)
     {
         var item = (Model as ItemDirectGift);
         <td colspan="2">
-            @item.Item
-        </td>
-        <td colspan="2">
-            @item.Amount
+            @if (item != null)
+            {
+                @item.Item
+                @:</td>
+                <text><td colspan="2">
+                    @item.Amount</text>
+            }
+ 
         </td>
     }
     <td>

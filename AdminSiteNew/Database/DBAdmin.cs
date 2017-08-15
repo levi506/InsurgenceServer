@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
@@ -9,10 +7,10 @@ namespace AdminSiteNew.Database
 {
     internal static class DbAdmin
     {
-        public static List<AdminModels.UserPermissions> GetPermissions()
+        public static async Task<List<AdminModels.UserPermissions>> GetPermissions()
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             { 
                 conn.Close();
                 return new List<AdminModels.UserPermissions>();
@@ -20,23 +18,25 @@ namespace AdminSiteNew.Database
             var l = new List<AdminModels.UserPermissions>();
             const string command = "SELECT id, access, name FROM newwebadmin";
             var mcom = new MySqlCommand(command, conn.Connection);
-            var r = mcom.ExecuteReader();
-            while (r.Read())
+            using (var r = await mcom.ExecuteReaderAsync())
             {
-                l.Add(new AdminModels.UserPermissions
+                while (await r.ReadAsync())
                 {
-                    Id = r["id"].ToString(),
-                    Permission = (AdminModels.PermissionsEnum)r["access"],
-                    Name = r["name"].ToString()
-                });
+                    l.Add(new AdminModels.UserPermissions
+                    {
+                        Id = r["id"].ToString(),
+                        Permission = (AdminModels.PermissionsEnum)r["access"],
+                        Name = r["name"].ToString()
+                    });
+                }
             }
             return l;
         }
 
-        public static void UpdatePermissions(string userid, int permission)
+        public static async Task UpdatePermissions(string userid, int permission)
         {
             var conn = new OpenConnection();
-            if (!conn.isConnected())
+            if (!conn.IsConnected)
             {
                 conn.Close();
                 return;
@@ -45,7 +45,7 @@ namespace AdminSiteNew.Database
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", userid);
             mcom.Parameters.AddWithValue("@access", permission);
-            mcom.ExecuteNonQuery();
+            await mcom.ExecuteNonQueryAsync();
         }
     }
 }

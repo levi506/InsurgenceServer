@@ -122,7 +122,7 @@ namespace AdminSiteNew
                     OnCreatingTicket = x =>
                     {
                         Console.WriteLine(x.ExpiresIn);
-                        var permissionLevel = Database.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name);
+                        var permissionLevel = Database.Database.RegisterWebAdmin((string)x.User["id"], x.Identity.Name).Result;
                         if (permissionLevel >= 1)
                         {
                             x.Identity.AddClaim(new Claim("Moderator", "Allowed"));

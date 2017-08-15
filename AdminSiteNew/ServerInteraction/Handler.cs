@@ -50,8 +50,7 @@ namespace AdminSiteNew.ServerInteraction
             }
             Console.WriteLine("Connected to local server");
             stream = client.GetStream();
-            new System.Threading.Thread(() =>
-               RealStart()
+            new System.Threading.Thread(RealStart
             ).Start();
         }
         private static void RealStart()
@@ -60,12 +59,12 @@ namespace AdminSiteNew.ServerInteraction
             {
                 try
                 {
-                    string s = SendMessage("<INFO>");
+                    var s = SendMessage("<INFO>");
                     var command = new CommandHandler(s);
-                    UserCount = int.Parse(command.data["users"]);
-                    TradeCount = int.Parse(command.data["trades"]);
-                    BattleCount = int.Parse(command.data["battles"]);
-                    WTCount = int.Parse(command.data["WT"]);
+                    UserCount = int.Parse(command.Data["users"]);
+                    TradeCount = int.Parse(command.Data["trades"]);
+                    BattleCount = int.Parse(command.Data["battles"]);
+                    WTCount = int.Parse(command.Data["WT"]);
 
                     System.Threading.Thread.Sleep(1000);
                 }
@@ -87,18 +86,17 @@ namespace AdminSiteNew.ServerInteraction
         }
         private static string SendMessage(string message)
         {
-            ASCIIEncoding asen = new ASCIIEncoding();
-            byte[] ba = asen.GetBytes(message + "&");
+            var asen = new ASCIIEncoding();
+            var ba = asen.GetBytes(message + "&");
             stream.Write(ba, 0, ba.Length);
             stream.Flush();
 
-            byte[] bb = new byte[255];
+            var bb = new byte[255];
 
             var i = stream.Read(bb, 0, bb.Length);
             var data = Encoding.ASCII.GetString(bb, 0, i);
-            string s = "";
-            bool collecting = true;
-            while (collecting)
+            var s = "";
+            while (true)
             {
                 s += data;
                 if (data.Contains("&"))
@@ -126,18 +124,18 @@ namespace AdminSiteNew.ServerInteraction
             }
         }
 
-        private static string Message = "";
+        private static string _message = "";
         private static void DataHandler(string data)
         {
             if (data.EndsWith("&"))
                 data = data.Remove(data.Length - 1);
-            Message += data;
+            _message += data;
             if (!data.EndsWith(">"))
             {
                 return;
             }
-            var command = new CommandHandler(Message);
-            Message = "";
+            var command = new CommandHandler(_message);
+            _message = "";
 
 
         }
@@ -146,7 +144,7 @@ namespace AdminSiteNew.ServerInteraction
     public class CommandHandler
     {
         public Commands Command;
-        public Dictionary<string, string> data = new Dictionary<string, string>();
+        public Dictionary<string, string> Data = new Dictionary<string, string>();
         public CommandHandler(string _input)
         {
             if (!(_input.StartsWith("<") && _input.EndsWith(">")))
@@ -171,7 +169,7 @@ namespace AdminSiteNew.ServerInteraction
                     if (j != 1)
                         arg += "=";
                 }
-                data.Add(carr[0], arg);
+                Data.Add(carr[0], arg);
             }
         }
     }

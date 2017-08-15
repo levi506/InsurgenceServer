@@ -57,8 +57,6 @@ namespace InsurgenceServer
                     // ignored
                 }
                 Console.WriteLine(e.ExceptionObject.ToString());
-                Console.WriteLine("Press Enter to continue");
-                Console.ReadLine();
             }
             
             Environment.Exit(1);

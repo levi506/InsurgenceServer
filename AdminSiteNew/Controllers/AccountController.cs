@@ -1,13 +1,11 @@
-﻿using AdminSiteNew.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MvcSample.Web.Models;
 
 namespace AdminSiteNew.Controllers
 {
     public class AccountController : Controller
     {
-        public ActionResult AccessDenied()
+        public async Task<IActionResult> AccessDenied()
         {
             return View();
         }
