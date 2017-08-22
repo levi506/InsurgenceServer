@@ -8,7 +8,7 @@ namespace InsurgenceServer
 		public const string Ip = "5.135.154.100";
 		public const int Port = 6421;
 		public const string Databasename = "insurgence";
-		public const double ServerVersion = 3.0;
+		public const double ServerVersion = 3.1;
 		public const int MaximumConnections = 200;
 
         public const int MaximumGtsTradesPerUser = 3;
@@ -24,7 +24,7 @@ namespace InsurgenceServer
 
         public static ObservableCollection<string> Log = new ObservableCollection<string>();
 		
-		public const bool TradeDisabled = true;
+		public const bool TradeDisabled = false;
 	}
     
 }

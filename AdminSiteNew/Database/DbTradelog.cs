@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AdminSiteNew.Models;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace AdminSiteNew.Database
 {
@@ -67,8 +68,14 @@ namespace AdminSiteNew.Database
                             Date = (DateTime) r["time"],
                             User1 = (string) r["user1"],
                             User2 = (string) r["user2"],
-                            Pokemon1 = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon1"]),
-                            Pokemon2 = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon2"])
+                            Pokemon1 = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon1"], new JsonSerializerSettings
+                            {
+                                Error = HandleDeserializationError
+                            }),
+                            Pokemon2 = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon2"], new JsonSerializerSettings
+                            {
+                                Error = HandleDeserializationError
+                            })
                         };
                         l.Add(t);
                     }
@@ -78,6 +85,12 @@ namespace AdminSiteNew.Database
             }
             conn.Close();
             return new List<Trade>();
+        }
+        public static void HandleDeserializationError(object sender, ErrorEventArgs errorArgs)
+        {
+            var currentError = errorArgs.ErrorContext.Error.Message;
+            Console.WriteLine(currentError);
+            errorArgs.ErrorContext.Handled = true;
         }
 
         public static async Task<List<WonderTrade>> GetWonderTradeLog(uint startIndex)
@@ -134,7 +147,7 @@ namespace AdminSiteNew.Database
                     t.Date = (DateTime) r["time"];
                 }
             }
-
+            conn.Close();
             return t;
         }
     }

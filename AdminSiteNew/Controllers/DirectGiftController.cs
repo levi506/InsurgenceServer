@@ -16,7 +16,6 @@ namespace AdminSiteNew.Controllers
     {
         public async Task<IActionResult> Index(string id)
         {
-            Console.WriteLine("username: " + id);
             if (id != "")
                 await GetGifts(id);
             return View();
@@ -36,7 +35,6 @@ namespace AdminSiteNew.Controllers
         [HttpPost]
         public ActionResult FindGifts(string request)
         {
-            Console.WriteLine(request);
             return Redirect("/DirectGift/Index/" + request);
         }
 

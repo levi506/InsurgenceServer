@@ -30,6 +30,7 @@ namespace AdminSiteNew.Database
                     });
                 }
             }
+            conn.Close();
             return l;
         }
 
@@ -46,6 +47,7 @@ namespace AdminSiteNew.Database
             mcom.Parameters.AddWithValue("@id", userid);
             mcom.Parameters.AddWithValue("@access", permission);
             await mcom.ExecuteNonQueryAsync();
+            conn.Close();
         }
     }
 }

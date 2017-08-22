@@ -19,7 +19,7 @@ namespace InsurgenceServer
             Data.SiteServer = new TcpListener(IPAddress.Parse("127.0.0.1"), 6419);
 			Data.Server.Start();
             Data.SiteServer.Start();
-			Console.WriteLine($"Server Started on {ip}:{Data.Port}");
+			Console.WriteLine($"Server Started on {ip}:{Data.Port}. Version : {Data.ServerVersion}");
 
             new Thread(MainListener
             ).Start();
@@ -36,7 +36,14 @@ namespace InsurgenceServer
                     new Thread(() =>
                     {
                         // ReSharper disable once ObjectCreationAsStatement
-                        new Client(client);
+                        try
+                        {
+                            new Client(client);
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
                     }).Start();
                 }
                 catch (Exception e)

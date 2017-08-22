@@ -34,6 +34,7 @@ namespace AdminSiteNew.Database
                     TraderName = r["username"].ToString()
                 });
             }
+            conn.Close();
             return l;
         }
         public static async Task<List<GTSObject>> GetOpenGTSTrades()
@@ -60,6 +61,7 @@ namespace AdminSiteNew.Database
                     OwnerName = r["ownername"].ToString()
                 });
             }
+            conn.Close();
             return l;
         }
 
@@ -75,12 +77,13 @@ namespace AdminSiteNew.Database
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", i);
             var r = await mcom.ExecuteReaderAsync();
+            GTSObject obj = null;
             while (r.Read())
             {
                 Pokemon result = null;
                 if (!(r["Result"] is DBNull))
                     result = JsonConvert.DeserializeObject<Pokemon>(r["Result"].ToString());
-                return new GTSObject
+                obj = new GTSObject
                 {
                     Id = (int)r["id"],
                     Offer = JsonConvert.DeserializeObject<Pokemon>(r["Offer"].ToString()),
@@ -92,7 +95,8 @@ namespace AdminSiteNew.Database
                     Result = result
                 };
             }
-            return null;
+            conn.Close();
+            return obj;
         }
 
         public static async Task DeleteGTS(int id)
@@ -107,6 +111,7 @@ namespace AdminSiteNew.Database
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@id", id);
             await mcom.ExecuteNonQueryAsync();
+            conn.Close();
         }
 
     }

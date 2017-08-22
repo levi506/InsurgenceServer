@@ -236,7 +236,7 @@ namespace InsurgenceServer.Database
             var gifts = await m.ExecuteScalarAsync();
 
             string giftString;
-            if (gifts is DBNull)
+            if (gifts == null || gifts is DBNull)
             {
                 giftString = "nil";
             }

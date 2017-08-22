@@ -12,115 +12,117 @@ namespace AdminSiteNew.Database
         public static async Task<UserRequest> GetUser(string username)
         {
             var conn = new OpenConnection();
-            if (conn.IsConnected)
+            if (!conn.IsConnected)
             {
-                var u = new UserRequest {UserInfo = new UserInfo {Username = username}};
-
-                const string usercommand = "SELECT user_id, banned, base FROM users WHERE username = @param_val_1;";
-                var m = new MySqlCommand(usercommand, conn.Connection);
-                m.Parameters.AddWithValue("@param_val_1", username);
-                using (var result = await m.ExecuteReaderAsync())
-                {
-                    if (!result.HasRows)
-                    {
-                        conn.Close();
-                        return null;
-                    }
-                    while (await result.ReadAsync())
-                    {
-                        u.UserInfo.User_Id = (uint)result["user_id"];
-                        if (result["banned"].GetType() != typeof(DBNull))
-                            u.UserInfo.Banned = (bool)result["banned"];
-                        else
-                            u.UserInfo.Banned = false;
-                        u.FriendSafariString = (string)result["base"];
-                    }
-                }
-                u.FriendSafari = new FriendSafari(u.FriendSafariString);
-
-                const string getLoginData = "SELECT lastlogin FROM user_data WHERE user_id = @param_val_1";
-                var glc = new MySqlCommand(getLoginData, conn.Connection);
-                glc.Parameters.AddWithValue("@param_val_1", u.UserInfo.User_Id);
-                using (var glcresult = await glc.ExecuteReaderAsync())
-                {
-                    while (await glcresult.ReadAsync())
-                    {
-                        if (glcresult["lastlogin"].GetType() != typeof(DBNull))
-                        {
-                            u.UserInfo.LastLoggedIn = (DateTime)glcresult["lastlogin"];
-                        }
-                    }
-                }
-                
-                //Find IPs
-                const string ipcommand = "SELECT ip, ipban FROM ips WHERE user_id = @param_val_1;";
-                var n = new MySqlCommand(ipcommand, conn.Connection);
-                n.Parameters.AddWithValue("@param_val_1", u.UserInfo.User_Id);
-                u.IPs = new List<IPInfo>();
-                using (var ipresult = await n.ExecuteReaderAsync())
-                {
-                    while (await ipresult.ReadAsync())
-                    {
-                        bool ban;
-                        if (ipresult["ipban"].GetType() != typeof(DBNull))
-                        {
-                            if (ipresult["ipban"] is sbyte)
-                            {
-                                ban = Convert.ToBoolean((sbyte)ipresult["ipban"]);
-                            }
-                            else
-                            {
-                                ban = (bool)ipresult["ipban"];
-                            }
-                        }
-                        else
-                        {
-                            ban = false;
-                        }
-                        var ip = new IPInfo
-                        {
-                            IP = (string)ipresult["ip"],
-                            Banned = ban
-                        };
-                        u.IPs.Add(ip);
-                    }
-                }
-                //Find Alts----------------------------------
-                const string altipcommand = "SELECT user_id FROM ips WHERE FIND_IN_SET (ip, @param_val_1) != 0";
-                var o = new MySqlCommand(altipcommand, conn.Connection);
-                var ipl = u.IPs.Select(ip => ip.IP).ToList();
-                o.Parameters.AddWithValue("param_val_1", string.Join(",", ipl));
-                var l = new List<uint>();
-                using (var altipresult = await o.ExecuteReaderAsync())
-                {
-                    while (altipresult.Read())
-                    {
-                        l.Add((uint)altipresult["user_id"]);
-                    }
-                }
-                const string altcommand = "SELECT username, user_id, banned FROM users WHERE FIND_IN_SET (user_id, @param_val_1) != 0";
-                var p = new MySqlCommand(altcommand, conn.Connection);
-                p.Parameters.AddWithValue("param_val_1", string.Join(",", l));
-                u.Alts = new List<UserInfo>();
-                using (var altresult = await p.ExecuteReaderAsync())
-                {
-                    while (altresult.Read())
-                    {
-                        var uinfo = new UserInfo
-                        {
-                            User_Id = (uint)altresult["user_id"],
-                            Username = (string)altresult["username"],
-                            Banned = (bool)altresult["banned"]
-                        };
-                        u.Alts.Add(uinfo);
-                    }
-                }
-                //Get Tradelog
-                u.Trades = await DbTradelog.GetUserTradeLog(u.UserInfo.Username);
-                return u;
+                conn.Close();
+                return null;
             }
+            var u = new UserRequest {UserInfo = new UserInfo {Username = username}};
+
+            const string usercommand = "SELECT user_id, banned, base FROM users WHERE username = @param_val_1;";
+            var m = new MySqlCommand(usercommand, conn.Connection);
+            m.Parameters.AddWithValue("@param_val_1", username);
+            using (var result = await m.ExecuteReaderAsync())
+            {
+                if (!result.HasRows)
+                {
+                    conn.Close();
+                    return null;
+                }
+                while (await result.ReadAsync())
+                {
+                    u.UserInfo.User_Id = (uint) result["user_id"];
+                    if (result["banned"].GetType() != typeof(DBNull))
+                        u.UserInfo.Banned = (bool) result["banned"];
+                    else
+                        u.UserInfo.Banned = false;
+                    u.FriendSafariString = (string) result["base"];
+                }
+            }
+            u.FriendSafari = new FriendSafari(u.FriendSafariString);
+
+            const string getLoginData = "SELECT lastlogin FROM user_data WHERE user_id = @param_val_1";
+            var glc = new MySqlCommand(getLoginData, conn.Connection);
+            glc.Parameters.AddWithValue("@param_val_1", u.UserInfo.User_Id);
+            using (var glcresult = await glc.ExecuteReaderAsync())
+            {
+                while (await glcresult.ReadAsync())
+                {
+                    if (glcresult["lastlogin"].GetType() != typeof(DBNull))
+                    {
+                        u.UserInfo.LastLoggedIn = (DateTime) glcresult["lastlogin"];
+                    }
+                }
+            }
+
+            //Find IPs
+            const string ipcommand = "SELECT ip, ipban FROM ips WHERE user_id = @param_val_1;";
+            var n = new MySqlCommand(ipcommand, conn.Connection);
+            n.Parameters.AddWithValue("@param_val_1", u.UserInfo.User_Id);
+            u.IPs = new List<IPInfo>();
+            using (var ipresult = await n.ExecuteReaderAsync())
+            {
+                while (await ipresult.ReadAsync())
+                {
+                    bool ban;
+                    if (ipresult["ipban"].GetType() != typeof(DBNull))
+                    {
+                        if (ipresult["ipban"] is sbyte)
+                        {
+                            ban = Convert.ToBoolean((sbyte) ipresult["ipban"]);
+                        }
+                        else
+                        {
+                            ban = (bool) ipresult["ipban"];
+                        }
+                    }
+                    else
+                    {
+                        ban = false;
+                    }
+                    var ip = new IPInfo
+                    {
+                        IP = (string) ipresult["ip"],
+                        Banned = ban
+                    };
+                    u.IPs.Add(ip);
+                }
+            }
+            //Find Alts----------------------------------
+            const string altipcommand = "SELECT user_id FROM ips WHERE FIND_IN_SET (ip, @param_val_1) != 0";
+            var o = new MySqlCommand(altipcommand, conn.Connection);
+            var ipl = u.IPs.Select(ip => ip.IP).ToList();
+            o.Parameters.AddWithValue("param_val_1", string.Join(",", ipl));
+            var l = new List<uint>();
+            using (var altipresult = await o.ExecuteReaderAsync())
+            {
+                while (altipresult.Read())
+                {
+                    l.Add((uint) altipresult["user_id"]);
+                }
+            }
+            const string altcommand =
+                "SELECT username, user_id, banned FROM users WHERE FIND_IN_SET (user_id, @param_val_1) != 0";
+            var p = new MySqlCommand(altcommand, conn.Connection);
+            p.Parameters.AddWithValue("param_val_1", string.Join(",", l));
+            u.Alts = new List<UserInfo>();
+            using (var altresult = await p.ExecuteReaderAsync())
+            {
+                while (altresult.Read())
+                {
+                    var uinfo = new UserInfo
+                    {
+                        User_Id = (uint) altresult["user_id"],
+                        Username = (string) altresult["username"],
+                        Banned = (bool) altresult["banned"]
+                    };
+                    u.Alts.Add(uinfo);
+                }
+            }
+            //Get Tradelog
+            u.Trades = await DbTradelog.GetUserTradeLog(u.UserInfo.Username);
             conn.Close();
-            return null;
+            return u;
         }
         public static async Task<int> RegisterWebAdmin(string id, string name)
         {
@@ -243,10 +245,7 @@ namespace AdminSiteNew.Database
         public bool IsConnected => Connection.State == System.Data.ConnectionState.Open;
         public void Close()
         {
-            if (IsConnected)
-            {
-                Connection.Close();
-            }
+            Connection.Close();
         }
     }
 }

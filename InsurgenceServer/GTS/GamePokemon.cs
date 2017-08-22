@@ -28,7 +28,7 @@ namespace InsurgenceServer.GTS
         public int spdef { get; set; }
         public int statusCount { get; set; }
         public bool ballcapsule4 { get; set; }
-        public int markings { get; set; }
+        public int? markings { get; set; }
         public int attack { get; set; }
         public int speed { get; set; }
         public int[] iv { get; set; }

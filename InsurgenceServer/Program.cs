@@ -17,18 +17,19 @@ namespace InsurgenceServer
             Console.WriteLine("Creating Commands");
             NewCommandExecutor.Initialize();
             Console.WriteLine("Setting up tiers");
+#pragma warning disable 4014
             Battles.Matchmaking.SetupTiers();
+#pragma warning restore 4014
             Console.WriteLine("Setting up database!");
             Database.DBCreator.CreateTables();
             Database.DbInit.Connect();
             Console.WriteLine("Reading datafiles!");
             GrowthRates.Read();
 
-            new Thread(Logger.ErrorLog.Initialize
-            ).Start();
 
-
+#pragma warning disable 4014
             Battles.RandomBattles.MatchRandoms();
+#pragma warning restore 4014
 
 #pragma warning disable 4014
             Checker.BeginChecking();
