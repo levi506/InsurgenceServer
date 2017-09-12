@@ -1,13 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
+@RenderSection("openGraph", required: false)
+
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Insurgence Admin</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/vendor/metro/build/css/metro.min.css"/>
-    <link rel="stylesheet" href="~/vendor/metro/build/css/metro-responsive.min.css" />
-    <link rel="stylesheet" href="~/vendor/metro/build/css/metro-icons.min.css" />
+    <link rel="stylesheet" href="~/vendor/metro/build/css/metro-responsive.min.css"/>
+    <link rel="stylesheet" href="~/vendor/metro/build/css/metro-icons.min.css"/>
     <script src="~/vendor/jquery.js"></script>
     <script src="~/vendor/metro/build/js/metro.min.js"></script>
     <style>
@@ -15,13 +17,14 @@
             margin-top: 50px;
         }
     </style>
+
 </head>
 <body>
 @await Html.PartialAsync("Header");
 
 <div class="container body-content">
     @RenderBody()
-    <hr />
+    <hr/>
     <footer>
         <p>&copy; @DateTime.Now.Year - Deukhoofd</p>
     </footer>

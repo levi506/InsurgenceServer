@@ -114,5 +114,48 @@ namespace AdminSiteNew.Database
             conn.Close();
         }
 
+        public static async Task<List<GTSObject>> GetUserGTS(uint userId)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected)
+            {
+                conn.Close();
+                return new List<GTSObject>();
+            }
+            var l = new List<GTSObject>();
+            const string command = "SELECT id, Offer, Request, user_id, ownername, Accepted FROM GTS WHERE user_id=@id";
+            var mcom = new MySqlCommand(command, conn.Connection);
+            mcom.Parameters.AddWithValue("id", userId);
+            var r = await mcom.ExecuteReaderAsync();
+            while (r.Read())
+            {
+                l.Add(new GTSObject
+                {
+                    Id = (int) r["id"],
+                    Offer = JsonConvert.DeserializeObject<Pokemon>(r["Offer"].ToString()),
+                    Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
+                    UserId = (int)r["user_id"],
+                    Accepted = (bool)r["Accepted"],
+                    OwnerName = r["ownername"].ToString()
+                });
+            }
+            conn.Close();
+            return l;
+        }
+
+        public static async Task RemoveUserGTS(uint userId)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected)
+            {
+                conn.Close();
+                return;
+            }
+            const string command = "DELETE FROM GTS WHERE user_id = @id";
+            var mcom = new MySqlCommand(command, conn.Connection);
+            mcom.Parameters.AddWithValue("@id", userId);
+            await mcom.ExecuteNonQueryAsync();
+            conn.Close();
+        }
     }
 }

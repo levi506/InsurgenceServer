@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InsurgenceServer.Database;
+using InsurgenceServer.GTS;
 using InsurgenceServer.Logger;
+using InsurgenceServer.Trades;
 
 namespace InsurgenceServer.WonderTrade
 {
@@ -92,7 +94,7 @@ namespace InsurgenceServer.WonderTrade
             await client1.SendMessage($"<WTRESULT result=2 user={client2.Username} pkmn={encoded2}>");
             await client2.SendMessage($"<WTRESULT result=2 user={client1.Username} pkmn={encoded1}>");
         }
-        
+
         public static async Task DeleteFromClient(Client c)
         {
             foreach (var item in List.ToArray())
@@ -120,7 +122,22 @@ namespace InsurgenceServer.WonderTrade
                 return;
             }
 
-            var pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(Utilities.Encoding.Base64Decode(encodedPkmns));
+            GamePokemon pkmn;
+            try
+            {
+                pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(
+                    Utilities.Encoding.Base64Decode(encodedPkmns));
+            }
+            catch
+            {
+                await client.SendMessage("<WTRESULT result=1 user=nil pkmn=nil>");
+                throw;
+            }
+            if (!await TradeValidator.IsPokemonValid(pkmn, client.UserId))
+            {
+                await client.SendMessage("<WTRESULT reult=0 user=nil pkmn=nil>");
+                return;
+            }
             List.Add(new WonderTradeHolder(client, pkmn));
         }
 

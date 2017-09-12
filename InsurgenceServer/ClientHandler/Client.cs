@@ -79,7 +79,7 @@ namespace InsurgenceServer
                 Console.WriteLine(e);
             }
         }
-        
+
         public async Task DataHandler(string data)
         {
             try
@@ -101,7 +101,7 @@ namespace InsurgenceServer
 #pragma warning disable 4014
                     NewCommandExecutor.ExecuteCommand(this, command);
 #pragma warning restore 4014
-                    
+
                     var disconnectCommand = new CommandHandler("<DSC>");
 #pragma warning disable 4014
                     NewCommandExecutor.ExecuteCommand(this, disconnectCommand);
@@ -168,7 +168,7 @@ namespace InsurgenceServer
             FriendHandler.NotifyFriends(this, true);
 #pragma warning restore 4014
         }
-        
+
         internal async Task Register(string username, string password, string email)
         {
             await Database.DbAuthentication.Register(this, username, password, email);
@@ -200,7 +200,7 @@ namespace InsurgenceServer
             }
             else if (args.ContainsKey("offer"))
             {
-                ActiveTrade?.Offer(Username, args["offer"]);
+                ActiveTrade?.Offer(this, Username, args["offer"]);
             }
             else if (args.ContainsKey("accepted"))
             {
@@ -217,7 +217,7 @@ namespace InsurgenceServer
             if (args.ContainsKey("user"))
             {
                 var b = await BattleHandler.BeginBattle(args["user"], this, args["trainer"]);
-                if (b == null) 
+                if (b == null)
                     return;
                 ActiveBattle = b;
                 ActiveBattleId = b.Id;
@@ -334,6 +334,6 @@ namespace InsurgenceServer
             }
         }
     }
-    
+
 }
 

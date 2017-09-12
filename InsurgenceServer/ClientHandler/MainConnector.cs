@@ -6,20 +6,21 @@ using System.Threading;
 
 namespace InsurgenceServer
 {
-	public class MainConnector
-	{
-		public MainConnector()
-		{
+    public class MainConnector
+    {
+        public MainConnector()
+        {
+#if DEBUG
+            const string ipstr = "127.0.0.1";
+    #else
             const string ipstr = Data.Ip;
-#if DEBUG                
-    ipstr = "127.0.0.1";
-#endif            
-		    var ip = IPAddress.Parse(ipstr);
+#endif
+            var ip = IPAddress.Parse(ipstr);
             Data.Server = new TcpListener(ip, Data.Port);
             Data.SiteServer = new TcpListener(IPAddress.Parse("127.0.0.1"), 6419);
-			Data.Server.Start();
+            Data.Server.Start();
             Data.SiteServer.Start();
-			Console.WriteLine($"Server Started on {ip}:{Data.Port}. Version : {Data.ServerVersion}");
+            Console.WriteLine($"Server Started on {ip}:{Data.Port}. Version : {Data.ServerVersion}");
 
             new Thread(MainListener
             ).Start();
@@ -81,6 +82,6 @@ namespace InsurgenceServer
                 }
             }
         }
-	}
+    }
 }
 

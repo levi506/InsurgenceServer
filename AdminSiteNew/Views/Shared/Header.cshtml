@@ -23,6 +23,13 @@
                     <li><a href="/GTS/Closed">Accepted Trades</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="" class="dropdown-toggle">Moderators</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Moderator/Warnings">Warnings</a></li>
+                </ul>
+            </li>
+
         }
         @if (User.HasClaim("Developer", "Allowed"))
         {
@@ -39,7 +46,15 @@
         }
         @if (User.HasClaim("Administrator", "Allowed"))
         {
-            <li><a href="/Admin/Index">Admin</a></li>
+            <li>
+                <a href="" class="dropdown-toggle">Admin</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Admin/Index">Permissions</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Admin/Log">Admin Log</a></li>
+                </ul>
+            </li>
+
         }
     </ul>
     <div class="app-bar-element place-right">

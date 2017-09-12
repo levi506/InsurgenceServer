@@ -49,6 +49,39 @@ namespace AdminSiteNew.Database
             conn.Close();
             return new List<Trade>();
         }
+
+        public static async Task<List<WonderTrade>> GetUserWonderTradeLog(string username)
+        {
+            var conn = new OpenConnection();
+            if (conn.IsConnected)
+            {
+                const string com =
+                    "SELECT * FROM wondertradelog WHERE username = @parameter ORDER BY id DESC LIMIT 0, 100";
+                var m = new MySqlCommand(com, conn.Connection);
+                m.Parameters.AddWithValue("parameter", username);
+                var l = new List<WonderTrade>();
+                using (var r = await m.ExecuteReaderAsync())
+                {
+                    while (await r.ReadAsync())
+                    {
+                        var t = new WonderTrade
+                        {
+                            Id = (uint) r["id"],
+                            Pokemon = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon"]),
+                            User = username,
+                            Date = (DateTime) r["time"]
+                        };
+                        l.Add(t);
+                    }
+                }
+                conn.Close();
+                return l;
+            }
+            conn.Close();
+            return new List<WonderTrade>();
+        }
+
+
         public static async Task<List<Trade>> GetTradeLog(uint startIndex)
         {
             var conn = new OpenConnection();
@@ -111,6 +144,7 @@ namespace AdminSiteNew.Database
                 {
                     var t = new WonderTrade
                     {
+                        Id = (uint)r["id"],
                         Date = (DateTime) r["time"],
                         User = (string) r["username"],
                         Pokemon = JsonConvert.DeserializeObject<Pokemon>((string) r["pokemon"])
@@ -144,6 +178,33 @@ namespace AdminSiteNew.Database
                     t.User2 = (string)r["user2"];
                     t.Pokemon1 = JsonConvert.DeserializeObject<Pokemon>((string)r["pokemon1"]);
                     t.Pokemon2 = JsonConvert.DeserializeObject<Pokemon>((string)r["pokemon2"]);
+                    t.Date = (DateTime) r["time"];
+                }
+            }
+            conn.Close();
+            return t;
+        }
+
+        public static async Task<WonderTrade> GetWonderTrade(uint i)
+        {
+            var conn = new OpenConnection();
+            if (!conn.IsConnected)
+            {
+                conn.Close();
+                return new WonderTrade();
+            }
+            const string c = "SELECT * FROM wondertradelog WHERE id = @index";
+            var m = new MySqlCommand(c, conn.Connection);
+            m.Parameters.AddWithValue("index", i);
+            var t = new WonderTrade();
+
+            using (var r = await m.ExecuteReaderAsync())
+            {
+                while (r.Read())
+                {
+                    t.Id = (uint)r["id"];
+                    t.User = (string)r["username"];
+                    t.Pokemon = JsonConvert.DeserializeObject<Pokemon>((string)r["pokemon"]);
                     t.Date = (DateTime) r["time"];
                 }
             }

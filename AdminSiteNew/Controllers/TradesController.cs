@@ -40,12 +40,21 @@ namespace AdminSiteNew.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Tradelog(string id)
         {
             uint i;
             if (!uint.TryParse(id, out i))
                 i = 0;
             return View(await DbTradelog.GetTrade(i));
+        }
+
+        public async Task<IActionResult> WonderTradeDetail(string id)
+        {
+            uint i;
+            if (!uint.TryParse(id, out i))
+                i = 0;
+            return View(await DbTradelog.GetWonderTrade(i));
         }
     }
 }

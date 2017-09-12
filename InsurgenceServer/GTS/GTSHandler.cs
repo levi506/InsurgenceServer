@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
+using InsurgenceServer.Trades;
 
 namespace InsurgenceServer.GTS
 {
@@ -30,6 +31,12 @@ namespace InsurgenceServer.GTS
                 //Turn data into objects
                 var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
                 var requestObject = JsonConvert.DeserializeObject<FilterHolder>(decodeRequest);
+
+                if (!await TradeValidator.IsPokemonValid(pokemon, c.UserId))
+                {
+                    await c.SendMessage($"<GTSCREATE result=0 index={index}>");
+                    return;
+                }
 
                 //Get Pokemon Level
                 level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
@@ -95,6 +102,14 @@ namespace InsurgenceServer.GTS
             var decoded = Utilities.Encoding.Base64Decode(pokemon);
             //string to object
             var pkmn = JsonConvert.DeserializeObject<GamePokemon>(decoded);
+
+            if (!await TradeValidator.IsPokemonValid(pkmn, c.UserId))
+            {
+                await c.SendMessage("<GTSOFFER result=0 pkmn=nil>");
+                return;
+            }
+
+
             var request = poke.Request;
             //Compare pokemon offered with requests on pokemon with id offered.
             var correct = GtsCompare.ValidOffer(pkmn, request);

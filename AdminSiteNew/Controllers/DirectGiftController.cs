@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AdminSiteNew.Database;
 using AdminSiteNew.Models;
 using AdminSiteNew.PokemonHelper;
+using AdminSiteNew.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -23,7 +24,7 @@ namespace AdminSiteNew.Controllers
 
         public async Task<PartialViewResult> GetGifts(string username = "")
         {
-            var ls =  await DbDirectGifts.GetGifts(username);
+            var ls =  await DbDirectGifts.GetGifts(username.StripSpecialCharacters());
             var model = new DirectGiftModel
             {
                 request = username,
@@ -44,7 +45,7 @@ namespace AdminSiteNew.Controllers
             var username = data[0];
             var giftIndex = int.Parse(data[1]);
             var newgift = bool.Parse(data[2]);
-            var ls = await DbDirectGifts.GetGifts(username);
+            var ls = await DbDirectGifts.GetGifts(username.StripSpecialCharacters());
             if (newgift)
             {
                 var model = new DirectGiftDetailModel
@@ -150,8 +151,9 @@ namespace AdminSiteNew.Controllers
                 abil = 0;
             }
             pkmn.ability = abil;
+            pkmn.timeReceived = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
-            var username = Request.Form["username"].ToString();
+            var username = Request.Form["username"].ToString().StripSpecialCharacters();
             var ls = await DbDirectGifts.GetGifts(username);
             var index = int.Parse(Request.Form["giftIndex"]);
             var gift = new PokemonDirectGift
@@ -171,6 +173,7 @@ namespace AdminSiteNew.Controllers
             }
 
             await DbDirectGifts.SetDirectGifts(username, ls);
+            DbAdminLog.Log(DbAdminLog.LogType.DirectGiftPokemon, User.Identity.Name, JsonConvert.SerializeObject(gift));
 
 
             return Redirect("/DirectGift/Index/" + username);
@@ -179,17 +182,18 @@ namespace AdminSiteNew.Controllers
         public async Task<IActionResult> DeleteGift(string username, string index)
         {
             var i = int.Parse(index);
-            var ls = await DbDirectGifts.GetGifts(username);
+            var ls = await DbDirectGifts.GetGifts(username.StripSpecialCharacters());
             ls.RemoveAt(i);
-            await DbDirectGifts.SetDirectGifts(username, ls);
-            return Redirect("/DirectGift/Index/" + username);
+            await DbDirectGifts.SetDirectGifts(username.StripSpecialCharacters(), ls);
+            DbAdminLog.Log(DbAdminLog.LogType.DirectGiftDelete, User.Identity.Name, username);
+            return Redirect("/DirectGift/Index/" + username.StripSpecialCharacters());
         }
 
         [HttpPost]
         public async Task<IActionResult> AddItemGift()
         {
 
-            var username = Request.Form["username"].ToString();
+            var username = Request.Form["username"].ToString().StripSpecialCharacters();
             var ls = await DbDirectGifts.GetGifts(username);
             var index = int.Parse(Request.Form["giftIndex"]);
             var gift = new ItemDirectGift
@@ -210,6 +214,7 @@ namespace AdminSiteNew.Controllers
                 ls[index] = gift;
             }
             await DbDirectGifts.SetDirectGifts(username, ls);
+            DbAdminLog.Log(DbAdminLog.LogType.DirectGiftItem, User.Identity.Name, JsonConvert.SerializeObject(gift));
 
             return Redirect("/DirectGift/Index/" + username);
         }

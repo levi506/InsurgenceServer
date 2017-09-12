@@ -25,8 +25,8 @@
             })
         </td>
     </tr>
-    
-    
+
+
 </table>
 
 <form asp-controller="DirectGift" asp-action="AddPokemonGift" method="post" id="pokemonForm" >
@@ -142,7 +142,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select readonly asp-for="@pokemonModel.Pokemon.moves[0].id" asp-items="@Html.GetEnumSelectList(typeof(MoveList))"></select>
+                            <select readonly asp-for="@pokemonModel.Pokemon.moves[0].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
                             <input type="number" asp-for="@pokemonModel.Pokemon.moves[0].pp" min="0" max="50" />
@@ -153,7 +153,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select readonly asp-for="@pokemonModel.Pokemon.moves[1].id" asp-items="@Html.GetEnumSelectList(typeof(MoveList))"></select>
+                            <select readonly asp-for="@pokemonModel.Pokemon.moves[1].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
                             <input type="number" asp-for="@pokemonModel.Pokemon.moves[1].pp" min="0" max="50" />
@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select readonly asp-for="@pokemonModel.Pokemon.moves[2].id" asp-items="@Html.GetEnumSelectList(typeof(MoveList))"></select>
+                            <select readonly asp-for="@pokemonModel.Pokemon.moves[2].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
                             <input type="number" asp-for="@pokemonModel.Pokemon.moves[2].pp" min="0" max="50" />
@@ -175,7 +175,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select readonly asp-for="@pokemonModel.Pokemon.moves[3].id" asp-items="@Html.GetEnumSelectList(typeof(MoveList))"></select>
+                            <select readonly asp-for="@pokemonModel.Pokemon.moves[3].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
                             <input type="number" asp-for="@pokemonModel.Pokemon.moves[3].pp" min="0" max="50" />
@@ -272,7 +272,7 @@
 
     $(function() {
 
-        
+
     });
 
     window.onload = function () {
@@ -296,6 +296,6 @@
             }
         });
     }
-    
+
 
 </script>

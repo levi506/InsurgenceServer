@@ -85,6 +85,7 @@
     <Compile Include="Database\DBTradelog.cs" />
     <Compile Include="Database\DBUserChecks.cs" />
     <Compile Include="Database\DBUserManagement.cs" />
+    <Compile Include="Database\DBWarnLog.cs" />
     <Compile Include="Database\OpenConnection.cs" />
     <Compile Include="GrowthRates.cs" />
     <Compile Include="GTS\FilterHolder.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Trades\Trade.cs" />
     <Compile Include="ClientHandler\ClientHandler.cs" />
     <Compile Include="Logger\TradeLogger.cs" />
+    <Compile Include="Trades\TradeValidator.cs" />
     <Compile Include="Utilities\Encoding.cs" />
     <Compile Include="Utilities\FSChecker.cs" />
     <Compile Include="WonderTrade\WonderTradeHandler.cs" />

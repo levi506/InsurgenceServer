@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.Utilities;
 
 namespace InsurgenceServer.Database
 {
@@ -16,7 +17,7 @@ namespace InsurgenceServer.Database
                 await conn.Close();
                 return LoginResult.WrongUsername;
             }
-            username = Utilities.Encoding.RemoveSpecialCharacters(username);
+            username = username.RemoveSpecialCharacters();
             const string logincommand = "SELECT users.user_id, usergroup, banned, password, admin, " +
                                         "GROUP_CONCAT(ip separator ',') as 'IPs', " +
                                         "(SELECT COUNT(*) FROM ips WHERE ip=@param_val_2 AND ipban=1) ipbans " +
@@ -105,7 +106,7 @@ namespace InsurgenceServer.Database
             await conn.Close();
             return ret;
         }
-        
+
         public static async Task Register(Client client, string username, string password, string email)
         {
             var conn = new OpenConnection();
@@ -114,7 +115,7 @@ namespace InsurgenceServer.Database
                 await conn.Close();
                 return;
             }
-            username = Utilities.Encoding.RemoveSpecialCharacters(username);
+            username = username.RemoveSpecialCharacters();
 
             var check = new MySqlCommand("SELECT " +
                                         "(SELECT COUNT(*) username FROM users WHERE username = @val) usernames, " +
@@ -140,14 +141,14 @@ namespace InsurgenceServer.Database
             }
 
             if (!canContinue)
-            {                  
+            {
                 await conn.Close();
                 return;
             }
             checkres.Close();
 
-            var create = new MySqlCommand("INSERT INTO users (username, password, email, usergroup, base, sprite) " + 
-                "VALUES (@name, @pass, @email, @usergroup, @base, @sprite)", 
+            var create = new MySqlCommand("INSERT INTO users (username, password, email, usergroup, base, sprite) " +
+                "VALUES (@name, @pass, @email, @usergroup, @base, @sprite)",
                 conn.Connection);
             create.Parameters.AddWithValue("name", username);
             create.Parameters.AddWithValue("pass", password);
@@ -184,7 +185,7 @@ namespace InsurgenceServer.Database
 
             await client.SendMessage("<REG result=2>");
             await conn.Close();
-            
+
             Logger.Logger.Log($"User registered: {username}");
         }
     }

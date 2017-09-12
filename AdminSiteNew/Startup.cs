@@ -51,7 +51,7 @@ namespace AdminSiteNew
 
             services.AddMvc(x =>
             {
-               
+
             });
 
             services.AddIdentity<User, Role>();
@@ -97,7 +97,7 @@ namespace AdminSiteNew
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AutomaticAuthenticate = true,
-                AutomaticChallenge = true,                
+                AutomaticChallenge = true,
                 ExpireTimeSpan = TimeSpan.FromHours(9),
                 LoginPath = new PathString("/login"),
                 SlidingExpiration = true
@@ -165,7 +165,7 @@ namespace AdminSiteNew
                         await context.Authentication.ChallengeAsync(authType, new AuthenticationProperties() { RedirectUri = "/" });
                         return;
                     }
-                    context.Response.Redirect("/login?authscheme=Google"); 
+                    context.Response.Redirect("/login?authscheme=Google");
                 });
             });
             app.Map("/logout", signoutApp =>

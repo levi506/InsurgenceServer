@@ -41,6 +41,12 @@ namespace AdminSiteNew.Controllers
             await Database.DbAdmin.UpdatePermissions(Request.Form["user.ID"], (int)newPermission);
             return Redirect("/Admin/Index/");
         }
+
+        public async Task<IActionResult> Log()
+        {
+            var m = await DbAdminLog.GetLog();
+            return View(m);
+        }
     }
 }
 

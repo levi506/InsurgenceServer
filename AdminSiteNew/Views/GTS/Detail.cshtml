@@ -40,22 +40,22 @@ else
             Moves
         </td>
         <td>
-            @Model.Offer.moves[0].id
+            @MoveHelper.GetMoveName(Model.Offer.moves[0].id)
         </td>
     </tr>
     <tr>
         <td>
-            @Model.Offer.moves[1].id
+            @MoveHelper.GetMoveName(Model.Offer.moves[1].id)
         </td>
     </tr>
     <tr>
         <td>
-            @Model.Offer.moves[2].id
+            @MoveHelper.GetMoveName(Model.Offer.moves[2].id)
         </td>
     </tr>
     <tr>
         <td>
-            @Model.Offer.moves[3].id
+            @MoveHelper.GetMoveName(Model.Offer.moves[3].id)
         </td>
     </tr>
     <tr>
@@ -194,22 +194,22 @@ else
                 Moves
             </td>
             <td>
-                @Model.Result.moves[0].id
+                @MoveHelper.GetMoveName(Model.Result.moves[0].id)
             </td>
         </tr>
         <tr>
             <td>
-                @Model.Result.moves[1].id
+                @MoveHelper.GetMoveName(Model.Result.moves[1].id)
             </td>
         </tr>
         <tr>
             <td>
-                @Model.Result.moves[2].id
+                @MoveHelper.GetMoveName(Model.Result.moves[2].id)
             </td>
         </tr>
         <tr>
             <td>
-                @Model.Result.moves[3].id
+                @MoveHelper.GetMoveName(Model.Result.moves[3].id)
             </td>
         </tr>
         <tr>
@@ -317,7 +317,7 @@ else
                 <th colspan="2">
                     Request
                 </th>
-            </tr>       
+            </tr>
         </thead>
         <tr>
             <th>

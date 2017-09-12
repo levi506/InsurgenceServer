@@ -1,5 +1,4 @@
-﻿@using AdminSiteNew.Database
-@using AdminSiteNew.PokemonHelper
+﻿@using AdminSiteNew.PokemonHelper
 @model AdminSiteNew.Models.GTSObject
 
 <style>
@@ -11,7 +10,7 @@
 <table class="table border" style="max-width: 200px; display: inline-table;     margin: 10px 10px;">
     <tr>
         <td colspan="4">
-            <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny) 
+            <img src=@Utilities.GetPokemonImageName((int)Model.Offer.species, Model.Offer.isShiny)
                  title=@Utilities.GetPokemonImageTitle((int)Model.Offer.species, Model.Offer.isShiny) />
         </td>
     </tr>
@@ -34,7 +33,7 @@
             Species
         </th>
         <td>
-            @Model.Request.Species
+            @PokemonHelper.GetPokemonName((short)Model.Request.Species)
         </td>
     </tr>
     <tr>

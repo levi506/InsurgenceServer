@@ -9,3 +9,9 @@
 .shiny {
 	background-color: palevioletred;
 }
+
+@media screen and (min-width: 1401px){
+	.container {
+		width: 1600px;
+	}
+}

@@ -61,6 +61,39 @@
                     @Html.DisplayFor(model => model.UserRequest.FriendSafari.GetCleanPokemon)
                 </td>
             </tr>
+            <table class="dataTable border bordered">
+                <tr>
+                    <th colspan="3">Notes</th>
+                </tr>
+                <tr>
+                    <th>Moderator</th>
+                    <th>Note</th>
+                    <th>Time</th>
+                </tr>
+                @foreach (var note in Model.UserRequest.Notes)
+                {
+                    <tr>
+                        <td>@note.Moderator</td>
+                        <td>@note.Note</td>
+                        <td>@note.Time.ToString("g")</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3">
+                        <form asp-controller="Users" asp-action="AddNote">
+                            <fieldset style="display:inline">
+                                <div>
+                                    <textarea asp-for="Note.Note" class="form_input_field" rows="3" cols="100"></textarea>
+                                </div>
+                            </fieldset>
+                            <input asp-for="Note.UserId" value="@Model.UserRequest.UserInfo.User_Id" hidden="" class=""/>
+                            <button type="submit" class="button primary display:inline">Submit</button>
+                        </form>
+
+                    </td>
+                </tr>
+
+            </table>
         </table>
         <table id="UserTradeLog" class="dataTable border bordered" style="display: none">
             <tr>
@@ -156,7 +189,7 @@
             <tr><th colspan="4">Other Accounts on IP</th></tr>
             <tr><th>ID</th><th>Username</th><th>Banned</th></tr>
             @foreach (var alt in Model.UserRequest.Alts)
-                {
+            {
                 <tr>
                     <td>
                         @alt.User_Id
@@ -182,7 +215,91 @@
                 </tr>
             }
         </table>
-        @if (Model.UserRequest.UserInfo.Banned)
+
+    <table id="WonderTrades" class="dataTable border bordered" style="display: none">
+        <tr>
+            <th colspan="4">
+                Wonder Tradelog
+            </th>
+        </tr>
+        @foreach (var trade in Model.UserRequest.WonderTrades)
+        {
+            <tr>
+                <th>
+                    @Html.ActionLink(trade.Id.ToString(), "WonderTradeDetail", "Trades", new { id = trade.Id }, null)
+                </th>
+                <th>@trade.User</th>
+                <td>
+                    <table style="width: 100%; height: 50px;">
+                        <tr>
+                            <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon.species)</td>
+                            <td>@trade.Pokemon.personalID</td>
+                            @if (trade.Pokemon.isShiny)
+                            {
+                                <td class="shiny" style="max-width: 10%; width: 10%">Shiny</td>
+                            }
+                            else
+                            {
+                                <td class="nonshiny" style="max-width: 10%; width: 10%">Bland</td>
+                            }
+                            <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon.ot</td>
+                            <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) @trade.Pokemon.item)</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <table id="Warnings" class="dataTable border bordered" style="display: none">
+        <tr>
+            <th colspan="3">
+                Warnings
+            </th>
+        </tr>
+        @foreach (var warn in Model.UserRequest.Warnings)
+        {
+            <tr>
+                <td>@warn.Id</td>
+                <td>@warn.Reason</td>
+                <td>@warn.Time.ToString("g")</td>
+            </tr>
+        }
+    </table>
+
+    <table id="GTS" class="dataTable border bordered" style="display: none">
+        <tr>
+            <th colspan="5">
+                GTS
+            </th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Pokemon</th>
+            <th>Shiny</th>
+            <th>Accepted</th>
+            <th>Remove</th>
+        </tr>
+        @foreach (var gts in Model.UserRequest.GTS)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(gts.Id.ToString(), "Detail", "GTS", new { id = gts.Id }, null)
+                </td>
+                <td>@PokemonHelper.GetPokemonName(gts.Offer.species)</td>
+                <td>@gts.Offer.isShiny</td>
+                <td>@gts.Accepted</td>
+                <td>
+                    <button class="button warning" onclick="location.href = '@Url.Action("Remove", "GTS", new {id = gts.Id})'">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+    @if (Model.UserRequest.UserInfo.Banned)
         {
             <button title="BanAccount" class="button success" style="width: 232px;"
                      onclick="location.href = '@Url.Action("UnbanAccount", "Users", new {id = Model.UserRequest.UserInfo.Username})'">Unban Account</button>
@@ -201,7 +318,12 @@
                onclick="location.href = '@Url.Action("UnbanIPs", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
         <br />
         <input type="button" class="button danger" title="BanAccount" value="Ban Alts" onclick="location.href = '@Url.Action("BanAlts", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
-        <input type="button" class="button success" title="BanAccount" value="Unban Alts" onclick="location.href = '@Url.Action("UnbanAlts", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
+    <input type="button" class="button success" title="BanAccount" value="Unban Alts" onclick="location.href = '@Url.Action("UnbanAlts", "Users", new {id = Model.UserRequest.UserInfo.User_Id})'" />
+    <br/>
+    <button style="width: 232px;" class="button warning" onclick="location.href = '@Url.Action("RemoveUserTrades", "GTS", new {id = Model.UserRequest.UserInfo.User_Id})'">
+        Remove All User GTS
+    </button>
+
         @if (User.HasClaim("Developer", "Allowed"))
         {
             <br/>

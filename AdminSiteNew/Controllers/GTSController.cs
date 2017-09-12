@@ -49,6 +49,17 @@ namespace AdminSiteNew.Controllers
             if (!int.TryParse(id, out i))
                 return BadRequest();
             await DbGTS.DeleteGTS(i);
+            DbAdminLog.Log(DbAdminLog.LogType.GtsRemove, User.Identity.Name, id);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> RemoveUserTrades(string id)
+        {
+            uint i;
+            if (!uint.TryParse(id, out i))
+                return BadRequest();
+            await DbGTS.RemoveUserGTS(i);
+            DbAdminLog.Log(DbAdminLog.LogType.GtsRemoveUser, User.Identity.Name, id);
             return RedirectToAction("Index");
         }
     }

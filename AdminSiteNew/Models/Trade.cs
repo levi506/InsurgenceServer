@@ -17,6 +17,7 @@ namespace AdminSiteNew.Models
     }
     public class WonderTrade
     {
+        public uint Id { get; set; }
         public DateTime Date { get; set; }
         public string User { get; set; }
         public Pokemon Pokemon { get; set; }
@@ -27,7 +28,7 @@ namespace AdminSiteNew.Models
         public int itemInitial { get; set; }
         public bool ballcapsule2 { get; set; }
         public int obtainlevel { get; set; }
-        public int language { get; set; }
+        public int? language { get; set; }
         public bool hypermode { get; set; }
         public string name { get; set; }
         public string fused { get; set; }
@@ -46,7 +47,7 @@ namespace AdminSiteNew.Models
         public int spdef { get; set; }
         public int statusCount { get; set; }
         public bool ballcapsule4 { get; set; }
-        public int markings { get; set; }
+        public int? markings { get; set; }
         public int attack { get; set; }
         public int speed { get; set; }
         public int[] iv { get; set; }

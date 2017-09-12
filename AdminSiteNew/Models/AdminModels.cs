@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminSiteNew.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminSiteNew.Models
@@ -31,6 +32,14 @@ namespace AdminSiteNew.Models
             Moderator,
             Developer,
             Administrator
+        }
+
+        public class AdminLogModel
+        {
+            public uint Id { get; set; }
+            public string Moderator { get; set; }
+            public DbAdminLog.LogType Type { get; set; }
+            public string Data { get; set; }
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.Trades;
+using Newtonsoft.Json;
 
 namespace InsurgenceServer
 {
@@ -64,8 +67,15 @@ namespace InsurgenceServer
         }
         private string _client1Pokemon;
         private string _client2Pokemon;
-        public async Task Offer(string username, string offer)
+        public async Task Offer(Client client, string username, string offer)
         {
+            var pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(Utilities.Encoding.Base64Decode(offer));
+            if (! await TradeValidator.IsPokemonValid(pkmn, client.UserId))
+            {
+                await Kill();
+                return;
+            }
+
             if (username == Username1)
             {
                 _client1Pokemon = offer;

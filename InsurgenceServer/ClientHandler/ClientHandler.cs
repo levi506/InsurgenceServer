@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using InsurgenceServer.Utilities;
 
 namespace InsurgenceServer
 {
@@ -15,7 +16,7 @@ namespace InsurgenceServer
 
         public static Client GetClient(string username)
         {
-            var c = ActiveClients.FirstOrDefault(x => x.Value.Username == username.ToLower());
+            var c = ActiveClients.FirstOrDefault(x => x.Value.Username == username.ToLower().RemoveSpecialCharacters());
             return c.Equals(default(KeyValuePair<Guid, Client>)) ? null : c.Value;
         }
         public static Client GetClient(uint userId)

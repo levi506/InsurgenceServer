@@ -121,6 +121,51 @@ namespace AdminSiteNew.Database
             }
             //Get Tradelog
             u.Trades = await DbTradelog.GetUserTradeLog(u.UserInfo.Username);
+            u.WonderTrades = await DbTradelog.GetUserWonderTradeLog(u.UserInfo.Username);
+
+            //Get warnings
+            const string warningCommand = "SELECT * FROM warnings WHERE user_id = @id";
+            var j = new MySqlCommand(warningCommand, conn.Connection);
+            j.Parameters.AddWithValue("id", u.UserInfo.User_Id);
+            u.Warnings = new List<WarningsModel>();
+            using (var res = await j.ExecuteReaderAsync())
+            {
+                while (await res.ReadAsync())
+                {
+                    var warn = new WarningsModel
+                    {
+                        Id = (uint) res["id"],
+                        Reason = (string) res["reason"],
+                        Time = (DateTime) res["time"],
+                        UserId = u.UserInfo.User_Id,
+                        Username = username
+                    };
+                    u.Warnings.Add(warn);
+                }
+            }
+
+            //Get user notes
+            const string notesCommand = "SELECT * FROM usernotes WHERE user_id = @id";
+            var k = new MySqlCommand(notesCommand, conn.Connection);
+            k.Parameters.AddWithValue("id", u.UserInfo.User_Id);
+            u.Notes = new List<NotesModel>();
+            using (var res = await k.ExecuteReaderAsync())
+            {
+                while (await res.ReadAsync())
+                {
+                    var note = new NotesModel
+                    {
+                        Moderator = (string) res["moderator"],
+                        Time = (DateTime) res["time"],
+                        Note = (string) res["note"]
+                    };
+                    u.Notes.Add(note);
+                }
+            }
+
+
+            u.GTS = await DbGTS.GetUserGTS(u.UserInfo.User_Id);
+
             conn.Close();
             return u;
         }

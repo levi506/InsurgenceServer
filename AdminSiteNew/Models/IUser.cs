@@ -13,6 +13,10 @@ namespace AdminSiteNew.Models
         public List<IPInfo> IPs { get; set; }
         public List<UserInfo> Alts { get; set; }
         public List<Trade> Trades {get;set;}
+        public List<WonderTrade> WonderTrades { get; set; }
+        public List<WarningsModel> Warnings { get; set; }
+        public List<NotesModel> Notes { get; set; }
+        public List<GTSObject> GTS { get; set; }
     }
     public class UserInfo
     {
@@ -26,6 +30,14 @@ namespace AdminSiteNew.Models
         public string IP{get;set;}
         public bool Banned{get;set;}
     }
+
+    public class NotesModel
+    {
+        public string Moderator { get; set; }
+        public string Note { get; set; }
+        public DateTime Time { get; set; }
+    }
+
     public class FriendSafari
     {
         public FriendSafariType Type { get; set; } = FriendSafariType.None;

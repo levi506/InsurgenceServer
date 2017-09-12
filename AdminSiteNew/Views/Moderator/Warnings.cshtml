@@ -1,0 +1,24 @@
+﻿@model List<AdminSiteNew.Models.WarningsModel>
+
+@{
+    ViewBag.Title = "Warnings";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+    <th>Id</th>
+    <th>Username</th>
+    <th>Reason</th>
+    <th>Time</th>
+    </thead>
+    @foreach (var warn in Model)
+    {
+        <tr>
+            <td>@warn.Id</td>
+            <td>@Html.ActionLink(warn.Username, "Users", "Users", new { id = warn.Username }, null)</td>
+            <td>@warn.Reason</td>
+            <td>@warn.Time.ToString("g")</td>
+        </tr>
+    }
+</table>
