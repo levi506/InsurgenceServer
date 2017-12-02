@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using AdminSiteNew.Database;
 using AdminSiteNew.Models;
 using AdminSiteNew.Utilities;
@@ -32,6 +34,29 @@ namespace AdminSiteNew.Controllers
         public async Task<IActionResult> FindUser(string request)
         {
             return Redirect("/Users/Users/" + request);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetUserApi(string id)
+        {
+            if (Request.Headers["api-token"] != Startup.Token)
+            {
+                return Forbid();
+            }
+
+            var req = id != null ? await Database.Database.GetUser(id.ToLower().StripSpecialCharacters()) : null;
+            if (req == null)
+            {
+                return Json(null);
+            }
+            var model = new
+            {
+                username = req.UserInfo.Username,
+                banned = req.UserInfo.Banned,
+                friendsafari = req.FriendSafari.GetCleanPokemon
+            };
+            return Json(model);
         }
 
         public async Task<PartialViewResult> GetUser(string username = "")

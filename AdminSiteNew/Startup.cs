@@ -23,6 +23,8 @@ namespace AdminSiteNew
 {
     public class Startup
     {
+        public static string Token { get; private set; }
+
         public Startup(IHostingEnvironment env)
         {
             ServerInteraction.Handler.Start();
@@ -39,6 +41,8 @@ namespace AdminSiteNew
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             Configuration = builder.Build();
+            Token = Configuration["Token"];
+            Console.WriteLine(Token);
         }
 
         public IConfigurationRoot Configuration { get; }

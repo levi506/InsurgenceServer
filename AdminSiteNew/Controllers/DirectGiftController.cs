@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AdminSiteNew.Database;
@@ -67,6 +68,59 @@ namespace AdminSiteNew.Controllers
                 return View(model);
             }
         }
+
+        public class GiftModel
+        {
+            public string Type { get; set; }
+            public string Token { get; set; }
+            public string Username { get; set; }
+            public Pokemon Pokemon { get; set; }
+            public int? Item { get; set; }
+            public int? ItemAmount { get; set; }
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> AddGiftApi([FromBody]GiftModel model)
+        {
+            if (Request.Headers["api-token"] != Startup.Token)
+            {
+                return Forbid();
+            }
+            if (model.Token != Startup.Token)
+                return Forbid();
+            var ls = await DbDirectGifts.GetGifts(model.Username);
+            if (model.Type == "pokemon")
+            {
+                var gift = new PokemonDirectGift()
+                {
+                    Type = DirectGiftType.Pokemon,
+                    Pokemon = model.Pokemon,
+                    Username = model.Username,
+                    Index =  ls.Count
+                };
+                ls.Add(gift);
+                await DbDirectGifts.SetDirectGifts(model.Username, ls);
+                DbAdminLog.Log(DbAdminLog.LogType.DirectGiftPokemon, "Bot Endpoint", JsonConvert.SerializeObject(gift));
+            }
+            else if (model.Type == "item")
+            {
+                var item = model.Item.Value;
+                var amount = model.ItemAmount.Value;
+                var gift = new ItemDirectGift()
+                {
+                    Type = DirectGiftType.Item,
+                    Amount = (uint) amount,
+                    Index = ls.Count,
+                    Username = model.Username,
+                    Item = (ItemList) item
+                };
+                ls.Add(gift);
+                await DbDirectGifts.SetDirectGifts(model.Username, ls);
+                DbAdminLog.Log(DbAdminLog.LogType.DirectGiftItem, "Bot Endpoint", JsonConvert.SerializeObject(gift));
+            }
+            return Ok();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> AddPokemonGift()
