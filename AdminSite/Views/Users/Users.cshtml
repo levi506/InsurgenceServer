@@ -1,0 +1,26 @@
+@using AdminSite.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model AdminSite.Models.UserModel
+@{
+	Layout = "/Views/Shared/_UserLayout.cshtml";
+	ViewBag.Title = "Users";
+}
+
+<div style="padding-top:30px;">
+	<div>
+		@using (Html.BeginForm("FindUser", "Users", FormMethod.Post))
+		{
+			<fieldset style="display:inline">
+				<div>
+					@Html.TextBoxFor(model => model.request, new { @class = "form_input_field" })
+				</div>
+			</fieldset>
+		    <input type="submit" class="button primary" value="Search"  style="display:inline"/>
+		}
+
+	</div>
+	<br />
+	<div>
+		@Html.Partial("UserHelper", null)
+	</div>
+</div>

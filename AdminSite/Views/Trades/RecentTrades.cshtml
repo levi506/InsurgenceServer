@@ -1,0 +1,77 @@
+@using AdminSite.Pokemon
+@model AdminSite.Models.RecentTradesModel
+
+@{
+	Layout = "/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Tradelog";
+}
+<link rel="stylesheet" href="/CSS/Tradelog.css" />
+<div style="padding-top:30px;">
+	<table class="dataTable border bordered table-striped">
+		@foreach (var trade in Model.Trades)
+		{
+		    <tr>
+		        <td>
+			        @Html.ActionLink(trade.Id.ToString(), "Tradelog", "Trades", new { id = trade.Id }, null)
+		        </td>
+		        <td>
+		            @trade.Date
+		        </td>
+		        <th>
+			        @Html.ActionLink(trade.User1, "Users", "Users", new {id = trade.User1}, null)
+		        </th>
+			    <td>
+				    @if (trade.Pokemon1 != null)
+				    {
+					    <table style="width: 100%; margin: 0px 0px" class="table">
+						    <tr>
+							    <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon1.species)</td>
+							    <td>@trade.Pokemon1.personalID</td>
+							    @if (trade.Pokemon1.isShiny)
+							    {
+								    <td class="shiny" style="max-width: 10%; width: 10%">Shiny</td>
+							    }
+							    else
+							    {
+								    <td class="nonshiny" style="max-width: 10%; width: 10%">Bland</td>
+							    }
+							    <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon1.ot</td>
+							    <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) trade.Pokemon1.item)</td>
+						    </tr>
+					    </table>
+				    }
+			    </td>
+			    <td>
+				    @if (trade.Pokemon2 != null)
+				    {
+					    <table class="table" style="width: 100%; margin: 0px 0px;">
+						    <tr>
+							    <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon2.species)</td>
+							    <td>@trade.Pokemon2.personalID</td>
+							    @if (trade.Pokemon2.isShiny)
+							    {
+								    <td class="shiny" style="max-width: 10%; width: 10%">Shiny</td>
+							    }
+							    else
+							    {
+								    <td class="nonshiny" style="max-width: 10%; width: 10%">Bland</td>
+							    }
+							    <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon2.ot</td>
+							    <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) trade.Pokemon2.item)</td>
+						    </tr>
+					    </table>
+				    }
+			    </td>
+		        <th>
+			        @Html.ActionLink(trade.User2, "Users", "Users", new {id = trade.User2}, null)
+		        </th>
+		    </tr>
+		}
+	</table>
+	@if (Model.StartIndex >= 100)
+	{
+		<input type="button" title="BanAccount" value="Previous" onclick="location.href='@Url.Action("RecentTrades", "Trades", new { id = Model.StartIndex - 100 })'" />
+	}
+	<input type="button" title="BanAccount" value="Next" onclick="location.href='@Url.Action("RecentTrades", "Trades", new { id = Model.StartIndex + 100 })'" />
+</div>
+

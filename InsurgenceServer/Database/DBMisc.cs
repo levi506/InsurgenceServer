@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 using MySql.Data.MySqlClient;
 
 namespace InsurgenceServer.Database

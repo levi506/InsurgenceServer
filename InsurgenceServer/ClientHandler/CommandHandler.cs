@@ -1,12 +1,12 @@
-﻿using InsurgenceServer.Battles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using InsurgenceServer.Battles;
 using InsurgenceServer.Database;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.ClientHandler
 {
     public static class NewCommandExecutor
     {
@@ -26,8 +26,7 @@ namespace InsurgenceServer
 
         public static async Task ExecuteCommand(Client client, CommandHandler command)
         {
-            MethodInfo function;
-            if (!CommandList.TryGetValue(command.Command, out function))
+            if (!CommandList.TryGetValue(command.Command, out var function))
             {
                 Console.WriteLine("Unexpected Command: " + command.Command);
                 return;

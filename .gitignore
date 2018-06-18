@@ -262,3 +262,4 @@ InsurgenceServer/Logger/DiscordAuth.cs
 AdminSiteNew/Database/Auth\.cs
 
 AdminSiteNew/appsettings\.json
+/AdminSite/Database/Auth.cs

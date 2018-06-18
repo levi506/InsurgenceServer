@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
-namespace AdminSiteNew
+namespace AdminSiteNew.Auth
 {
     public class Access : AuthorizationHandler<Access>, IAuthorizationRequirement
     {

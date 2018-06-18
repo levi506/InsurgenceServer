@@ -1,0 +1,15 @@
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    @if (@ViewData["name"] != null)
+    {
+        <h3 title="@ViewData["name"]" class="">Hello @ViewData["name"]!</h3>
+    }
+    else
+    {
+        <h3><a href="/login">Please log in</a></h3>
+    }
+</div>

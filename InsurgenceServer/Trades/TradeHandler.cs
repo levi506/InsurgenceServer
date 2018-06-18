@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.Trades
 {
     public static class TradeHandler
     {
@@ -25,7 +26,7 @@ namespace InsurgenceServer
                     await client.SendMessage($"<TRA user={username} result=1>");
                     return null;
                 }
-                var c = ClientHandler.GetClient(u);
+                var c = ClientHandler.ClientHandler.GetClient(u);
                 if (c == null)
                 {
                     await client.SendMessage($"<TRA user={username} result=2>");

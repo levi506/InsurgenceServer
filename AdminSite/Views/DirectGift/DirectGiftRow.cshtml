@@ -1,0 +1,69 @@
+@using AdminSite.Models
+@using AdminSite.Pokemon
+@model AdminSite.Models.DirectGiftBase
+
+<tr>
+    <th>
+        @Model.Index
+    </th>
+    <th>
+        @Model.Type
+    </th>
+    @if (Model.Type == DirectGiftType.Pokemon)
+    {
+        if (Model is PokemonDirectGift pokemonDirectGift)
+        {
+            var pokemon = pokemonDirectGift.Pokemon;
+            if (pokemon == null)
+            {
+                <td>This</td>
+            }
+            else
+            {
+                <td>
+                    @PokemonHelper.GetPokemonName(pokemon.species)
+                </td>
+                <td>
+                    @pokemon.name
+                </td>
+                <td>
+                    @pokemon.level
+                </td>
+                @:<td>
+                if (pokemon.isShiny)
+                {
+                    @:Shiny
+                }
+                else
+                {
+                    @:Bland
+                }
+            }
+        }
+        @:</td>
+    }
+    else if (Model.Type == DirectGiftType.Item)
+    {
+        if (Model is ItemDirectGift item)
+        {
+            <td colspan="2">
+
+            @item.Item
+            </td>
+                <text><td colspan="2">
+                    @item.Amount
+                </text>
+             @:</td>
+
+        }
+
+    }
+    <td>
+        <input type="button" class="button warning" title="AddGift" value="Modify Gift"
+               onclick="location.href = '@Url.Action("Details", "DirectGift", new {id = Model.Username +"?" + @Model.Index + "?false"})'" />
+    </td>
+    <td>
+        <input type="button" class="button danger" title="AddGift" value="Delete Gift"
+               onclick="location.href = '@Url.Action("DeleteGift", "DirectGift", new {username = Model.Username, index = Model.Index})'" />
+    </td>
+</tr>

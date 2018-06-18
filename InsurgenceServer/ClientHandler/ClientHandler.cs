@@ -1,13 +1,11 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
-using System.Configuration;
-using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InsurgenceServer.Utilities;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.ClientHandler
 {
     public static class ClientHandler
     {

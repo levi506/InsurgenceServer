@@ -19,13 +19,13 @@ namespace InsurgenceServer.Trades
                 await DBWarnLog.LogWarning(userId, $"Trading pokemon with Banned Trainer ID: {pokemon.trainerID}");
                 return false;
             }
-            if (pokemon.iv.Any(x => x > 31))
+            if (pokemon.iv.Any(x => x > 31 || x < 0))
             {
                 await DBWarnLog.LogWarning(userId,
                     $"Trading pokemon with IV higher than 31: {pokemon.iv.FirstOrDefault(x => x > 31)}");
                 return false;
             }
-            if (pokemon.ev.Any(x => x > 255))
+            if (pokemon.ev.Any(x => x > 255 || x < 0))
             {
                 await DBWarnLog.LogWarning(userId,
                     $"Trading pokemon with EV higher than 255: {pokemon.ev.FirstOrDefault(x => x > 255)}");
@@ -57,7 +57,7 @@ namespace InsurgenceServer.Trades
 
         public static readonly string[] AllowedObtainTexts = new[]
         {
-            "", "day-care couple", "faraway place", "mystery gift"
+            "", "day-care couple", "faraway place", "mystery gift", "santa's workshop"
         };
     }
 }

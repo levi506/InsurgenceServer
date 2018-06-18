@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 using InsurgenceServer.Database;
 using InsurgenceServer.GTS;
 using InsurgenceServer.Logger;

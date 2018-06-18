@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer
 {
@@ -59,7 +60,7 @@ namespace InsurgenceServer
                 }
                 Console.WriteLine(e.ExceptionObject.ToString());
             }
-            
+
             Environment.Exit(1);
         }
     }

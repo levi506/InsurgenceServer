@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using InsurgenceServer.Battles;
+using InsurgenceServer.Trades;
 
 namespace InsurgenceServer
 {
@@ -12,7 +13,7 @@ namespace InsurgenceServer
             {
                 try
                 {
-                    await ClientHandler.ClientChecker();
+                    await ClientHandler.ClientHandler.ClientChecker();
                 }
                 catch (Exception e)
                 {

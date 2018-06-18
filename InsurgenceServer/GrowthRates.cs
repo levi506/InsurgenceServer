@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer
 {
@@ -105,7 +106,7 @@ namespace InsurgenceServer
 
             return 120;
         }
-        
+
     }
     public enum GrowthRate
     {

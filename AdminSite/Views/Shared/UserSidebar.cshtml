@@ -1,0 +1,104 @@
+<script>
+    function initialize() {
+        window.userinfotable = document.getElementById("UserTradeLog");
+        window.usertradelog = document.getElementById("UserInfoTable");
+        window.userips = document.getElementById("UserIPs");
+        window.useralts = document.getElementById("UserAlts");
+        window.wondertrades = document.getElementById("WonderTrades");
+        window.warnings = document.getElementById("Warnings");
+        window.gts = document.getElementById("GTS");
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initialize();
+    }, false);
+
+    function HideAll() {
+        window.userinfotable.style.display = "none";
+        window.usertradelog.style.display = "none";
+        window.userips.style.display = "none";
+        window.useralts.style.display = "none";
+        window.wondertrades.style.display = "none";
+        window.warnings.style.display = "none";
+        window.gts.style.display = "none";
+    }
+
+    function DisplayTradelog() {
+        HideAll();
+        window.userinfotable.style.display = "table";
+    }
+    function DisplayInfo() {
+        HideAll();
+        window.usertradelog.style.display = "table";
+    }
+    function DisplayIPs() {
+        HideAll();
+        window.userips.style.display = "table";
+    }
+    function DisplayAlts() {
+        HideAll();
+        window.useralts.style.display = "table";
+    }
+    function DisplayWonderTrades() {
+        HideAll();
+        window.wondertrades.style.display = "table";
+    }
+
+    function DisplayWarnings() {
+        HideAll();
+        window.warnings.style.display = "table";
+    }
+
+    function DisplayGTS() {
+        HideAll();
+        window.gts.style.display = "table";
+    }
+
+</script>
+
+<div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+    <ul class="sidebar">
+        <li>
+            <a onclick="DisplayInfo()">
+                <span class="mif-user icon"></span>
+                <span class="title">Info</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayTradelog()">
+                <span class="mif-loop2 icon"></span>
+                <span class="title">Tradelog</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayWonderTrades()">
+                <span class="mif-loop icon"></span>
+                <span class="title">Wondertrades</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayIPs()">
+                <span class="mif-vpn-publ icon"></span>
+                <span class="title">IPs</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayAlts()">
+                <span class="mif-users icon"></span>
+                <span class="title">Alts</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayWarnings()">
+                <span class="mif-warning icon"></span>
+                <span class="title">Warnings</span>
+            </a>
+        </li>
+        <li>
+            <a onclick="DisplayGTS()">
+                <span class="mif-earth icon"></span>
+                <span class="title">GTS</span>
+            </a>
+        </li>
+    </ul>
+</div>

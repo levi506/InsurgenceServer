@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AdminSiteNew.Database;
 using AdminSiteNew.Models;
-using AdminSiteNew.PokemonHelper;
+using AdminSiteNew.Pokemon;
 using AdminSiteNew.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -72,7 +72,6 @@ namespace AdminSiteNew.Controllers
         public class GiftModel
         {
             public string Type { get; set; }
-            public string Token { get; set; }
             public string Username { get; set; }
             public Pokemon Pokemon { get; set; }
             public int? Item { get; set; }
@@ -80,26 +79,36 @@ namespace AdminSiteNew.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
         public async Task<IActionResult> AddGiftApi([FromBody]GiftModel model)
         {
             if (Request.Headers["api-token"] != Startup.Token)
             {
                 return Forbid();
             }
-            if (model.Token != Startup.Token)
-                return Forbid();
-            var ls = await DbDirectGifts.GetGifts(model.Username);
+
+            var username = model.Username.StripSpecialCharacters();
+            var ls = await DbDirectGifts.GetGifts(username);
             if (model.Type == "pokemon")
             {
+                model.Pokemon.exp = GrowthRates.CalculateExp(model.Pokemon.species, model.Pokemon.level);
+                var rand        = new Random();
+                var id          = (byte)rand.Next(256);
+                id              |= (byte)(((byte) rand.Next(256)) << 8);
+                id              |= (byte)(((byte)rand.Next(256))  << 16);
+                id              |= (byte)(((byte)rand.Next(256))  << 24);
+                model.Pokemon.personalID =  id;
+                model.Pokemon.timeReceived = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
                 var gift = new PokemonDirectGift()
                 {
                     Type = DirectGiftType.Pokemon,
                     Pokemon = model.Pokemon,
-                    Username = model.Username,
+                    Username = username,
                     Index =  ls.Count
                 };
                 ls.Add(gift);
-                await DbDirectGifts.SetDirectGifts(model.Username, ls);
+                await DbDirectGifts.SetDirectGifts(username, ls);
                 DbAdminLog.Log(DbAdminLog.LogType.DirectGiftPokemon, "Bot Endpoint", JsonConvert.SerializeObject(gift));
             }
             else if (model.Type == "item")
@@ -111,11 +120,11 @@ namespace AdminSiteNew.Controllers
                     Type = DirectGiftType.Item,
                     Amount = (uint) amount,
                     Index = ls.Count,
-                    Username = model.Username,
+                    Username = username,
                     Item = (ItemList) item
                 };
                 ls.Add(gift);
-                await DbDirectGifts.SetDirectGifts(model.Username, ls);
+                await DbDirectGifts.SetDirectGifts(username, ls);
                 DbAdminLog.Log(DbAdminLog.LogType.DirectGiftItem, "Bot Endpoint", JsonConvert.SerializeObject(gift));
             }
             return Ok();

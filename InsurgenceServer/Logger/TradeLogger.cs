@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.Logger
 {
     public static class TradeLogger
     {
@@ -12,7 +12,7 @@ namespace InsurgenceServer
                 await ActualLog(user1, user2, pokemon1, pokemon2);
             }
             catch (Exception e) {
-                Logger.ErrorLog.Log(e);
+                InsurgenceServer.Logger.ErrorLog.Log(e);
             }
         }
         private static async Task ActualLog(string user1, string user2, string pokemon1, string pokemon2)
@@ -20,7 +20,7 @@ namespace InsurgenceServer
             var poke1Json = Utilities.Encoding.Base64Decode(pokemon1);
             var poke2Json = Utilities.Encoding.Base64Decode(pokemon2);
             await Database.DbTradelog.LogTrade(user1, user2, poke1Json, poke2Json);
-            Logger.Logger.Log($"Trade between: {user1} and {user2}");
+            InsurgenceServer.Logger.Logger.Log($"Trade between: {user1} and {user2}");
         }
 
     }

@@ -174,7 +174,7 @@ namespace InsurgenceServer.Database
             var ret = false;
             while (await r.ReadAsync())
             {
-                var user = (int)r["user_id"];
+                var user = (uint)r["user_id"];
                 if (user == userId)
                     ret = true;
             }

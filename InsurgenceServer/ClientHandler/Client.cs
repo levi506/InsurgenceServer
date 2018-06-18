@@ -1,13 +1,13 @@
-﻿using InsurgenceServer.Battles;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using InsurgenceServer.Battles;
+using InsurgenceServer.Trades;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.ClientHandler
 {
     public class Client
     {
@@ -175,6 +175,7 @@ namespace InsurgenceServer
         }
         internal async Task HandleTrade(Dictionary<string, string> args)
         {
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (Data.TradeDisabled)
             {
                 await SendMessage("<TRA user=nil result=3>");
@@ -307,8 +308,8 @@ namespace InsurgenceServer
     }
     public class CommandHandler
     {
-        public string Command;
-        public Dictionary<string, string> Data = new Dictionary<string, string>();
+        public readonly string Command;
+        public readonly Dictionary<string, string> Data = new Dictionary<string, string>();
         public CommandHandler(string input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));

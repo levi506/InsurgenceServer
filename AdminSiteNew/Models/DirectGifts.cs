@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AdminSiteNew.PokemonHelper;
+using AdminSiteNew.Pokemon;
 
 namespace AdminSiteNew.Models
 {

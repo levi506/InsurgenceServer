@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer.Database
 {
@@ -45,17 +46,9 @@ namespace InsurgenceServer.Database
                     return;
                 }
                 var Base = result["base"];
-                
+
                 var messageDb = result["message"];
-                string message;
-                if (messageDb is DBNull)
-                {
-                    message = "nil";
-                }
-                else
-                {
-                    message = messageDb.ToString();
-                }
+                var message = messageDb is DBNull ? "nil" : messageDb.ToString();
                 await client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
                 break;
             }

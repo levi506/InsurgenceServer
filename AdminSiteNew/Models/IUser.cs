@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminSiteNew.Pokemon;
 
 namespace AdminSiteNew.Models
 {
@@ -41,7 +42,7 @@ namespace AdminSiteNew.Models
     public class FriendSafari
     {
         public FriendSafariType Type { get; set; } = FriendSafariType.None;
-        public List<PokemonHelper.PokemonList> Pokemon { get; set; }
+        public List<PokemonList> Pokemon { get; set; }
 
         public FriendSafari(string s)
         {
@@ -52,12 +53,12 @@ namespace AdminSiteNew.Models
             var pkmn = basestring[2].Split('f');
             Type = (FriendSafariType)int.Parse(pkmn[0]);
 
-            Pokemon = new List<PokemonHelper.PokemonList>();
+            Pokemon = new List<PokemonList>();
             for (var i = 1; i < pkmn.Length;i++)
             {
                 var mon = pkmn[i];
                 if (mon == "") continue;
-                Pokemon.Add((PokemonHelper.PokemonList)(short.Parse(mon)));
+                Pokemon.Add((PokemonList)(short.Parse(mon)));
             }
         }
 

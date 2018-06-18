@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer.Battles
 {

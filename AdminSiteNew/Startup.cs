@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http.Authentication;
 using System.Security.Claims;
 using AdminSiteNew.Database;
 using AdminSiteNew.Models;
+using AdminSiteNew.Pokemon;
 
 namespace AdminSiteNew
 {

@@ -1,0 +1,78 @@
+@using System.Security.Claims
+<div class="app-bar fixed-top" data-role="appbar">
+    <a class="app-bar-element branding" href="/">Insurgence Admin</a>
+    <span class="app-bar-divider"></span>
+    <ul class="app-bar-menu">
+        <li><a href="/">Home</a></li>
+        @if (User.HasClaim("Moderator", "Allowed"))
+        {
+            <li><a href="/Users/Users">Users</a></li>
+            <li>
+                <a href="" class="dropdown-toggle">Tradelogs</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Trades/RecentTrades">Trades</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Trades/RecentWonderTrades">Wonder Trades</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="" class="dropdown-toggle">GTS</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/GTS/Index">Open Trades</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/GTS/Closed">Accepted Trades</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="" class="dropdown-toggle">Moderators</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Moderator/Warnings">Warnings</a></li>
+                </ul>
+            </li>
+
+        }
+        @if (User.HasClaim("Developer", "Allowed"))
+        {
+            <li>
+                <a href="" class="dropdown-toggle">Developer</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Server/Dashboard">Dashboard</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Server/Metrics">Metrics</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/DirectGift/Index">Direct Gift</a></li>
+                </ul>
+            </li>
+        }
+        @if (User.HasClaim("Administrator", "Allowed"))
+        {
+            <li>
+                <a href="" class="dropdown-toggle">Admin</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a href="/Admin/Index">Permissions</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Admin/Log">Admin Log</a></li>
+                </ul>
+            </li>
+
+        }
+    </ul>
+    <div class="app-bar-element place-right">
+        <span class="dropdown-toggle"><span class="mif-cog"></span> @User.Identity.Name</span>
+        <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
+            <ul class="unstyled-list fg-dark">
+                <li><a href="/logout" class="fg-white3 fg-hover-yellow">Logout</a></li>
+            </ul>
+            <span>Roles</span>
+            <ul class="unstyled-list fg-dark">
+                @foreach (var claim in User.Claims)
+                {
+                    if (claim.Issuer == "LOCAL AUTHORITY")
+                    {
+                        <li>@claim.Type</li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

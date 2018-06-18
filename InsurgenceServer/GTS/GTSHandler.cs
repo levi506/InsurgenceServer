@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 using InsurgenceServer.Trades;
 
 namespace InsurgenceServer.GTS
@@ -64,6 +65,7 @@ namespace InsurgenceServer.GTS
             uint index;
             if (!uint.TryParse(lastIDstr, out index))
             {
+                Console.WriteLine("Index is wrong");
                 return;
             }
             var filter = JsonConvert.DeserializeObject<FilterHolder>(Utilities.Encoding.Base64Decode(filterstring));
@@ -175,16 +177,21 @@ namespace InsurgenceServer.GTS
         {
             uint id;
             if (!uint.TryParse(idstr, out id))
+            {
+                Console.WriteLine($"User tried to collect pokemon with invalid id: {idstr}");
                 return;
+            }
             //make sure the user actually owns the trade
             if (!await Database.Dbgts.UserOwnsTrade(id, c.UserId))
             {
+                Console.WriteLine($"User tried to collect pokemon he didn't own. User-id: {c.UserId}, Trade id: {id}");
                 await c.SendMessage("<GTSCOLLECT result=0 pkmn=nil>");
                 return;
             }
             //make sure the trade is actually accepted
             if (!await Database.Dbgts.TradeIsAccepted(id))
             {
+                Console.WriteLine($"User tried to collect not accepted trade. User-id: {c.UserId}, Trade id: {id}");
                 await c.SendMessage("<GTSCOLLECT result=1 pkmn=nil>");
                 return;
             }

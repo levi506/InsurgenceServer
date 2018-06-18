@@ -1,0 +1,23 @@
+.UserClass {
+	border: 1px solid black;
+	width: 400px;
+	text-align: center;
+}
+th, td {
+  border: solid 1px black;
+}
+th {
+	text-align: center;
+}
+
+.Banned {
+	background-color: red;
+	color: white;
+}
+.Free {
+	background-color: darkgreen;
+	color: white;
+}
+.shiny {
+	background-color: palevioletred;
+}

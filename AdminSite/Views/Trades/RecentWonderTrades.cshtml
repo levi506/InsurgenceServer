@@ -1,0 +1,39 @@
+@using AdminSite.Pokemon
+@model AdminSite.Models.RecentWonderTradesModel
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "WTLog";
+}
+
+<link rel="stylesheet" href="/css/Tradelog.css" />
+<div style="padding-top:30px;">
+    <table class="dataTable border bordered table-striped">
+        @foreach (var trade in Model.Trades)
+        {
+            <tr>
+                <td>@Html.ActionLink(trade.Id.ToString(), "WonderTradeDetail", "Trades", new {id = trade.Id}, null) </td>
+                <td>
+                    @trade.Date
+                </td>
+                <th>
+                    @Html.ActionLink(trade.User, "Users", "Users", new {id = trade.User}, null)
+                </th>
+                <td>
+                    <table style="width: 100%; height: 50px;" class="table">
+                        <tr>
+                            <td style="width: 32%; max-width: 32%;">@PokemonHelper.GetPokemonName(trade.Pokemon.species)</td>
+                            <td>@trade.Pokemon.personalID</td>
+                            <td style="width: 20%; max-width: 20%">OT: @trade.Pokemon.ot</td>
+                            <td style="width: 38%; max-width: 38%">Item: @ItemHelper.GetItemName((short) @trade.Pokemon.item)</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>}
+    </table>
+    @if (Model.StartIndex >= 100)
+    {
+        <input type="button" title="BanAccount" value="Previous" onclick="location.href='@Url.Action("RecentWonderTrades", "Trades", new { id = Model.StartIndex - 100 })'" />
+    }
+    <input type="button" title="BanAccount" value="Next" onclick="location.href='@Url.Action("RecentWonderTrades", "Trades", new { id = Model.StartIndex + 100 })'" />
+</div>

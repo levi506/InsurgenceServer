@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace InsurgenceServer
+namespace InsurgenceServer.ClientHandler
 {
     public static class FriendHandler
     {
@@ -19,7 +19,7 @@ namespace InsurgenceServer
             if (!await Database.DbUserChecks.UserExists(username))
             {
                 //User doesn't exist
-                await client.SendMessage($"<ADDFRIEND user={username} result=1>"); 
+                await client.SendMessage($"<ADDFRIEND user={username} result=1>");
                 return;
             }
             if (await Database.DbUserChecks.UserBanned(username))

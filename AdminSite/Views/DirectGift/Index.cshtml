@@ -1,0 +1,24 @@
+@using AdminSite.Models
+@model AdminSite.Models.DirectGiftModel
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Direct Gift";
+}
+
+<div>
+    @using (Html.BeginForm("FindGifts", "DirectGift", FormMethod.Post))
+    {
+        <fieldset style="display:inline">
+            <div>
+                @Html.TextBoxFor(model => model.request, new { @class = "form_input_field" })
+            </div>
+        </fieldset>
+        <input type="submit" class="button primary" value="Search" style="display:inline" />
+    }
+
+</div>
+
+<div>
+    @Html.Partial("DirectGiftTable", null)
+</div>

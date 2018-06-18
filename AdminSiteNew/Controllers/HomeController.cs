@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AdminSiteNew.Auth;
-using AdminSiteNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MvcSample.Web
+namespace AdminSiteNew.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller

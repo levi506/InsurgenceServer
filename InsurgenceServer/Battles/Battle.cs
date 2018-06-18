@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer.Battles
 {
     public class Battle
     {
         public Guid Id;
-        
+
         public string Username1;
         public string Username2;
 

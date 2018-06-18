@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdminSiteNew.Models
+namespace AdminSiteNew.Pokemon
 {
     public static class MoveHelper
     {

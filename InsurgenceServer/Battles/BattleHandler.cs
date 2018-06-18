@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer.Battles
 {
@@ -23,7 +24,7 @@ namespace InsurgenceServer.Battles
                 await client.SendMessage($"<BAT user={username} result=1 trainer=nil>");
                 return null;
             }
-            var c = ClientHandler.GetClient(u);
+            var c = ClientHandler.ClientHandler.GetClient(u);
             if (c == null)
             {
                 await client.SendMessage($"<BAT user={username} result=2 trainer=nil>");
@@ -40,7 +41,7 @@ namespace InsurgenceServer.Battles
         {
             return ActiveBattles.ContainsKey(client.ActiveBattleId) ? ActiveBattles[client.ActiveBattleId] : null;
         }
-        
+
         public static Battle GetBattle(string username, Client client)
         {
             var u = username.ToLower();

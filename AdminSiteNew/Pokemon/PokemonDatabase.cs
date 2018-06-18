@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace AdminSiteNew.Models
+namespace AdminSiteNew.Pokemon
 {
     public static class PokemonDatabase
     {
@@ -166,7 +165,13 @@ namespace AdminSiteNew.Models
 
         public static int CalculateExp(int speciesID, int level)
         {
-            var rate = PokemonDatabase.GetData(speciesID).GrowthRate;
+
+            var pkmn = PokemonDatabase.GetData(speciesID);
+            if (pkmn == null)
+            {
+                return GrowthRatesLookup.Medium[level];
+            }
+            var rate = pkmn.GrowthRate;
             switch (rate)
             {
                 case "Parabolic":

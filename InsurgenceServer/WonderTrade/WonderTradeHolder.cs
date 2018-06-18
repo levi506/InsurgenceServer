@@ -1,4 +1,5 @@
 ﻿using System;
+using InsurgenceServer.ClientHandler;
 
 namespace InsurgenceServer.WonderTrade
 {
