@@ -1,3872 +1,4606 @@
-﻿[
-  {
-    "id": 1,
-    "Name": "Bulbasaur",
-    "MinLevel": 1
-  },
-  {
-    "id": 2,
-    "Name": "Ivysaur",
-    "MinLevel": 16
-  },
-  {
-    "id": 3,
-    "Name": "Venusaur",
-    "MinLevel": 32
-  },
-  {
-    "id": 4,
-    "Name": "Charmander",
-    "MinLevel": 1
-  },
-  {
-    "id": 5,
-    "Name": "Charmeleon",
-    "MinLevel": 16
-  },
-  {
-    "id": 6,
-    "Name": "Charizard",
-    "MinLevel": 36
-  },
-  {
-    "id": 7,
-    "Name": "Squirtle",
-    "MinLevel": 1
-  },
-  {
-    "id": 8,
-    "Name": "Wartortle",
-    "MinLevel": 16
-  },
-  {
-    "id": 9,
-    "Name": "Blastoise",
-    "MinLevel": 36
-  },
-  {
-    "id": 10,
-    "Name": "Caterpie",
-    "MinLevel": 1
-  },
-  {
-    "id": 11,
-    "Name": "Metapod",
-    "MinLevel": 7
-  },
-  {
-    "id": 12,
-    "Name": "Butterfree",
-    "MinLevel": 10
-  },
-  {
-    "id": 13,
-    "Name": "Weedle",
-    "MinLevel": 1
-  },
-  {
-    "id": 14,
-    "Name": "Kakuna",
-    "MinLevel": 7
-  },
-  {
-    "id": 15,
-    "Name": "Beedrill",
-    "MinLevel": 10
-  },
-  {
-    "id": 16,
-    "Name": "Pidgey",
-    "MinLevel": 1
-  },
-  {
-    "id": 17,
-    "Name": "Pidgeotto",
-    "MinLevel": 18
-  },
-  {
-    "id": 18,
-    "Name": "Pidgeot",
-    "MinLevel": 36
-  },
-  {
-    "id": 19,
-    "Name": "Rattata",
-    "MinLevel": 1
-  },
-  {
-    "id": 20,
-    "Name": "Raticate",
-    "MinLevel": 20
-  },
-  {
-    "id": 21,
-    "Name": "Spearow",
-    "MinLevel": 1
-  },
-  {
-    "id": 22,
-    "Name": "Fearow",
-    "MinLevel": 20
-  },
-  {
-    "id": 23,
-    "Name": "Ekans",
-    "MinLevel": 1
-  },
-  {
-    "id": 24,
-    "Name": "Arbok",
-    "MinLevel": 22
-  },
-  {
-    "id": 25,
-    "Name": "Pikachu",
-    "MinLevel": 1
-  },
-  {
-    "id": 26,
-    "Name": "Raichu",
-    "MinLevel": 1
-  },
-  {
-    "id": 27,
-    "Name": "Sandshrew",
-    "MinLevel": 1
-  },
-  {
-    "id": 28,
-    "Name": "Sandslash",
-    "MinLevel": 22
-  },
-  {
-    "id": 29,
-    "Name": "Nidoran♀",
-    "MinLevel": 1
-  },
-  {
-    "id": 30,
-    "Name": "Nidorina",
-    "MinLevel": 16
-  },
-  {
-    "id": 31,
-    "Name": "Nidoqueen",
-    "MinLevel": 1
-  },
-  {
-    "id": 32,
-    "Name": "Nidoran♂",
-    "MinLevel": 1
-  },
-  {
-    "id": 33,
-    "Name": "Nidorino",
-    "MinLevel": 16
-  },
-  {
-    "id": 34,
-    "Name": "Nidoking",
-    "MinLevel": 1
-  },
-  {
-    "id": 35,
-    "Name": "Clefairy",
-    "MinLevel": 1
-  },
-  {
-    "id": 36,
-    "Name": "Clefable",
-    "MinLevel": 1
-  },
-  {
-    "id": 37,
-    "Name": "Vulpix",
-    "MinLevel": 1
-  },
-  {
-    "id": 38,
-    "Name": "Ninetales",
-    "MinLevel": 1
-  },
-  {
-    "id": 39,
-    "Name": "Jigglypuff",
-    "MinLevel": 1
-  },
-  {
-    "id": 40,
-    "Name": "Wigglytuff",
-    "MinLevel": 1
-  },
-  {
-    "id": 41,
-    "Name": "Zubat",
-    "MinLevel": 1
-  },
-  {
-    "id": 42,
-    "Name": "Golbat",
-    "MinLevel": 22
-  },
-  {
-    "id": 43,
-    "Name": "Oddish",
-    "MinLevel": 1
-  },
-  {
-    "id": 44,
-    "Name": "Gloom",
-    "MinLevel": 21
-  },
-  {
-    "id": 45,
-    "Name": "Vileplume",
-    "MinLevel": 1
-  },
-  {
-    "id": 46,
-    "Name": "Paras",
-    "MinLevel": 1
-  },
-  {
-    "id": 47,
-    "Name": "Parasect",
-    "MinLevel": 24
-  },
-  {
-    "id": 48,
-    "Name": "Venonat",
-    "MinLevel": 1
-  },
-  {
-    "id": 49,
-    "Name": "Venomoth",
-    "MinLevel": 31
-  },
-  {
-    "id": 50,
-    "Name": "Diglett",
-    "MinLevel": 1
-  },
-  {
-    "id": 51,
-    "Name": "Dugtrio",
-    "MinLevel": 26
-  },
-  {
-    "id": 52,
-    "Name": "Meowth",
-    "MinLevel": 1
-  },
-  {
-    "id": 53,
-    "Name": "Persian",
-    "MinLevel": 28
-  },
-  {
-    "id": 54,
-    "Name": "Psyduck",
-    "MinLevel": 1
-  },
-  {
-    "id": 55,
-    "Name": "Golduck",
-    "MinLevel": 33
-  },
-  {
-    "id": 56,
-    "Name": "Mankey",
-    "MinLevel": 1
-  },
-  {
-    "id": 57,
-    "Name": "Primeape",
-    "MinLevel": 28
-  },
-  {
-    "id": 58,
-    "Name": "Growlithe",
-    "MinLevel": 1
-  },
-  {
-    "id": 59,
-    "Name": "Arcanine",
-    "MinLevel": 1
-  },
-  {
-    "id": 60,
-    "Name": "Poliwag",
-    "MinLevel": 1
-  },
-  {
-    "id": 61,
-    "Name": "Poliwhirl",
-    "MinLevel": 25
-  },
-  {
-    "id": 62,
-    "Name": "Poliwrath",
-    "MinLevel": 1
-  },
-  {
-    "id": 63,
-    "Name": "Abra",
-    "MinLevel": 1
-  },
-  {
-    "id": 64,
-    "Name": "Kadabra",
-    "MinLevel": 16
-  },
-  {
-    "id": 65,
-    "Name": "Alakazam",
-    "MinLevel": 1
-  },
-  {
-    "id": 66,
-    "Name": "Machop",
-    "MinLevel": 1
-  },
-  {
-    "id": 67,
-    "Name": "Machoke",
-    "MinLevel": 1
-  },
-  {
-    "id": 68,
-    "Name": "Machamp",
-    "MinLevel": 1
-  },
-  {
-    "id": 69,
-    "Name": "Bellsprout",
-    "MinLevel": 1
-  },
-  {
-    "id": 70,
-    "Name": "Weepinbell",
-    "MinLevel": 21
-  },
-  {
-    "id": 71,
-    "Name": "Victreebel",
-    "MinLevel": 1
-  },
-  {
-    "id": 72,
-    "Name": "Tentacool",
-    "MinLevel": 1
-  },
-  {
-    "id": 73,
-    "Name": "Tentacruel",
-    "MinLevel": 30
-  },
-  {
-    "id": 74,
-    "Name": "Geodude",
-    "MinLevel": 1
-  },
-  {
-    "id": 75,
-    "Name": "Graveler",
-    "MinLevel": 25
-  },
-  {
-    "id": 76,
-    "Name": "Golem",
-    "MinLevel": 1
-  },
-  {
-    "id": 77,
-    "Name": "Ponyta",
-    "MinLevel": 1
-  },
-  {
-    "id": 78,
-    "Name": "Rapidash",
-    "MinLevel": 40
-  },
-  {
-    "id": 79,
-    "Name": "Slowpoke",
-    "MinLevel": 1
-  },
-  {
-    "id": 80,
-    "Name": "Slowbro",
-    "MinLevel": 37
-  },
-  {
-    "id": 81,
-    "Name": "Magnemite",
-    "MinLevel": 1
-  },
-  {
-    "id": 82,
-    "Name": "Magneton",
-    "MinLevel": 30
-  },
-  {
-    "id": 83,
-    "Name": "Farfetch'd",
-    "MinLevel": 1
-  },
-  {
-    "id": 84,
-    "Name": "Doduo",
-    "MinLevel": 1
-  },
-  {
-    "id": 85,
-    "Name": "Dodrio",
-    "MinLevel": 31
-  },
-  {
-    "id": 86,
-    "Name": "Seel",
-    "MinLevel": 1
-  },
-  {
-    "id": 87,
-    "Name": "Dewgong",
-    "MinLevel": 34
-  },
-  {
-    "id": 88,
-    "Name": "Grimer",
-    "MinLevel": 1
-  },
-  {
-    "id": 89,
-    "Name": "Muk",
-    "MinLevel": 38
-  },
-  {
-    "id": 90,
-    "Name": "Shellder",
-    "MinLevel": 1
-  },
-  {
-    "id": 91,
-    "Name": "Cloyster",
-    "MinLevel": 1
-  },
-  {
-    "id": 92,
-    "Name": "Gastly",
-    "MinLevel": 1
-  },
-  {
-    "id": 93,
-    "Name": "Haunter",
-    "MinLevel": 1
-  },
-  {
-    "id": 94,
-    "Name": "Gengar",
-    "MinLevel": 1
-  },
-  {
-    "id": 95,
-    "Name": "Onix",
-    "MinLevel": 1
-  },
-  {
-    "id": 96,
-    "Name": "Drowzee",
-    "MinLevel": 1
-  },
-  {
-    "id": 97,
-    "Name": "Hypno",
-    "MinLevel": 26
-  },
-  {
-    "id": 98,
-    "Name": "Krabby",
-    "MinLevel": 1
-  },
-  {
-    "id": 99,
-    "Name": "Kingler",
-    "MinLevel": 28
-  },
-  {
-    "id": 100,
-    "Name": "Voltorb",
-    "MinLevel": 1
-  },
-  {
-    "id": 101,
-    "Name": "Electrode",
-    "MinLevel": 30
-  },
-  {
-    "id": 102,
-    "Name": "Exeggcute",
-    "MinLevel": 1
-  },
-  {
-    "id": 103,
-    "Name": "Exeggutor",
-    "MinLevel": 1
-  },
-  {
-    "id": 104,
-    "Name": "Cubone",
-    "MinLevel": 1
-  },
-  {
-    "id": 105,
-    "Name": "Marowak",
-    "MinLevel": 28
-  },
-  {
-    "id": 106,
-    "Name": "Hitmonlee",
-    "MinLevel": 1
-  },
-  {
-    "id": 107,
-    "Name": "Hitmonchan",
-    "MinLevel": 1
-  },
-  {
-    "id": 108,
-    "Name": "Lickitung",
-    "MinLevel": 1
-  },
-  {
-    "id": 109,
-    "Name": "Koffing",
-    "MinLevel": 1
-  },
-  {
-    "id": 110,
-    "Name": "Weezing",
-    "MinLevel": 35
-  },
-  {
-    "id": 111,
-    "Name": "Rhyhorn",
-    "MinLevel": 1
-  },
-  {
-    "id": 112,
-    "Name": "Rhydon",
-    "MinLevel": 42
-  },
-  {
-    "id": 113,
-    "Name": "Chansey",
-    "MinLevel": 1
-  },
-  {
-    "id": 114,
-    "Name": "Tangela",
-    "MinLevel": 1
-  },
-  {
-    "id": 115,
-    "Name": "Kangaskhan",
-    "MinLevel": 1
-  },
-  {
-    "id": 116,
-    "Name": "Horsea",
-    "MinLevel": 1
-  },
-  {
-    "id": 117,
-    "Name": "Seadra",
-    "MinLevel": 32
-  },
-  {
-    "id": 118,
-    "Name": "Goldeen",
-    "MinLevel": 1
-  },
-  {
-    "id": 119,
-    "Name": "Seaking",
-    "MinLevel": 33
-  },
-  {
-    "id": 120,
-    "Name": "Staryu",
-    "MinLevel": 1
-  },
-  {
-    "id": 121,
-    "Name": "Starmie",
-    "MinLevel": 1
-  },
-  {
-    "id": 122,
-    "Name": "Mr. Mime",
-    "MinLevel": 1
-  },
-  {
-    "id": 123,
-    "Name": "Scyther",
-    "MinLevel": 1
-  },
-  {
-    "id": 124,
-    "Name": "Jynx",
-    "MinLevel": 30
-  },
-  {
-    "id": 125,
-    "Name": "Electabuzz",
-    "MinLevel": 30
-  },
-  {
-    "id": 126,
-    "Name": "Magmar",
-    "MinLevel": 30
-  },
-  {
-    "id": 127,
-    "Name": "Pinsir",
-    "MinLevel": 1
-  },
-  {
-    "id": 128,
-    "Name": "Tauros",
-    "MinLevel": 1
-  },
-  {
-    "id": 129,
-    "Name": "Magikarp",
-    "MinLevel": 1
-  },
-  {
-    "id": 130,
-    "Name": "Gyarados",
-    "MinLevel": 20
-  },
-  {
-    "id": 131,
-    "Name": "Lapras",
-    "MinLevel": 1
-  },
-  {
-    "id": 132,
-    "Name": "Ditto",
-    "MinLevel": 1
-  },
-  {
-    "id": 133,
-    "Name": "Eevee",
-    "MinLevel": 1
-  },
-  {
-    "id": 134,
-    "Name": "Vaporeon",
-    "MinLevel": 1
-  },
-  {
-    "id": 135,
-    "Name": "Jolteon",
-    "MinLevel": 1
-  },
-  {
-    "id": 136,
-    "Name": "Flareon",
-    "MinLevel": 1
-  },
-  {
-    "id": 137,
-    "Name": "Porygon",
-    "MinLevel": 1
-  },
-  {
-    "id": 138,
-    "Name": "Omanyte",
-    "MinLevel": 1
-  },
-  {
-    "id": 139,
-    "Name": "Omastar",
-    "MinLevel": 40
-  },
-  {
-    "id": 140,
-    "Name": "Kabuto",
-    "MinLevel": 1
-  },
-  {
-    "id": 141,
-    "Name": "Kabutops",
-    "MinLevel": 40
-  },
-  {
-    "id": 142,
-    "Name": "Aerodactyl",
-    "MinLevel": 1
-  },
-  {
-    "id": 143,
-    "Name": "Snorlax",
-    "MinLevel": 1
-  },
-  {
-    "id": 144,
-    "Name": "Articuno",
-    "MinLevel": 1
-  },
-  {
-    "id": 145,
-    "Name": "Zapdos",
-    "MinLevel": 1
-  },
-  {
-    "id": 146,
-    "Name": "Moltres",
-    "MinLevel": 1
-  },
-  {
-    "id": 147,
-    "Name": "Dratini",
-    "MinLevel": 1
-  },
-  {
-    "id": 148,
-    "Name": "Dragonair",
-    "MinLevel": 30
-  },
-  {
-    "id": 149,
-    "Name": "Dragonite",
-    "MinLevel": 55
-  },
-  {
-    "id": 150,
-    "Name": "Mewtwo",
-    "MinLevel": 1
-  },
-  {
-    "id": 151,
-    "Name": "Mew",
-    "MinLevel": 1
-  },
-  {
-    "id": 152,
-    "Name": "Chikorita",
-    "MinLevel": 1
-  },
-  {
-    "id": 153,
-    "Name": "Bayleef",
-    "MinLevel": 16
-  },
-  {
-    "id": 154,
-    "Name": "Meganium",
-    "MinLevel": 32
-  },
-  {
-    "id": 155,
-    "Name": "Cyndaquil",
-    "MinLevel": 1
-  },
-  {
-    "id": 156,
-    "Name": "Quilava",
-    "MinLevel": 14
-  },
-  {
-    "id": 157,
-    "Name": "Typhlosion",
-    "MinLevel": 36
-  },
-  {
-    "id": 158,
-    "Name": "Totodile",
-    "MinLevel": 1
-  },
-  {
-    "id": 159,
-    "Name": "Croconaw",
-    "MinLevel": 18
-  },
-  {
-    "id": 160,
-    "Name": "Feraligatr",
-    "MinLevel": 30
-  },
-  {
-    "id": 161,
-    "Name": "Sentret",
-    "MinLevel": 1
-  },
-  {
-    "id": 162,
-    "Name": "Furret",
-    "MinLevel": 15
-  },
-  {
-    "id": 163,
-    "Name": "Hoothoot",
-    "MinLevel": 1
-  },
-  {
-    "id": 164,
-    "Name": "Noctowl",
-    "MinLevel": 20
-  },
-  {
-    "id": 165,
-    "Name": "Ledyba",
-    "MinLevel": 1
-  },
-  {
-    "id": 166,
-    "Name": "Ledian",
-    "MinLevel": 18
-  },
-  {
-    "id": 167,
-    "Name": "Spinarak",
-    "MinLevel": 1
-  },
-  {
-    "id": 168,
-    "Name": "Ariados",
-    "MinLevel": 22
-  },
-  {
-    "id": 169,
-    "Name": "Crobat",
-    "MinLevel": 1
-  },
-  {
-    "id": 170,
-    "Name": "Chinchou",
-    "MinLevel": 1
-  },
-  {
-    "id": 171,
-    "Name": "Lanturn",
-    "MinLevel": 27
-  },
-  {
-    "id": 172,
-    "Name": "Pichu",
-    "MinLevel": 1
-  },
-  {
-    "id": 173,
-    "Name": "Cleffa",
-    "MinLevel": 1
-  },
-  {
-    "id": 174,
-    "Name": "Igglybuff",
-    "MinLevel": 1
-  },
-  {
-    "id": 175,
-    "Name": "Togepi",
-    "MinLevel": 1
-  },
-  {
-    "id": 176,
-    "Name": "Togetic",
-    "MinLevel": 1
-  },
-  {
-    "id": 177,
-    "Name": "Natu",
-    "MinLevel": 1
-  },
-  {
-    "id": 178,
-    "Name": "Xatu",
-    "MinLevel": 25
-  },
-  {
-    "id": 179,
-    "Name": "Mareep",
-    "MinLevel": 1
-  },
-  {
-    "id": 180,
-    "Name": "Flaaffy",
-    "MinLevel": 15
-  },
-  {
-    "id": 181,
-    "Name": "Ampharos",
-    "MinLevel": 30
-  },
-  {
-    "id": 182,
-    "Name": "Bellossom",
-    "MinLevel": 1
-  },
-  {
-    "id": 183,
-    "Name": "Marill",
-    "MinLevel": 1
-  },
-  {
-    "id": 184,
-    "Name": "Azumarill",
-    "MinLevel": 18
-  },
-  {
-    "id": 185,
-    "Name": "Sudowoodo",
-    "MinLevel": 1
-  },
-  {
-    "id": 186,
-    "Name": "Politoed",
-    "MinLevel": 1
-  },
-  {
-    "id": 187,
-    "Name": "Hoppip",
-    "MinLevel": 1
-  },
-  {
-    "id": 188,
-    "Name": "Skiploom",
-    "MinLevel": 18
-  },
-  {
-    "id": 189,
-    "Name": "Jumpluff",
-    "MinLevel": 27
-  },
-  {
-    "id": 190,
-    "Name": "Aipom",
-    "MinLevel": 1
-  },
-  {
-    "id": 191,
-    "Name": "Sunkern",
-    "MinLevel": 1
-  },
-  {
-    "id": 192,
-    "Name": "Sunflora",
-    "MinLevel": 1
-  },
-  {
-    "id": 193,
-    "Name": "Yanma",
-    "MinLevel": 1
-  },
-  {
-    "id": 194,
-    "Name": "Wooper",
-    "MinLevel": 1
-  },
-  {
-    "id": 195,
-    "Name": "Quagsire",
-    "MinLevel": 20
-  },
-  {
-    "id": 196,
-    "Name": "Espeon",
-    "MinLevel": 1
-  },
-  {
-    "id": 197,
-    "Name": "Umbreon",
-    "MinLevel": 1
-  },
-  {
-    "id": 198,
-    "Name": "Murkrow",
-    "MinLevel": 1
-  },
-  {
-    "id": 199,
-    "Name": "Slowking",
-    "MinLevel": 1
-  },
-  {
-    "id": 200,
-    "Name": "Misdreavus",
-    "MinLevel": 1
-  },
-  {
-    "id": 201,
-    "Name": "Unown",
-    "MinLevel": 1
-  },
-  {
-    "id": 202,
-    "Name": "Wobbuffet",
-    "MinLevel": 15
-  },
-  {
-    "id": 203,
-    "Name": "Girafarig",
-    "MinLevel": 1
-  },
-  {
-    "id": 204,
-    "Name": "Pineco",
-    "MinLevel": 1
-  },
-  {
-    "id": 205,
-    "Name": "Forretress",
-    "MinLevel": 31
-  },
-  {
-    "id": 206,
-    "Name": "Dunsparce",
-    "MinLevel": 1
-  },
-  {
-    "id": 207,
-    "Name": "Gligar",
-    "MinLevel": 1
-  },
-  {
-    "id": 208,
-    "Name": "Steelix",
-    "MinLevel": 1
-  },
-  {
-    "id": 209,
-    "Name": "Snubbull",
-    "MinLevel": 1
-  },
-  {
-    "id": 210,
-    "Name": "Granbull",
-    "MinLevel": 23
-  },
-  {
-    "id": 211,
-    "Name": "Qwilfish",
-    "MinLevel": 1
-  },
-  {
-    "id": 212,
-    "Name": "Scizor",
-    "MinLevel": 1
-  },
-  {
-    "id": 213,
-    "Name": "Shuckle",
-    "MinLevel": 1
-  },
-  {
-    "id": 214,
-    "Name": "Heracross",
-    "MinLevel": 1
-  },
-  {
-    "id": 215,
-    "Name": "Sneasel",
-    "MinLevel": 1
-  },
-  {
-    "id": 216,
-    "Name": "Teddiursa",
-    "MinLevel": 1
-  },
-  {
-    "id": 217,
-    "Name": "Ursaring",
-    "MinLevel": 30
-  },
-  {
-    "id": 218,
-    "Name": "Slugma",
-    "MinLevel": 1
-  },
-  {
-    "id": 219,
-    "Name": "Magcargo",
-    "MinLevel": 38
-  },
-  {
-    "id": 220,
-    "Name": "Swinub",
-    "MinLevel": 1
-  },
-  {
-    "id": 221,
-    "Name": "Piloswine",
-    "MinLevel": 33
-  },
-  {
-    "id": 222,
-    "Name": "Corsola",
-    "MinLevel": 1
-  },
-  {
-    "id": 223,
-    "Name": "Remoraid",
-    "MinLevel": 1
-  },
-  {
-    "id": 224,
-    "Name": "Octillery",
-    "MinLevel": 25
-  },
-  {
-    "id": 225,
-    "Name": "Delibird",
-    "MinLevel": 1
-  },
-  {
-    "id": 226,
-    "Name": "Mantine",
-    "MinLevel": 1
-  },
-  {
-    "id": 227,
-    "Name": "Skarmory",
-    "MinLevel": 1
-  },
-  {
-    "id": 228,
-    "Name": "Houndour",
-    "MinLevel": 1
-  },
-  {
-    "id": 229,
-    "Name": "Houndoom",
-    "MinLevel": 24
-  },
-  {
-    "id": 230,
-    "Name": "Kingdra",
-    "MinLevel": 1
-  },
-  {
-    "id": 231,
-    "Name": "Phanpy",
-    "MinLevel": 1
-  },
-  {
-    "id": 232,
-    "Name": "Donphan",
-    "MinLevel": 25
-  },
-  {
-    "id": 233,
-    "Name": "Porygon2",
-    "MinLevel": 1
-  },
-  {
-    "id": 234,
-    "Name": "Stantler",
-    "MinLevel": 1
-  },
-  {
-    "id": 235,
-    "Name": "Smeargle",
-    "MinLevel": 1
-  },
-  {
-    "id": 236,
-    "Name": "Tyrogue",
-    "MinLevel": 1
-  },
-  {
-    "id": 237,
-    "Name": "Hitmontop",
-    "MinLevel": 1
-  },
-  {
-    "id": 238,
-    "Name": "Smoochum",
-    "MinLevel": 1
-  },
-  {
-    "id": 239,
-    "Name": "Elekid",
-    "MinLevel": 1
-  },
-  {
-    "id": 240,
-    "Name": "Magby",
-    "MinLevel": 1
-  },
-  {
-    "id": 241,
-    "Name": "Miltank",
-    "MinLevel": 1
-  },
-  {
-    "id": 242,
-    "Name": "Blissey",
-    "MinLevel": 1
-  },
-  {
-    "id": 243,
-    "Name": "Raikou",
-    "MinLevel": 1
-  },
-  {
-    "id": 244,
-    "Name": "Entei",
-    "MinLevel": 1
-  },
-  {
-    "id": 245,
-    "Name": "Suicune",
-    "MinLevel": 1
-  },
-  {
-    "id": 246,
-    "Name": "Larvitar",
-    "MinLevel": 1
-  },
-  {
-    "id": 247,
-    "Name": "Pupitar",
-    "MinLevel": 1
-  },
-  {
-    "id": 248,
-    "Name": "Tyranitar",
-    "MinLevel": 55
-  },
-  {
-    "id": 249,
-    "Name": "Lugia",
-    "MinLevel": 1
-  },
-  {
-    "id": 250,
-    "Name": "Ho-Oh",
-    "MinLevel": 1
-  },
-  {
-    "id": 251,
-    "Name": "Celebi",
-    "MinLevel": 1
-  },
-  {
-    "id": 252,
-    "Name": "Treecko",
-    "MinLevel": 1
-  },
-  {
-    "id": 253,
-    "Name": "Grovyle",
-    "MinLevel": 16
-  },
-  {
-    "id": 254,
-    "Name": "Sceptile",
-    "MinLevel": 36
-  },
-  {
-    "id": 255,
-    "Name": "Torchic",
-    "MinLevel": 1
-  },
-  {
-    "id": 256,
-    "Name": "Combusken",
-    "MinLevel": 16
-  },
-  {
-    "id": 257,
-    "Name": "Blaziken",
-    "MinLevel": 36
-  },
-  {
-    "id": 258,
-    "Name": "Mudkip",
-    "MinLevel": 1
-  },
-  {
-    "id": 259,
-    "Name": "Marshtomp",
-    "MinLevel": 16
-  },
-  {
-    "id": 260,
-    "Name": "Swampert",
-    "MinLevel": 36
-  },
-  {
-    "id": 261,
-    "Name": "Poochyena",
-    "MinLevel": 1
-  },
-  {
-    "id": 262,
-    "Name": "Mightyena",
-    "MinLevel": 18
-  },
-  {
-    "id": 263,
-    "Name": "Zigzagoon",
-    "MinLevel": 1
-  },
-  {
-    "id": 264,
-    "Name": "Linoone",
-    "MinLevel": 20
-  },
-  {
-    "id": 265,
-    "Name": "Wurmple",
-    "MinLevel": 1
-  },
-  {
-    "id": 266,
-    "Name": "Silcoon",
-    "MinLevel": 1
-  },
-  {
-    "id": 267,
-    "Name": "Beautifly",
-    "MinLevel": 10
-  },
-  {
-    "id": 268,
-    "Name": "Cascoon",
-    "MinLevel": 1
-  },
-  {
-    "id": 269,
-    "Name": "Dustox",
-    "MinLevel": 10
-  },
-  {
-    "id": 270,
-    "Name": "Lotad",
-    "MinLevel": 1
-  },
-  {
-    "id": 271,
-    "Name": "Lombre",
-    "MinLevel": 14
-  },
-  {
-    "id": 272,
-    "Name": "Ludicolo",
-    "MinLevel": 1
-  },
-  {
-    "id": 273,
-    "Name": "Seedot",
-    "MinLevel": 1
-  },
-  {
-    "id": 274,
-    "Name": "Nuzleaf",
-    "MinLevel": 14
-  },
-  {
-    "id": 275,
-    "Name": "Shiftry",
-    "MinLevel": 1
-  },
-  {
-    "id": 276,
-    "Name": "Taillow",
-    "MinLevel": 1
-  },
-  {
-    "id": 277,
-    "Name": "Swellow",
-    "MinLevel": 22
-  },
-  {
-    "id": 278,
-    "Name": "Wingull",
-    "MinLevel": 1
-  },
-  {
-    "id": 279,
-    "Name": "Pelipper",
-    "MinLevel": 25
-  },
-  {
-    "id": 280,
-    "Name": "Ralts",
-    "MinLevel": 1
-  },
-  {
-    "id": 281,
-    "Name": "Kirlia",
-    "MinLevel": 20
-  },
-  {
-    "id": 282,
-    "Name": "Gardevoir",
-    "MinLevel": 30
-  },
-  {
-    "id": 283,
-    "Name": "Surskit",
-    "MinLevel": 1
-  },
-  {
-    "id": 284,
-    "Name": "Masquerain",
-    "MinLevel": 22
-  },
-  {
-    "id": 285,
-    "Name": "Shroomish",
-    "MinLevel": 1
-  },
-  {
-    "id": 286,
-    "Name": "Breloom",
-    "MinLevel": 23
-  },
-  {
-    "id": 287,
-    "Name": "Slakoth",
-    "MinLevel": 1
-  },
-  {
-    "id": 288,
-    "Name": "Vigoroth",
-    "MinLevel": 18
-  },
-  {
-    "id": 289,
-    "Name": "Slaking",
-    "MinLevel": 36
-  },
-  {
-    "id": 290,
-    "Name": "Nincada",
-    "MinLevel": 1
-  },
-  {
-    "id": 291,
-    "Name": "Ninjask",
-    "MinLevel": 1
-  },
-  {
-    "id": 292,
-    "Name": "Shedinja",
-    "MinLevel": 1
-  },
-  {
-    "id": 293,
-    "Name": "Whismur",
-    "MinLevel": 1
-  },
-  {
-    "id": 294,
-    "Name": "Loudred",
-    "MinLevel": 20
-  },
-  {
-    "id": 295,
-    "Name": "Exploud",
-    "MinLevel": 40
-  },
-  {
-    "id": 296,
-    "Name": "Makuhita",
-    "MinLevel": 1
-  },
-  {
-    "id": 297,
-    "Name": "Hariyama",
-    "MinLevel": 24
-  },
-  {
-    "id": 298,
-    "Name": "Azurill",
-    "MinLevel": 1
-  },
-  {
-    "id": 299,
-    "Name": "Nosepass",
-    "MinLevel": 1
-  },
-  {
-    "id": 300,
-    "Name": "Skitty",
-    "MinLevel": 1
-  },
-  {
-    "id": 301,
-    "Name": "Delcatty",
-    "MinLevel": 1
-  },
-  {
-    "id": 302,
-    "Name": "Sableye",
-    "MinLevel": 1
-  },
-  {
-    "id": 303,
-    "Name": "Mawile",
-    "MinLevel": 1
-  },
-  {
-    "id": 304,
-    "Name": "Aron",
-    "MinLevel": 1
-  },
-  {
-    "id": 305,
-    "Name": "Lairon",
-    "MinLevel": 32
-  },
-  {
-    "id": 306,
-    "Name": "Aggron",
-    "MinLevel": 42
-  },
-  {
-    "id": 307,
-    "Name": "Meditite",
-    "MinLevel": 1
-  },
-  {
-    "id": 308,
-    "Name": "Medicham",
-    "MinLevel": 37
-  },
-  {
-    "id": 309,
-    "Name": "Electrike",
-    "MinLevel": 1
-  },
-  {
-    "id": 310,
-    "Name": "Manectric",
-    "MinLevel": 26
-  },
-  {
-    "id": 311,
-    "Name": "Plusle",
-    "MinLevel": 1
-  },
-  {
-    "id": 312,
-    "Name": "Minun",
-    "MinLevel": 1
-  },
-  {
-    "id": 313,
-    "Name": "Volbeat",
-    "MinLevel": 1
-  },
-  {
-    "id": 314,
-    "Name": "Illumise",
-    "MinLevel": 1
-  },
-  {
-    "id": 315,
-    "Name": "Roselia",
-    "MinLevel": 1
-  },
-  {
-    "id": 316,
-    "Name": "Gulpin",
-    "MinLevel": 1
-  },
-  {
-    "id": 317,
-    "Name": "Swalot",
-    "MinLevel": 26
-  },
-  {
-    "id": 318,
-    "Name": "Carvanha",
-    "MinLevel": 1
-  },
-  {
-    "id": 319,
-    "Name": "Sharpedo",
-    "MinLevel": 30
-  },
-  {
-    "id": 320,
-    "Name": "Wailmer",
-    "MinLevel": 1
-  },
-  {
-    "id": 321,
-    "Name": "Wailord",
-    "MinLevel": 40
-  },
-  {
-    "id": 322,
-    "Name": "Numel",
-    "MinLevel": 1
-  },
-  {
-    "id": 323,
-    "Name": "Camerupt",
-    "MinLevel": 33
-  },
-  {
-    "id": 324,
-    "Name": "Torkoal",
-    "MinLevel": 1
-  },
-  {
-    "id": 325,
-    "Name": "Spoink",
-    "MinLevel": 1
-  },
-  {
-    "id": 326,
-    "Name": "Grumpig",
-    "MinLevel": 32
-  },
-  {
-    "id": 327,
-    "Name": "Spinda",
-    "MinLevel": 1
-  },
-  {
-    "id": 328,
-    "Name": "Trapinch",
-    "MinLevel": 1
-  },
-  {
-    "id": 329,
-    "Name": "Vibrava",
-    "MinLevel": 35
-  },
-  {
-    "id": 330,
-    "Name": "Flygon",
-    "MinLevel": 45
-  },
-  {
-    "id": 331,
-    "Name": "Cacnea",
-    "MinLevel": 1
-  },
-  {
-    "id": 332,
-    "Name": "Cacturne",
-    "MinLevel": 32
-  },
-  {
-    "id": 333,
-    "Name": "Swablu",
-    "MinLevel": 1
-  },
-  {
-    "id": 334,
-    "Name": "Altaria",
-    "MinLevel": 35
-  },
-  {
-    "id": 335,
-    "Name": "Zangoose",
-    "MinLevel": 1
-  },
-  {
-    "id": 336,
-    "Name": "Seviper",
-    "MinLevel": 1
-  },
-  {
-    "id": 337,
-    "Name": "Lunatone",
-    "MinLevel": 1
-  },
-  {
-    "id": 338,
-    "Name": "Solrock",
-    "MinLevel": 1
-  },
-  {
-    "id": 339,
-    "Name": "Barboach",
-    "MinLevel": 1
-  },
-  {
-    "id": 340,
-    "Name": "Whiscash",
-    "MinLevel": 30
-  },
-  {
-    "id": 341,
-    "Name": "Corphish",
-    "MinLevel": 1
-  },
-  {
-    "id": 342,
-    "Name": "Crawdaunt",
-    "MinLevel": 30
-  },
-  {
-    "id": 343,
-    "Name": "Baltoy",
-    "MinLevel": 1
-  },
-  {
-    "id": 344,
-    "Name": "Claydol",
-    "MinLevel": 36
-  },
-  {
-    "id": 345,
-    "Name": "Lileep",
-    "MinLevel": 1
-  },
-  {
-    "id": 346,
-    "Name": "Cradily",
-    "MinLevel": 40
-  },
-  {
-    "id": 347,
-    "Name": "Anorith",
-    "MinLevel": 1
-  },
-  {
-    "id": 348,
-    "Name": "Armaldo",
-    "MinLevel": 40
-  },
-  {
-    "id": 349,
-    "Name": "Feebas",
-    "MinLevel": 1
-  },
-  {
-    "id": 350,
-    "Name": "Milotic",
-    "MinLevel": 1
-  },
-  {
-    "id": 351,
-    "Name": "Castform",
-    "MinLevel": 1
-  },
-  {
-    "id": 352,
-    "Name": "Kecleon",
-    "MinLevel": 1
-  },
-  {
-    "id": 353,
-    "Name": "Shuppet",
-    "MinLevel": 1
-  },
-  {
-    "id": 354,
-    "Name": "Banette",
-    "MinLevel": 37
-  },
-  {
-    "id": 355,
-    "Name": "Duskull",
-    "MinLevel": 1
-  },
-  {
-    "id": 356,
-    "Name": "Dusclops",
-    "MinLevel": 37
-  },
-  {
-    "id": 357,
-    "Name": "Tropius",
-    "MinLevel": 1
-  },
-  {
-    "id": 358,
-    "Name": "Chimecho",
-    "MinLevel": 1
-  },
-  {
-    "id": 359,
-    "Name": "Absol",
-    "MinLevel": 1
-  },
-  {
-    "id": 360,
-    "Name": "Wynaut",
-    "MinLevel": 1
-  },
-  {
-    "id": 361,
-    "Name": "Snorunt",
-    "MinLevel": 1
-  },
-  {
-    "id": 362,
-    "Name": "Glalie",
-    "MinLevel": 42
-  },
-  {
-    "id": 363,
-    "Name": "Spheal",
-    "MinLevel": 1
-  },
-  {
-    "id": 364,
-    "Name": "Sealeo",
-    "MinLevel": 32
-  },
-  {
-    "id": 365,
-    "Name": "Walrein",
-    "MinLevel": 44
-  },
-  {
-    "id": 366,
-    "Name": "Clamperl",
-    "MinLevel": 1
-  },
-  {
-    "id": 367,
-    "Name": "Huntail",
-    "MinLevel": 1
-  },
-  {
-    "id": 368,
-    "Name": "Gorebyss",
-    "MinLevel": 1
-  },
-  {
-    "id": 369,
-    "Name": "Relicanth",
-    "MinLevel": 1
-  },
-  {
-    "id": 370,
-    "Name": "Luvdisc",
-    "MinLevel": 1
-  },
-  {
-    "id": 371,
-    "Name": "Bagon",
-    "MinLevel": 1
-  },
-  {
-    "id": 372,
-    "Name": "Shelgon",
-    "MinLevel": 30
-  },
-  {
-    "id": 373,
-    "Name": "Salamence",
-    "MinLevel": 50
-  },
-  {
-    "id": 374,
-    "Name": "Beldum",
-    "MinLevel": 1
-  },
-  {
-    "id": 375,
-    "Name": "Metang",
-    "MinLevel": 20
-  },
-  {
-    "id": 376,
-    "Name": "Metagross",
-    "MinLevel": 45
-  },
-  {
-    "id": 377,
-    "Name": "Regirock",
-    "MinLevel": 1
-  },
-  {
-    "id": 378,
-    "Name": "Regice",
-    "MinLevel": 1
-  },
-  {
-    "id": 379,
-    "Name": "Registeel",
-    "MinLevel": 1
-  },
-  {
-    "id": 380,
-    "Name": "Latias",
-    "MinLevel": 1
-  },
-  {
-    "id": 381,
-    "Name": "Latios",
-    "MinLevel": 1
-  },
-  {
-    "id": 382,
-    "Name": "Kyogre",
-    "MinLevel": 1
-  },
-  {
-    "id": 383,
-    "Name": "Groudon",
-    "MinLevel": 1
-  },
-  {
-    "id": 384,
-    "Name": "Rayquaza",
-    "MinLevel": 1
-  },
-  {
-    "id": 385,
-    "Name": "Jirachi",
-    "MinLevel": 1
-  },
-  {
-    "id": 386,
-    "Name": "Deoxys",
-    "MinLevel": 1
-  },
-  {
-    "id": 387,
-    "Name": "Turtwig",
-    "MinLevel": 1
-  },
-  {
-    "id": 388,
-    "Name": "Grotle",
-    "MinLevel": 18
-  },
-  {
-    "id": 389,
-    "Name": "Torterra",
-    "MinLevel": 32
-  },
-  {
-    "id": 390,
-    "Name": "Chimchar",
-    "MinLevel": 1
-  },
-  {
-    "id": 391,
-    "Name": "Monferno",
-    "MinLevel": 14
-  },
-  {
-    "id": 392,
-    "Name": "Infernape",
-    "MinLevel": 36
-  },
-  {
-    "id": 393,
-    "Name": "Piplup",
-    "MinLevel": 1
-  },
-  {
-    "id": 394,
-    "Name": "Prinplup",
-    "MinLevel": 16
-  },
-  {
-    "id": 395,
-    "Name": "Empoleon",
-    "MinLevel": 36
-  },
-  {
-    "id": 396,
-    "Name": "Starly",
-    "MinLevel": 1
-  },
-  {
-    "id": 397,
-    "Name": "Staravia",
-    "MinLevel": 14
-  },
-  {
-    "id": 398,
-    "Name": "Staraptor",
-    "MinLevel": 34
-  },
-  {
-    "id": 399,
-    "Name": "Bidoof",
-    "MinLevel": 1
-  },
-  {
-    "id": 400,
-    "Name": "Bibarel",
-    "MinLevel": 15
-  },
-  {
-    "id": 401,
-    "Name": "Kricketot",
-    "MinLevel": 1
-  },
-  {
-    "id": 402,
-    "Name": "Kricketune",
-    "MinLevel": 10
-  },
-  {
-    "id": 403,
-    "Name": "Shinx",
-    "MinLevel": 1
-  },
-  {
-    "id": 404,
-    "Name": "Luxio",
-    "MinLevel": 15
-  },
-  {
-    "id": 405,
-    "Name": "Luxray",
-    "MinLevel": 30
-  },
-  {
-    "id": 406,
-    "Name": "Budew",
-    "MinLevel": 1
-  },
-  {
-    "id": 407,
-    "Name": "Roserade",
-    "MinLevel": 1
-  },
-  {
-    "id": 408,
-    "Name": "Cranidos",
-    "MinLevel": 1
-  },
-  {
-    "id": 409,
-    "Name": "Rampardos",
-    "MinLevel": 30
-  },
-  {
-    "id": 410,
-    "Name": "Shieldon",
-    "MinLevel": 1
-  },
-  {
-    "id": 411,
-    "Name": "Bastiodon",
-    "MinLevel": 30
-  },
-  {
-    "id": 412,
-    "Name": "Burmy",
-    "MinLevel": 1
-  },
-  {
-    "id": 413,
-    "Name": "Wormadam",
-    "MinLevel": 1
-  },
-  {
-    "id": 414,
-    "Name": "Mothim",
-    "MinLevel": 1
-  },
-  {
-    "id": 415,
-    "Name": "Combee",
-    "MinLevel": 1
-  },
-  {
-    "id": 416,
-    "Name": "Vespiquen",
-    "MinLevel": 1
-  },
-  {
-    "id": 417,
-    "Name": "Pachirisu",
-    "MinLevel": 1
-  },
-  {
-    "id": 418,
-    "Name": "Buizel",
-    "MinLevel": 1
-  },
-  {
-    "id": 419,
-    "Name": "Floatzel",
-    "MinLevel": 26
-  },
-  {
-    "id": 420,
-    "Name": "Cherubi",
-    "MinLevel": 1
-  },
-  {
-    "id": 421,
-    "Name": "Cherrim",
-    "MinLevel": 25
-  },
-  {
-    "id": 422,
-    "Name": "Shellos",
-    "MinLevel": 1
-  },
-  {
-    "id": 423,
-    "Name": "Gastrodon",
-    "MinLevel": 30
-  },
-  {
-    "id": 424,
-    "Name": "Ambipom",
-    "MinLevel": 1
-  },
-  {
-    "id": 425,
-    "Name": "Drifloon",
-    "MinLevel": 1
-  },
-  {
-    "id": 426,
-    "Name": "Drifblim",
-    "MinLevel": 28
-  },
-  {
-    "id": 427,
-    "Name": "Buneary",
-    "MinLevel": 1
-  },
-  {
-    "id": 428,
-    "Name": "Lopunny",
-    "MinLevel": 1
-  },
-  {
-    "id": 429,
-    "Name": "Mismagius",
-    "MinLevel": 1
-  },
-  {
-    "id": 430,
-    "Name": "Honchkrow",
-    "MinLevel": 1
-  },
-  {
-    "id": 431,
-    "Name": "Glameow",
-    "MinLevel": 1
-  },
-  {
-    "id": 432,
-    "Name": "Purugly",
-    "MinLevel": 38
-  },
-  {
-    "id": 433,
-    "Name": "Chingling",
-    "MinLevel": 1
-  },
-  {
-    "id": 434,
-    "Name": "Stunky",
-    "MinLevel": 1
-  },
-  {
-    "id": 435,
-    "Name": "Skuntank",
-    "MinLevel": 34
-  },
-  {
-    "id": 436,
-    "Name": "Bronzor",
-    "MinLevel": 1
-  },
-  {
-    "id": 437,
-    "Name": "Bronzong",
-    "MinLevel": 33
-  },
-  {
-    "id": 438,
-    "Name": "Bonsly",
-    "MinLevel": 1
-  },
-  {
-    "id": 439,
-    "Name": "Mime Jr.",
-    "MinLevel": 1
-  },
-  {
-    "id": 440,
-    "Name": "Happiny",
-    "MinLevel": 1
-  },
-  {
-    "id": 441,
-    "Name": "Chatot",
-    "MinLevel": 1
-  },
-  {
-    "id": 442,
-    "Name": "Spiritomb",
-    "MinLevel": 1
-  },
-  {
-    "id": 443,
-    "Name": "Gible",
-    "MinLevel": 1
-  },
-  {
-    "id": 444,
-    "Name": "Gabite",
-    "MinLevel": 24
-  },
-  {
-    "id": 445,
-    "Name": "Garchomp",
-    "MinLevel": 48
-  },
-  {
-    "id": 446,
-    "Name": "Munchlax",
-    "MinLevel": 1
-  },
-  {
-    "id": 447,
-    "Name": "Riolu",
-    "MinLevel": 1
-  },
-  {
-    "id": 448,
-    "Name": "Lucario",
-    "MinLevel": 1
-  },
-  {
-    "id": 449,
-    "Name": "Hippopotas",
-    "MinLevel": 1
-  },
-  {
-    "id": 450,
-    "Name": "Hippowdon",
-    "MinLevel": 34
-  },
-  {
-    "id": 451,
-    "Name": "Skorupi",
-    "MinLevel": 1
-  },
-  {
-    "id": 452,
-    "Name": "Drapion",
-    "MinLevel": 40
-  },
-  {
-    "id": 453,
-    "Name": "Croagunk",
-    "MinLevel": 1
-  },
-  {
-    "id": 454,
-    "Name": "Toxicroak",
-    "MinLevel": 37
-  },
-  {
-    "id": 455,
-    "Name": "Carnivine",
-    "MinLevel": 1
-  },
-  {
-    "id": 456,
-    "Name": "Finneon",
-    "MinLevel": 1
-  },
-  {
-    "id": 457,
-    "Name": "Lumineon",
-    "MinLevel": 31
-  },
-  {
-    "id": 458,
-    "Name": "Mantyke",
-    "MinLevel": 1
-  },
-  {
-    "id": 459,
-    "Name": "Snover",
-    "MinLevel": 1
-  },
-  {
-    "id": 460,
-    "Name": "Abomasnow",
-    "MinLevel": 40
-  },
-  {
-    "id": 461,
-    "Name": "Weavile",
-    "MinLevel": 1
-  },
-  {
-    "id": 462,
-    "Name": "Magnezone",
-    "MinLevel": 1
-  },
-  {
-    "id": 463,
-    "Name": "Lickilicky",
-    "MinLevel": 1
-  },
-  {
-    "id": 464,
-    "Name": "Rhyperior",
-    "MinLevel": 1
-  },
-  {
-    "id": 465,
-    "Name": "Tangrowth",
-    "MinLevel": 1
-  },
-  {
-    "id": 466,
-    "Name": "Electivire",
-    "MinLevel": 1
-  },
-  {
-    "id": 467,
-    "Name": "Magmortar",
-    "MinLevel": 1
-  },
-  {
-    "id": 468,
-    "Name": "Togekiss",
-    "MinLevel": 1
-  },
-  {
-    "id": 469,
-    "Name": "Yanmega",
-    "MinLevel": 1
-  },
-  {
-    "id": 470,
-    "Name": "Leafeon",
-    "MinLevel": 1
-  },
-  {
-    "id": 471,
-    "Name": "Glaceon",
-    "MinLevel": 1
-  },
-  {
-    "id": 472,
-    "Name": "Gliscor",
-    "MinLevel": 1
-  },
-  {
-    "id": 473,
-    "Name": "Mamoswine",
-    "MinLevel": 1
-  },
-  {
-    "id": 474,
-    "Name": "Porygon-Z",
-    "MinLevel": 1
-  },
-  {
-    "id": 475,
-    "Name": "Gallade",
-    "MinLevel": 1
-  },
-  {
-    "id": 476,
-    "Name": "Probopass",
-    "MinLevel": 1
-  },
-  {
-    "id": 477,
-    "Name": "Dusknoir",
-    "MinLevel": 1
-  },
-  {
-    "id": 478,
-    "Name": "Froslass",
-    "MinLevel": 1
-  },
-  {
-    "id": 479,
-    "Name": "Rotom",
-    "MinLevel": 1
-  },
-  {
-    "id": 480,
-    "Name": "Uxie",
-    "MinLevel": 1
-  },
-  {
-    "id": 481,
-    "Name": "Mesprit",
-    "MinLevel": 1
-  },
-  {
-    "id": 482,
-    "Name": "Azelf",
-    "MinLevel": 1
-  },
-  {
-    "id": 483,
-    "Name": "Dialga",
-    "MinLevel": 1
-  },
-  {
-    "id": 484,
-    "Name": "Palkia",
-    "MinLevel": 1
-  },
-  {
-    "id": 485,
-    "Name": "Heatran",
-    "MinLevel": 1
-  },
-  {
-    "id": 486,
-    "Name": "Regigigas",
-    "MinLevel": 1
-  },
-  {
-    "id": 487,
-    "Name": "Giratina",
-    "MinLevel": 1
-  },
-  {
-    "id": 488,
-    "Name": "Cresselia",
-    "MinLevel": 1
-  },
-  {
-    "id": 489,
-    "Name": "Phione",
-    "MinLevel": 1
-  },
-  {
-    "id": 490,
-    "Name": "Manaphy",
-    "MinLevel": 1
-  },
-  {
-    "id": 491,
-    "Name": "Darkrai",
-    "MinLevel": 1
-  },
-  {
-    "id": 492,
-    "Name": "Shaymin",
-    "MinLevel": 1
-  },
-  {
-    "id": 493,
-    "Name": "Arceus",
-    "MinLevel": 1
-  },
-  {
-    "id": 494,
-    "Name": "Victini",
-    "MinLevel": 1
-  },
-  {
-    "id": 495,
-    "Name": "Snivy",
-    "MinLevel": 1
-  },
-  {
-    "id": 496,
-    "Name": "Servine",
-    "MinLevel": 17
-  },
-  {
-    "id": 497,
-    "Name": "Serperior",
-    "MinLevel": 36
-  },
-  {
-    "id": 498,
-    "Name": "Tepig",
-    "MinLevel": 1
-  },
-  {
-    "id": 499,
-    "Name": "Pignite",
-    "MinLevel": 17
-  },
-  {
-    "id": 500,
-    "Name": "Emboar",
-    "MinLevel": 36
-  },
-  {
-    "id": 501,
-    "Name": "Oshawott",
-    "MinLevel": 1
-  },
-  {
-    "id": 502,
-    "Name": "Dewott",
-    "MinLevel": 17
-  },
-  {
-    "id": 503,
-    "Name": "Samurott",
-    "MinLevel": 36
-  },
-  {
-    "id": 504,
-    "Name": "Patrat",
-    "MinLevel": 1
-  },
-  {
-    "id": 505,
-    "Name": "Watchog",
-    "MinLevel": 20
-  },
-  {
-    "id": 506,
-    "Name": "Lillipup",
-    "MinLevel": 1
-  },
-  {
-    "id": 507,
-    "Name": "Herdier",
-    "MinLevel": 16
-  },
-  {
-    "id": 508,
-    "Name": "Stoutland",
-    "MinLevel": 32
-  },
-  {
-    "id": 509,
-    "Name": "Purrloin",
-    "MinLevel": 1
-  },
-  {
-    "id": 510,
-    "Name": "Liepard",
-    "MinLevel": 20
-  },
-  {
-    "id": 511,
-    "Name": "Pansage",
-    "MinLevel": 1
-  },
-  {
-    "id": 512,
-    "Name": "Simisage",
-    "MinLevel": 1
-  },
-  {
-    "id": 513,
-    "Name": "Pansear",
-    "MinLevel": 1
-  },
-  {
-    "id": 514,
-    "Name": "Simisear",
-    "MinLevel": 1
-  },
-  {
-    "id": 515,
-    "Name": "Panpour",
-    "MinLevel": 1
-  },
-  {
-    "id": 516,
-    "Name": "Simipour",
-    "MinLevel": 1
-  },
-  {
-    "id": 517,
-    "Name": "Munna",
-    "MinLevel": 1
-  },
-  {
-    "id": 518,
-    "Name": "Musharna",
-    "MinLevel": 1
-  },
-  {
-    "id": 519,
-    "Name": "Pidove",
-    "MinLevel": 1
-  },
-  {
-    "id": 520,
-    "Name": "Tranquill",
-    "MinLevel": 21
-  },
-  {
-    "id": 521,
-    "Name": "Unfezant",
-    "MinLevel": 32
-  },
-  {
-    "id": 522,
-    "Name": "Blitzle",
-    "MinLevel": 1
-  },
-  {
-    "id": 523,
-    "Name": "Zebstrika",
-    "MinLevel": 27
-  },
-  {
-    "id": 524,
-    "Name": "Roggenrola",
-    "MinLevel": 1
-  },
-  {
-    "id": 525,
-    "Name": "Boldore",
-    "MinLevel": 25
-  },
-  {
-    "id": 526,
-    "Name": "Gigalith",
-    "MinLevel": 1
-  },
-  {
-    "id": 527,
-    "Name": "Woobat",
-    "MinLevel": 1
-  },
-  {
-    "id": 528,
-    "Name": "Swoobat",
-    "MinLevel": 1
-  },
-  {
-    "id": 529,
-    "Name": "Drilbur",
-    "MinLevel": 1
-  },
-  {
-    "id": 530,
-    "Name": "Excadrill",
-    "MinLevel": 31
-  },
-  {
-    "id": 531,
-    "Name": "Audino",
-    "MinLevel": 1
-  },
-  {
-    "id": 532,
-    "Name": "Timburr",
-    "MinLevel": 1
-  },
-  {
-    "id": 533,
-    "Name": "Gurdurr",
-    "MinLevel": 25
-  },
-  {
-    "id": 534,
-    "Name": "Conkeldurr",
-    "MinLevel": 1
-  },
-  {
-    "id": 535,
-    "Name": "Tympole",
-    "MinLevel": 1
-  },
-  {
-    "id": 536,
-    "Name": "Palpitoad",
-    "MinLevel": 25
-  },
-  {
-    "id": 537,
-    "Name": "Seismitoad",
-    "MinLevel": 36
-  },
-  {
-    "id": 538,
-    "Name": "Throh",
-    "MinLevel": 1
-  },
-  {
-    "id": 539,
-    "Name": "Sawk",
-    "MinLevel": 1
-  },
-  {
-    "id": 540,
-    "Name": "Sewaddle",
-    "MinLevel": 1
-  },
-  {
-    "id": 541,
-    "Name": "Swadloon",
-    "MinLevel": 20
-  },
-  {
-    "id": 542,
-    "Name": "Leavanny",
-    "MinLevel": 1
-  },
-  {
-    "id": 543,
-    "Name": "Venipede",
-    "MinLevel": 1
-  },
-  {
-    "id": 544,
-    "Name": "Whirlipede",
-    "MinLevel": 22
-  },
-  {
-    "id": 545,
-    "Name": "Scolipede",
-    "MinLevel": 30
-  },
-  {
-    "id": 546,
-    "Name": "Cottonee",
-    "MinLevel": 1
-  },
-  {
-    "id": 547,
-    "Name": "Whimsicott",
-    "MinLevel": 1
-  },
-  {
-    "id": 548,
-    "Name": "Petilil",
-    "MinLevel": 1
-  },
-  {
-    "id": 549,
-    "Name": "Lilligant",
-    "MinLevel": 1
-  },
-  {
-    "id": 550,
-    "Name": "Basculin",
-    "MinLevel": 1
-  },
-  {
-    "id": 551,
-    "Name": "Sandile",
-    "MinLevel": 1
-  },
-  {
-    "id": 552,
-    "Name": "Krokorok",
-    "MinLevel": 29
-  },
-  {
-    "id": 553,
-    "Name": "Krookodile",
-    "MinLevel": 40
-  },
-  {
-    "id": 554,
-    "Name": "Darumaka",
-    "MinLevel": 1
-  },
-  {
-    "id": 555,
-    "Name": "Darmanitan",
-    "MinLevel": 35
-  },
-  {
-    "id": 556,
-    "Name": "Maractus",
-    "MinLevel": 1
-  },
-  {
-    "id": 557,
-    "Name": "Dwebble",
-    "MinLevel": 1
-  },
-  {
-    "id": 558,
-    "Name": "Crustle",
-    "MinLevel": 34
-  },
-  {
-    "id": 559,
-    "Name": "Scraggy",
-    "MinLevel": 1
-  },
-  {
-    "id": 560,
-    "Name": "Scrafty",
-    "MinLevel": 39
-  },
-  {
-    "id": 561,
-    "Name": "Sigilyph",
-    "MinLevel": 1
-  },
-  {
-    "id": 562,
-    "Name": "Yamask",
-    "MinLevel": 1
-  },
-  {
-    "id": 563,
-    "Name": "Cofagrigus",
-    "MinLevel": 34
-  },
-  {
-    "id": 564,
-    "Name": "Tirtouga",
-    "MinLevel": 1
-  },
-  {
-    "id": 565,
-    "Name": "Carracosta",
-    "MinLevel": 37
-  },
-  {
-    "id": 566,
-    "Name": "Archen",
-    "MinLevel": 1
-  },
-  {
-    "id": 567,
-    "Name": "Archeops",
-    "MinLevel": 37
-  },
-  {
-    "id": 568,
-    "Name": "Trubbish",
-    "MinLevel": 1
-  },
-  {
-    "id": 569,
-    "Name": "Garbodor",
-    "MinLevel": 36
-  },
-  {
-    "id": 570,
-    "Name": "Zorua",
-    "MinLevel": 1
-  },
-  {
-    "id": 571,
-    "Name": "Zoroark",
-    "MinLevel": 30
-  },
-  {
-    "id": 572,
-    "Name": "Minccino",
-    "MinLevel": 1
-  },
-  {
-    "id": 573,
-    "Name": "Cinccino",
-    "MinLevel": 1
-  },
-  {
-    "id": 574,
-    "Name": "Gothita",
-    "MinLevel": 1
-  },
-  {
-    "id": 575,
-    "Name": "Gothorita",
-    "MinLevel": 32
-  },
-  {
-    "id": 576,
-    "Name": "Gothitelle",
-    "MinLevel": 41
-  },
-  {
-    "id": 577,
-    "Name": "Solosis",
-    "MinLevel": 1
-  },
-  {
-    "id": 578,
-    "Name": "Duosion",
-    "MinLevel": 32
-  },
-  {
-    "id": 579,
-    "Name": "Reuniclus",
-    "MinLevel": 41
-  },
-  {
-    "id": 580,
-    "Name": "Ducklett",
-    "MinLevel": 1
-  },
-  {
-    "id": 581,
-    "Name": "Swanna",
-    "MinLevel": 35
-  },
-  {
-    "id": 582,
-    "Name": "Vanillite",
-    "MinLevel": 1
-  },
-  {
-    "id": 583,
-    "Name": "Vanillish",
-    "MinLevel": 35
-  },
-  {
-    "id": 584,
-    "Name": "Vanilluxe",
-    "MinLevel": 47
-  },
-  {
-    "id": 585,
-    "Name": "Deerling",
-    "MinLevel": 1
-  },
-  {
-    "id": 586,
-    "Name": "Sawsbuck",
-    "MinLevel": 34
-  },
-  {
-    "id": 587,
-    "Name": "Emolga",
-    "MinLevel": 1
-  },
-  {
-    "id": 588,
-    "Name": "Karrablast",
-    "MinLevel": 1
-  },
-  {
-    "id": 589,
-    "Name": "Escavalier",
-    "MinLevel": 1
-  },
-  {
-    "id": 590,
-    "Name": "Foongus",
-    "MinLevel": 1
-  },
-  {
-    "id": 591,
-    "Name": "Amoonguss",
-    "MinLevel": 39
-  },
-  {
-    "id": 592,
-    "Name": "Frillish",
-    "MinLevel": 1
-  },
-  {
-    "id": 593,
-    "Name": "Jellicent",
-    "MinLevel": 40
-  },
-  {
-    "id": 594,
-    "Name": "Alomomola",
-    "MinLevel": 1
-  },
-  {
-    "id": 595,
-    "Name": "Joltik",
-    "MinLevel": 1
-  },
-  {
-    "id": 596,
-    "Name": "Galvantula",
-    "MinLevel": 36
-  },
-  {
-    "id": 597,
-    "Name": "Ferroseed",
-    "MinLevel": 1
-  },
-  {
-    "id": 598,
-    "Name": "Ferrothorn",
-    "MinLevel": 40
-  },
-  {
-    "id": 599,
-    "Name": "Klink",
-    "MinLevel": 1
-  },
-  {
-    "id": 600,
-    "Name": "Klang",
-    "MinLevel": 38
-  },
-  {
-    "id": 601,
-    "Name": "Klinklang",
-    "MinLevel": 49
-  },
-  {
-    "id": 602,
-    "Name": "Tynamo",
-    "MinLevel": 1
-  },
-  {
-    "id": 603,
-    "Name": "Eelektrik",
-    "MinLevel": 39
-  },
-  {
-    "id": 604,
-    "Name": "Eelektross",
-    "MinLevel": 1
-  },
-  {
-    "id": 605,
-    "Name": "Elgyem",
-    "MinLevel": 1
-  },
-  {
-    "id": 606,
-    "Name": "Beheeyem",
-    "MinLevel": 42
-  },
-  {
-    "id": 607,
-    "Name": "Litwick",
-    "MinLevel": 1
-  },
-  {
-    "id": 608,
-    "Name": "Lampent",
-    "MinLevel": 41
-  },
-  {
-    "id": 609,
-    "Name": "Chandelure",
-    "MinLevel": 1
-  },
-  {
-    "id": 610,
-    "Name": "Axew",
-    "MinLevel": 1
-  },
-  {
-    "id": 611,
-    "Name": "Fraxure",
-    "MinLevel": 38
-  },
-  {
-    "id": 612,
-    "Name": "Haxorus",
-    "MinLevel": 48
-  },
-  {
-    "id": 613,
-    "Name": "Cubchoo",
-    "MinLevel": 1
-  },
-  {
-    "id": 614,
-    "Name": "Beartic",
-    "MinLevel": 37
-  },
-  {
-    "id": 615,
-    "Name": "Cryogonal",
-    "MinLevel": 1
-  },
-  {
-    "id": 616,
-    "Name": "Shelmet",
-    "MinLevel": 1
-  },
-  {
-    "id": 617,
-    "Name": "Accelgor",
-    "MinLevel": 1
-  },
-  {
-    "id": 618,
-    "Name": "Stunfisk",
-    "MinLevel": 1
-  },
-  {
-    "id": 619,
-    "Name": "Mienfoo",
-    "MinLevel": 1
-  },
-  {
-    "id": 620,
-    "Name": "Mienshao",
-    "MinLevel": 50
-  },
-  {
-    "id": 621,
-    "Name": "Druddigon",
-    "MinLevel": 1
-  },
-  {
-    "id": 622,
-    "Name": "Golett",
-    "MinLevel": 1
-  },
-  {
-    "id": 623,
-    "Name": "Golurk",
-    "MinLevel": 43
-  },
-  {
-    "id": 624,
-    "Name": "Pawniard",
-    "MinLevel": 1
-  },
-  {
-    "id": 625,
-    "Name": "Bisharp",
-    "MinLevel": 52
-  },
-  {
-    "id": 626,
-    "Name": "Bouffalant",
-    "MinLevel": 1
-  },
-  {
-    "id": 627,
-    "Name": "Rufflet",
-    "MinLevel": 1
-  },
-  {
-    "id": 628,
-    "Name": "Braviary",
-    "MinLevel": 54
-  },
-  {
-    "id": 629,
-    "Name": "Vullaby",
-    "MinLevel": 1
-  },
-  {
-    "id": 630,
-    "Name": "Mandibuzz",
-    "MinLevel": 54
-  },
-  {
-    "id": 631,
-    "Name": "Heatmor",
-    "MinLevel": 1
-  },
-  {
-    "id": 632,
-    "Name": "Durant",
-    "MinLevel": 1
-  },
-  {
-    "id": 633,
-    "Name": "Deino",
-    "MinLevel": 1
-  },
-  {
-    "id": 634,
-    "Name": "Zweilous",
-    "MinLevel": 50
-  },
-  {
-    "id": 635,
-    "Name": "Hydreigon",
-    "MinLevel": 64
-  },
-  {
-    "id": 636,
-    "Name": "Larvesta",
-    "MinLevel": 1
-  },
-  {
-    "id": 637,
-    "Name": "Volcarona",
-    "MinLevel": 59
-  },
-  {
-    "id": 638,
-    "Name": "Cobalion",
-    "MinLevel": 1
-  },
-  {
-    "id": 639,
-    "Name": "Terrakion",
-    "MinLevel": 1
-  },
-  {
-    "id": 640,
-    "Name": "Virizion",
-    "MinLevel": 1
-  },
-  {
-    "id": 641,
-    "Name": "Tornadus",
-    "MinLevel": 1
-  },
-  {
-    "id": 642,
-    "Name": "Thundurus",
-    "MinLevel": 1
-  },
-  {
-    "id": 643,
-    "Name": "Reshiram",
-    "MinLevel": 1
-  },
-  {
-    "id": 644,
-    "Name": "Zekrom",
-    "MinLevel": 1
-  },
-  {
-    "id": 645,
-    "Name": "Landorus",
-    "MinLevel": 1
-  },
-  {
-    "id": 646,
-    "Name": "Kyurem",
-    "MinLevel": 1
-  },
-  {
-    "id": 647,
-    "Name": "Keldeo",
-    "MinLevel": 1
-  },
-  {
-    "id": 648,
-    "Name": "Meloetta",
-    "MinLevel": 1
-  },
-  {
-    "id": 649,
-    "Name": "Genesect",
-    "MinLevel": 1
-  },
-  {
-    "id": 650,
-    "Name": "Chespin",
-    "MinLevel": 1
-  },
-  {
-    "id": 651,
-    "Name": "Quilladin",
-    "MinLevel": 16
-  },
-  {
-    "id": 652,
-    "Name": "Chesnaught",
-    "MinLevel": 36
-  },
-  {
-    "id": 653,
-    "Name": "Fennekin",
-    "MinLevel": 1
-  },
-  {
-    "id": 654,
-    "Name": "Braixen",
-    "MinLevel": 16
-  },
-  {
-    "id": 655,
-    "Name": "Delphox",
-    "MinLevel": 36
-  },
-  {
-    "id": 656,
-    "Name": "Froakie",
-    "MinLevel": 1
-  },
-  {
-    "id": 657,
-    "Name": "Frogadier",
-    "MinLevel": 16
-  },
-  {
-    "id": 658,
-    "Name": "Greninja",
-    "MinLevel": 36
-  },
-  {
-    "id": 659,
-    "Name": "Bunnelby",
-    "MinLevel": 1
-  },
-  {
-    "id": 660,
-    "Name": "Diggersby",
-    "MinLevel": 20
-  },
-  {
-    "id": 661,
-    "Name": "Fletchling",
-    "MinLevel": 1
-  },
-  {
-    "id": 662,
-    "Name": "Fletchinder",
-    "MinLevel": 17
-  },
-  {
-    "id": 663,
-    "Name": "Talonflame",
-    "MinLevel": 35
-  },
-  {
-    "id": 664,
-    "Name": "Scatterbug",
-    "MinLevel": 1
-  },
-  {
-    "id": 665,
-    "Name": "Spewpa",
-    "MinLevel": 9
-  },
-  {
-    "id": 666,
-    "Name": "Vivillon",
-    "MinLevel": 12
-  },
-  {
-    "id": 667,
-    "Name": "Litleo",
-    "MinLevel": 1
-  },
-  {
-    "id": 668,
-    "Name": "Pyroar",
-    "MinLevel": 35
-  },
-  {
-    "id": 669,
-    "Name": "Flabébé",
-    "MinLevel": 1
-  },
-  {
-    "id": 670,
-    "Name": "Floette",
-    "MinLevel": 19
-  },
-  {
-    "id": 671,
-    "Name": "Florges",
-    "MinLevel": 1
-  },
-  {
-    "id": 672,
-    "Name": "Skiddo",
-    "MinLevel": 1
-  },
-  {
-    "id": 673,
-    "Name": "Gogoat",
-    "MinLevel": 32
-  },
-  {
-    "id": 674,
-    "Name": "Pancham",
-    "MinLevel": 1
-  },
-  {
-    "id": 675,
-    "Name": "Pangoro",
-    "MinLevel": 32
-  },
-  {
-    "id": 676,
-    "Name": "Furfrou",
-    "MinLevel": 1
-  },
-  {
-    "id": 677,
-    "Name": "Espurr",
-    "MinLevel": 1
-  },
-  {
-    "id": 678,
-    "Name": "Meowstic",
-    "MinLevel": 25
-  },
-  {
-    "id": 679,
-    "Name": "Honedge",
-    "MinLevel": 1
-  },
-  {
-    "id": 680,
-    "Name": "Doublade",
-    "MinLevel": 35
-  },
-  {
-    "id": 681,
-    "Name": "Aegislash",
-    "MinLevel": 1
-  },
-  {
-    "id": 682,
-    "Name": "Spritzee",
-    "MinLevel": 1
-  },
-  {
-    "id": 683,
-    "Name": "Aromatisse",
-    "MinLevel": 1
-  },
-  {
-    "id": 684,
-    "Name": "Swirlix",
-    "MinLevel": 1
-  },
-  {
-    "id": 685,
-    "Name": "Slurpuff",
-    "MinLevel": 1
-  },
-  {
-    "id": 686,
-    "Name": "Inkay",
-    "MinLevel": 1
-  },
-  {
-    "id": 687,
-    "Name": "Malamar",
-    "MinLevel": 30
-  },
-  {
-    "id": 688,
-    "Name": "Binacle",
-    "MinLevel": 1
-  },
-  {
-    "id": 689,
-    "Name": "Barbaracle",
-    "MinLevel": 39
-  },
-  {
-    "id": 690,
-    "Name": "Skrelp",
-    "MinLevel": 1
-  },
-  {
-    "id": 691,
-    "Name": "Dragalge",
-    "MinLevel": 48
-  },
-  {
-    "id": 692,
-    "Name": "Clauncher",
-    "MinLevel": 1
-  },
-  {
-    "id": 693,
-    "Name": "Clawitzer",
-    "MinLevel": 37
-  },
-  {
-    "id": 694,
-    "Name": "Helioptile",
-    "MinLevel": 1
-  },
-  {
-    "id": 695,
-    "Name": "Heliolisk",
-    "MinLevel": 1
-  },
-  {
-    "id": 696,
-    "Name": "Tyrunt",
-    "MinLevel": 1
-  },
-  {
-    "id": 697,
-    "Name": "Tyrantrum",
-    "MinLevel": 39
-  },
-  {
-    "id": 698,
-    "Name": "Amaura",
-    "MinLevel": 1
-  },
-  {
-    "id": 699,
-    "Name": "Aurorus",
-    "MinLevel": 39
-  },
-  {
-    "id": 700,
-    "Name": "Sylveon",
-    "MinLevel": 1
-  },
-  {
-    "id": 701,
-    "Name": "Hawlucha",
-    "MinLevel": 1
-  },
-  {
-    "id": 702,
-    "Name": "Dedenne",
-    "MinLevel": 1
-  },
-  {
-    "id": 703,
-    "Name": "Carbink",
-    "MinLevel": 1
-  },
-  {
-    "id": 704,
-    "Name": "Goomy",
-    "MinLevel": 1
-  },
-  {
-    "id": 705,
-    "Name": "Sliggoo",
-    "MinLevel": 40
-  },
-  {
-    "id": 706,
-    "Name": "Goodra",
-    "MinLevel": 50
-  },
-  {
-    "id": 707,
-    "Name": "Klefki",
-    "MinLevel": 1
-  },
-  {
-    "id": 708,
-    "Name": "Phantump",
-    "MinLevel": 1
-  },
-  {
-    "id": 709,
-    "Name": "Trevenant",
-    "MinLevel": 1
-  },
-  {
-    "id": 710,
-    "Name": "Pumpkaboo",
-    "MinLevel": 1
-  },
-  {
-    "id": 711,
-    "Name": "Gourgeist",
-    "MinLevel": 1
-  },
-  {
-    "id": 712,
-    "Name": "Bergmite",
-    "MinLevel": 1
-  },
-  {
-    "id": 713,
-    "Name": "Avalugg",
-    "MinLevel": 37
-  },
-  {
-    "id": 714,
-    "Name": "Noibat",
-    "MinLevel": 1
-  },
-  {
-    "id": 715,
-    "Name": "Noivern",
-    "MinLevel": 48
-  },
-  {
-    "id": 716,
-    "Name": "Xerneas",
-    "MinLevel": 1
-  },
-  {
-    "id": 717,
-    "Name": "Yveltal",
-    "MinLevel": 1
-  },
-  {
-    "id": 718,
-    "Name": "Zygarde",
-    "MinLevel": 1
-  },
-  {
-    "id": 719,
-    "Name": "Diancie",
-    "MinLevel": 1
-  },
-  {
-    "id": 720,
-    "Name": "Volcanion",
-    "MinLevel": 1
-  },
-  {
-    "id": 721,
-    "Name": "Hoopa",
-    "MinLevel": 1
-  },
-  {
-    "id": 722,
-    "Name": "MISSINGNO",
-    "MinLevel": 1
-  },
-  {
-    "id": 727,
-    "Name": "Delta Bulbasaur",
-    "MinLevel": 1
-  },
-  {
-    "id": 728,
-    "Name": "Delta Ivysaur",
-    "MinLevel": 16
-  },
-  {
-    "id": 729,
-    "Name": "Delta Venusaur",
-    "MinLevel": 32
-  },
-  {
-    "id": 730,
-    "Name": "Delta Charmander",
-    "MinLevel": 1
-  },
-  {
-    "id": 731,
-    "Name": "Delta Charmeleon",
-    "MinLevel": 16
-  },
-  {
-    "id": 732,
-    "Name": "Delta Charizard",
-    "MinLevel": 36
-  },
-  {
-    "id": 733,
-    "Name": "Delta Squirtle",
-    "MinLevel": 1
-  },
-  {
-    "id": 734,
-    "Name": "Delta Wartortle",
-    "MinLevel": 16
-  },
-  {
-    "id": 735,
-    "Name": "Delta Blastoise",
-    "MinLevel": 36
-  },
-  {
-    "id": 736,
-    "Name": "Delta Pawniard",
-    "MinLevel": 1
-  },
-  {
-    "id": 737,
-    "Name": "Delta Bisharp",
-    "MinLevel": 52
-  },
-  {
-    "id": 738,
-    "Name": "Delta Ralts",
-    "MinLevel": 1
-  },
-  {
-    "id": 739,
-    "Name": "Delta Kirlia",
-    "MinLevel": 20
-  },
-  {
-    "id": 740,
-    "Name": "Delta Gardevoir",
-    "MinLevel": 30
-  },
-  {
-    "id": 741,
-    "Name": "Delta Gallade",
-    "MinLevel": 1
-  },
-  {
-    "id": 742,
-    "Name": "Delta Sunkern",
-    "MinLevel": 1
-  },
-  {
-    "id": 743,
-    "Name": "Delta Sunflora",
-    "MinLevel": 1
-  },
-  {
-    "id": 744,
-    "Name": "Delta Bergmite",
-    "MinLevel": 1
-  },
-  {
-    "id": 745,
-    "Name": "Delta Avalugg",
-    "MinLevel": 37
-  },
-  {
-    "id": 746,
-    "Name": "Delta Scyther",
-    "MinLevel": 1
-  },
-  {
-    "id": 747,
-    "Name": "Delta Scizor",
-    "MinLevel": 1
-  },
-  {
-    "id": 748,
-    "Name": "Delta Scraggy",
-    "MinLevel": 1
-  },
-  {
-    "id": 749,
-    "Name": "Delta Scrafty",
-    "MinLevel": 39
-  },
-  {
-    "id": 750,
-    "Name": "Delta Combee",
-    "MinLevel": 1
-  },
-  {
-    "id": 751,
-    "Name": "Delta Vespiquen",
-    "MinLevel": 1
-  },
-  {
-    "id": 752,
-    "Name": "Delta Koffing",
-    "MinLevel": 1
-  },
-  {
-    "id": 753,
-    "Name": "Delta Weezing",
-    "MinLevel": 35
-  },
-  {
-    "id": 754,
-    "Name": "Delta Purrloin",
-    "MinLevel": 1
-  },
-  {
-    "id": 755,
-    "Name": "Delta Liepard",
-    "MinLevel": 20
-  },
-  {
-    "id": 756,
-    "Name": "Delta Phantump",
-    "MinLevel": 1
-  },
-  {
-    "id": 757,
-    "Name": "Delta Trevenant",
-    "MinLevel": 1
-  },
-  {
-    "id": 758,
-    "Name": "Delta Snorunt",
-    "MinLevel": 1
-  },
-  {
-    "id": 759,
-    "Name": "Delta Glalie",
-    "MinLevel": 42
-  },
-  {
-    "id": 760,
-    "Name": "Delta Froslass",
-    "MinLevel": 1
-  },
-  {
-    "id": 761,
-    "Name": "Delta Shinx",
-    "MinLevel": 1
-  },
-  {
-    "id": 762,
-    "Name": "Delta Luxio",
-    "MinLevel": 15
-  },
-  {
-    "id": 763,
-    "Name": "Delta Luxray",
-    "MinLevel": 30
-  },
-  {
-    "id": 764,
-    "Name": "Delta Noibat",
-    "MinLevel": 1
-  },
-  {
-    "id": 765,
-    "Name": "Delta Noivern",
-    "MinLevel": 48
-  },
-  {
-    "id": 766,
-    "Name": "Delta Budew",
-    "MinLevel": 1
-  },
-  {
-    "id": 767,
-    "Name": "Delta Roselia",
-    "MinLevel": 1
-  },
-  {
-    "id": 768,
-    "Name": "Delta Roserade",
-    "MinLevel": 1
-  },
-  {
-    "id": 769,
-    "Name": "Delta Drifloon",
-    "MinLevel": 1
-  },
-  {
-    "id": 770,
-    "Name": "Delta Drifblim",
-    "MinLevel": 28
-  },
-  {
-    "id": 771,
-    "Name": "Delta Grimer",
-    "MinLevel": 1
-  },
-  {
-    "id": 772,
-    "Name": "Delta Muk",
-    "MinLevel": 38
-  },
-  {
-    "id": 773,
-    "Name": "Delta Wooper",
-    "MinLevel": 1
-  },
-  {
-    "id": 774,
-    "Name": "Delta Quagsire",
-    "MinLevel": 20
-  },
-  {
-    "id": 775,
-    "Name": "Delta Munchlax",
-    "MinLevel": 1
-  },
-  {
-    "id": 776,
-    "Name": "Delta Snorlax",
-    "MinLevel": 2
-  },
-  {
-    "id": 777,
-    "Name": "Delta Misdreavus",
-    "MinLevel": 1
-  },
-  {
-    "id": 778,
-    "Name": "Delta Mismagius",
-    "MinLevel": 1
-  }
+﻿[{
+        "id": 1,
+        "Name": "Bulbasaur",
+        "MinLevel": 1
+    },
+    {
+        "id": 2,
+        "Name": "Ivysaur",
+        "MinLevel": 16
+    },
+    {
+        "id": 3,
+        "Name": "Venusaur",
+        "MinLevel": 32
+    },
+    {
+        "id": 4,
+        "Name": "Charmander",
+        "MinLevel": 1
+    },
+    {
+        "id": 5,
+        "Name": "Charmeleon",
+        "MinLevel": 16
+    },
+    {
+        "id": 6,
+        "Name": "Charizard",
+        "MinLevel": 36
+    },
+    {
+        "id": 7,
+        "Name": "Squirtle",
+        "MinLevel": 1
+    },
+    {
+        "id": 8,
+        "Name": "Wartortle",
+        "MinLevel": 16
+    },
+    {
+        "id": 9,
+        "Name": "Blastoise",
+        "MinLevel": 36
+    },
+    {
+        "id": 10,
+        "Name": "Caterpie",
+        "MinLevel": 1
+    },
+    {
+        "id": 11,
+        "Name": "Metapod",
+        "MinLevel": 7
+    },
+    {
+        "id": 12,
+        "Name": "Butterfree",
+        "MinLevel": 10
+    },
+    {
+        "id": 13,
+        "Name": "Weedle",
+        "MinLevel": 1
+    },
+    {
+        "id": 14,
+        "Name": "Kakuna",
+        "MinLevel": 7
+    },
+    {
+        "id": 15,
+        "Name": "Beedrill",
+        "MinLevel": 10
+    },
+    {
+        "id": 16,
+        "Name": "Pidgey",
+        "MinLevel": 1
+    },
+    {
+        "id": 17,
+        "Name": "Pidgeotto",
+        "MinLevel": 18
+    },
+    {
+        "id": 18,
+        "Name": "Pidgeot",
+        "MinLevel": 36
+    },
+    {
+        "id": 19,
+        "Name": "Rattata",
+        "MinLevel": 1
+    },
+    {
+        "id": 20,
+        "Name": "Raticate",
+        "MinLevel": 20
+    },
+    {
+        "id": 21,
+        "Name": "Spearow",
+        "MinLevel": 1
+    },
+    {
+        "id": 22,
+        "Name": "Fearow",
+        "MinLevel": 20
+    },
+    {
+        "id": 23,
+        "Name": "Ekans",
+        "MinLevel": 1
+    },
+    {
+        "id": 24,
+        "Name": "Arbok",
+        "MinLevel": 22
+    },
+    {
+        "id": 25,
+        "Name": "Pikachu",
+        "MinLevel": 1
+    },
+    {
+        "id": 26,
+        "Name": "Raichu",
+        "MinLevel": 1
+    },
+    {
+        "id": 27,
+        "Name": "Sandshrew",
+        "MinLevel": 1
+    },
+    {
+        "id": 28,
+        "Name": "Sandslash",
+        "MinLevel": 22
+    },
+    {
+        "id": 29,
+        "Name": "Nidoran♀",
+        "MinLevel": 1
+    },
+    {
+        "id": 30,
+        "Name": "Nidorina",
+        "MinLevel": 16
+    },
+    {
+        "id": 31,
+        "Name": "Nidoqueen",
+        "MinLevel": 1
+    },
+    {
+        "id": 32,
+        "Name": "Nidoran♂",
+        "MinLevel": 1
+    },
+    {
+        "id": 33,
+        "Name": "Nidorino",
+        "MinLevel": 16
+    },
+    {
+        "id": 34,
+        "Name": "Nidoking",
+        "MinLevel": 1
+    },
+    {
+        "id": 35,
+        "Name": "Clefairy",
+        "MinLevel": 1
+    },
+    {
+        "id": 36,
+        "Name": "Clefable",
+        "MinLevel": 1
+    },
+    {
+        "id": 37,
+        "Name": "Vulpix",
+        "MinLevel": 1
+    },
+    {
+        "id": 38,
+        "Name": "Ninetales",
+        "MinLevel": 1
+    },
+    {
+        "id": 39,
+        "Name": "Jigglypuff",
+        "MinLevel": 1
+    },
+    {
+        "id": 40,
+        "Name": "Wigglytuff",
+        "MinLevel": 1
+    },
+    {
+        "id": 41,
+        "Name": "Zubat",
+        "MinLevel": 1
+    },
+    {
+        "id": 42,
+        "Name": "Golbat",
+        "MinLevel": 22
+    },
+    {
+        "id": 43,
+        "Name": "Oddish",
+        "MinLevel": 1
+    },
+    {
+        "id": 44,
+        "Name": "Gloom",
+        "MinLevel": 21
+    },
+    {
+        "id": 45,
+        "Name": "Vileplume",
+        "MinLevel": 1
+    },
+    {
+        "id": 46,
+        "Name": "Paras",
+        "MinLevel": 1
+    },
+    {
+        "id": 47,
+        "Name": "Parasect",
+        "MinLevel": 24
+    },
+    {
+        "id": 48,
+        "Name": "Venonat",
+        "MinLevel": 1
+    },
+    {
+        "id": 49,
+        "Name": "Venomoth",
+        "MinLevel": 31
+    },
+    {
+        "id": 50,
+        "Name": "Diglett",
+        "MinLevel": 1
+    },
+    {
+        "id": 51,
+        "Name": "Dugtrio",
+        "MinLevel": 26
+    },
+    {
+        "id": 52,
+        "Name": "Meowth",
+        "MinLevel": 1
+    },
+    {
+        "id": 53,
+        "Name": "Persian",
+        "MinLevel": 28
+    },
+    {
+        "id": 54,
+        "Name": "Psyduck",
+        "MinLevel": 1
+    },
+    {
+        "id": 55,
+        "Name": "Golduck",
+        "MinLevel": 33
+    },
+    {
+        "id": 56,
+        "Name": "Mankey",
+        "MinLevel": 1
+    },
+    {
+        "id": 57,
+        "Name": "Primeape",
+        "MinLevel": 28
+    },
+    {
+        "id": 58,
+        "Name": "Growlithe",
+        "MinLevel": 1
+    },
+    {
+        "id": 59,
+        "Name": "Arcanine",
+        "MinLevel": 1
+    },
+    {
+        "id": 60,
+        "Name": "Poliwag",
+        "MinLevel": 1
+    },
+    {
+        "id": 61,
+        "Name": "Poliwhirl",
+        "MinLevel": 25
+    },
+    {
+        "id": 62,
+        "Name": "Poliwrath",
+        "MinLevel": 1
+    },
+    {
+        "id": 63,
+        "Name": "Abra",
+        "MinLevel": 1
+    },
+    {
+        "id": 64,
+        "Name": "Kadabra",
+        "MinLevel": 16
+    },
+    {
+        "id": 65,
+        "Name": "Alakazam",
+        "MinLevel": 1
+    },
+    {
+        "id": 66,
+        "Name": "Machop",
+        "MinLevel": 1
+    },
+    {
+        "id": 67,
+        "Name": "Machoke",
+        "MinLevel": 1
+    },
+    {
+        "id": 68,
+        "Name": "Machamp",
+        "MinLevel": 1
+    },
+    {
+        "id": 69,
+        "Name": "Bellsprout",
+        "MinLevel": 1
+    },
+    {
+        "id": 70,
+        "Name": "Weepinbell",
+        "MinLevel": 21
+    },
+    {
+        "id": 71,
+        "Name": "Victreebel",
+        "MinLevel": 1
+    },
+    {
+        "id": 72,
+        "Name": "Tentacool",
+        "MinLevel": 1
+    },
+    {
+        "id": 73,
+        "Name": "Tentacruel",
+        "MinLevel": 30
+    },
+    {
+        "id": 74,
+        "Name": "Geodude",
+        "MinLevel": 1
+    },
+    {
+        "id": 75,
+        "Name": "Graveler",
+        "MinLevel": 25
+    },
+    {
+        "id": 76,
+        "Name": "Golem",
+        "MinLevel": 1
+    },
+    {
+        "id": 77,
+        "Name": "Ponyta",
+        "MinLevel": 1
+    },
+    {
+        "id": 78,
+        "Name": "Rapidash",
+        "MinLevel": 40
+    },
+    {
+        "id": 79,
+        "Name": "Slowpoke",
+        "MinLevel": 1
+    },
+    {
+        "id": 80,
+        "Name": "Slowbro",
+        "MinLevel": 37
+    },
+    {
+        "id": 81,
+        "Name": "Magnemite",
+        "MinLevel": 1
+    },
+    {
+        "id": 82,
+        "Name": "Magneton",
+        "MinLevel": 30
+    },
+    {
+        "id": 83,
+        "Name": "Farfetch'd",
+        "MinLevel": 1
+    },
+    {
+        "id": 84,
+        "Name": "Doduo",
+        "MinLevel": 1
+    },
+    {
+        "id": 85,
+        "Name": "Dodrio",
+        "MinLevel": 31
+    },
+    {
+        "id": 86,
+        "Name": "Seel",
+        "MinLevel": 1
+    },
+    {
+        "id": 87,
+        "Name": "Dewgong",
+        "MinLevel": 34
+    },
+    {
+        "id": 88,
+        "Name": "Grimer",
+        "MinLevel": 1
+    },
+    {
+        "id": 89,
+        "Name": "Muk",
+        "MinLevel": 38
+    },
+    {
+        "id": 90,
+        "Name": "Shellder",
+        "MinLevel": 1
+    },
+    {
+        "id": 91,
+        "Name": "Cloyster",
+        "MinLevel": 1
+    },
+    {
+        "id": 92,
+        "Name": "Gastly",
+        "MinLevel": 1
+    },
+    {
+        "id": 93,
+        "Name": "Haunter",
+        "MinLevel": 1
+    },
+    {
+        "id": 94,
+        "Name": "Gengar",
+        "MinLevel": 1
+    },
+    {
+        "id": 95,
+        "Name": "Onix",
+        "MinLevel": 1
+    },
+    {
+        "id": 96,
+        "Name": "Drowzee",
+        "MinLevel": 1
+    },
+    {
+        "id": 97,
+        "Name": "Hypno",
+        "MinLevel": 26
+    },
+    {
+        "id": 98,
+        "Name": "Krabby",
+        "MinLevel": 1
+    },
+    {
+        "id": 99,
+        "Name": "Kingler",
+        "MinLevel": 28
+    },
+    {
+        "id": 100,
+        "Name": "Voltorb",
+        "MinLevel": 1
+    },
+    {
+        "id": 101,
+        "Name": "Electrode",
+        "MinLevel": 30
+    },
+    {
+        "id": 102,
+        "Name": "Exeggcute",
+        "MinLevel": 1
+    },
+    {
+        "id": 103,
+        "Name": "Exeggutor",
+        "MinLevel": 1
+    },
+    {
+        "id": 104,
+        "Name": "Cubone",
+        "MinLevel": 1
+    },
+    {
+        "id": 105,
+        "Name": "Marowak",
+        "MinLevel": 28
+    },
+    {
+        "id": 106,
+        "Name": "Hitmonlee",
+        "MinLevel": 1
+    },
+    {
+        "id": 107,
+        "Name": "Hitmonchan",
+        "MinLevel": 1
+    },
+    {
+        "id": 108,
+        "Name": "Lickitung",
+        "MinLevel": 1
+    },
+    {
+        "id": 109,
+        "Name": "Koffing",
+        "MinLevel": 1
+    },
+    {
+        "id": 110,
+        "Name": "Weezing",
+        "MinLevel": 35
+    },
+    {
+        "id": 111,
+        "Name": "Rhyhorn",
+        "MinLevel": 1
+    },
+    {
+        "id": 112,
+        "Name": "Rhydon",
+        "MinLevel": 42
+    },
+    {
+        "id": 113,
+        "Name": "Chansey",
+        "MinLevel": 1
+    },
+    {
+        "id": 114,
+        "Name": "Tangela",
+        "MinLevel": 1
+    },
+    {
+        "id": 115,
+        "Name": "Kangaskhan",
+        "MinLevel": 1
+    },
+    {
+        "id": 116,
+        "Name": "Horsea",
+        "MinLevel": 1
+    },
+    {
+        "id": 117,
+        "Name": "Seadra",
+        "MinLevel": 32
+    },
+    {
+        "id": 118,
+        "Name": "Goldeen",
+        "MinLevel": 1
+    },
+    {
+        "id": 119,
+        "Name": "Seaking",
+        "MinLevel": 33
+    },
+    {
+        "id": 120,
+        "Name": "Staryu",
+        "MinLevel": 1
+    },
+    {
+        "id": 121,
+        "Name": "Starmie",
+        "MinLevel": 1
+    },
+    {
+        "id": 122,
+        "Name": "Mr. Mime",
+        "MinLevel": 1
+    },
+    {
+        "id": 123,
+        "Name": "Scyther",
+        "MinLevel": 1
+    },
+    {
+        "id": 124,
+        "Name": "Jynx",
+        "MinLevel": 30
+    },
+    {
+        "id": 125,
+        "Name": "Electabuzz",
+        "MinLevel": 30
+    },
+    {
+        "id": 126,
+        "Name": "Magmar",
+        "MinLevel": 30
+    },
+    {
+        "id": 127,
+        "Name": "Pinsir",
+        "MinLevel": 1
+    },
+    {
+        "id": 128,
+        "Name": "Tauros",
+        "MinLevel": 1
+    },
+    {
+        "id": 129,
+        "Name": "Magikarp",
+        "MinLevel": 1
+    },
+    {
+        "id": 130,
+        "Name": "Gyarados",
+        "MinLevel": 20
+    },
+    {
+        "id": 131,
+        "Name": "Lapras",
+        "MinLevel": 1
+    },
+    {
+        "id": 132,
+        "Name": "Ditto",
+        "MinLevel": 1
+    },
+    {
+        "id": 133,
+        "Name": "Eevee",
+        "MinLevel": 1
+    },
+    {
+        "id": 134,
+        "Name": "Vaporeon",
+        "MinLevel": 1
+    },
+    {
+        "id": 135,
+        "Name": "Jolteon",
+        "MinLevel": 1
+    },
+    {
+        "id": 136,
+        "Name": "Flareon",
+        "MinLevel": 1
+    },
+    {
+        "id": 137,
+        "Name": "Porygon",
+        "MinLevel": 1
+    },
+    {
+        "id": 138,
+        "Name": "Omanyte",
+        "MinLevel": 1
+    },
+    {
+        "id": 139,
+        "Name": "Omastar",
+        "MinLevel": 40
+    },
+    {
+        "id": 140,
+        "Name": "Kabuto",
+        "MinLevel": 1
+    },
+    {
+        "id": 141,
+        "Name": "Kabutops",
+        "MinLevel": 40
+    },
+    {
+        "id": 142,
+        "Name": "Aerodactyl",
+        "MinLevel": 1
+    },
+    {
+        "id": 143,
+        "Name": "Snorlax",
+        "MinLevel": 1
+    },
+    {
+        "id": 144,
+        "Name": "Articuno",
+        "MinLevel": 1
+    },
+    {
+        "id": 145,
+        "Name": "Zapdos",
+        "MinLevel": 1
+    },
+    {
+        "id": 146,
+        "Name": "Moltres",
+        "MinLevel": 1
+    },
+    {
+        "id": 147,
+        "Name": "Dratini",
+        "MinLevel": 1
+    },
+    {
+        "id": 148,
+        "Name": "Dragonair",
+        "MinLevel": 30
+    },
+    {
+        "id": 149,
+        "Name": "Dragonite",
+        "MinLevel": 55
+    },
+    {
+        "id": 150,
+        "Name": "Mewtwo",
+        "MinLevel": 1
+    },
+    {
+        "id": 151,
+        "Name": "Mew",
+        "MinLevel": 1
+    },
+    {
+        "id": 152,
+        "Name": "Chikorita",
+        "MinLevel": 1
+    },
+    {
+        "id": 153,
+        "Name": "Bayleef",
+        "MinLevel": 16
+    },
+    {
+        "id": 154,
+        "Name": "Meganium",
+        "MinLevel": 32
+    },
+    {
+        "id": 155,
+        "Name": "Cyndaquil",
+        "MinLevel": 1
+    },
+    {
+        "id": 156,
+        "Name": "Quilava",
+        "MinLevel": 14
+    },
+    {
+        "id": 157,
+        "Name": "Typhlosion",
+        "MinLevel": 36
+    },
+    {
+        "id": 158,
+        "Name": "Totodile",
+        "MinLevel": 1
+    },
+    {
+        "id": 159,
+        "Name": "Croconaw",
+        "MinLevel": 18
+    },
+    {
+        "id": 160,
+        "Name": "Feraligatr",
+        "MinLevel": 30
+    },
+    {
+        "id": 161,
+        "Name": "Sentret",
+        "MinLevel": 1
+    },
+    {
+        "id": 162,
+        "Name": "Furret",
+        "MinLevel": 15
+    },
+    {
+        "id": 163,
+        "Name": "Hoothoot",
+        "MinLevel": 1
+    },
+    {
+        "id": 164,
+        "Name": "Noctowl",
+        "MinLevel": 20
+    },
+    {
+        "id": 165,
+        "Name": "Ledyba",
+        "MinLevel": 1
+    },
+    {
+        "id": 166,
+        "Name": "Ledian",
+        "MinLevel": 18
+    },
+    {
+        "id": 167,
+        "Name": "Spinarak",
+        "MinLevel": 1
+    },
+    {
+        "id": 168,
+        "Name": "Ariados",
+        "MinLevel": 22
+    },
+    {
+        "id": 169,
+        "Name": "Crobat",
+        "MinLevel": 1
+    },
+    {
+        "id": 170,
+        "Name": "Chinchou",
+        "MinLevel": 1
+    },
+    {
+        "id": 171,
+        "Name": "Lanturn",
+        "MinLevel": 27
+    },
+    {
+        "id": 172,
+        "Name": "Pichu",
+        "MinLevel": 1
+    },
+    {
+        "id": 173,
+        "Name": "Cleffa",
+        "MinLevel": 1
+    },
+    {
+        "id": 174,
+        "Name": "Igglybuff",
+        "MinLevel": 1
+    },
+    {
+        "id": 175,
+        "Name": "Togepi",
+        "MinLevel": 1
+    },
+    {
+        "id": 176,
+        "Name": "Togetic",
+        "MinLevel": 1
+    },
+    {
+        "id": 177,
+        "Name": "Natu",
+        "MinLevel": 1
+    },
+    {
+        "id": 178,
+        "Name": "Xatu",
+        "MinLevel": 25
+    },
+    {
+        "id": 179,
+        "Name": "Mareep",
+        "MinLevel": 1
+    },
+    {
+        "id": 180,
+        "Name": "Flaaffy",
+        "MinLevel": 15
+    },
+    {
+        "id": 181,
+        "Name": "Ampharos",
+        "MinLevel": 30
+    },
+    {
+        "id": 182,
+        "Name": "Bellossom",
+        "MinLevel": 1
+    },
+    {
+        "id": 183,
+        "Name": "Marill",
+        "MinLevel": 1
+    },
+    {
+        "id": 184,
+        "Name": "Azumarill",
+        "MinLevel": 18
+    },
+    {
+        "id": 185,
+        "Name": "Sudowoodo",
+        "MinLevel": 1
+    },
+    {
+        "id": 186,
+        "Name": "Politoed",
+        "MinLevel": 1
+    },
+    {
+        "id": 187,
+        "Name": "Hoppip",
+        "MinLevel": 1
+    },
+    {
+        "id": 188,
+        "Name": "Skiploom",
+        "MinLevel": 18
+    },
+    {
+        "id": 189,
+        "Name": "Jumpluff",
+        "MinLevel": 27
+    },
+    {
+        "id": 190,
+        "Name": "Aipom",
+        "MinLevel": 1
+    },
+    {
+        "id": 191,
+        "Name": "Sunkern",
+        "MinLevel": 1
+    },
+    {
+        "id": 192,
+        "Name": "Sunflora",
+        "MinLevel": 1
+    },
+    {
+        "id": 193,
+        "Name": "Yanma",
+        "MinLevel": 1
+    },
+    {
+        "id": 194,
+        "Name": "Wooper",
+        "MinLevel": 1
+    },
+    {
+        "id": 195,
+        "Name": "Quagsire",
+        "MinLevel": 20
+    },
+    {
+        "id": 196,
+        "Name": "Espeon",
+        "MinLevel": 1
+    },
+    {
+        "id": 197,
+        "Name": "Umbreon",
+        "MinLevel": 1
+    },
+    {
+        "id": 198,
+        "Name": "Murkrow",
+        "MinLevel": 1
+    },
+    {
+        "id": 199,
+        "Name": "Slowking",
+        "MinLevel": 1
+    },
+    {
+        "id": 200,
+        "Name": "Misdreavus",
+        "MinLevel": 1
+    },
+    {
+        "id": 201,
+        "Name": "Unown",
+        "MinLevel": 1
+    },
+    {
+        "id": 202,
+        "Name": "Wobbuffet",
+        "MinLevel": 15
+    },
+    {
+        "id": 203,
+        "Name": "Girafarig",
+        "MinLevel": 1
+    },
+    {
+        "id": 204,
+        "Name": "Pineco",
+        "MinLevel": 1
+    },
+    {
+        "id": 205,
+        "Name": "Forretress",
+        "MinLevel": 31
+    },
+    {
+        "id": 206,
+        "Name": "Dunsparce",
+        "MinLevel": 1
+    },
+    {
+        "id": 207,
+        "Name": "Gligar",
+        "MinLevel": 1
+    },
+    {
+        "id": 208,
+        "Name": "Steelix",
+        "MinLevel": 1
+    },
+    {
+        "id": 209,
+        "Name": "Snubbull",
+        "MinLevel": 1
+    },
+    {
+        "id": 210,
+        "Name": "Granbull",
+        "MinLevel": 23
+    },
+    {
+        "id": 211,
+        "Name": "Qwilfish",
+        "MinLevel": 1
+    },
+    {
+        "id": 212,
+        "Name": "Scizor",
+        "MinLevel": 1
+    },
+    {
+        "id": 213,
+        "Name": "Shuckle",
+        "MinLevel": 1
+    },
+    {
+        "id": 214,
+        "Name": "Heracross",
+        "MinLevel": 1
+    },
+    {
+        "id": 215,
+        "Name": "Sneasel",
+        "MinLevel": 1
+    },
+    {
+        "id": 216,
+        "Name": "Teddiursa",
+        "MinLevel": 1
+    },
+    {
+        "id": 217,
+        "Name": "Ursaring",
+        "MinLevel": 30
+    },
+    {
+        "id": 218,
+        "Name": "Slugma",
+        "MinLevel": 1
+    },
+    {
+        "id": 219,
+        "Name": "Magcargo",
+        "MinLevel": 38
+    },
+    {
+        "id": 220,
+        "Name": "Swinub",
+        "MinLevel": 1
+    },
+    {
+        "id": 221,
+        "Name": "Piloswine",
+        "MinLevel": 33
+    },
+    {
+        "id": 222,
+        "Name": "Corsola",
+        "MinLevel": 1
+    },
+    {
+        "id": 223,
+        "Name": "Remoraid",
+        "MinLevel": 1
+    },
+    {
+        "id": 224,
+        "Name": "Octillery",
+        "MinLevel": 25
+    },
+    {
+        "id": 225,
+        "Name": "Delibird",
+        "MinLevel": 1
+    },
+    {
+        "id": 226,
+        "Name": "Mantine",
+        "MinLevel": 1
+    },
+    {
+        "id": 227,
+        "Name": "Skarmory",
+        "MinLevel": 1
+    },
+    {
+        "id": 228,
+        "Name": "Houndour",
+        "MinLevel": 1
+    },
+    {
+        "id": 229,
+        "Name": "Houndoom",
+        "MinLevel": 24
+    },
+    {
+        "id": 230,
+        "Name": "Kingdra",
+        "MinLevel": 1
+    },
+    {
+        "id": 231,
+        "Name": "Phanpy",
+        "MinLevel": 1
+    },
+    {
+        "id": 232,
+        "Name": "Donphan",
+        "MinLevel": 25
+    },
+    {
+        "id": 233,
+        "Name": "Porygon2",
+        "MinLevel": 1
+    },
+    {
+        "id": 234,
+        "Name": "Stantler",
+        "MinLevel": 1
+    },
+    {
+        "id": 235,
+        "Name": "Smeargle",
+        "MinLevel": 1
+    },
+    {
+        "id": 236,
+        "Name": "Tyrogue",
+        "MinLevel": 1
+    },
+    {
+        "id": 237,
+        "Name": "Hitmontop",
+        "MinLevel": 1
+    },
+    {
+        "id": 238,
+        "Name": "Smoochum",
+        "MinLevel": 1
+    },
+    {
+        "id": 239,
+        "Name": "Elekid",
+        "MinLevel": 1
+    },
+    {
+        "id": 240,
+        "Name": "Magby",
+        "MinLevel": 1
+    },
+    {
+        "id": 241,
+        "Name": "Miltank",
+        "MinLevel": 1
+    },
+    {
+        "id": 242,
+        "Name": "Blissey",
+        "MinLevel": 1
+    },
+    {
+        "id": 243,
+        "Name": "Raikou",
+        "MinLevel": 1
+    },
+    {
+        "id": 244,
+        "Name": "Entei",
+        "MinLevel": 1
+    },
+    {
+        "id": 245,
+        "Name": "Suicune",
+        "MinLevel": 1
+    },
+    {
+        "id": 246,
+        "Name": "Larvitar",
+        "MinLevel": 1
+    },
+    {
+        "id": 247,
+        "Name": "Pupitar",
+        "MinLevel": 1
+    },
+    {
+        "id": 248,
+        "Name": "Tyranitar",
+        "MinLevel": 55
+    },
+    {
+        "id": 249,
+        "Name": "Lugia",
+        "MinLevel": 1
+    },
+    {
+        "id": 250,
+        "Name": "Ho-Oh",
+        "MinLevel": 1
+    },
+    {
+        "id": 251,
+        "Name": "Celebi",
+        "MinLevel": 1
+    },
+    {
+        "id": 252,
+        "Name": "Treecko",
+        "MinLevel": 1
+    },
+    {
+        "id": 253,
+        "Name": "Grovyle",
+        "MinLevel": 16
+    },
+    {
+        "id": 254,
+        "Name": "Sceptile",
+        "MinLevel": 36
+    },
+    {
+        "id": 255,
+        "Name": "Torchic",
+        "MinLevel": 1
+    },
+    {
+        "id": 256,
+        "Name": "Combusken",
+        "MinLevel": 16
+    },
+    {
+        "id": 257,
+        "Name": "Blaziken",
+        "MinLevel": 36
+    },
+    {
+        "id": 258,
+        "Name": "Mudkip",
+        "MinLevel": 1
+    },
+    {
+        "id": 259,
+        "Name": "Marshtomp",
+        "MinLevel": 16
+    },
+    {
+        "id": 260,
+        "Name": "Swampert",
+        "MinLevel": 36
+    },
+    {
+        "id": 261,
+        "Name": "Poochyena",
+        "MinLevel": 1
+    },
+    {
+        "id": 262,
+        "Name": "Mightyena",
+        "MinLevel": 18
+    },
+    {
+        "id": 263,
+        "Name": "Zigzagoon",
+        "MinLevel": 1
+    },
+    {
+        "id": 264,
+        "Name": "Linoone",
+        "MinLevel": 20
+    },
+    {
+        "id": 265,
+        "Name": "Wurmple",
+        "MinLevel": 1
+    },
+    {
+        "id": 266,
+        "Name": "Silcoon",
+        "MinLevel": 1
+    },
+    {
+        "id": 267,
+        "Name": "Beautifly",
+        "MinLevel": 10
+    },
+    {
+        "id": 268,
+        "Name": "Cascoon",
+        "MinLevel": 1
+    },
+    {
+        "id": 269,
+        "Name": "Dustox",
+        "MinLevel": 10
+    },
+    {
+        "id": 270,
+        "Name": "Lotad",
+        "MinLevel": 1
+    },
+    {
+        "id": 271,
+        "Name": "Lombre",
+        "MinLevel": 14
+    },
+    {
+        "id": 272,
+        "Name": "Ludicolo",
+        "MinLevel": 1
+    },
+    {
+        "id": 273,
+        "Name": "Seedot",
+        "MinLevel": 1
+    },
+    {
+        "id": 274,
+        "Name": "Nuzleaf",
+        "MinLevel": 14
+    },
+    {
+        "id": 275,
+        "Name": "Shiftry",
+        "MinLevel": 1
+    },
+    {
+        "id": 276,
+        "Name": "Taillow",
+        "MinLevel": 1
+    },
+    {
+        "id": 277,
+        "Name": "Swellow",
+        "MinLevel": 22
+    },
+    {
+        "id": 278,
+        "Name": "Wingull",
+        "MinLevel": 1
+    },
+    {
+        "id": 279,
+        "Name": "Pelipper",
+        "MinLevel": 25
+    },
+    {
+        "id": 280,
+        "Name": "Ralts",
+        "MinLevel": 1
+    },
+    {
+        "id": 281,
+        "Name": "Kirlia",
+        "MinLevel": 20
+    },
+    {
+        "id": 282,
+        "Name": "Gardevoir",
+        "MinLevel": 30
+    },
+    {
+        "id": 283,
+        "Name": "Surskit",
+        "MinLevel": 1
+    },
+    {
+        "id": 284,
+        "Name": "Masquerain",
+        "MinLevel": 22
+    },
+    {
+        "id": 285,
+        "Name": "Shroomish",
+        "MinLevel": 1
+    },
+    {
+        "id": 286,
+        "Name": "Breloom",
+        "MinLevel": 23
+    },
+    {
+        "id": 287,
+        "Name": "Slakoth",
+        "MinLevel": 1
+    },
+    {
+        "id": 288,
+        "Name": "Vigoroth",
+        "MinLevel": 18
+    },
+    {
+        "id": 289,
+        "Name": "Slaking",
+        "MinLevel": 36
+    },
+    {
+        "id": 290,
+        "Name": "Nincada",
+        "MinLevel": 1
+    },
+    {
+        "id": 291,
+        "Name": "Ninjask",
+        "MinLevel": 1
+    },
+    {
+        "id": 292,
+        "Name": "Shedinja",
+        "MinLevel": 1
+    },
+    {
+        "id": 293,
+        "Name": "Whismur",
+        "MinLevel": 1
+    },
+    {
+        "id": 294,
+        "Name": "Loudred",
+        "MinLevel": 20
+    },
+    {
+        "id": 295,
+        "Name": "Exploud",
+        "MinLevel": 40
+    },
+    {
+        "id": 296,
+        "Name": "Makuhita",
+        "MinLevel": 1
+    },
+    {
+        "id": 297,
+        "Name": "Hariyama",
+        "MinLevel": 24
+    },
+    {
+        "id": 298,
+        "Name": "Azurill",
+        "MinLevel": 1
+    },
+    {
+        "id": 299,
+        "Name": "Nosepass",
+        "MinLevel": 1
+    },
+    {
+        "id": 300,
+        "Name": "Skitty",
+        "MinLevel": 1
+    },
+    {
+        "id": 301,
+        "Name": "Delcatty",
+        "MinLevel": 1
+    },
+    {
+        "id": 302,
+        "Name": "Sableye",
+        "MinLevel": 1
+    },
+    {
+        "id": 303,
+        "Name": "Mawile",
+        "MinLevel": 1
+    },
+    {
+        "id": 304,
+        "Name": "Aron",
+        "MinLevel": 1
+    },
+    {
+        "id": 305,
+        "Name": "Lairon",
+        "MinLevel": 32
+    },
+    {
+        "id": 306,
+        "Name": "Aggron",
+        "MinLevel": 42
+    },
+    {
+        "id": 307,
+        "Name": "Meditite",
+        "MinLevel": 1
+    },
+    {
+        "id": 308,
+        "Name": "Medicham",
+        "MinLevel": 37
+    },
+    {
+        "id": 309,
+        "Name": "Electrike",
+        "MinLevel": 1
+    },
+    {
+        "id": 310,
+        "Name": "Manectric",
+        "MinLevel": 26
+    },
+    {
+        "id": 311,
+        "Name": "Plusle",
+        "MinLevel": 1
+    },
+    {
+        "id": 312,
+        "Name": "Minun",
+        "MinLevel": 1
+    },
+    {
+        "id": 313,
+        "Name": "Volbeat",
+        "MinLevel": 1
+    },
+    {
+        "id": 314,
+        "Name": "Illumise",
+        "MinLevel": 1
+    },
+    {
+        "id": 315,
+        "Name": "Roselia",
+        "MinLevel": 1
+    },
+    {
+        "id": 316,
+        "Name": "Gulpin",
+        "MinLevel": 1
+    },
+    {
+        "id": 317,
+        "Name": "Swalot",
+        "MinLevel": 26
+    },
+    {
+        "id": 318,
+        "Name": "Carvanha",
+        "MinLevel": 1
+    },
+    {
+        "id": 319,
+        "Name": "Sharpedo",
+        "MinLevel": 30
+    },
+    {
+        "id": 320,
+        "Name": "Wailmer",
+        "MinLevel": 1
+    },
+    {
+        "id": 321,
+        "Name": "Wailord",
+        "MinLevel": 40
+    },
+    {
+        "id": 322,
+        "Name": "Numel",
+        "MinLevel": 1
+    },
+    {
+        "id": 323,
+        "Name": "Camerupt",
+        "MinLevel": 33
+    },
+    {
+        "id": 324,
+        "Name": "Torkoal",
+        "MinLevel": 1
+    },
+    {
+        "id": 325,
+        "Name": "Spoink",
+        "MinLevel": 1
+    },
+    {
+        "id": 326,
+        "Name": "Grumpig",
+        "MinLevel": 32
+    },
+    {
+        "id": 327,
+        "Name": "Spinda",
+        "MinLevel": 1
+    },
+    {
+        "id": 328,
+        "Name": "Trapinch",
+        "MinLevel": 1
+    },
+    {
+        "id": 329,
+        "Name": "Vibrava",
+        "MinLevel": 35
+    },
+    {
+        "id": 330,
+        "Name": "Flygon",
+        "MinLevel": 45
+    },
+    {
+        "id": 331,
+        "Name": "Cacnea",
+        "MinLevel": 1
+    },
+    {
+        "id": 332,
+        "Name": "Cacturne",
+        "MinLevel": 32
+    },
+    {
+        "id": 333,
+        "Name": "Swablu",
+        "MinLevel": 1
+    },
+    {
+        "id": 334,
+        "Name": "Altaria",
+        "MinLevel": 35
+    },
+    {
+        "id": 335,
+        "Name": "Zangoose",
+        "MinLevel": 1
+    },
+    {
+        "id": 336,
+        "Name": "Seviper",
+        "MinLevel": 1
+    },
+    {
+        "id": 337,
+        "Name": "Lunatone",
+        "MinLevel": 1
+    },
+    {
+        "id": 338,
+        "Name": "Solrock",
+        "MinLevel": 1
+    },
+    {
+        "id": 339,
+        "Name": "Barboach",
+        "MinLevel": 1
+    },
+    {
+        "id": 340,
+        "Name": "Whiscash",
+        "MinLevel": 30
+    },
+    {
+        "id": 341,
+        "Name": "Corphish",
+        "MinLevel": 1
+    },
+    {
+        "id": 342,
+        "Name": "Crawdaunt",
+        "MinLevel": 30
+    },
+    {
+        "id": 343,
+        "Name": "Baltoy",
+        "MinLevel": 1
+    },
+    {
+        "id": 344,
+        "Name": "Claydol",
+        "MinLevel": 36
+    },
+    {
+        "id": 345,
+        "Name": "Lileep",
+        "MinLevel": 1
+    },
+    {
+        "id": 346,
+        "Name": "Cradily",
+        "MinLevel": 40
+    },
+    {
+        "id": 347,
+        "Name": "Anorith",
+        "MinLevel": 1
+    },
+    {
+        "id": 348,
+        "Name": "Armaldo",
+        "MinLevel": 40
+    },
+    {
+        "id": 349,
+        "Name": "Feebas",
+        "MinLevel": 1
+    },
+    {
+        "id": 350,
+        "Name": "Milotic",
+        "MinLevel": 1
+    },
+    {
+        "id": 351,
+        "Name": "Castform",
+        "MinLevel": 1
+    },
+    {
+        "id": 352,
+        "Name": "Kecleon",
+        "MinLevel": 1
+    },
+    {
+        "id": 353,
+        "Name": "Shuppet",
+        "MinLevel": 1
+    },
+    {
+        "id": 354,
+        "Name": "Banette",
+        "MinLevel": 37
+    },
+    {
+        "id": 355,
+        "Name": "Duskull",
+        "MinLevel": 1
+    },
+    {
+        "id": 356,
+        "Name": "Dusclops",
+        "MinLevel": 37
+    },
+    {
+        "id": 357,
+        "Name": "Tropius",
+        "MinLevel": 1
+    },
+    {
+        "id": 358,
+        "Name": "Chimecho",
+        "MinLevel": 1
+    },
+    {
+        "id": 359,
+        "Name": "Absol",
+        "MinLevel": 1
+    },
+    {
+        "id": 360,
+        "Name": "Wynaut",
+        "MinLevel": 1
+    },
+    {
+        "id": 361,
+        "Name": "Snorunt",
+        "MinLevel": 1
+    },
+    {
+        "id": 362,
+        "Name": "Glalie",
+        "MinLevel": 42
+    },
+    {
+        "id": 363,
+        "Name": "Spheal",
+        "MinLevel": 1
+    },
+    {
+        "id": 364,
+        "Name": "Sealeo",
+        "MinLevel": 32
+    },
+    {
+        "id": 365,
+        "Name": "Walrein",
+        "MinLevel": 44
+    },
+    {
+        "id": 366,
+        "Name": "Clamperl",
+        "MinLevel": 1
+    },
+    {
+        "id": 367,
+        "Name": "Huntail",
+        "MinLevel": 1
+    },
+    {
+        "id": 368,
+        "Name": "Gorebyss",
+        "MinLevel": 1
+    },
+    {
+        "id": 369,
+        "Name": "Relicanth",
+        "MinLevel": 1
+    },
+    {
+        "id": 370,
+        "Name": "Luvdisc",
+        "MinLevel": 1
+    },
+    {
+        "id": 371,
+        "Name": "Bagon",
+        "MinLevel": 1
+    },
+    {
+        "id": 372,
+        "Name": "Shelgon",
+        "MinLevel": 30
+    },
+    {
+        "id": 373,
+        "Name": "Salamence",
+        "MinLevel": 50
+    },
+    {
+        "id": 374,
+        "Name": "Beldum",
+        "MinLevel": 1
+    },
+    {
+        "id": 375,
+        "Name": "Metang",
+        "MinLevel": 20
+    },
+    {
+        "id": 376,
+        "Name": "Metagross",
+        "MinLevel": 45
+    },
+    {
+        "id": 377,
+        "Name": "Regirock",
+        "MinLevel": 1
+    },
+    {
+        "id": 378,
+        "Name": "Regice",
+        "MinLevel": 1
+    },
+    {
+        "id": 379,
+        "Name": "Registeel",
+        "MinLevel": 1
+    },
+    {
+        "id": 380,
+        "Name": "Latias",
+        "MinLevel": 1
+    },
+    {
+        "id": 381,
+        "Name": "Latios",
+        "MinLevel": 1
+    },
+    {
+        "id": 382,
+        "Name": "Kyogre",
+        "MinLevel": 1
+    },
+    {
+        "id": 383,
+        "Name": "Groudon",
+        "MinLevel": 1
+    },
+    {
+        "id": 384,
+        "Name": "Rayquaza",
+        "MinLevel": 1
+    },
+    {
+        "id": 385,
+        "Name": "Jirachi",
+        "MinLevel": 1
+    },
+    {
+        "id": 386,
+        "Name": "Deoxys",
+        "MinLevel": 1
+    },
+    {
+        "id": 387,
+        "Name": "Turtwig",
+        "MinLevel": 1
+    },
+    {
+        "id": 388,
+        "Name": "Grotle",
+        "MinLevel": 18
+    },
+    {
+        "id": 389,
+        "Name": "Torterra",
+        "MinLevel": 32
+    },
+    {
+        "id": 390,
+        "Name": "Chimchar",
+        "MinLevel": 1
+    },
+    {
+        "id": 391,
+        "Name": "Monferno",
+        "MinLevel": 14
+    },
+    {
+        "id": 392,
+        "Name": "Infernape",
+        "MinLevel": 36
+    },
+    {
+        "id": 393,
+        "Name": "Piplup",
+        "MinLevel": 1
+    },
+    {
+        "id": 394,
+        "Name": "Prinplup",
+        "MinLevel": 16
+    },
+    {
+        "id": 395,
+        "Name": "Empoleon",
+        "MinLevel": 36
+    },
+    {
+        "id": 396,
+        "Name": "Starly",
+        "MinLevel": 1
+    },
+    {
+        "id": 397,
+        "Name": "Staravia",
+        "MinLevel": 14
+    },
+    {
+        "id": 398,
+        "Name": "Staraptor",
+        "MinLevel": 34
+    },
+    {
+        "id": 399,
+        "Name": "Bidoof",
+        "MinLevel": 1
+    },
+    {
+        "id": 400,
+        "Name": "Bibarel",
+        "MinLevel": 15
+    },
+    {
+        "id": 401,
+        "Name": "Kricketot",
+        "MinLevel": 1
+    },
+    {
+        "id": 402,
+        "Name": "Kricketune",
+        "MinLevel": 10
+    },
+    {
+        "id": 403,
+        "Name": "Shinx",
+        "MinLevel": 1
+    },
+    {
+        "id": 404,
+        "Name": "Luxio",
+        "MinLevel": 15
+    },
+    {
+        "id": 405,
+        "Name": "Luxray",
+        "MinLevel": 30
+    },
+    {
+        "id": 406,
+        "Name": "Budew",
+        "MinLevel": 1
+    },
+    {
+        "id": 407,
+        "Name": "Roserade",
+        "MinLevel": 1
+    },
+    {
+        "id": 408,
+        "Name": "Cranidos",
+        "MinLevel": 1
+    },
+    {
+        "id": 409,
+        "Name": "Rampardos",
+        "MinLevel": 30
+    },
+    {
+        "id": 410,
+        "Name": "Shieldon",
+        "MinLevel": 1
+    },
+    {
+        "id": 411,
+        "Name": "Bastiodon",
+        "MinLevel": 30
+    },
+    {
+        "id": 412,
+        "Name": "Burmy",
+        "MinLevel": 1
+    },
+    {
+        "id": 413,
+        "Name": "Wormadam",
+        "MinLevel": 1
+    },
+    {
+        "id": 414,
+        "Name": "Mothim",
+        "MinLevel": 1
+    },
+    {
+        "id": 415,
+        "Name": "Combee",
+        "MinLevel": 1
+    },
+    {
+        "id": 416,
+        "Name": "Vespiquen",
+        "MinLevel": 1
+    },
+    {
+        "id": 417,
+        "Name": "Pachirisu",
+        "MinLevel": 1
+    },
+    {
+        "id": 418,
+        "Name": "Buizel",
+        "MinLevel": 1
+    },
+    {
+        "id": 419,
+        "Name": "Floatzel",
+        "MinLevel": 26
+    },
+    {
+        "id": 420,
+        "Name": "Cherubi",
+        "MinLevel": 1
+    },
+    {
+        "id": 421,
+        "Name": "Cherrim",
+        "MinLevel": 25
+    },
+    {
+        "id": 422,
+        "Name": "Shellos",
+        "MinLevel": 1
+    },
+    {
+        "id": 423,
+        "Name": "Gastrodon",
+        "MinLevel": 30
+    },
+    {
+        "id": 424,
+        "Name": "Ambipom",
+        "MinLevel": 1
+    },
+    {
+        "id": 425,
+        "Name": "Drifloon",
+        "MinLevel": 1
+    },
+    {
+        "id": 426,
+        "Name": "Drifblim",
+        "MinLevel": 28
+    },
+    {
+        "id": 427,
+        "Name": "Buneary",
+        "MinLevel": 1
+    },
+    {
+        "id": 428,
+        "Name": "Lopunny",
+        "MinLevel": 1
+    },
+    {
+        "id": 429,
+        "Name": "Mismagius",
+        "MinLevel": 1
+    },
+    {
+        "id": 430,
+        "Name": "Honchkrow",
+        "MinLevel": 1
+    },
+    {
+        "id": 431,
+        "Name": "Glameow",
+        "MinLevel": 1
+    },
+    {
+        "id": 432,
+        "Name": "Purugly",
+        "MinLevel": 38
+    },
+    {
+        "id": 433,
+        "Name": "Chingling",
+        "MinLevel": 1
+    },
+    {
+        "id": 434,
+        "Name": "Stunky",
+        "MinLevel": 1
+    },
+    {
+        "id": 435,
+        "Name": "Skuntank",
+        "MinLevel": 34
+    },
+    {
+        "id": 436,
+        "Name": "Bronzor",
+        "MinLevel": 1
+    },
+    {
+        "id": 437,
+        "Name": "Bronzong",
+        "MinLevel": 33
+    },
+    {
+        "id": 438,
+        "Name": "Bonsly",
+        "MinLevel": 1
+    },
+    {
+        "id": 439,
+        "Name": "Mime Jr.",
+        "MinLevel": 1
+    },
+    {
+        "id": 440,
+        "Name": "Happiny",
+        "MinLevel": 1
+    },
+    {
+        "id": 441,
+        "Name": "Chatot",
+        "MinLevel": 1
+    },
+    {
+        "id": 442,
+        "Name": "Spiritomb",
+        "MinLevel": 1
+    },
+    {
+        "id": 443,
+        "Name": "Gible",
+        "MinLevel": 1
+    },
+    {
+        "id": 444,
+        "Name": "Gabite",
+        "MinLevel": 24
+    },
+    {
+        "id": 445,
+        "Name": "Garchomp",
+        "MinLevel": 48
+    },
+    {
+        "id": 446,
+        "Name": "Munchlax",
+        "MinLevel": 1
+    },
+    {
+        "id": 447,
+        "Name": "Riolu",
+        "MinLevel": 1
+    },
+    {
+        "id": 448,
+        "Name": "Lucario",
+        "MinLevel": 1
+    },
+    {
+        "id": 449,
+        "Name": "Hippopotas",
+        "MinLevel": 1
+    },
+    {
+        "id": 450,
+        "Name": "Hippowdon",
+        "MinLevel": 34
+    },
+    {
+        "id": 451,
+        "Name": "Skorupi",
+        "MinLevel": 1
+    },
+    {
+        "id": 452,
+        "Name": "Drapion",
+        "MinLevel": 40
+    },
+    {
+        "id": 453,
+        "Name": "Croagunk",
+        "MinLevel": 1
+    },
+    {
+        "id": 454,
+        "Name": "Toxicroak",
+        "MinLevel": 37
+    },
+    {
+        "id": 455,
+        "Name": "Carnivine",
+        "MinLevel": 1
+    },
+    {
+        "id": 456,
+        "Name": "Finneon",
+        "MinLevel": 1
+    },
+    {
+        "id": 457,
+        "Name": "Lumineon",
+        "MinLevel": 31
+    },
+    {
+        "id": 458,
+        "Name": "Mantyke",
+        "MinLevel": 1
+    },
+    {
+        "id": 459,
+        "Name": "Snover",
+        "MinLevel": 1
+    },
+    {
+        "id": 460,
+        "Name": "Abomasnow",
+        "MinLevel": 40
+    },
+    {
+        "id": 461,
+        "Name": "Weavile",
+        "MinLevel": 1
+    },
+    {
+        "id": 462,
+        "Name": "Magnezone",
+        "MinLevel": 1
+    },
+    {
+        "id": 463,
+        "Name": "Lickilicky",
+        "MinLevel": 1
+    },
+    {
+        "id": 464,
+        "Name": "Rhyperior",
+        "MinLevel": 1
+    },
+    {
+        "id": 465,
+        "Name": "Tangrowth",
+        "MinLevel": 1
+    },
+    {
+        "id": 466,
+        "Name": "Electivire",
+        "MinLevel": 1
+    },
+    {
+        "id": 467,
+        "Name": "Magmortar",
+        "MinLevel": 1
+    },
+    {
+        "id": 468,
+        "Name": "Togekiss",
+        "MinLevel": 1
+    },
+    {
+        "id": 469,
+        "Name": "Yanmega",
+        "MinLevel": 1
+    },
+    {
+        "id": 470,
+        "Name": "Leafeon",
+        "MinLevel": 1
+    },
+    {
+        "id": 471,
+        "Name": "Glaceon",
+        "MinLevel": 1
+    },
+    {
+        "id": 472,
+        "Name": "Gliscor",
+        "MinLevel": 1
+    },
+    {
+        "id": 473,
+        "Name": "Mamoswine",
+        "MinLevel": 1
+    },
+    {
+        "id": 474,
+        "Name": "Porygon-Z",
+        "MinLevel": 1
+    },
+    {
+        "id": 475,
+        "Name": "Gallade",
+        "MinLevel": 1
+    },
+    {
+        "id": 476,
+        "Name": "Probopass",
+        "MinLevel": 1
+    },
+    {
+        "id": 477,
+        "Name": "Dusknoir",
+        "MinLevel": 1
+    },
+    {
+        "id": 478,
+        "Name": "Froslass",
+        "MinLevel": 1
+    },
+    {
+        "id": 479,
+        "Name": "Rotom",
+        "MinLevel": 1
+    },
+    {
+        "id": 480,
+        "Name": "Uxie",
+        "MinLevel": 1
+    },
+    {
+        "id": 481,
+        "Name": "Mesprit",
+        "MinLevel": 1
+    },
+    {
+        "id": 482,
+        "Name": "Azelf",
+        "MinLevel": 1
+    },
+    {
+        "id": 483,
+        "Name": "Dialga",
+        "MinLevel": 1
+    },
+    {
+        "id": 484,
+        "Name": "Palkia",
+        "MinLevel": 1
+    },
+    {
+        "id": 485,
+        "Name": "Heatran",
+        "MinLevel": 1
+    },
+    {
+        "id": 486,
+        "Name": "Regigigas",
+        "MinLevel": 1
+    },
+    {
+        "id": 487,
+        "Name": "Giratina",
+        "MinLevel": 1
+    },
+    {
+        "id": 488,
+        "Name": "Cresselia",
+        "MinLevel": 1
+    },
+    {
+        "id": 489,
+        "Name": "Phione",
+        "MinLevel": 1
+    },
+    {
+        "id": 490,
+        "Name": "Manaphy",
+        "MinLevel": 1
+    },
+    {
+        "id": 491,
+        "Name": "Darkrai",
+        "MinLevel": 1
+    },
+    {
+        "id": 492,
+        "Name": "Shaymin",
+        "MinLevel": 1
+    },
+    {
+        "id": 493,
+        "Name": "Arceus",
+        "MinLevel": 1
+    },
+    {
+        "id": 494,
+        "Name": "Victini",
+        "MinLevel": 1
+    },
+    {
+        "id": 495,
+        "Name": "Snivy",
+        "MinLevel": 1
+    },
+    {
+        "id": 496,
+        "Name": "Servine",
+        "MinLevel": 17
+    },
+    {
+        "id": 497,
+        "Name": "Serperior",
+        "MinLevel": 36
+    },
+    {
+        "id": 498,
+        "Name": "Tepig",
+        "MinLevel": 1
+    },
+    {
+        "id": 499,
+        "Name": "Pignite",
+        "MinLevel": 17
+    },
+    {
+        "id": 500,
+        "Name": "Emboar",
+        "MinLevel": 36
+    },
+    {
+        "id": 501,
+        "Name": "Oshawott",
+        "MinLevel": 1
+    },
+    {
+        "id": 502,
+        "Name": "Dewott",
+        "MinLevel": 17
+    },
+    {
+        "id": 503,
+        "Name": "Samurott",
+        "MinLevel": 36
+    },
+    {
+        "id": 504,
+        "Name": "Patrat",
+        "MinLevel": 1
+    },
+    {
+        "id": 505,
+        "Name": "Watchog",
+        "MinLevel": 20
+    },
+    {
+        "id": 506,
+        "Name": "Lillipup",
+        "MinLevel": 1
+    },
+    {
+        "id": 507,
+        "Name": "Herdier",
+        "MinLevel": 16
+    },
+    {
+        "id": 508,
+        "Name": "Stoutland",
+        "MinLevel": 32
+    },
+    {
+        "id": 509,
+        "Name": "Purrloin",
+        "MinLevel": 1
+    },
+    {
+        "id": 510,
+        "Name": "Liepard",
+        "MinLevel": 20
+    },
+    {
+        "id": 511,
+        "Name": "Pansage",
+        "MinLevel": 1
+    },
+    {
+        "id": 512,
+        "Name": "Simisage",
+        "MinLevel": 1
+    },
+    {
+        "id": 513,
+        "Name": "Pansear",
+        "MinLevel": 1
+    },
+    {
+        "id": 514,
+        "Name": "Simisear",
+        "MinLevel": 1
+    },
+    {
+        "id": 515,
+        "Name": "Panpour",
+        "MinLevel": 1
+    },
+    {
+        "id": 516,
+        "Name": "Simipour",
+        "MinLevel": 1
+    },
+    {
+        "id": 517,
+        "Name": "Munna",
+        "MinLevel": 1
+    },
+    {
+        "id": 518,
+        "Name": "Musharna",
+        "MinLevel": 1
+    },
+    {
+        "id": 519,
+        "Name": "Pidove",
+        "MinLevel": 1
+    },
+    {
+        "id": 520,
+        "Name": "Tranquill",
+        "MinLevel": 21
+    },
+    {
+        "id": 521,
+        "Name": "Unfezant",
+        "MinLevel": 32
+    },
+    {
+        "id": 522,
+        "Name": "Blitzle",
+        "MinLevel": 1
+    },
+    {
+        "id": 523,
+        "Name": "Zebstrika",
+        "MinLevel": 27
+    },
+    {
+        "id": 524,
+        "Name": "Roggenrola",
+        "MinLevel": 1
+    },
+    {
+        "id": 525,
+        "Name": "Boldore",
+        "MinLevel": 25
+    },
+    {
+        "id": 526,
+        "Name": "Gigalith",
+        "MinLevel": 1
+    },
+    {
+        "id": 527,
+        "Name": "Woobat",
+        "MinLevel": 1
+    },
+    {
+        "id": 528,
+        "Name": "Swoobat",
+        "MinLevel": 1
+    },
+    {
+        "id": 529,
+        "Name": "Drilbur",
+        "MinLevel": 1
+    },
+    {
+        "id": 530,
+        "Name": "Excadrill",
+        "MinLevel": 31
+    },
+    {
+        "id": 531,
+        "Name": "Audino",
+        "MinLevel": 1
+    },
+    {
+        "id": 532,
+        "Name": "Timburr",
+        "MinLevel": 1
+    },
+    {
+        "id": 533,
+        "Name": "Gurdurr",
+        "MinLevel": 25
+    },
+    {
+        "id": 534,
+        "Name": "Conkeldurr",
+        "MinLevel": 1
+    },
+    {
+        "id": 535,
+        "Name": "Tympole",
+        "MinLevel": 1
+    },
+    {
+        "id": 536,
+        "Name": "Palpitoad",
+        "MinLevel": 25
+    },
+    {
+        "id": 537,
+        "Name": "Seismitoad",
+        "MinLevel": 36
+    },
+    {
+        "id": 538,
+        "Name": "Throh",
+        "MinLevel": 1
+    },
+    {
+        "id": 539,
+        "Name": "Sawk",
+        "MinLevel": 1
+    },
+    {
+        "id": 540,
+        "Name": "Sewaddle",
+        "MinLevel": 1
+    },
+    {
+        "id": 541,
+        "Name": "Swadloon",
+        "MinLevel": 20
+    },
+    {
+        "id": 542,
+        "Name": "Leavanny",
+        "MinLevel": 1
+    },
+    {
+        "id": 543,
+        "Name": "Venipede",
+        "MinLevel": 1
+    },
+    {
+        "id": 544,
+        "Name": "Whirlipede",
+        "MinLevel": 22
+    },
+    {
+        "id": 545,
+        "Name": "Scolipede",
+        "MinLevel": 30
+    },
+    {
+        "id": 546,
+        "Name": "Cottonee",
+        "MinLevel": 1
+    },
+    {
+        "id": 547,
+        "Name": "Whimsicott",
+        "MinLevel": 1
+    },
+    {
+        "id": 548,
+        "Name": "Petilil",
+        "MinLevel": 1
+    },
+    {
+        "id": 549,
+        "Name": "Lilligant",
+        "MinLevel": 1
+    },
+    {
+        "id": 550,
+        "Name": "Basculin",
+        "MinLevel": 1
+    },
+    {
+        "id": 551,
+        "Name": "Sandile",
+        "MinLevel": 1
+    },
+    {
+        "id": 552,
+        "Name": "Krokorok",
+        "MinLevel": 29
+    },
+    {
+        "id": 553,
+        "Name": "Krookodile",
+        "MinLevel": 40
+    },
+    {
+        "id": 554,
+        "Name": "Darumaka",
+        "MinLevel": 1
+    },
+    {
+        "id": 555,
+        "Name": "Darmanitan",
+        "MinLevel": 35
+    },
+    {
+        "id": 556,
+        "Name": "Maractus",
+        "MinLevel": 1
+    },
+    {
+        "id": 557,
+        "Name": "Dwebble",
+        "MinLevel": 1
+    },
+    {
+        "id": 558,
+        "Name": "Crustle",
+        "MinLevel": 34
+    },
+    {
+        "id": 559,
+        "Name": "Scraggy",
+        "MinLevel": 1
+    },
+    {
+        "id": 560,
+        "Name": "Scrafty",
+        "MinLevel": 39
+    },
+    {
+        "id": 561,
+        "Name": "Sigilyph",
+        "MinLevel": 1
+    },
+    {
+        "id": 562,
+        "Name": "Yamask",
+        "MinLevel": 1
+    },
+    {
+        "id": 563,
+        "Name": "Cofagrigus",
+        "MinLevel": 34
+    },
+    {
+        "id": 564,
+        "Name": "Tirtouga",
+        "MinLevel": 1
+    },
+    {
+        "id": 565,
+        "Name": "Carracosta",
+        "MinLevel": 37
+    },
+    {
+        "id": 566,
+        "Name": "Archen",
+        "MinLevel": 1
+    },
+    {
+        "id": 567,
+        "Name": "Archeops",
+        "MinLevel": 37
+    },
+    {
+        "id": 568,
+        "Name": "Trubbish",
+        "MinLevel": 1
+    },
+    {
+        "id": 569,
+        "Name": "Garbodor",
+        "MinLevel": 36
+    },
+    {
+        "id": 570,
+        "Name": "Zorua",
+        "MinLevel": 1
+    },
+    {
+        "id": 571,
+        "Name": "Zoroark",
+        "MinLevel": 30
+    },
+    {
+        "id": 572,
+        "Name": "Minccino",
+        "MinLevel": 1
+    },
+    {
+        "id": 573,
+        "Name": "Cinccino",
+        "MinLevel": 1
+    },
+    {
+        "id": 574,
+        "Name": "Gothita",
+        "MinLevel": 1
+    },
+    {
+        "id": 575,
+        "Name": "Gothorita",
+        "MinLevel": 32
+    },
+    {
+        "id": 576,
+        "Name": "Gothitelle",
+        "MinLevel": 41
+    },
+    {
+        "id": 577,
+        "Name": "Solosis",
+        "MinLevel": 1
+    },
+    {
+        "id": 578,
+        "Name": "Duosion",
+        "MinLevel": 32
+    },
+    {
+        "id": 579,
+        "Name": "Reuniclus",
+        "MinLevel": 41
+    },
+    {
+        "id": 580,
+        "Name": "Ducklett",
+        "MinLevel": 1
+    },
+    {
+        "id": 581,
+        "Name": "Swanna",
+        "MinLevel": 35
+    },
+    {
+        "id": 582,
+        "Name": "Vanillite",
+        "MinLevel": 1
+    },
+    {
+        "id": 583,
+        "Name": "Vanillish",
+        "MinLevel": 35
+    },
+    {
+        "id": 584,
+        "Name": "Vanilluxe",
+        "MinLevel": 47
+    },
+    {
+        "id": 585,
+        "Name": "Deerling",
+        "MinLevel": 1
+    },
+    {
+        "id": 586,
+        "Name": "Sawsbuck",
+        "MinLevel": 34
+    },
+    {
+        "id": 587,
+        "Name": "Emolga",
+        "MinLevel": 1
+    },
+    {
+        "id": 588,
+        "Name": "Karrablast",
+        "MinLevel": 1
+    },
+    {
+        "id": 589,
+        "Name": "Escavalier",
+        "MinLevel": 1
+    },
+    {
+        "id": 590,
+        "Name": "Foongus",
+        "MinLevel": 1
+    },
+    {
+        "id": 591,
+        "Name": "Amoonguss",
+        "MinLevel": 39
+    },
+    {
+        "id": 592,
+        "Name": "Frillish",
+        "MinLevel": 1
+    },
+    {
+        "id": 593,
+        "Name": "Jellicent",
+        "MinLevel": 40
+    },
+    {
+        "id": 594,
+        "Name": "Alomomola",
+        "MinLevel": 1
+    },
+    {
+        "id": 595,
+        "Name": "Joltik",
+        "MinLevel": 1
+    },
+    {
+        "id": 596,
+        "Name": "Galvantula",
+        "MinLevel": 36
+    },
+    {
+        "id": 597,
+        "Name": "Ferroseed",
+        "MinLevel": 1
+    },
+    {
+        "id": 598,
+        "Name": "Ferrothorn",
+        "MinLevel": 40
+    },
+    {
+        "id": 599,
+        "Name": "Klink",
+        "MinLevel": 1
+    },
+    {
+        "id": 600,
+        "Name": "Klang",
+        "MinLevel": 38
+    },
+    {
+        "id": 601,
+        "Name": "Klinklang",
+        "MinLevel": 49
+    },
+    {
+        "id": 602,
+        "Name": "Tynamo",
+        "MinLevel": 1
+    },
+    {
+        "id": 603,
+        "Name": "Eelektrik",
+        "MinLevel": 39
+    },
+    {
+        "id": 604,
+        "Name": "Eelektross",
+        "MinLevel": 1
+    },
+    {
+        "id": 605,
+        "Name": "Elgyem",
+        "MinLevel": 1
+    },
+    {
+        "id": 606,
+        "Name": "Beheeyem",
+        "MinLevel": 42
+    },
+    {
+        "id": 607,
+        "Name": "Litwick",
+        "MinLevel": 1
+    },
+    {
+        "id": 608,
+        "Name": "Lampent",
+        "MinLevel": 41
+    },
+    {
+        "id": 609,
+        "Name": "Chandelure",
+        "MinLevel": 1
+    },
+    {
+        "id": 610,
+        "Name": "Axew",
+        "MinLevel": 1
+    },
+    {
+        "id": 611,
+        "Name": "Fraxure",
+        "MinLevel": 38
+    },
+    {
+        "id": 612,
+        "Name": "Haxorus",
+        "MinLevel": 48
+    },
+    {
+        "id": 613,
+        "Name": "Cubchoo",
+        "MinLevel": 1
+    },
+    {
+        "id": 614,
+        "Name": "Beartic",
+        "MinLevel": 37
+    },
+    {
+        "id": 615,
+        "Name": "Cryogonal",
+        "MinLevel": 1
+    },
+    {
+        "id": 616,
+        "Name": "Shelmet",
+        "MinLevel": 1
+    },
+    {
+        "id": 617,
+        "Name": "Accelgor",
+        "MinLevel": 1
+    },
+    {
+        "id": 618,
+        "Name": "Stunfisk",
+        "MinLevel": 1
+    },
+    {
+        "id": 619,
+        "Name": "Mienfoo",
+        "MinLevel": 1
+    },
+    {
+        "id": 620,
+        "Name": "Mienshao",
+        "MinLevel": 50
+    },
+    {
+        "id": 621,
+        "Name": "Druddigon",
+        "MinLevel": 1
+    },
+    {
+        "id": 622,
+        "Name": "Golett",
+        "MinLevel": 1
+    },
+    {
+        "id": 623,
+        "Name": "Golurk",
+        "MinLevel": 43
+    },
+    {
+        "id": 624,
+        "Name": "Pawniard",
+        "MinLevel": 1
+    },
+    {
+        "id": 625,
+        "Name": "Bisharp",
+        "MinLevel": 52
+    },
+    {
+        "id": 626,
+        "Name": "Bouffalant",
+        "MinLevel": 1
+    },
+    {
+        "id": 627,
+        "Name": "Rufflet",
+        "MinLevel": 1
+    },
+    {
+        "id": 628,
+        "Name": "Braviary",
+        "MinLevel": 54
+    },
+    {
+        "id": 629,
+        "Name": "Vullaby",
+        "MinLevel": 1
+    },
+    {
+        "id": 630,
+        "Name": "Mandibuzz",
+        "MinLevel": 54
+    },
+    {
+        "id": 631,
+        "Name": "Heatmor",
+        "MinLevel": 1
+    },
+    {
+        "id": 632,
+        "Name": "Durant",
+        "MinLevel": 1
+    },
+    {
+        "id": 633,
+        "Name": "Deino",
+        "MinLevel": 1
+    },
+    {
+        "id": 634,
+        "Name": "Zweilous",
+        "MinLevel": 50
+    },
+    {
+        "id": 635,
+        "Name": "Hydreigon",
+        "MinLevel": 64
+    },
+    {
+        "id": 636,
+        "Name": "Larvesta",
+        "MinLevel": 1
+    },
+    {
+        "id": 637,
+        "Name": "Volcarona",
+        "MinLevel": 59
+    },
+    {
+        "id": 638,
+        "Name": "Cobalion",
+        "MinLevel": 1
+    },
+    {
+        "id": 639,
+        "Name": "Terrakion",
+        "MinLevel": 1
+    },
+    {
+        "id": 640,
+        "Name": "Virizion",
+        "MinLevel": 1
+    },
+    {
+        "id": 641,
+        "Name": "Tornadus",
+        "MinLevel": 1
+    },
+    {
+        "id": 642,
+        "Name": "Thundurus",
+        "MinLevel": 1
+    },
+    {
+        "id": 643,
+        "Name": "Reshiram",
+        "MinLevel": 1
+    },
+    {
+        "id": 644,
+        "Name": "Zekrom",
+        "MinLevel": 1
+    },
+    {
+        "id": 645,
+        "Name": "Landorus",
+        "MinLevel": 1
+    },
+    {
+        "id": 646,
+        "Name": "Kyurem",
+        "MinLevel": 1
+    },
+    {
+        "id": 647,
+        "Name": "Keldeo",
+        "MinLevel": 1
+    },
+    {
+        "id": 648,
+        "Name": "Meloetta",
+        "MinLevel": 1
+    },
+    {
+        "id": 649,
+        "Name": "Genesect",
+        "MinLevel": 1
+    },
+    {
+        "id": 650,
+        "Name": "Chespin",
+        "MinLevel": 1
+    },
+    {
+        "id": 651,
+        "Name": "Quilladin",
+        "MinLevel": 16
+    },
+    {
+        "id": 652,
+        "Name": "Chesnaught",
+        "MinLevel": 36
+    },
+    {
+        "id": 653,
+        "Name": "Fennekin",
+        "MinLevel": 1
+    },
+    {
+        "id": 654,
+        "Name": "Braixen",
+        "MinLevel": 16
+    },
+    {
+        "id": 655,
+        "Name": "Delphox",
+        "MinLevel": 36
+    },
+    {
+        "id": 656,
+        "Name": "Froakie",
+        "MinLevel": 1
+    },
+    {
+        "id": 657,
+        "Name": "Frogadier",
+        "MinLevel": 16
+    },
+    {
+        "id": 658,
+        "Name": "Greninja",
+        "MinLevel": 36
+    },
+    {
+        "id": 659,
+        "Name": "Bunnelby",
+        "MinLevel": 1
+    },
+    {
+        "id": 660,
+        "Name": "Diggersby",
+        "MinLevel": 20
+    },
+    {
+        "id": 661,
+        "Name": "Fletchling",
+        "MinLevel": 1
+    },
+    {
+        "id": 662,
+        "Name": "Fletchinder",
+        "MinLevel": 17
+    },
+    {
+        "id": 663,
+        "Name": "Talonflame",
+        "MinLevel": 35
+    },
+    {
+        "id": 664,
+        "Name": "Scatterbug",
+        "MinLevel": 1
+    },
+    {
+        "id": 665,
+        "Name": "Spewpa",
+        "MinLevel": 9
+    },
+    {
+        "id": 666,
+        "Name": "Vivillon",
+        "MinLevel": 12
+    },
+    {
+        "id": 667,
+        "Name": "Litleo",
+        "MinLevel": 1
+    },
+    {
+        "id": 668,
+        "Name": "Pyroar",
+        "MinLevel": 35
+    },
+    {
+        "id": 669,
+        "Name": "Flabébé",
+        "MinLevel": 1
+    },
+    {
+        "id": 670,
+        "Name": "Floette",
+        "MinLevel": 19
+    },
+    {
+        "id": 671,
+        "Name": "Florges",
+        "MinLevel": 1
+    },
+    {
+        "id": 672,
+        "Name": "Skiddo",
+        "MinLevel": 1
+    },
+    {
+        "id": 673,
+        "Name": "Gogoat",
+        "MinLevel": 32
+    },
+    {
+        "id": 674,
+        "Name": "Pancham",
+        "MinLevel": 1
+    },
+    {
+        "id": 675,
+        "Name": "Pangoro",
+        "MinLevel": 32
+    },
+    {
+        "id": 676,
+        "Name": "Furfrou",
+        "MinLevel": 1
+    },
+    {
+        "id": 677,
+        "Name": "Espurr",
+        "MinLevel": 1
+    },
+    {
+        "id": 678,
+        "Name": "Meowstic",
+        "MinLevel": 25
+    },
+    {
+        "id": 679,
+        "Name": "Honedge",
+        "MinLevel": 1
+    },
+    {
+        "id": 680,
+        "Name": "Doublade",
+        "MinLevel": 35
+    },
+    {
+        "id": 681,
+        "Name": "Aegislash",
+        "MinLevel": 1
+    },
+    {
+        "id": 682,
+        "Name": "Spritzee",
+        "MinLevel": 1
+    },
+    {
+        "id": 683,
+        "Name": "Aromatisse",
+        "MinLevel": 1
+    },
+    {
+        "id": 684,
+        "Name": "Swirlix",
+        "MinLevel": 1
+    },
+    {
+        "id": 685,
+        "Name": "Slurpuff",
+        "MinLevel": 1
+    },
+    {
+        "id": 686,
+        "Name": "Inkay",
+        "MinLevel": 1
+    },
+    {
+        "id": 687,
+        "Name": "Malamar",
+        "MinLevel": 30
+    },
+    {
+        "id": 688,
+        "Name": "Binacle",
+        "MinLevel": 1
+    },
+    {
+        "id": 689,
+        "Name": "Barbaracle",
+        "MinLevel": 39
+    },
+    {
+        "id": 690,
+        "Name": "Skrelp",
+        "MinLevel": 1
+    },
+    {
+        "id": 691,
+        "Name": "Dragalge",
+        "MinLevel": 48
+    },
+    {
+        "id": 692,
+        "Name": "Clauncher",
+        "MinLevel": 1
+    },
+    {
+        "id": 693,
+        "Name": "Clawitzer",
+        "MinLevel": 37
+    },
+    {
+        "id": 694,
+        "Name": "Helioptile",
+        "MinLevel": 1
+    },
+    {
+        "id": 695,
+        "Name": "Heliolisk",
+        "MinLevel": 1
+    },
+    {
+        "id": 696,
+        "Name": "Tyrunt",
+        "MinLevel": 1
+    },
+    {
+        "id": 697,
+        "Name": "Tyrantrum",
+        "MinLevel": 39
+    },
+    {
+        "id": 698,
+        "Name": "Amaura",
+        "MinLevel": 1
+    },
+    {
+        "id": 699,
+        "Name": "Aurorus",
+        "MinLevel": 39
+    },
+    {
+        "id": 700,
+        "Name": "Sylveon",
+        "MinLevel": 1
+    },
+    {
+        "id": 701,
+        "Name": "Hawlucha",
+        "MinLevel": 1
+    },
+    {
+        "id": 702,
+        "Name": "Dedenne",
+        "MinLevel": 1
+    },
+    {
+        "id": 703,
+        "Name": "Carbink",
+        "MinLevel": 1
+    },
+    {
+        "id": 704,
+        "Name": "Goomy",
+        "MinLevel": 1
+    },
+    {
+        "id": 705,
+        "Name": "Sliggoo",
+        "MinLevel": 40
+    },
+    {
+        "id": 706,
+        "Name": "Goodra",
+        "MinLevel": 50
+    },
+    {
+        "id": 707,
+        "Name": "Klefki",
+        "MinLevel": 1
+    },
+    {
+        "id": 708,
+        "Name": "Phantump",
+        "MinLevel": 1
+    },
+    {
+        "id": 709,
+        "Name": "Trevenant",
+        "MinLevel": 1
+    },
+    {
+        "id": 710,
+        "Name": "Pumpkaboo",
+        "MinLevel": 1
+    },
+    {
+        "id": 711,
+        "Name": "Gourgeist",
+        "MinLevel": 1
+    },
+    {
+        "id": 712,
+        "Name": "Bergmite",
+        "MinLevel": 1
+    },
+    {
+        "id": 713,
+        "Name": "Avalugg",
+        "MinLevel": 37
+    },
+    {
+        "id": 714,
+        "Name": "Noibat",
+        "MinLevel": 1
+    },
+    {
+        "id": 715,
+        "Name": "Noivern",
+        "MinLevel": 48
+    },
+    {
+        "id": 716,
+        "Name": "Xerneas",
+        "MinLevel": 1
+    },
+    {
+        "id": 717,
+        "Name": "Yveltal",
+        "MinLevel": 1
+    },
+    {
+        "id": 718,
+        "Name": "Zygarde",
+        "MinLevel": 1
+    },
+    {
+        "id": 719,
+        "Name": "Diancie",
+        "MinLevel": 1
+    },
+    {
+        "id": 720,
+        "Name": "Volcanion",
+        "MinLevel": 1
+    },
+    {
+        "id": 721,
+        "Name": "Hoopa",
+        "MinLevel": 1
+    },
+    {
+        "id": 722,
+        "Name": "MISSINGNO",
+        "MinLevel": 1
+    },
+    {
+        "id": 727,
+        "Name": "Delta Bulbasaur",
+        "MinLevel": 1
+    },
+    {
+        "id": 728,
+        "Name": "Delta Ivysaur",
+        "MinLevel": 16
+    },
+    {
+        "id": 729,
+        "Name": "Delta Venusaur",
+        "MinLevel": 32
+    },
+    {
+        "id": 730,
+        "Name": "Delta Charmander",
+        "MinLevel": 1
+    },
+    {
+        "id": 731,
+        "Name": "Delta Charmeleon",
+        "MinLevel": 16
+    },
+    {
+        "id": 732,
+        "Name": "Delta Charizard",
+        "MinLevel": 36
+    },
+    {
+        "id": 733,
+        "Name": "Delta Squirtle",
+        "MinLevel": 1
+    },
+    {
+        "id": 734,
+        "Name": "Delta Wartortle",
+        "MinLevel": 16
+    },
+    {
+        "id": 735,
+        "Name": "Delta Blastoise",
+        "MinLevel": 36
+    },
+    {
+        "id": 736,
+        "Name": "Delta Pawniard",
+        "MinLevel": 1
+    },
+    {
+        "id": 737,
+        "Name": "Delta Bisharp",
+        "MinLevel": 52
+    },
+    {
+        "id": 738,
+        "Name": "Delta Ralts",
+        "MinLevel": 1
+    },
+    {
+        "id": 739,
+        "Name": "Delta Kirlia",
+        "MinLevel": 20
+    },
+    {
+        "id": 740,
+        "Name": "Delta Gardevoir",
+        "MinLevel": 30
+    },
+    {
+        "id": 741,
+        "Name": "Delta Gallade",
+        "MinLevel": 1
+    },
+    {
+        "id": 742,
+        "Name": "Delta Sunkern",
+        "MinLevel": 1
+    },
+    {
+        "id": 743,
+        "Name": "Delta Sunflora",
+        "MinLevel": 1
+    },
+    {
+        "id": 744,
+        "Name": "Delta Bergmite",
+        "MinLevel": 1
+    },
+    {
+        "id": 745,
+        "Name": "Delta Avalugg",
+        "MinLevel": 37
+    },
+    {
+        "id": 746,
+        "Name": "Delta Scyther",
+        "MinLevel": 1
+    },
+    {
+        "id": 747,
+        "Name": "Delta Scizor",
+        "MinLevel": 1
+    },
+    {
+        "id": 748,
+        "Name": "Delta Scraggy",
+        "MinLevel": 1
+    },
+    {
+        "id": 749,
+        "Name": "Delta Scrafty",
+        "MinLevel": 39
+    },
+    {
+        "id": 750,
+        "Name": "Delta Combee",
+        "MinLevel": 1
+    },
+    {
+        "id": 751,
+        "Name": "Delta Vespiquen",
+        "MinLevel": 1
+    },
+    {
+        "id": 752,
+        "Name": "Delta Koffing",
+        "MinLevel": 1
+    },
+    {
+        "id": 753,
+        "Name": "Delta Weezing",
+        "MinLevel": 35
+    },
+    {
+        "id": 754,
+        "Name": "Delta Purrloin",
+        "MinLevel": 1
+    },
+    {
+        "id": 755,
+        "Name": "Delta Liepard",
+        "MinLevel": 20
+    },
+    {
+        "id": 756,
+        "Name": "Delta Phantump",
+        "MinLevel": 1
+    },
+    {
+        "id": 757,
+        "Name": "Delta Trevenant",
+        "MinLevel": 1
+    },
+    {
+        "id": 758,
+        "Name": "Delta Snorunt",
+        "MinLevel": 1
+    },
+    {
+        "id": 759,
+        "Name": "Delta Glalie",
+        "MinLevel": 42
+    },
+    {
+        "id": 760,
+        "Name": "Delta Froslass",
+        "MinLevel": 1
+    },
+    {
+        "id": 761,
+        "Name": "Delta Shinx",
+        "MinLevel": 1
+    },
+    {
+        "id": 762,
+        "Name": "Delta Luxio",
+        "MinLevel": 15
+    },
+    {
+        "id": 763,
+        "Name": "Delta Luxray",
+        "MinLevel": 30
+    },
+    {
+        "id": 764,
+        "Name": "Delta Noibat",
+        "MinLevel": 1
+    },
+    {
+        "id": 765,
+        "Name": "Delta Noivern",
+        "MinLevel": 48
+    },
+    {
+        "id": 766,
+        "Name": "Delta Budew",
+        "MinLevel": 1
+    },
+    {
+        "id": 767,
+        "Name": "Delta Roselia",
+        "MinLevel": 1
+    },
+    {
+        "id": 768,
+        "Name": "Delta Roserade",
+        "MinLevel": 1
+    },
+    {
+        "id": 769,
+        "Name": "Delta Drifloon",
+        "MinLevel": 1
+    },
+    {
+        "id": 770,
+        "Name": "Delta Drifblim",
+        "MinLevel": 28
+    },
+    {
+        "id": 771,
+        "Name": "Delta Grimer",
+        "MinLevel": 1
+    },
+    {
+        "id": 772,
+        "Name": "Delta Muk",
+        "MinLevel": 38
+    },
+    {
+        "id": 773,
+        "Name": "Delta Wooper",
+        "MinLevel": 1
+    },
+    {
+        "id": 774,
+        "Name": "Delta Quagsire",
+        "MinLevel": 20
+    },
+    {
+        "id": 775,
+        "Name": "Delta Munchlax",
+        "MinLevel": 1
+    },
+    {
+        "id": 776,
+        "Name": "Delta Snorlax",
+        "MinLevel": 2
+    },
+    {
+        "id": 777,
+        "Name": "Delta Misdreavus",
+        "MinLevel": 1
+    },
+    {
+        "id": 778,
+        "Name": "Delta Mismagius",
+        "MinLevel": 1
+    },
+    {
+        "id": 779,
+        "Name": "Delta Cyndaquil",
+        "MinLevel": 1
+    },
+    {
+        "id": 780,
+        "Name": "Delta Quilava",
+        "MinLevel": 14
+    },
+    {
+        "id": 781,
+        "Name": "Delta Typhlosion",
+        "MinLevel": 36
+    },
+    {
+        "id": 782,
+        "Name": "Delta Treeko",
+        "MinLevel": 1
+    },
+    {
+        "id": 783,
+        "Name": "Delta Grovyle",
+        "MinLevel": 16
+    },
+    {
+        "id": 784,
+        "Name": "Delta Sceptile",
+        "MinLevel": 36
+    },
+    {
+        "id": 785,
+        "Name": "Delta Torchic",
+        "MinLevel": 1
+    },
+    {
+        "id": 786,
+        "Name": "Delta Combusken",
+        "MinLevel": 16
+    },
+    {
+        "id": 787,
+        "Name": "Delta Blaziken",
+        "MinLevel": 36
+    },
+    {
+        "id": 788,
+        "Name": "Delta Turtwig",
+        "MinLevel": 1
+    },
+    {
+        "id": 789,
+        "Name": "Delta Grotle",
+        "MinLevel": 18
+    },
+    {
+        "id": 790,
+        "Name": "Delta Torterra",
+        "MinLevel": 32
+    },
+    {
+        "id": 791,
+        "Name": "Delta Snivy",
+        "MinLevel": 1
+    },
+    {
+        "id": 792,
+        "Name": "Delta Servine",
+        "MinLevel": 17
+    },
+    {
+        "id": 793,
+        "Name": "Delta Surperior",
+        "MinLevel": 36
+    },
+    {
+        "id": 794,
+        "Name": "Delta Froakie",
+        "MinLevel": 1
+    },
+    {
+        "id": 795,
+        "Name": "Delta Frogadier",
+        "MinLevel": 16
+    },
+    {
+        "id": 796,
+        "Name": "Delta Greninja",
+        "MinLevel": 36
+    },
+    {
+        "id": 797,
+        "Name": "Delta Pidgey",
+        "MinLevel": 1
+    },
+    {
+        "id": 798,
+        "Name": "Delta Pidgeotto",
+        "MinLevel": 18
+    },
+    {
+        "id": 799,
+        "Name": "Delta Pidgeot",
+        "MinLevel": 36
+    },
+    {
+        "id": 800,
+        "Name": "Delta Diglett",
+        "MinLevel": 1
+    },
+    {
+        "id": 801,
+        "Name": "Delta Dugtrio",
+        "MinLevel": 26
+    },
+    {
+        "id": 802,
+        "Name": "Delta Growlithe",
+        "MinLevel": 1
+    },
+    {
+        "id": 803,
+        "Name": "Delta Arcanine",
+        "MinLevel": 1
+    },
+    {
+        "id": 804,
+        "Name": "Delta Geodude",
+        "MinLevel": 1
+    },
+    {
+        "id": 805,
+        "Name": "Delta Graveler",
+        "MinLevel": 25
+    },
+    {
+        "id": 806,
+        "Name": "Delta Golem",
+        "MinLevel": 25
+    },
+    {
+        "id": 807,
+        "Name": "Delta Tentacool",
+        "MinLevel": 1
+    },
+    {
+        "id": 808,
+        "Name": "Delta Tentacruel",
+        "MinLevel": 30
+    },
+    {
+        "id": 809,
+        "Name": "Delta Doduo",
+        "MinLevel": 1
+    },
+    {
+        "id": 810,
+        "Name": "Delta Dodrio",
+        "MinLevel": 31
+    },
+    {
+        "id": 811,
+        "Name": "Delta Tangela",
+        "MinLevel": 1
+    },
+    {
+        "id": 812,
+        "Name": "Delta Tangrowth",
+        "MinLevel": 38
+    },
+    {
+        "id": 813,
+        "Name": "Delta Ditto",
+        "MinLevel": 30
+    },
+    {
+        "id": 814,
+        "Name": "Delta Kabuto",
+        "MinLevel": 1
+    },
+    {
+        "id": 815,
+        "Name": "Delta Kabutops",
+        "MinLevel": 40
+    },
+    {
+        "id": 816,
+        "Name": "Delta Dratini",
+        "MinLevel": 1
+    },
+    {
+        "id": 817,
+        "Name": "Delta Dragonair",
+        "MinLevel": 30
+    },
+    {
+        "id": 818,
+        "Name": "Delta Dragonite",
+        "MinLevel": 55
+    },
+    {
+        "id": 819,
+        "Name": "Delta Hoothoot",
+        "MinLevel": 1
+    },
+    {
+        "id": 820,
+        "Name": "Delta Noctowl",
+        "MinLevel": 20
+    },
+    {
+        "id": 821,
+        "Name": "Delta Chinchou",
+        "MinLevel": 1
+    },
+    {
+        "id": 822,
+        "Name": "Delta Lanturn",
+        "MinLevel": 27
+    },
+    {
+        "id": 823,
+        "Name": "Delta Pichu",
+        "MinLevel": 1
+    },
+    {
+        "id": 824,
+        "Name": "Delta Pikachu",
+        "MinLevel": 2
+    },
+    {
+        "id": 825,
+        "Name": "Delta Raichu",
+        "MinLevel": 2
+    },
+    {
+        "id": 826,
+        "Name": "Delta Aipom",
+        "MinLevel": 1
+    },
+    {
+        "id": 827,
+        "Name": "Delta Ambipom",
+        "MinLevel": 32
+    },
+    {
+        "id": 828,
+        "Name": "Delta Yanma",
+        "MinLevel": 1
+    },
+    {
+        "id": 829,
+        "Name": "Delta Yanmega",
+        "MinLevel": 33
+    },
+    {
+        "id": 830,
+        "Name": "Delta Girafarig",
+        "MinLevel": 1
+    },
+    {
+        "id": 831,
+        "Name": "Delta Dunsparce",
+        "MinLevel": 1
+    },
+    {
+        "id": 832,
+        "Name": "Delta Shuckle",
+        "MinLevel": 1
+    },
+    {
+        "id": 833,
+        "Name": "Delta Remoraid",
+        "MinLevel": 1
+    },
+    {
+        "id": 834,
+        "Name": "Delta Octillery",
+        "MinLevel": 25
+    },
+    {
+        "id": 835,
+        "Name": "Delta Elekid",
+        "MinLevel": 1
+    },
+    {
+        "id": 836,
+        "Name": "Delta Electabuzz",
+        "MinLevel": 30
+    },
+    {
+        "id": 837,
+        "Name": "Delta Electivire",
+        "MinLevel": 30
+    },
+    {
+        "id": 838,
+        "Name": "Delta Magby",
+        "MinLevel": 1
+    },
+    {
+        "id": 839,
+        "Name": "Delta Magmar",
+        "MinLevel": 30
+    },
+    {
+        "id": 840,
+        "Name": "Delta Magmortar",
+        "MinLevel": 30
+    },
+    {
+        "id": 841,
+        "Name": "Delta Lotad",
+        "MinLevel": 1
+    },
+    {
+        "id": 842,
+        "Name": "Delta Lombre",
+        "MinLevel": 14
+    },
+    {
+        "id": 843,
+        "Name": "Delta Ludicolo",
+        "MinLevel": 14
+    },
+    {
+        "id": 844,
+        "Name": "Delta Seedot",
+        "MinLevel": 1
+    },
+    {
+        "id": 845,
+        "Name": "Delta Nuzleaf",
+        "MinLevel": 14
+    },
+    {
+        "id": 846,
+        "Name": "Delta Shiftry",
+        "MinLevel": 14
+    },
+    {
+        "id": 847,
+        "Name": "Delta Sableye",
+        "MinLevel": 1
+    },
+    {
+        "id": 848,
+        "Name": "Delta Mawile",
+        "MinLevel": 1
+    },
+    {
+        "id": 849,
+        "Name": "Delta Aron",
+        "MinLevel": 1
+    },
+    {
+        "id": 850,
+        "Name": "Delta Lairon",
+        "MinLevel": 32
+    },
+    {
+        "id": 851,
+        "Name": "Delta Aggron",
+        "MinLevel": 42
+    },
+    {
+        "id": 852,
+        "Name": "Delta Meditite",
+        "MinLevel": 1
+    },
+    {
+        "id": 853,
+        "Name": "Delta Medicham",
+        "MinLevel": 37
+    },
+    {
+        "id": 854,
+        "Name": "Delta Numel",
+        "MinLevel": 1
+    },
+    {
+        "id": 855,
+        "Name": "Delta Camerupt",
+        "MinLevel": 33
+    },
+    {
+        "id": 856,
+        "Name": "Delta Plusle",
+        "MinLevel": 1
+    },
+    {
+        "id": 857,
+        "Name": "Delta Minun",
+        "MinLevel": 1
+    },
+    {
+        "id": 858,
+        "Name": "Delta Wailmer",
+        "MinLevel": 1
+    },
+    {
+        "id": 859,
+        "Name": "Delta Wailord",
+        "MinLevel": 40
+    },
+    {
+        "id": 860,
+        "Name": "Delta Feebas",
+        "MinLevel": 1
+    },
+    {
+        "id": 861,
+        "Name": "Delta Milotic",
+        "MinLevel": 1
+    },
+    {
+        "id": 862,
+        "Name": "Delta Clamperl",
+        "MinLevel": 1
+    },
+    {
+        "id": 863,
+        "Name": "Delta Huntail",
+        "MinLevel": 1
+    },
+    {
+        "id": 864,
+        "Name": "Delta Gorebyss",
+        "MinLevel": 1
+    },
+    {
+        "id": 865,
+        "Name": "Delta Beldum (Spider)",
+        "MinLevel": 1
+    },
+    {
+        "id": 866,
+        "Name": "Delta Metang (Spider)",
+        "MinLevel": 20
+    },
+    {
+        "id": 867,
+        "Name": "Delta Metagross (Spider)",
+        "MinLevel": 45
+    },
+    {
+        "id": 868,
+        "Name": "Delta Beldum (Ruin)",
+        "MinLevel": 1
+    },
+    {
+        "id": 869,
+        "Name": "Delta Metang (Ruin)",
+        "MinLevel": 20
+    },
+    {
+        "id": 870,
+        "Name": "Delta Metagross (Ruin)",
+        "MinLevel": 45
+    },
+    {
+        "id": 871,
+        "Name": "Delta Buneary",
+        "MinLevel": 1
+    },
+    {
+        "id": 872,
+        "Name": "Delta Lopunny",
+        "MinLevel": 2
+    },
+    {
+        "id": 873,
+        "Name": "Delta Riolu",
+        "MinLevel": 1
+    },
+    {
+        "id": 874,
+        "Name": "Delta Lucario",
+        "MinLevel": 2
+    },
+    {
+        "id": 875,
+        "Name": "Delta Croagunk",
+        "MinLevel": 1
+    },
+    {
+        "id": 876,
+        "Name": "Delta Toxicroak",
+        "MinLevel": 37
+    },
+    {
+        "id": 877,
+        "Name": "Delta Venipede",
+        "MinLevel": 1
+    },
+    {
+        "id": 878,
+        "Name": "Delta Whirlipede",
+        "MinLevel": 22
+    },
+    {
+        "id": 879,
+        "Name": "Delta Scolipede",
+        "MinLevel": 30
+    },
+    {
+        "id": 880,
+        "Name": "Delta Petilil (Water)",
+        "MinLevel": 1
+    },
+    {
+        "id": 881,
+        "Name": "Delta Lilligant (Water)",
+        "MinLevel": 1
+    },
+    {
+        "id": 882,
+        "Name": "Delta Petilil (Fairy)",
+        "MinLevel": 1
+    },
+    {
+        "id": 883,
+        "Name": "Delta Lilligant (Fairy)",
+        "MinLevel": 1
+    },
+    {
+        "id": 884,
+        "Name": "Delta Solosis",
+        "MinLevel": 1
+    },
+    {
+        "id": 885,
+        "Name": "Delta Duosion",
+        "MinLevel": 32
+    },
+    {
+        "id": 886,
+        "Name": "Delta Reuniclus",
+        "MinLevel": 41
+    },
+    {
+        "id": 887,
+        "Name": "Delta Darumaka",
+        "MinLevel": 1
+    },
+    {
+        "id": 888,
+        "Name": "Delta Darmanitan",
+        "MinLevel": 35
+    },
+    {
+        "id": 889,
+        "Name": "Delta Maractus",
+        "MinLevel": 1
+    },
+    {
+        "id": 890,
+        "Name": "Delta Dwebble (Berry)",
+        "MinLevel": 1
+    },
+    {
+        "id": 891,
+        "Name": "Delta Crustle (Berry)",
+        "MinLevel": 34
+    },
+    {
+        "id": 892,
+        "Name": "Delta Dwebble (Cake)",
+        "MinLevel": 1
+    },
+    {
+        "id": 893,
+        "Name": "Delta Crustle (Cake)",
+        "MinLevel": 34
+    },
+    {
+        "id": 894,
+        "Name": "Delta Yamask",
+        "MinLevel": 1
+    },
+    {
+        "id": 895,
+        "Name": "Delta Cofagrigus",
+        "MinLevel": 34
+    },
+    {
+        "id": 896,
+        "Name": "Delta Emolga",
+        "MinLevel": 1
+    },
+    {
+        "id": 897,
+        "Name": "Delta Karrablast",
+        "MinLevel": 1
+    },
+    {
+        "id": 898,
+        "Name": "Delta Escavalier",
+        "MinLevel": 1
+    },
+    {
+        "id": 899,
+        "Name": "Delta Foongus",
+        "MinLevel": 1
+    },
+    {
+        "id": 900,
+        "Name": "Delta Amoongus",
+        "MinLevel": 39
+    },
+    {
+        "id": 901,
+        "Name": "Delta Litwick",
+        "MinLevel": 1
+    },
+    {
+        "id": 902,
+        "Name": "Delta Lampent",
+        "MinLevel": 41
+    },
+    {
+        "id": 903,
+        "Name": "Delta Chandelure",
+        "MinLevel": 41
+    },
+    {
+        "id": 904,
+        "Name": "Delta Axew",
+        "MinLevel": 1
+    },
+    {
+        "id": 905,
+        "Name": "Delta Fraxure",
+        "MinLevel": 38
+    },
+    {
+        "id": 906,
+        "Name": "Delta Haxorus",
+        "MinLevel": 48
+    },
+    {
+        "id": 907,
+        "Name": "Delta Golett",
+        "MinLevel": 1
+    },
+    {
+        "id": 908,
+        "Name": "Delta Golurk",
+        "MinLevel": 43
+    },
+    {
+        "id": 909,
+        "Name": "Delta Heatmor",
+        "MinLevel": 1
+    },
+    {
+        "id": 910,
+        "Name": "Delta Deino",
+        "MinLevel": 1
+    },
+    {
+        "id": 911,
+        "Name": "Delta Zweilous",
+        "MinLevel": 50
+    },
+    {
+        "id": 912,
+        "Name": "Delta Hydreigon",
+        "MinLevel": 64
+    },
+    {
+        "id": 913,
+        "Name": "Delta Larvesta",
+        "MinLevel": 1
+    },
+    {
+        "id": 914,
+        "Name": "Delta Volcarona",
+        "MinLevel": 59
+    },
+    {
+        "id": 915,
+        "Name": "Delta Amaura",
+        "MinLevel": 1
+    },
+    {
+        "id": 916,
+        "Name": "Delta Aurorus",
+        "MinLevel": 39
+    },
+    {
+        "id": 917,
+        "Name": "Delta Goomy",
+        "MinLevel": 1
+    },
+    {
+        "id": 918,
+        "Name": "Delta Sliggoo",
+        "MinLevel": 40
+    },
+    {
+        "id": 919,
+        "Name": "Delta Goodra",
+        "MinLevel": 50
+    },
+    {
+        "id": 920,
+        "Name": "Delta Regirock",
+        "MinLevel": 1
+    },
+    {
+        "id": 921,
+        "Name": "Delta Regice",
+        "MinLevel": 1
+    },
+    {
+        "id": 922,
+        "Name": "Delta Registeel",
+        "MinLevel": 1
+    },
+    {
+        "id": 923,
+        "Name": "Delta Meloetta",
+        "MinLevel": 1
+    },
+    {
+        "id": 924,
+        "Name": "Delta Hoopa",
+        "MinLevel": 1
+    },
+    {
+        "id": 925,
+        "Name": "UFI",
+        "MinLevel": 1
+    }
 ]
