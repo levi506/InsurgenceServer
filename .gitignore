@@ -264,3 +264,15 @@ AdminSiteNew/Database/Auth\.cs
 AdminSiteNew/appsettings\.json
 AdminSite/Database/Auth.cs
 AdminSite/appsettings.json
+/AdminSite/appsettings.json
+AdminSite/wwwroot/images/PokemonFronts/
+AdminSite/wwwroot/images/PokemonShinies/
+AdminSite/wwwroot/lib/bootstrap/fonts/
+AdminSite/wwwroot/lib/bootstrap/grunt/
+AdminSite/wwwroot/lib/bootstrap/js/
+AdminSite/wwwroot/lib/bootstrap/less/
+AdminSite/wwwroot/lib/bootstrap/nuget/
+AdminSite/wwwroot/lib/jquery-validation/build/
+AdminSite/wwwroot/lib/jquery-validation/src/
+AdminSite/wwwroot/lib/jquery/src/
+AdminSite/wwwroot/lib/metro/
