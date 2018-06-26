@@ -276,3 +276,5 @@ AdminSite/wwwroot/lib/jquery-validation/build/
 AdminSite/wwwroot/lib/jquery-validation/src/
 AdminSite/wwwroot/lib/jquery/src/
 AdminSite/wwwroot/lib/metro/
+/InsurgenceServerCore/Auth.cs
+InsurgenceServerCore/InsurgenceServerCore.csproj
