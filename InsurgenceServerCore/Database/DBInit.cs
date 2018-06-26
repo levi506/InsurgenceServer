@@ -35,7 +35,7 @@ namespace InsurgenceServerCore.Database
             }
             else
             {
-                conn.Close();
+                throw new Exception("Database not initialized, cannot connect. State: " + conn.Connection.State);
             }
         }
     }

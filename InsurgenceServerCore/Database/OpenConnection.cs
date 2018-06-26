@@ -6,18 +6,17 @@ namespace InsurgenceServerCore.Database
     public class OpenConnection
     {
         private readonly string _connstring =
-            $"Server=localhost; database={Data.Databasename}; UID={Auth.Username}; password={Auth.Password}";
+            $"Server=localhost; database={Data.Databasename}; UID={Auth.Username}; password={Auth.Password}; SslMode=none";
         public MySqlConnection Connection;
         public OpenConnection()
         {
             Connection = new MySqlConnection(_connstring);
-            Initialization = Connection.OpenAsync();
+            Connection.Open();
         }
         public bool IsConnected()
         {
             return Connection.State == System.Data.ConnectionState.Open;
         }
-        public Task Initialization { get; private set; }
 
         public async Task Close()
         {
