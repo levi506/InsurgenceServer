@@ -22,8 +22,6 @@ namespace InsurgenceServerCore
         public static TcpListener Server;
         public static TcpListener SiteServer;
 
-        public static ObservableCollection<string> Log = new ObservableCollection<string>();
-
         public const bool TradeDisabled = false;
 
         public static readonly string[] BannedOTs = {

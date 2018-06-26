@@ -7,7 +7,7 @@ namespace InsurgenceServerCore.Database
     {
         private readonly string _connstring =
             $"Server=localhost; database={Data.Databasename}; UID={Auth.Username}; password={Auth.Password}; SslMode=none";
-        public MySqlConnection Connection;
+        public readonly MySqlConnection Connection;
         public OpenConnection()
         {
             Connection = new MySqlConnection(_connstring);

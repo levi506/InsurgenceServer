@@ -278,3 +278,4 @@ AdminSite/wwwroot/lib/jquery/src/
 AdminSite/wwwroot/lib/metro/
 /InsurgenceServerCore/Auth.cs
 InsurgenceServerCore/InsurgenceServerCore.csproj
+!/InsurgenceServerCore/InsurgenceServerCore.csproj
