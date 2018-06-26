@@ -8,6 +8,10 @@ namespace AdminSite.Database
     {
         public static async Task AddNote(uint user, string moderator, string note)
         {
+            if (note == null)
+                return;
+            if (moderator == null)
+                return;
             var conn = new OpenConnection();
             if (!conn.IsConnected)
             {
