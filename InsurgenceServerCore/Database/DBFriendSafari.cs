@@ -67,8 +67,9 @@ namespace InsurgenceServerCore.Database
                                    "FROM friendsafari " +
                                    "INNER JOIN users " +
                                    "ON friendsafari.user_id = users.user_id " +
-                                   "WHERE base IS NOT NULL " +
-                                   "AND users.banned IS NOT 1" +
+                                   "WHERE friendsafari.base IS NOT NULL " +
+                                   "AND friendsafari.base <> '' " +
+                                   "AND users.banned <> 1 " +
                                    "ORDER BY RAND() " +
                                    "LIMIT 1";
             var m = new MySqlCommand(command, conn.Connection);
