@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using InsurgenceServerCore.Battles;
 using InsurgenceServerCore.Database;
+using InsurgenceServerCore.Utilities;
 
 namespace InsurgenceServerCore.ClientHandler
 {
@@ -108,12 +109,13 @@ namespace InsurgenceServerCore.ClientHandler
         [ServerCommand("UBASE", true)]
         public static async Task UploadBaseRequest(Client client, CommandHandler command)
         {
-            if (!Utilities.FsChecker.IsValid(client, command.Data["base"]))
+            var b = command.Data["base"].Base64Decode();
+            if (!Utilities.FsChecker.IsValid(client, b))
             {
                 await client.SendMessage("<UBASE result=0>");
                 return;
             }
-            await DbFriendSafari.UploadBase(client.UserId, command.Data["base"]);
+            await DbFriendSafari.UploadBase(client.UserId, b);
             await client.SendMessage("<UBASE result=1>");
         }
 
