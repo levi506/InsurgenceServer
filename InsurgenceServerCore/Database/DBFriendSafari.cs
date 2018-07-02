@@ -63,7 +63,7 @@ namespace InsurgenceServerCore.Database
                 await conn.Close();
                 return;
             }
-            const string command = "SELECT friendsafari.base, friendsafari.message, users.username, users.banned" +
+            const string command = "SELECT friendsafari.base, friendsafari.message, users.username, users.banned " +
                                    "FROM friendsafari " +
                                    "INNER JOIN users " +
                                    "ON friendsafari.user_id = users.user_id " +
