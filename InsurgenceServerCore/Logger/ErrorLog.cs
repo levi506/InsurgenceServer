@@ -7,12 +7,12 @@ namespace InsurgenceServerCore.Logger
 
         public static void Initialize()
         {
-            
+
         }
         public static DateTime LastError;
         public static void Log(object e)
         {
-            Console.WriteLine(e.ToString());
+            Console.Error.WriteLineAsync(e.ToString());
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -11,13 +13,13 @@ namespace InsurgenceServerCore.ClientHandler
 {
     public class Client
     {
-        readonly Byte[] _bytes = new Byte[256];
+        //private readonly byte[] _bytes = new Byte[256];
         public readonly TcpClient ActualCient;
         private readonly NetworkStream _stream;
+
         private double _version;
 
         public bool Connected = true;
-        internal bool Loggedin;
         public bool LoggedIn;
         public bool Admin = false;
 
@@ -45,58 +47,80 @@ namespace InsurgenceServerCore.ClientHandler
             ActualCient = actualCient;
             Ip = ((IPEndPoint)actualCient.Client.RemoteEndPoint).Address;
             _stream = ActualCient.GetStream();
+
             LastActive = DateTime.UtcNow;
             ClientHandler.ActiveClients.TryAdd(Identifier, this);
 #pragma warning disable 4014
-            StartListening();
+            var pipe = new Pipe();
+            PipeListener(ActualCient.Client, pipe.Writer);
+            PipeHandler(pipe.Reader);
 #pragma warning restore 4014
         }
-        private string _message = "";
+        //private string _message = "";
 
-        public async Task StartListening()
+        private async Task PipeListener(Socket socket, PipeWriter writer)
         {
-            try
+            const int bufferSize = 512;
+            while (Connected)
             {
-                int i;
-                while (Connected && (i = _stream.Read(_bytes, 0, _bytes.Length)) != 0)
+                var memory = writer.GetMemory(bufferSize);
+                try
                 {
-                    try
+                    var bytesRead = await socket.ReceiveAsync(memory, SocketFlags.None);
+                    if (bytesRead == 0)
                     {
-                        var data = System.Text.Encoding.ASCII.GetString(_bytes, 0, i);
-                        await DataHandler(data);
+                        break;
                     }
-                    catch (Exception e) {
-                        Console.WriteLine(e);
-                    }
+
+                    writer.Advance(bytesRead);
                 }
-            }
-            catch (System.IO.IOException)
-            {
-            }
-            catch (Exception e)
-            {
-                Logger.ErrorLog.Log(e);
-                Console.WriteLine(e);
+                catch (Exception e)
+                {
+                    Logger.ErrorLog.Log(e);
+                }
+
+                await writer.FlushAsync();
             }
         }
 
-        public async Task DataHandler(string data)
+        private async Task PipeHandler(PipeReader reader)
+        {
+            while (Connected)
+            {
+                var result = await reader.ReadAsync();
+                var buffer   = result.Buffer;
+                SequencePosition?      position;
+                do
+                {
+                    position = buffer.PositionOf((byte) '\n');
+                    if (position != null)
+                    {
+                        var bytes   = buffer.Slice(0, position.Value).ToArray();
+                        var message = System.Text.Encoding.ASCII.GetString(bytes);
+#pragma warning disable 4014
+                        DataHandler(message);
+#pragma warning restore 4014
+                        buffer = buffer.Slice(buffer.GetPosition(1, position.Value));
+                    }
+                } while (position != null);
+                reader.AdvanceTo(buffer.Start, buffer.End);
+            }
+        }
+
+        private async Task DataHandler(string data)
         {
             try
             {
-                if (data.EndsWith("\n"))
-                    data = data.Remove(data.Length - 1);
-                _message += data;
                 if (!data.EndsWith(">"))
                 {
                     return;
                 }
 
-                Logger.Logger.Log(Username != "" ? $"{Username} {_message}" : $"Not Logged In ({Ip}): {_message}");
-                if (_message.EndsWith("<DSC>") && _message.Length > 5)
+                Logger.Logger.Log(Username != "" ? $"{Username} {data}" : $"Not Logged In ({Ip}): {data}");
+                if (data.EndsWith("<DSC>") && data.Length > 5)
                 {
                     LastActive = DateTime.UtcNow;
-                    var msg = _message.Replace("<DSC>", "");
+                    var msg = data.Replace("<DSC>", "");
                     var command = new CommandHandler(msg);
 #pragma warning disable 4014
                     NewCommandExecutor.ExecuteCommand(this, command);
@@ -110,8 +134,7 @@ namespace InsurgenceServerCore.ClientHandler
                 else
                 {
                     LastActive = DateTime.UtcNow;
-                    var command = new CommandHandler(_message);
-                    _message = "";
+                    var command = new CommandHandler(data);
 
 #pragma warning disable 4014
                     NewCommandExecutor.ExecuteCommand(this, command);
@@ -125,9 +148,8 @@ namespace InsurgenceServerCore.ClientHandler
         }
         internal async Task ConnectionRequest(string versionstr)
         {
-            double version;
             int result;
-            if (!double.TryParse(versionstr, out version))
+            if (!double.TryParse(versionstr, out var version))
                 return;
             if (version < Data.ServerVersion)
                 result = 0;
@@ -144,7 +166,6 @@ namespace InsurgenceServerCore.ClientHandler
             if (result == Database.LoginResult.Okay)
             {
                 Username = username.ToLower();
-                Loggedin = true;
                 LoggedIn = true;
             }
             if (Math.Abs(_version - 6.84) < 0.01 && Admin == false)
@@ -177,10 +198,15 @@ namespace InsurgenceServerCore.ClientHandler
         {
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (Data.TradeDisabled)
+#pragma warning disable 162
+                // ReSharper disable once HeuristicUnreachableCode
             {
+                // ReSharper disable once HeuristicUnreachableCode
                 await SendMessage("<TRA user=nil result=3>");
+                // ReSharper disable once HeuristicUnreachableCode
                 return;
             }
+#pragma warning restore 162
             if (args.ContainsKey("user"))
             {
                 var t = await TradeHandler.BeginTrade(args["user"], this);

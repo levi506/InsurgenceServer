@@ -14,6 +14,9 @@ namespace InsurgenceServerCore
         public void Begin()
         {
             Console.WriteLine("Starting Server!");
+            var runTimeInfo = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.RuntimeFramework;
+            Console.WriteLine($"Running with {runTimeInfo.FullName}");
+
             Console.WriteLine("Creating Commands");
             NewCommandExecutor.Initialize();
             Console.WriteLine("Setting up tiers");
