@@ -81,7 +81,14 @@ namespace InsurgenceServerCore.Database
                 o.Parameters.AddWithValue("@param_val_1", client.UserId);
                 o.Parameters.AddWithValue("@param_val_2", client.Ip);
                 o.Parameters.AddWithValue("@param_val_3", 0);
-                await o.ExecuteNonQueryAsync();
+                try
+                {
+                    await o.ExecuteNonQueryAsync();
+                }
+                catch
+                {
+                    // ignore
+                }
             }
 
             if (ret == LoginResult.Unset)
@@ -90,6 +97,7 @@ namespace InsurgenceServerCore.Database
             {
 #pragma warning disable 4014
                 DbUserManagement.Ban(client.UserId, ips);
+                DBWarnLog.LogWarning(client.UserId, "Automatically banned due to IP ban");
 #pragma warning restore 4014
                 Logger.Logger.Log($"User was banned automatically: {username}");
             }
