@@ -31,7 +31,6 @@ namespace InsurgenceServerCore.GTS
             {
                 //Turn data into objects
                 var pokemon = JsonConvert.DeserializeObject<GamePokemon>(decodeOffer);
-                var requestObject = JsonConvert.DeserializeObject<FilterHolder>(decodeRequest);
 
                 if (!await TradeValidator.IsPokemonValid(pokemon, c.UserId))
                 {
@@ -42,7 +41,7 @@ namespace InsurgenceServerCore.GTS
                 //Get Pokemon Level
                 level = GrowthRates.CalculateLevel(pokemon.species, pokemon.exp);
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 await c.SendMessage($"<GTSCREATE result=2 index={index}>");
                 return;
@@ -175,8 +174,7 @@ namespace InsurgenceServerCore.GTS
         }
         public static async Task CollectTrade(Client c, string idstr)
         {
-            uint id;
-            if (!uint.TryParse(idstr, out id))
+            if (!uint.TryParse(idstr, out var id))
             {
                 Console.WriteLine($"User tried to collect pokemon with invalid id: {idstr}");
                 return;

@@ -26,6 +26,10 @@ namespace InsurgenceServerCore.Utilities
             {
                 if (!LegalArray(type, i).Contains(pokemon[i]))
                 {
+#pragma warning disable 4014
+                    Database.DBWarnLog.LogWarning(client.UserId,
+                        "Tried to upload illegal Friend Safari. Contained: " + pokemon[i]);
+#pragma warning restore 4014
                     return false;
                 }
             }

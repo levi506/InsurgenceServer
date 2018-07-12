@@ -26,7 +26,7 @@ namespace InsurgenceServerCore.Database
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Optimizing table: " + row);
-                    string optimizequery = $"OPTIMIZE TABLE {row};";
+                    var optimizequery = $"OPTIMIZE TABLE {row};";
                     var optimizeCommand = new MySqlCommand(optimizequery, conn.Connection);
                     optimizeCommand.ExecuteNonQuery();
                 }

@@ -42,11 +42,11 @@ namespace InsurgenceServerCore.Database
             if (val == null || val is DBNull)
             {
                 return 0;
-            }           
+            }
             return (int) val;
         }
 
-        public static async Task MetricCountMultiple(List<int> ls)
+        public static async Task MetricCountMultiple(IEnumerable<int> ls)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())

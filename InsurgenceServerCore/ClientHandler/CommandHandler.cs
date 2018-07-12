@@ -136,7 +136,7 @@ namespace InsurgenceServerCore.ClientHandler
         [ServerCommand("BASEGIFT", true)]
         public static async Task AddGiftRequest(Client client, CommandHandler command)
         {
-            var i = await DbFriendSafari.AddGift(client, uint.Parse(command.Data["gift"]), command.Data["username"]);
+            var i = await DbFriendSafari.AddGift(uint.Parse(command.Data["gift"]), command.Data["username"]);
             await client.SendMessage($"<BASEGIFT result={i}>");
         }
 

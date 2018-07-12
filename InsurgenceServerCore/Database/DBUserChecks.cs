@@ -54,16 +54,15 @@ namespace InsurgenceServerCore.Database
             {
                 var o = ipresult["ipban"];
                 if (o is DBNull) continue;
-                if (o is sbyte)
+                if (o is sbyte ipban)
                 {
-                    var ipban = (sbyte)o;
                     if (ipban == 0 || ipban == -1) continue;
                     await conn.Close();
                     return true;
                 }
-                else if (o is bool)
+                if (o is bool b)
                 {
-                    if (!(bool) o) continue;
+                    if (!b) continue;
                     await conn.Close();
                     return true;
                 }

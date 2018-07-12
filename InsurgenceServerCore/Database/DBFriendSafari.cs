@@ -80,16 +80,9 @@ namespace InsurgenceServerCore.Database
 
                 var messageDb = result["message"];
                 var username = result["username"];
-                string message;
-                if (messageDb is DBNull)
-                {
-                    message = "nil";
-                }
-                else
-                {
-                    message = messageDb.ToString();
-                }
-                await client.SendMessage($"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
+                var message = messageDb is DBNull ? "nil" : messageDb.ToString();
+                await client.SendMessage(
+                    $"<VBASE user={username} result=2 base={Base} message={Utilities.Encoding.Base64Encode(message)}>");
                 break;
             }
             await conn.Close();
@@ -146,7 +139,7 @@ namespace InsurgenceServerCore.Database
         /// Add a gift to a giftbox
         /// </summary>
         /// <returns>0 if something went wrong, 1 if gift can't be given, 2 if giftbox is full, 3 if success</returns>
-        public static async Task<int> AddGift(Client client, uint gift, string username)
+        public static async Task<int> AddGift(uint gift, string username)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected())
@@ -290,15 +283,13 @@ namespace InsurgenceServerCore.Database
         }
 
 
-
-
-        public static bool VerifyGift(uint gift)
+        private static bool VerifyGift(uint gift)
         {
             //TODO actually write this
             return true;
         }
 
-        public class GiftHolder
+        private class GiftHolder
         {
             public uint ItemId { get; set; }
             public uint Amount { get; set; }
