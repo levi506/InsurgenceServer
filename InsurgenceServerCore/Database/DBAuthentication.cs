@@ -97,7 +97,7 @@ namespace InsurgenceServerCore.Database
             {
 #pragma warning disable 4014
                 DbUserManagement.Ban(client.UserId, ips);
-                DBWarnLog.LogWarning(client.UserId, "Automatically banned due to IP ban");
+                DBWarnLog.LogWarning(client.UserId, "Automatic ban: IP ban");
 #pragma warning restore 4014
                 Logger.Logger.Log($"User was banned automatically: {username}");
             }

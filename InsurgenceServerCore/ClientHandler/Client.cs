@@ -171,7 +171,10 @@ namespace InsurgenceServerCore.ClientHandler
             if (Math.Abs(_version - 6.84) < 0.01 && Admin == false)
             {
                 //Ban if user logged in with a debug client, while not being an Admin
-                await Database.DbUserManagement.Ban(UserId);
+#pragma warning disable 4014
+                Database.DbUserManagement.Ban(UserId);
+                Database.DBWarnLog.LogWarning(UserId, "Automatic ban: Tried to log in with Debug build.");
+#pragma warning restore 4014
                 await SendMessage($"<LOG result={(int) Database.LoginResult.Banned}>");
                 return;
             }

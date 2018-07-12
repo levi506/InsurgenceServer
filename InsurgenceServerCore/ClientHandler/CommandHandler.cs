@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InsurgenceServerCore.Battles;
 using InsurgenceServerCore.Database;
 using InsurgenceServerCore.Utilities;
+// ReSharper disable UnusedMember.Global
 
 namespace InsurgenceServerCore.ClientHandler
 {
@@ -110,7 +111,7 @@ namespace InsurgenceServerCore.ClientHandler
         public static async Task UploadBaseRequest(Client client, CommandHandler command)
         {
             var b = command.Data["base"].Base64Decode();
-            if (!Utilities.FsChecker.IsValid(client, b))
+            if (!FsChecker.IsValid(client, b))
             {
                 await client.SendMessage("<UBASE result=0>");
                 return;
@@ -128,7 +129,7 @@ namespace InsurgenceServerCore.ClientHandler
             }
             else
             {
-                await DbFriendSafari.SetMessage(client.UserId, Utilities.Encoding.Base64Decode(command.Data["message"]));
+                await DbFriendSafari.SetMessage(client.UserId, command.Data["message"].Base64Decode());
             }
         }
 
@@ -156,7 +157,7 @@ namespace InsurgenceServerCore.ClientHandler
         [ServerCommand("BASEBAT", true)]
         public static async Task SetBaseTrainerRequest(Client client, CommandHandler command)
         {
-            var trainerString = Utilities.Encoding.Base64Decode(command.Data["trainer"]);
+            var trainerString = command.Data["trainer"].Base64Decode();
             trainerString = trainerString.Replace("\t", "");
             await DbFriendSafari.SetTrainer(client, trainerString);
         }
@@ -283,7 +284,7 @@ namespace InsurgenceServerCore.ClientHandler
             var s = await DbMisc.GetDirectGift(client);
             if (s != null)
             {
-                var encode = Utilities.Encoding.Base64Encode(s);
+                var encode = s.Base64Encode();
                 await client.SendMessage($"<DIRGIFT result=1 gift={encode}>");
             }
             else
