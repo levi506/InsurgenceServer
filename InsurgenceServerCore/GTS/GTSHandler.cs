@@ -149,9 +149,12 @@ namespace InsurgenceServerCore.GTS
         }
         public static async Task CancelTrade(Client c, string idstr)
         {
-            uint id;
-            if (!uint.TryParse(idstr, out id))
+            if (!uint.TryParse(idstr, out var id))
+            {
+                Console.WriteLine(idstr);
+                await c.SendMessage("<GTSCANCEL result=0 pkmn=nil>");
                 return;
+            }
             //make sure the user actually owns the trade
             if (!await Database.Dbgts.UserOwnsTrade(id, c.UserId))
             {

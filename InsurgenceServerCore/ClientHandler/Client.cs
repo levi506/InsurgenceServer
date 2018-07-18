@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.IO.Pipelines;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 using InsurgenceServerCore.Battles;
 using InsurgenceServerCore.Trades;
@@ -15,7 +15,7 @@ namespace InsurgenceServerCore.ClientHandler
     {
         //private readonly byte[] _bytes = new Byte[256];
         public readonly TcpClient ActualCient;
-        private readonly NetworkStream _stream;
+        private readonly Socket _socket;
 
         private double _version;
 
@@ -46,100 +46,27 @@ namespace InsurgenceServerCore.ClientHandler
             Identifier = Guid.NewGuid();
             ActualCient = actualCient;
             Ip = ((IPEndPoint)actualCient.Client.RemoteEndPoint).Address;
-            _stream = ActualCient.GetStream();
 
             LastActive = DateTime.UtcNow;
             ClientHandler.ActiveClients.TryAdd(Identifier, this);
-#pragma warning disable 4014
-            var pipe = new Pipe();
-            PipeListener(ActualCient.Client, pipe.Writer);
-            PipeHandler(pipe.Reader);
-#pragma warning restore 4014
-        }
-        //private string _message = "";
-
-        private async Task PipeListener(Socket socket, PipeWriter writer)
-        {
-            const int bufferSize = 512;
-            while (Connected)
-            {
-                var memory = writer.GetMemory(bufferSize);
-                try
-                {
-                    var bytesRead = await socket.ReceiveAsync(memory, SocketFlags.None);
-                    if (bytesRead == 0)
-                    {
-                        break;
-                    }
-
-                    writer.Advance(bytesRead);
-                }
-                catch (Exception e)
-                {
-                    Logger.ErrorLog.Log(e);
-                }
-
-                await writer.FlushAsync();
-            }
-        }
-
-        private async Task PipeHandler(PipeReader reader)
-        {
-            while (Connected)
-            {
-                var result = await reader.ReadAsync();
-                var buffer   = result.Buffer;
-                SequencePosition?      position;
-                do
-                {
-                    position = buffer.PositionOf((byte) '\n');
-                    if (position != null)
-                    {
-                        var bytes   = buffer.Slice(0, position.Value).ToArray();
-                        var message = System.Text.Encoding.ASCII.GetString(bytes);
-#pragma warning disable 4014
-                        DataHandler(message);
-#pragma warning restore 4014
-                        buffer = buffer.Slice(buffer.GetPosition(1, position.Value));
-                    }
-                } while (position != null);
-                reader.AdvanceTo(buffer.Start, buffer.End);
-            }
+            _socket = ActualCient.Client;
+            var listener = new ListenPipe(this, ActualCient.Client, new Pipe());
+            listener.OnCompleteMessage += DataHandler;
+            Task.Run(listener.Run).Wait();
         }
 
         private async Task DataHandler(string data)
         {
             try
             {
-                if (!data.EndsWith(">"))
-                {
-                    return;
-                }
-
+                data = data.Replace("\n", "");
                 Logger.Logger.Log(Username != "" ? $"{Username} {data}" : $"Not Logged In ({Ip}): {data}");
-                if (data.EndsWith("<DSC>") && data.Length > 5)
-                {
-                    LastActive = DateTime.UtcNow;
-                    var msg = data.Replace("<DSC>", "");
-                    var command = new CommandHandler(msg);
-#pragma warning disable 4014
-                    NewCommandExecutor.ExecuteCommand(this, command);
-#pragma warning restore 4014
-
-                    var disconnectCommand = new CommandHandler("<DSC>");
-#pragma warning disable 4014
-                    NewCommandExecutor.ExecuteCommand(this, disconnectCommand);
-#pragma warning restore 4014
-                }
-                else
-                {
-                    LastActive = DateTime.UtcNow;
-                    var command = new CommandHandler(data);
+                LastActive = DateTime.UtcNow;
+                var command = new CommandHandler(data);
 
 #pragma warning disable 4014
-                    NewCommandExecutor.ExecuteCommand(this, command);
+                NewCommandExecutor.ExecuteCommand(this, command);
 #pragma warning restore 4014
-                }
 
             }
             catch (Exception e) {
@@ -283,11 +210,11 @@ namespace InsurgenceServerCore.ClientHandler
 
         public async Task Ping()
         {
-            var msg = System.Text.Encoding.ASCII.GetBytes("<PNG>" + "\n");
+            var msg = Encoding.ASCII.GetBytes("<PNG>" + "\n");
             try
             {
-                await _stream.WriteAsync(msg, 0, msg.Length);
-                await _stream.FlushAsync();
+                if (_socket.Connected)
+                    await _socket.SendAsync(msg, SocketFlags.None);
             }
             catch {
                 await Disconnect();
@@ -301,14 +228,15 @@ namespace InsurgenceServerCore.ClientHandler
                 await Disconnect();
                 return;
             }
-            var msg = System.Text.Encoding.ASCII.GetBytes(str + "\n");
+            var msg = Encoding.ASCII.GetBytes(str + "\n");
             try
             {
-                await _stream.WriteAsync(msg, 0, msg.Length);
-                await _stream.FlushAsync();
+                if (_socket.Connected)
+                    await _socket.SendAsync(msg, SocketFlags.None);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 // ignored
             }
         }
@@ -327,7 +255,6 @@ namespace InsurgenceServerCore.ClientHandler
                     await RandomBattles.RemoveRandom(this);
                 await WonderTrade.WonderTradeHandler.DeleteFromClient(this);
                 await SendMessage("<DSC>", true);
-                _stream.Close();
                 ActualCient.Close();
             }
             catch (Exception e) {
@@ -342,10 +269,8 @@ namespace InsurgenceServerCore.ClientHandler
         public CommandHandler(string input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
-            if (!(input.StartsWith("<") && input.EndsWith(">")))
-                return;
-            var realInput = input.Remove(0, 1);
-            realInput = realInput.Remove(realInput.Length - 1);
+            var realInput = input.Replace("<", "");
+            realInput = realInput.Replace(">", "");
             var arr = realInput.Split('|');
             Command = arr[0];
             for (var i = 1; i < arr.Length; i++)

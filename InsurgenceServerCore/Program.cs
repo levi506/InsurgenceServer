@@ -24,8 +24,15 @@ namespace InsurgenceServerCore
             Battles.Matchmaking.SetupTiers();
 #pragma warning restore 4014
             Console.WriteLine("Setting up database!");
-            Database.DBCreator.CreateTables();
-            Database.DbInit.Connect();
+            try
+            {
+                Database.DBCreator.CreateTables();
+                Database.DbInit.Connect();
+            }
+            catch
+            {
+
+            }
             Console.WriteLine("Reading datafiles!");
             GrowthRates.Read();
 
