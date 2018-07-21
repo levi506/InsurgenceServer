@@ -46,7 +46,17 @@ namespace InsurgenceServerCore.ClientHandler
                         await _client.Disconnect();
                         return;
                     }
-                    var bytesRead = await socket.ReceiveAsync(memory, SocketFlags.None);
+
+                    int bytesRead;
+                    try
+                    {
+                        bytesRead = await socket.ReceiveAsync(memory, SocketFlags.None);
+                    }
+                    catch (SocketException)
+                    {
+                        await _client.Disconnect();
+                        break;
+                    }
                     if (bytesRead == 0)
                     {
                         Console.WriteLine("Breaking");
