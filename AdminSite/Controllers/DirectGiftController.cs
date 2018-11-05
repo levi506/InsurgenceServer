@@ -91,11 +91,8 @@ namespace AdminSite.Controllers
             {
                 model.Pokemon.exp = GrowthRates.CalculateExp(model.Pokemon.species, model.Pokemon.level);
                 var rand        = new Random();
-                var id          = (byte)rand.Next(256);
-                id              |= (byte)(((byte) rand.Next(256)) << 8);
-                id              |= (byte)(((byte)rand.Next(256))  << 16);
-                id              |= (byte)(((byte)rand.Next(256))  << 24);
-                model.Pokemon.personalID =  id;
+                var id = rand.Next(int.MinValue, int.MaxValue);
+                model.Pokemon.personalID = (uint) id;
                 model.Pokemon.timeReceived = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
                 var gift = new PokemonDirectGift()
@@ -194,11 +191,8 @@ namespace AdminSite.Controllers
             pkmn.exp = GrowthRates.CalculateExp(pkmn.species, pkmn.level);
 
             var rand = new Random();
-            var id = (byte)rand.Next(256);
-            id |= (byte)(((byte) rand.Next(256)) << 8);
-            id |= (byte)(((byte)rand.Next(256)) << 16);
-            id |= (byte)(((byte)rand.Next(256)) << 24);
-            pkmn.personalID = id;
+            var id = rand.Next(int.MinValue, int.MaxValue);
+            pkmn.personalID = (uint) id;
             var data = PokemonDatabase.GetData(pkmn.species);
             var abil = byte.Parse(Request.Form["pokemonModel.Pokemon.ability"]);
             if (data.Abilities.Count < 2 && abil == 1)
