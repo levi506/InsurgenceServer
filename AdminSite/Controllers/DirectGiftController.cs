@@ -80,8 +80,9 @@ namespace AdminSite.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGiftApi([FromBody]GiftModel model)
         {
-            if (Request.Headers["api-token"] != Startup.Token)
+            if (string.Equals(Request.Headers["api-token"], Startup.Token, StringComparison.InvariantCultureIgnoreCase))
             {
+                Console.WriteLine("Wrong token given: " + Request.Headers["api-token"]);
                 return Forbid();
             }
 
