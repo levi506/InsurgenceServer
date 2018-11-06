@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using InsurgenceServerCore.Database;
 using InsurgenceServerCore.GTS;
@@ -9,7 +10,7 @@ namespace InsurgenceServerCore.Trades
     {
         public static async Task<bool> IsPokemonValid(GamePokemon pokemon, uint userId)
         {
-            if (Data.BannedOTs.Contains(pokemon.ot.ToLowerInvariant()))
+            if (Data.BannedOTs.Any(x => string.Equals(x, pokemon.ot, StringComparison.InvariantCultureIgnoreCase)))
             {
                 await DBWarnLog.LogWarning(userId, $"Trading pokemon with Banned OT: {pokemon.ot}");
                 return false;
@@ -37,7 +38,7 @@ namespace InsurgenceServerCore.Trades
                 await DBWarnLog.LogWarning(userId, $"Trading pokemon with total EV higher than 510/lower than 0: {pokemon.ev.Sum()}");
                 return false;
             }
-            if (!AllowedObtainTexts.Contains(pokemon.obtainText.ToLowerInvariant()))
+            if (!AllowedObtainTexts.Any(x => string.Equals(x, pokemon.obtainText, StringComparison.InvariantCultureIgnoreCase)))
             {
                 await DBWarnLog.LogWarning(userId, $"Trading pokemon with invalid obtain text: {pokemon.obtainText}");
                 return false;
@@ -57,7 +58,7 @@ namespace InsurgenceServerCore.Trades
         }
 
         private static readonly string[] AllowedObtainTexts = {
-            "", "day-care couple", "faraway place", "mystery gift", "santa's workshop"
+            "", "day-care couple", "faraway place", "mystery gift", "santa's workshop", "halloween 2018"
         };
     }
 }
