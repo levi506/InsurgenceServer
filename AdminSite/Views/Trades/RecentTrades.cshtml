@@ -5,7 +5,9 @@
 	Layout = "/Views/Shared/_Layout.cshtml";
 	ViewBag.Title = "Tradelog";
 }
-<link rel="stylesheet" href="/CSS/Tradelog.css" />
+@section Style{
+	<link rel="stylesheet" href="/css/Tradelog.css" />
+}
 <div style="padding-top:30px;">
 	<table class="dataTable border bordered table-striped">
 		@foreach (var trade in Model.Trades)

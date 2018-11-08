@@ -10,6 +10,10 @@
 	background-color: palevioletred;
 }
 
+.container{
+	margin: 0;
+}
+
 @media screen and (min-width: 1401px){
 	.container {
 		width: 1600px;
