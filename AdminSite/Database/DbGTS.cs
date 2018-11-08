@@ -28,7 +28,7 @@ namespace AdminSite.Database
                     Id = (int)r["id"],
                     Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
                     Result = JsonConvert.DeserializeObject<Models.Pokemon>(r["Result"].ToString()),
-                    UserId = (int)r["user_id"],
+                    UserId = (uint)r["user_id"],
                     Accepted = true,
                     OwnerName = r["ownername"].ToString(),
                     TraderName = r["username"].ToString()
@@ -56,7 +56,7 @@ namespace AdminSite.Database
                     Id = (int) r["id"],
                     Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
-                    UserId = (int)r["user_id"],
+                    UserId = (uint)r["user_id"],
                     Accepted = false,
                     OwnerName = r["ownername"].ToString()
                 });
@@ -88,7 +88,7 @@ namespace AdminSite.Database
                     Id = (int)r["id"],
                     Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
-                    UserId = (int)r["user_id"],
+                    UserId = (uint)r["user_id"],
                     Accepted = (bool)r["Accepted"],
                     TraderName = r["username"].ToString(),
                     OwnerName = r["ownername"].ToString(),
@@ -134,7 +134,7 @@ namespace AdminSite.Database
                     Id = (int) r["id"],
                     Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
-                    UserId = (int)r["user_id"],
+                    UserId = (uint)r["user_id"],
                     Accepted = (bool)r["Accepted"],
                     OwnerName = r["ownername"].ToString()
                 });

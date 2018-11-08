@@ -13,7 +13,7 @@ namespace AdminSite.Models
         public int Id { get; set; }
         public Pokemon Offer { get; set; }
         public GTSFilter Request { get; set; }
-        public int UserId { get; set; }
+        public uint UserId { get; set; }
         public string OwnerName { get; set; }
         public string TraderName { get; set; }
         public bool Accepted { get; set; }
