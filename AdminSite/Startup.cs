@@ -72,8 +72,9 @@ namespace AdminSite
                 .AddCookie(options =>
                 {
                     options.ExpireTimeSpan = TimeSpan.FromHours(12);
-                    options.LoginPath = new PathString("/login");
+                    options.LoginPath = new PathString("/Account/Login");
                     options.SlidingExpiration = true;
+                    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 })
                 .AddGoogle(x =>
                 {
@@ -82,15 +83,10 @@ namespace AdminSite
                     x.AccessType = "offline";
                     x.Events = new OAuthEvents()
                     {
-                        OnRemoteFailure = ctx =>
-                        {
-                            throw ctx.Failure;
-                        },
+                        OnRemoteFailure = ctx => throw ctx.Failure,
                         OnCreatingTicket = y =>
                         {
-                            Console.WriteLine(y.ExpiresIn);
                             var permissionLevel = Database.Database.RegisterWebAdmin((string)y.User["id"], y.Identity.Name).Result;
-                            Console.WriteLine(permissionLevel);
                             if (permissionLevel >= 1)
                             {
                                 y.Identity.AddClaim(new Claim("Moderator", "Allowed"));
@@ -131,6 +127,7 @@ namespace AdminSite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            /*
             app.Map("/login", signoutApp =>
             {
                 signoutApp.Run(async context =>
@@ -145,7 +142,7 @@ namespace AdminSite
                     }
                     context.Response.Redirect("/login?authscheme=Google");
                 });
-            });
+            });*/
             app.Map("/logout", signoutApp =>
             {
                 signoutApp.Run(async context =>
