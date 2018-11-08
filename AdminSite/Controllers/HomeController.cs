@@ -11,7 +11,6 @@ namespace AdminSite.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            Console.WriteLine(User.Claims.Count(x => x.Type == "Moderator"));
             ViewData["name"] = User.Identity.Name;
             return View();
         }

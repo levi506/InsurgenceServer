@@ -23,7 +23,6 @@ namespace AdminSite.Pokemon
             if (shiny)
                 s += "Shiny_";
             s += PokemonHelper.GetPokemonName((short) i);
-            Console.WriteLine(s);
             return s;
         }
     }
