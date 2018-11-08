@@ -4,8 +4,16 @@
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "GTS";
 }
-
-@foreach (var thing in Model.GTS)
-{
-    @await Html.PartialAsync("PartialGTSClosed", thing);
-}
+<div>
+    @foreach (var thing in Model.GTS)
+    {
+        @await Html.PartialAsync("PartialGTSClosed", thing);
+    }
+</div>
+<div>
+    @if (Model.Page != 0)
+    {
+        <input type="button" title="Previous" value="Previous" onclick="location.href = '@Url.Action("Closed", "GTS", new { id = Model.Page - 1 })'" />
+    }
+    <input type="button" title="Next" value="Next" onclick="location.href='@Url.Action("Closed", "GTS", new { id = Model.Page + 1 })'" />
+</div>

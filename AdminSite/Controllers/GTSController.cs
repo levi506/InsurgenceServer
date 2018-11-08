@@ -13,20 +13,31 @@ namespace AdminSite.Controllers
     {
         public async Task<IActionResult> Index()
         {
+            return RedirectToAction("Page");
+        }
+
+        public async Task<IActionResult> Page(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                i = 0;
             var model = new GTSListModel
             {
-                GTS = await DbGTS.GetOpenGTSTrades(),
-                StartIndex = 0
+                GTS        = await DbGTS.GetOpenGTSTrades(i * 25, 25),
+                Page = i
             };
             return View(model);
         }
 
-        public async Task<IActionResult> Closed()
+        public async Task<IActionResult> Closed(string id)
         {
+            int i;
+            if (!int.TryParse(id, out i))
+                i = 0;
             var model = new GTSListModel()
             {
-                GTS =  await DbGTS.GetClosedGTSTrades(),
-                StartIndex = 0
+                GTS =  await DbGTS.GetClosedGTSTrades(i * 25, 25),
+                Page = i
             };
             return View(model);
         }

@@ -4,7 +4,7 @@ namespace AdminSite.Models
 {
     public class GTSListModel
     {
-        public uint StartIndex { get; set; }
+        public int Page { get; set; }
         public List<GTSObject> GTS { get; set; }
     }
 

@@ -9,7 +9,7 @@ namespace AdminSite.Database
 {
     internal static class DbGTS
     {
-        public static async Task<List<GTSObject>> GetClosedGTSTrades()
+        public static async Task<List<GTSObject>> GetClosedGTSTrades(int start, int amount)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected)
@@ -18,8 +18,10 @@ namespace AdminSite.Database
                 return new List<GTSObject>();
             }
             var l = new List<GTSObject>();
-            const string command = "SELECT id, Offer, Result, user_id, ownername, username FROM GTS WHERE Accepted=1";
+            const string command = "SELECT id, Offer, Result, user_id, ownername, username FROM GTS WHERE Accepted=1 LIMIT @pos, @amount";
             var mcom = new MySqlCommand(command, conn.Connection);
+            mcom.Parameters.AddWithValue("@pos", start);
+            mcom.Parameters.AddWithValue("@amount", amount);
             var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {
@@ -37,7 +39,7 @@ namespace AdminSite.Database
             conn.Close();
             return l;
         }
-        public static async Task<List<GTSObject>> GetOpenGTSTrades()
+        public static async Task<List<GTSObject>> GetOpenGTSTrades(int start, int amount)
         {
             var conn = new OpenConnection();
             if (!conn.IsConnected)
@@ -46,8 +48,10 @@ namespace AdminSite.Database
                 return new List<GTSObject>();
             }
             var l = new List<GTSObject>();
-            const string command = "SELECT id, Offer, Request, user_id, ownername FROM GTS WHERE Accepted=0";
+            const string command = "SELECT id, Offer, Request, user_id, ownername FROM GTS WHERE Accepted=0 LIMIT @pos, @amount";
             var mcom = new MySqlCommand(command, conn.Connection);
+            mcom.Parameters.AddWithValue("@pos", start);
+            mcom.Parameters.AddWithValue("@amount", amount);
             var r = await mcom.ExecuteReaderAsync();
             while (r.Read())
             {

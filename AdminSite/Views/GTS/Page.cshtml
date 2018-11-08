@@ -1,0 +1,18 @@
+@model AdminSite.Models.GTSListModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "GTS";
+}
+<div>
+    @foreach (var thing in Model.GTS)
+    {
+        @await Html.PartialAsync("PartialGts", thing);
+    }
+</div>
+<div>
+    @if (Model.Page != 0)
+    {
+        <input type="button" title="Previous" value="Previous" onclick="location.href = '@Url.Action("Page", "GTS", new { id = Model.Page - 1 })'" />
+    }
+    <input type="button" title="Next" value="Next" onclick="location.href='@Url.Action("Page", "GTS", new { id = Model.Page + 1 })'" />
+</div>
