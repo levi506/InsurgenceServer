@@ -15,6 +15,14 @@ namespace AdminSite.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            if (User.Identity.IsAuthenticated)
+            {
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                return Redirect(returnUrl);
+            }
             await HttpContext.ChallengeAsync("Google", new AuthenticationProperties() { RedirectUri = returnUrl });
             return View();
         }
