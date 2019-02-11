@@ -24,7 +24,7 @@ namespace AdminSite.Database
                 {
                     while (await r.ReadAsync())
                     {
-                        var t = new Trade {Id = (short) r["i"]};
+                        var t = new Trade {Id = (int) r["i"]};
                         var u1 = (string)r["user1"];
                         if (u1 == username)
                         {
@@ -97,7 +97,7 @@ namespace AdminSite.Database
                     {
                         var t = new Trade
                         {
-                            Id = (short) r["i"],
+                            Id = (int) r["i"],
                             Date = (DateTime) r["time"],
                             User1 = (string) r["user1"],
                             User2 = (string) r["user2"],
@@ -173,7 +173,7 @@ namespace AdminSite.Database
             {
                 while (r.Read())
                 {
-                    t.Id = (short)r["i"];
+                    t.Id = (int)r["i"];
                     t.User1 = (string)r["user1"];
                     t.User2 = (string)r["user2"];
                     t.Pokemon1 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon1"]);
