@@ -59,7 +59,6 @@ namespace InsurgenceServerCore.ClientHandler
                     }
                     if (bytesRead == 0)
                     {
-                        Console.WriteLine("Breaking");
                         break;
                     }
 
