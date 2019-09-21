@@ -58,7 +58,8 @@ namespace InsurgenceServerCore.Trades
         }
 
         private static readonly string[] AllowedObtainTexts = {
-            "", "day-care couple", "faraway place", "mystery gift", "santa's workshop", "halloween 2018"
+            "", "day-care couple", "faraway place", "mystery gift", "santa's workshop", "halloween 2018",
+            "metchi town","vipik city","helios city","hekate town","ancient tower","amphitrite city","erebus city"
         };
     }
 }
