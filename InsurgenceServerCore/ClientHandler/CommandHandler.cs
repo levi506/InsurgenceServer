@@ -30,11 +30,17 @@ namespace InsurgenceServerCore.ClientHandler
         {
             if (!CommandList.TryGetValue(command.Command, out var function))
             {
+                Logger.Logger.Log("Unexpected Command: " + command.Command);
                 Console.WriteLine("Unexpected Command: " + command.Command);
                 return;
             }
+
             if (function.GetCustomAttribute<ServerCommand>(false).RequireLogin && !client.LoggedIn)
+            {
+                Logger.Logger.Log("Unauthorized Command: " + command.Command);
+                await client.SendMessage("<GLOBAL message=Unauthorized'>");
                 return;
+            }
             try
             {
                 await (Task)function.Invoke(null, new object[] {client, command});
@@ -87,6 +93,20 @@ namespace InsurgenceServerCore.ClientHandler
             var ls = command.Data["values"].Split(',').ToList().Select(int.Parse).ToList();
             await DbMetrics.MetricCountMultiple(ls);
         }
+        
+        [ServerCommand("BASEGIFT", false)]
+        public static async Task AddGiftRequest(Client client, CommandHandler command)
+        {
+            var username = command.Data["username"];
+            var giftString = command.Data["gift"];
+            if (!uint.TryParse(giftString, out var gift))
+            {
+                Logger.Logger.Log($"Invalid gift was attempted to be given: '{giftString}'");
+            }
+            var i = await DbFriendSafari.AddGift(gift, username);
+            await client.SendMessage($"<BASEGIFT result={i}>");
+        }
+
 
         ///////////////////////////////////////////////////////////////////////////
         //Define requests that require authentication before execution below here//
@@ -131,13 +151,6 @@ namespace InsurgenceServerCore.ClientHandler
             {
                 await DbFriendSafari.SetMessage(client.UserId, command.Data["message"].Base64Decode());
             }
-        }
-
-        [ServerCommand("BASEGIFT", true)]
-        public static async Task AddGiftRequest(Client client, CommandHandler command)
-        {
-            var i = await DbFriendSafari.AddGift(uint.Parse(command.Data["gift"]), command.Data["username"]);
-            await client.SendMessage($"<BASEGIFT result={i}>");
         }
 
         [ServerCommand("GETGIFTS", true)]
