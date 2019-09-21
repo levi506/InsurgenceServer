@@ -14,6 +14,7 @@ namespace InsurgenceServerCore.Database
                 await conn.Close();
                 return;
             }
+            Logger.Logger.Log($"Warned user with id {userId} for reason '{reason}'");
 
             const string command = "INSERT INTO warnings (user_id, reason, time) VALUES (@param_val_1, @param_val_2, @param_val_3)";
             var m = new MySqlCommand(command, conn.Connection);

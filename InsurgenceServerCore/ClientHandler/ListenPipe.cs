@@ -13,7 +13,7 @@ namespace InsurgenceServerCore.ClientHandler
     {
         private readonly Socket _socket;
         private readonly Pipe _pipe;
-        private Client _client;
+        private readonly Client _client;
 
         public delegate Task OnCompleteMessageDelegate(string s);
         public event OnCompleteMessageDelegate OnCompleteMessage;
@@ -93,7 +93,7 @@ namespace InsurgenceServerCore.ClientHandler
             });
         }
 
-        private StringBuilder _message = new StringBuilder();
+        //private StringBuilder _message = new StringBuilder();
 
         // ReSharper disable once FunctionRecursiveOnAllPaths
         private async Task PipeHandler(PipeReader reader)
@@ -108,16 +108,10 @@ namespace InsurgenceServerCore.ClientHandler
                     position = buffer.PositionOf((byte) '>');
                     if (position.HasValue)
                     {
-                        var pos   = position.Value.GetInteger();
                         var bytes = buffer.Slice(0, position.Value);
-                        _message.Append(GetAsciiString(bytes));
-                        OnCompleteMessage?.Invoke(_message.ToString());
+                        var msg = GetAsciiString(bytes);
+                        OnCompleteMessage?.Invoke(msg);
                         buffer   = buffer.Slice(buffer.GetPosition(1, position.Value));
-                        _message = new StringBuilder();
-                    }
-                    else
-                    {
-                        _message.Append(GetAsciiString(buffer).Replace("\n", ""));
                     }
                 } while (position.HasValue);
 
