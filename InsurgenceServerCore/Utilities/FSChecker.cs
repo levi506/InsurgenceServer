@@ -28,7 +28,7 @@ namespace InsurgenceServerCore.Utilities
                 {
 #pragma warning disable 4014
                     Database.DBWarnLog.LogWarning(client.UserId,
-                        "Tried to upload illegal Friend Safari. Contained: " + pokemon[i]);
+                        $"Tried to upload illegal Friend Safari. Contained: {pokemon[i]} at position {i}");
 #pragma warning restore 4014
                     return false;
                 }
