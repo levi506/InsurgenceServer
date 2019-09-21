@@ -151,25 +151,27 @@ namespace InsurgenceServerCore.Database
             }
 
             //Grab current gifts and the user id from database
-            const string command = "SELECT user_id, giftbox " +
+            const string command = "SELECT friendsafari.user_id, friendsafari.giftbox " +
                                    "FROM friendsafari " +
                                    "INNER JOIN users " +
                                    "ON users.user_id = friendsafari.user_id " +
                                    "WHERE users.username = @param_val_1";
             var m = new MySqlCommand(command, conn.Connection);
             m.Parameters.AddWithValue("@param_val_1", username);
-            var r = await m.ExecuteReaderAsync();
 
             uint userId = 0;
             var oldGifts = string.Empty;
 
-            while (await r.ReadAsync())
+            using (var r = await m.ExecuteReaderAsync())
             {
-                userId = (uint)r["user_id"];
-                var tempGifts = r["giftbox"];
-                if (!(tempGifts is DBNull))
+                while (await r.ReadAsync())
                 {
-                    oldGifts = tempGifts.ToString();
+                    userId = (uint)r["user_id"];
+                    var tempGifts = r["giftbox"];
+                    if (!(tempGifts is DBNull))
+                    {
+                        oldGifts = tempGifts.ToString();
+                    }
                 }
             }
 
@@ -179,7 +181,11 @@ namespace InsurgenceServerCore.Database
                 return 0;
 
             //Turn the string we got from the database into a List of unsigned integers
-            var giftsList = oldGifts.Split(',').Select(x => new GiftHolder(x)).ToList();
+            var giftsList = oldGifts
+                .Split(',')
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .Select(x => new GiftHolder(x))
+                .ToList();
 
             var currentGiftAmount = giftsList.Sum(x => x.Amount);
             if (currentGiftAmount >= Data.MaximumGifts)
