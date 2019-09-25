@@ -297,6 +297,7 @@ namespace InsurgenceServerCore.ClientHandler
             var s = await DbMisc.GetDirectGift(client);
             if (s != null)
             {
+                Logger.Logger.Log($"User {client.Username} collected Direct Gift with value: {s}");
                 var encode = s.Base64Encode();
                 await client.SendMessage($"<DIRGIFT result=1 gift={encode}>");
             }
