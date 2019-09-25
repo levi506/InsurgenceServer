@@ -29,6 +29,10 @@
 
 <form asp-controller="DirectGift" asp-action="AddPokemonGift" method="post" id="pokemonForm" >
     <table class="table border" id="pokemonTable">
+        @if (pokemonModel == null)
+        {
+            pokemonModel = new PokemonDirectGift();
+        }
         <tr>
             <th colspan="4">Pokemon</th>
         </tr>
@@ -65,7 +69,7 @@
         </tr>
         <tr>
             <th>Happiness</th>
-            <td><input type="number" asp-for="@pokemonModel.Pokemon.happiness" min="0" max="255" /></td>
+            <td><input type="number" asp-for="@pokemonModel.Pokemon.happiness" min="0" max="255"/></td>
             <th>Held Item</th>
             <td><select readonly asp-for="@pokemonModel.Pokemon.item" asp-items="@Html.GetEnumSelectList(typeof(ItemList))"></select></td>
         </tr>
@@ -79,23 +83,23 @@
                     </tr>
                     <tr>
                         <th>Attack</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[1]" min="0" max="31" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[1]" min="0" max="31"/></td>
                     </tr>
                     <tr>
                         <th>Defense</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[2]" min="0" max="31" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[2]" min="0" max="31"/></td>
                     </tr>
                     <tr>
                         <th>Sp. Att.</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[4]" min="0" max="31" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[4]" min="0" max="31"/></td>
                     </tr>
                     <tr>
                         <th>Sp. Def.</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[5]" min="0" max="31" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[5]" min="0" max="31"/></td>
                     </tr>
                     <tr>
                         <th>Speed</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[3]" min="0" max="31" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.iv[3]" min="0" max="31"/></td>
                     </tr>
                 </table>
             </td>
@@ -104,27 +108,27 @@
                 <table class="table-condensed">
                     <tr>
                         <th>HP</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[0]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[0]" min="0" max="255"/></td>
                     </tr>
                     <tr>
                         <th>Attack</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[1]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[1]" min="0" max="255"/></td>
                     </tr>
                     <tr>
                         <th>Defense</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[2]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[2]" min="0" max="255"/></td>
                     </tr>
                     <tr>
                         <th>Sp. Att.</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[4]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[4]" min="0" max="255"/></td>
                     </tr>
                     <tr>
                         <th>Sp. Def.</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[5]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[5]" min="0" max="255"/></td>
                     </tr>
                     <tr>
                         <th>Speed</th>
-                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[3]" min="0" max="255" /></td>
+                        <td><input type="number" asp-for="@pokemonModel.Pokemon.ev[3]" min="0" max="255"/></td>
                     </tr>
                 </table>
             </td>
@@ -132,7 +136,7 @@
         <tr>
             <th>Moves</th>
             <td colspan="3">
-                <table class="table" id ="movesTable">
+                <table class="table" id="movesTable">
                     <tr>
                         <th>Move</th>
                         <th>PP</th>
@@ -143,10 +147,10 @@
                             <select readonly asp-for="@pokemonModel.Pokemon.moves[0].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[0].pp" min="0" max="50" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[0].pp" min="0" max="50"/>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[0].ppup" min="0" max="3" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[0].ppup" min="0" max="3"/>
                         </td>
                     </tr>
                     <tr>
@@ -154,10 +158,10 @@
                             <select readonly asp-for="@pokemonModel.Pokemon.moves[1].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[1].pp" min="0" max="50" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[1].pp" min="0" max="50"/>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[1].ppup" min="0" max="3" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[1].ppup" min="0" max="3"/>
                         </td>
                     </tr>
                     <tr>
@@ -165,10 +169,10 @@
                             <select readonly asp-for="@pokemonModel.Pokemon.moves[2].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[2].pp" min="0" max="50" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[2].pp" min="0" max="50"/>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[2].ppup" min="0" max="3" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[2].ppup" min="0" max="3"/>
                         </td>
                     </tr>
                     <tr>
@@ -176,10 +180,10 @@
                             <select readonly asp-for="@pokemonModel.Pokemon.moves[3].id" asp-items="@Html.GetEnumSelectList(typeof(MoveHelper.MovesList))"></select>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[3].pp" min="0" max="50" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[3].pp" min="0" max="50"/>
                         </td>
                         <td>
-                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[3].ppup" min="0" max="3" />
+                            <input type="number" asp-for="@pokemonModel.Pokemon.moves[3].ppup" min="0" max="3"/>
                         </td>
                     </tr>
                 </table>
@@ -193,7 +197,7 @@
         </tr>
         <tr>
             <th colspan="4">
-                <input type="submit" value="Save" />
+                <input type="submit" value="Save"/>
             </th>
         </tr>
     </table>
@@ -211,6 +215,10 @@
             <td><input type="text" readonly="readonly" asp-for="@Model.username" name="username"></input></td>
         </tr>
         <tr>
+            @if (itemModel == null)
+            {
+                itemModel = new ItemDirectGift();
+            }
             <th>Item</th>
             <td>
                 <select readonly asp-for="@itemModel.Item" asp-items="@Html.GetEnumSelectList(typeof(ItemList))"></select>

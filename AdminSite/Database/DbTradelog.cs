@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AdminSite.Models;
+using AdminSite.Utilities;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -30,15 +31,15 @@ namespace AdminSite.Database
                         {
                             t.User1 = (string)r["user1"];
                             t.User2 = (string)r["user2"];
-                            t.Pokemon1 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon1"]);
-                            t.Pokemon2 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon2"]);
+                            t.Pokemon1 = Deserializer.DeserializePokemon((string)r["pokemon1"]);
+                            t.Pokemon2 = Deserializer.DeserializePokemon((string)r["pokemon2"]);
                         }
                         else
                         {
                             t.User2 = (string)r["user1"];
                             t.User1 = (string)r["user2"];
-                            t.Pokemon2 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon1"]);
-                            t.Pokemon1 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon2"]);
+                            t.Pokemon2 = Deserializer.DeserializePokemon((string)r["pokemon1"]);
+                            t.Pokemon1 = Deserializer.DeserializePokemon((string)r["pokemon2"]);
                         }
                         l.Add(t);
                     }
@@ -67,7 +68,7 @@ namespace AdminSite.Database
                         var t = new WonderTrade
                         {
                             Id = (uint) r["id"],
-                            Pokemon = JsonConvert.DeserializeObject<Models.Pokemon>((string) r["pokemon"]),
+                            Pokemon = Deserializer.DeserializePokemon((string) r["pokemon"]),
                             User = username,
                             Date = (DateTime) r["time"]
                         };
@@ -101,14 +102,8 @@ namespace AdminSite.Database
                             Date = (DateTime) r["time"],
                             User1 = (string) r["user1"],
                             User2 = (string) r["user2"],
-                            Pokemon1 = JsonConvert.DeserializeObject<Models.Pokemon>((string) r["pokemon1"], new JsonSerializerSettings
-                            {
-                                Error = HandleDeserializationError
-                            }),
-                            Pokemon2 = JsonConvert.DeserializeObject<Models.Pokemon>((string) r["pokemon2"], new JsonSerializerSettings
-                            {
-                                Error = HandleDeserializationError
-                            })
+                            Pokemon1 = Deserializer.DeserializePokemon((string) r["pokemon1"]),
+                            Pokemon2 = Deserializer.DeserializePokemon((string) r["pokemon2"]),
                         };
                         l.Add(t);
                     }
@@ -147,7 +142,7 @@ namespace AdminSite.Database
                         Id = (uint)r["id"],
                         Date = (DateTime) r["time"],
                         User = (string) r["username"],
-                        Pokemon = JsonConvert.DeserializeObject<Models.Pokemon>((string) r["pokemon"])
+                        Pokemon = Deserializer.DeserializePokemon((string) r["pokemon"])
                     };
                     l.Add(t);
                 }
@@ -176,8 +171,8 @@ namespace AdminSite.Database
                     t.Id = (int)r["i"];
                     t.User1 = (string)r["user1"];
                     t.User2 = (string)r["user2"];
-                    t.Pokemon1 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon1"]);
-                    t.Pokemon2 = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon2"]);
+                    t.Pokemon1 = Deserializer.DeserializePokemon((string)r["pokemon1"]);
+                    t.Pokemon2 = Deserializer.DeserializePokemon((string)r["pokemon2"]);
                     t.Date = (DateTime) r["time"];
                 }
             }
@@ -204,7 +199,7 @@ namespace AdminSite.Database
                 {
                     t.Id = (uint)r["id"];
                     t.User = (string)r["username"];
-                    t.Pokemon = JsonConvert.DeserializeObject<Models.Pokemon>((string)r["pokemon"]);
+                    t.Pokemon = Deserializer.DeserializePokemon((string)r["pokemon"]);
                     t.Date = (DateTime) r["time"];
                 }
             }

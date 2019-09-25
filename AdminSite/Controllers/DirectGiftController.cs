@@ -159,8 +159,7 @@ namespace AdminSite.Controllers
                     int.Parse(Request.Form["pokemonModel.Pokemon.ev[4]"]),
                     int.Parse(Request.Form["pokemonModel.Pokemon.ev[5]"])
                 },
-                moves = new List<GameMove>
-                {
+                moves = new[] {
                     new GameMove
                     {
                         id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[0].id"]),
@@ -184,9 +183,9 @@ namespace AdminSite.Controllers
                         id = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].id"]),
                         pp = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].pp"]),
                         ppup = int.Parse(Request.Form["pokemonModel.Pokemon.moves[3].ppup"]),
-                    },
+                    }
                 },
-                otgender = otgender,
+                otgender = (byte) otgender,
                 obtainMode = 4
             };
             pkmn.exp = GrowthRates.CalculateExp(pkmn.species, pkmn.level);

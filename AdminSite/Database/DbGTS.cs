@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AdminSite.Models;
+using AdminSite.Utilities;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
@@ -58,7 +59,7 @@ namespace AdminSite.Database
                 l.Add(new GTSObject
                 {
                     Id = (int) r["id"],
-                    Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
+                    Offer = Deserializer.DeserializePokemon(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
                     UserId = (uint)r["user_id"],
                     Accepted = false,
@@ -86,11 +87,11 @@ namespace AdminSite.Database
             {
                 Models.Pokemon result = null;
                 if (!(r["Result"] is DBNull))
-                    result = JsonConvert.DeserializeObject<Models.Pokemon>(r["Result"].ToString());
+                    result = Deserializer.DeserializePokemon(r["Result"].ToString());
                 obj = new GTSObject
                 {
                     Id = (int)r["id"],
-                    Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
+                    Offer = Deserializer.DeserializePokemon(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
                     UserId = (uint)r["user_id"],
                     Accepted = (bool)r["Accepted"],
@@ -136,7 +137,7 @@ namespace AdminSite.Database
                 l.Add(new GTSObject
                 {
                     Id = (int) r["id"],
-                    Offer = JsonConvert.DeserializeObject<Models.Pokemon>(r["Offer"].ToString()),
+                    Offer = Deserializer.DeserializePokemon(r["Offer"].ToString()),
                     Request = JsonConvert.DeserializeObject<GTSFilter>(r["Request"].ToString()),
                     UserId = (uint)r["user_id"],
                     Accepted = (bool)r["Accepted"],

@@ -32,7 +32,7 @@ namespace AdminSite.Models
 
     public class PokemonDirectGift : DirectGiftBase
     {
-        public Pokemon Pokemon { get; set; }
+        public Pokemon Pokemon { get; set; } = new Pokemon();
         public override DirectGiftType Type => DirectGiftType.Pokemon;
     }
 

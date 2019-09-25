@@ -37,12 +37,7 @@ namespace AdminSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.AddMvc(x =>
-            {
-
-            });
+            services.AddMvc(x => { x.EnableEndpointRouting = false; });
 
             //services.AddIdentity<User, Role>()
             //    .AddDefaultTokenProviders();
@@ -86,7 +81,7 @@ namespace AdminSite
                         OnRemoteFailure = ctx => throw ctx.Failure,
                         OnCreatingTicket = y =>
                         {
-                            var permissionLevel = Database.Database.RegisterWebAdmin((string)y.User["id"], y.Identity.Name).Result;
+                            var permissionLevel = Database.Database.RegisterWebAdmin(y.User.GetString("id"), y.Identity.Name).Result;
                             if (permissionLevel >= 1)
                             {
                                 y.Identity.AddClaim(new Claim("Moderator", "Allowed"));
