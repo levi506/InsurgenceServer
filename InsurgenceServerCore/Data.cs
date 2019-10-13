@@ -8,7 +8,7 @@ namespace InsurgenceServerCore
         public const string Ip = "5.135.154.100";
         public const int Port = 6422;
         public const string Databasename = "insurgence";
-        public const double ServerVersion = 4.0;
+        public const double ServerVersion = 5.0;
         public const int MaximumConnections = 200;
 
         public const int MaximumGtsTradesPerUser = 3;

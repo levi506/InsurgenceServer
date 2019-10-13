@@ -71,8 +71,6 @@ namespace InsurgenceServerCore.Trades
         {
             var offerJson = Utilities.Encoding.Base64Decode(offer);
             offerJson = offerJson.Replace(",,", ",");
-            offer = Utilities.Encoding.Base64Encode(offerJson);
-
             var pkmn = JsonConvert.DeserializeObject<GTS.GamePokemon>(offerJson);
             if (! await TradeValidator.IsPokemonValid(pkmn, client.UserId))
             {
