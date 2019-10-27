@@ -29,5 +29,10 @@ namespace InsurgenceServerCore.Utilities
             b = new Version(major, minor);
             return true;
         }
+
+        public override string ToString()
+        {
+            return $"{Major}.{Minor}";
+        }
     }
 }
