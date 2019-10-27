@@ -72,17 +72,30 @@ namespace InsurgenceServerCore.ClientHandler
                 Console.WriteLine(e);
             }
         }
-        internal async Task ConnectionRequest(string versionstr)
+        internal async Task ConnectionRequest(string versionStr)
         {
             int result;
-            if (!Utilities.Version.TryParse(versionstr, out var version))
+            if (!Utilities.Version.TryParse(versionStr, out var version))
+            {
+                Logger.Logger.Log($"User used invalid version string: {versionStr}");
                 return;
+            }
+
             if (version.Major < Data.ServerVersion.Major)
+            {
+                Logger.Logger.Log($"User used outdated version: {versionStr}");
                 result = 0;
+            }
             else if (version.Minor < Data.ServerVersion.Minor)
+            {
+                Logger.Logger.Log($"User used outdated version: {versionStr}");
                 result = 0;
+            }
             else if (ClientHandler.ActiveClients.Count >= Data.MaximumConnections)
+            {
+                Logger.Logger.Log($"User was rejected for too many current connections");
                 result = 1;
+            }
             else
                 result = 2;
             _version = version;
