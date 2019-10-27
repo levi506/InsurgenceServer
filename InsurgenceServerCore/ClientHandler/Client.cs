@@ -13,11 +13,10 @@ namespace InsurgenceServerCore.ClientHandler
 {
     public class Client
     {
-        //private readonly byte[] _bytes = new Byte[256];
         public readonly TcpClient ActualCient;
         private readonly Socket _socket;
 
-        private double _version;
+        private Utilities.Version _version;
 
         public bool Connected = true;
         public bool LoggedIn;
@@ -76,9 +75,11 @@ namespace InsurgenceServerCore.ClientHandler
         internal async Task ConnectionRequest(string versionstr)
         {
             int result;
-            if (!double.TryParse(versionstr, out var version))
+            if (!Utilities.Version.TryParse(versionstr, out var version))
                 return;
-            if (version < Data.ServerVersion)
+            if (version.Major < _version.Major)
+                result = 0;
+            else if (version.Minor < _version.Minor)
                 result = 0;
             else if (ClientHandler.ActiveClients.Count >= Data.MaximumConnections)
                 result = 1;
@@ -95,7 +96,7 @@ namespace InsurgenceServerCore.ClientHandler
                 Username = username.ToLower();
                 LoggedIn = true;
             }
-            if (Math.Abs(_version - 6.84) < 0.01 && Admin == false)
+            if (_version.Major == 6 && _version.Minor == 84 && Admin == false)
             {
                 //Ban if user logged in with a debug client, while not being an Admin
 #pragma warning disable 4014
