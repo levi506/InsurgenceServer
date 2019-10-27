@@ -22,14 +22,16 @@ namespace InsurgenceServerCore.Trades
             }
             if (pokemon.iv.Any(x => x > 31 || x < 0))
             {
+                var first = pokemon.iv.FirstOrDefault(x => x > 31 || x < 0);
                 await DBWarnLog.LogWarning(userId,
-                    $"Trading pokemon with IV higher than 31/lower than 0: {pokemon.iv.FirstOrDefault(x => x > 31)}");
+                    $"Trading pokemon with IV higher than 31/lower than 0: {first}");
                 return false;
             }
             if (pokemon.ev.Any(x => x > 255 || x < 0))
             {
+                var first = pokemon.ev.FirstOrDefault(x => x > 255 || x < 0);
                 await DBWarnLog.LogWarning(userId,
-                    $"Trading pokemon with EV higher than 255/lower than 0: {pokemon.ev.FirstOrDefault(x => x > 255)}");
+                    $"Trading pokemon with EV higher than 255/lower than 0: {first}");
                 return false;
             }
             var evSum = pokemon.ev.Sum();
