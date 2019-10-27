@@ -77,9 +77,9 @@ namespace InsurgenceServerCore.ClientHandler
             int result;
             if (!Utilities.Version.TryParse(versionstr, out var version))
                 return;
-            if (version.Major < _version.Major)
+            if (version.Major < Data.ServerVersion.Major)
                 result = 0;
-            else if (version.Minor < _version.Minor)
+            else if (version.Minor < Data.ServerVersion.Minor)
                 result = 0;
             else if (ClientHandler.ActiveClients.Count >= Data.MaximumConnections)
                 result = 1;
