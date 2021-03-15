@@ -19,9 +19,9 @@ namespace InsurgenceServerCore
 
             Console.WriteLine("Creating Commands");
             NewCommandExecutor.Initialize();
-            Console.WriteLine("Setting up tiers");
+            //Console.WriteLine("Setting up tiers");
 #pragma warning disable 4014
-            Battles.Matchmaking.SetupTiers();
+            //Battles.Matchmaking.SetupTiers();
 #pragma warning restore 4014
             Console.WriteLine("Setting up database!");
             try

@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using AdminSite.Pokemon;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace AdminSite
 {
@@ -73,8 +69,8 @@ namespace AdminSite
                 })
                 .AddGoogle(x =>
                 {
-                    x.ClientId = "978297029125-doscbkcd7p9o7lqa4f9cro5nb2fetfth.apps.googleusercontent.com";
-                    x.ClientSecret = "XKJMty6DaT0z7b7kBxlLyrn_";
+                    x.ClientId = Environment.GetEnvironmentVariable("GClientId");
+                    x.ClientSecret = Environment.GetEnvironmentVariable("GClientSecret");
                     x.AccessType = "offline";
                     x.Events = new OAuthEvents()
                     {

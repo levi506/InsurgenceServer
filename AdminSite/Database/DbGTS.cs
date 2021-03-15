@@ -49,7 +49,7 @@ namespace AdminSite.Database
                 return new List<GTSObject>();
             }
             var l = new List<GTSObject>();
-            const string command = "SELECT id, Offer, Request, user_id, ownername FROM GTS WHERE Accepted=0 LIMIT @pos, @amount";
+            const string command = "SELECT id, Offer, Request, user_id, username FROM GTS WHERE Accepted=0 LIMIT @pos, @amount";
             var mcom = new MySqlCommand(command, conn.Connection);
             mcom.Parameters.AddWithValue("@pos", start);
             mcom.Parameters.AddWithValue("@amount", amount);
